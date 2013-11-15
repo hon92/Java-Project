@@ -1,5 +1,3 @@
 Java-Project
 ============
-Age of Empires
-Diablo
-...
+Age of Empires or Diablo or ...
