@@ -19,6 +19,7 @@ public class Project
     {
         System.out.println("Hello");
         System.out.println("World");
+        System.out.println("HOMOLA JE PICA");
         error
     }
 
