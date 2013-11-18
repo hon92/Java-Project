@@ -3,16 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project;
+package View;
 
-import java.awt.Color;
+import Data.GameData;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
-/**
- *
- * @author Honza
- */
 public class GameBoard extends javax.swing.JPanel
 {
 
@@ -23,30 +28,26 @@ public class GameBoard extends javax.swing.JPanel
     public GameBoard()
     {
         initComponents();
-        map = new BufferedImage(800, 800, BufferedImage.BITMASK);
-        topPanel = new BufferedImage(800, 60, BufferedImage.BITMASK);
-        botPanel = new BufferedImage(800, 100, BufferedImage.BITMASK);
+        map = new BufferedImage(GameData.GAMEWIDTH, GameData.GAMEHEIGHT, BufferedImage.BITMASK);
+        try
+        {
+            topPanel = ImageIO.read(new File("src/Resources/topPanel.jpg"));
+            botPanel = ImageIO.read(new File("src/Resources/botPanel.jpg"));
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(GameBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        Graphics gTopPanel = topPanel.createGraphics();
-        gTopPanel.setColor(Color.white);
-        gTopPanel.fillRect(0, 0, 800, 60);
-        Graphics gBotPanel = botPanel.createGraphics();
-        gBotPanel.setColor(Color.green);
-        gBotPanel.fillRect(0, 0, 800, 100);
 
-        Graphics gMap = map.createGraphics();
-        gMap.setColor(Color.red);
-        gMap.fillRect(0, 0, map.getWidth(), map.getHeight());
-        gMap.setColor(Color.WHITE);
-        gMap.drawImage(topPanel, 0, 0, null);
-        gMap.setColor(Color.green);
-        gMap.drawImage(botPanel, 0, 700, null);
-        g.drawImage(map, 0, 0, null);
+        g.drawImage(topPanel, 0, 0, null);
+        g.drawImage(botPanel, 0, GameData.GAMEHEIGHT - botPanel.getHeight(), null);
+        Graphics mapGraphic = map.getGraphics();
 
     }
 

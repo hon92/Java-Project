@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project;
+package View;
 
 /**
  *
@@ -30,9 +30,11 @@ public class MainWindow extends javax.swing.JFrame
     private void initComponents()
     {
 
-        gameBoard1 = new project.GameBoard();
+        gameBoard1 = new View.GameBoard();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(980, 980));
+        setResizable(false);
 
         gameBoard1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -117,6 +119,6 @@ public class MainWindow extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private project.GameBoard gameBoard1;
+    private View.GameBoard gameBoard1;
     // End of variables declaration//GEN-END:variables
 }
