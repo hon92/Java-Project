@@ -5,6 +5,10 @@
  */
 package project;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author Honza
@@ -12,12 +16,38 @@ package project;
 public class GameBoard extends javax.swing.JPanel
 {
 
-    /**
-     * Creates new form GameBoard
-     */
+    BufferedImage map;
+    BufferedImage topPanel;
+    BufferedImage botPanel;
+
     public GameBoard()
     {
         initComponents();
+        map = new BufferedImage(800, 800, BufferedImage.BITMASK);
+        topPanel = new BufferedImage(800, 60, BufferedImage.BITMASK);
+        botPanel = new BufferedImage(800, 100, BufferedImage.BITMASK);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+        Graphics gTopPanel = topPanel.createGraphics();
+        gTopPanel.setColor(Color.white);
+        gTopPanel.fillRect(0, 0, 800, 60);
+        Graphics gBotPanel = botPanel.createGraphics();
+        gBotPanel.setColor(Color.green);
+        gBotPanel.fillRect(0, 0, 800, 100);
+
+        Graphics gMap = map.createGraphics();
+        gMap.setColor(Color.red);
+        gMap.fillRect(0, 0, map.getWidth(), map.getHeight());
+        gMap.setColor(Color.WHITE);
+        gMap.drawImage(topPanel, 0, 0, null);
+        gMap.setColor(Color.green);
+        gMap.drawImage(botPanel, 0, 700, null);
+        g.drawImage(map, 0, 0, null);
+
     }
 
     /**
