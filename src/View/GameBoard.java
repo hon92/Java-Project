@@ -6,17 +6,14 @@
 package View;
 
 import Data.GameData;
+import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 public class GameBoard extends javax.swing.JPanel
 {
@@ -28,7 +25,7 @@ public class GameBoard extends javax.swing.JPanel
     public GameBoard()
     {
         initComponents();
-        map = new BufferedImage(GameData.GAMEWIDTH, GameData.GAMEHEIGHT, BufferedImage.BITMASK);
+        map = new BufferedImage(GameData.MAP_WIDTH, GameData.MAP_HEIGHT, BufferedImage.BITMASK);
         try
         {
             topPanel = ImageIO.read(new File("src/Resources/topPanel.jpg"));
@@ -45,10 +42,13 @@ public class GameBoard extends javax.swing.JPanel
     {
         super.paintComponent(g);
 
-        g.drawImage(topPanel, 0, 0, null);
-        g.drawImage(botPanel, 0, GameData.GAMEHEIGHT - botPanel.getHeight(), null);
         Graphics mapGraphic = map.getGraphics();
+        mapGraphic.setColor(Color.black);
+        mapGraphic.fillRect(0, 0, GameData.MAP_WIDTH, GameData.MAP_HEIGHT);
 
+        g.drawImage(map, 0, 0, null);
+        g.drawImage(topPanel, 0, 0, null);
+        g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - botPanel.getHeight(), null);
     }
 
     /**
