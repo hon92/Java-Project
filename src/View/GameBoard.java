@@ -5,9 +5,12 @@
  */
 package View;
 
+import Controls.Key;
+import Controls.Mouse;
 import Data.GameData;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,13 +21,20 @@ import javax.imageio.ImageIO;
 public class GameBoard extends javax.swing.JPanel
 {
 
-    BufferedImage map;
-    BufferedImage topPanel;
-    BufferedImage botPanel;
+    private BufferedImage map;
+    private BufferedImage topPanel;
+    private BufferedImage botPanel;
+    private Key key;
+    private Mouse mouse;
 
     public GameBoard()
     {
         initComponents();
+        initGameBoard();
+    }
+
+    private void initGameBoard()
+    {
         map = new BufferedImage(GameData.MAP_WIDTH, GameData.MAP_HEIGHT, BufferedImage.BITMASK);
         try
         {
@@ -35,6 +45,9 @@ public class GameBoard extends javax.swing.JPanel
         {
             Logger.getLogger(GameBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
+        setFocusable(true);
+        addMouseListener(new Mouse(this));
+        addKeyListener(new Key(this));
     }
 
     @Override
