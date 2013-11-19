@@ -10,7 +10,6 @@ import Controls.Mouse;
 import Data.GameData;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -48,16 +47,37 @@ public class GameBoard extends javax.swing.JPanel
         setFocusable(true);
         addMouseListener(new Mouse(this));
         addKeyListener(new Key(this));
+        drawMap();
+
+    }
+
+    public void moveWindow(int x, int y)
+    {
+
+    }
+
+    private void drawMap()
+    {
+        Graphics mapGraphic = map.getGraphics();
+        for (int i = 0; i < GameData.MAP_WIDTH; i += 40)
+        {
+            for (int j = 0; j < GameData.MAP_HEIGHT; j += 40)
+            {
+                mapGraphic.setColor(Color.green);
+                mapGraphic.fillRect(i, j, 40, 40);
+                if (i == 120 && j == 120)
+                {
+                    mapGraphic.setColor(Color.blue);
+                    mapGraphic.fillRect(i, j, 40, 40);
+                }
+            }
+        }
     }
 
     @Override
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-
-        Graphics mapGraphic = map.getGraphics();
-        mapGraphic.setColor(Color.black);
-        mapGraphic.fillRect(0, 0, GameData.MAP_WIDTH, GameData.MAP_HEIGHT);
 
         g.drawImage(map, 0, 0, null);
         g.drawImage(topPanel, 0, 0, null);

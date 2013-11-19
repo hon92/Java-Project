@@ -17,6 +17,7 @@ public abstract class Unit
 
     protected int currentHp;
     protected int maxHp;
+    protected int speed;
     protected int locationX;
     protected int locationY;
     protected UnitType typeUnit;
@@ -25,5 +26,10 @@ public abstract class Unit
     public abstract void move(int x, int y);
 
     public abstract void drawUnit(Graphics g);
+
+    public boolean isAlive()
+    {
+        return currentHp <= 0 ? false : true;
+    }
 
 }

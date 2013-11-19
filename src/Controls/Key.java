@@ -31,7 +31,17 @@ public class Key implements KeyListener
     @Override
     public void keyPressed(KeyEvent e)
     {
-        System.out.println("ppp");
+        switch (e.getKeyCode())
+        {
+            case KeyEvent.VK_LEFT:
+                break;
+            case KeyEvent.VK_RIGHT:
+                break;
+            case KeyEvent.VK_UP:
+                break;
+            case KeyEvent.VK_DOWN:
+                break;
+        }
     }
 
     @Override
