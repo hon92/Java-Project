@@ -40,7 +40,6 @@ public class GameBoard extends JPanel
 
     public GameBoard()
     {
-
         initGameBoard();
     }
 
@@ -212,7 +211,7 @@ public class GameBoard extends JPanel
         
 
         g.drawImage(topPanel, 0, 0, null);
-        g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - botPanel.getHeight(), null);
+        g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - 245, null);
 
     }
 }
