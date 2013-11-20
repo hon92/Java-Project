@@ -9,16 +9,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class Shoal
+public class Shoal extends ObjectElement
 {
 
     private BufferedImage shoal;
-    private GameBoard mainPanel;
-    private int x;
-    private int y;
 
-    public Shoal(GameBoard mainPanel, int x, int y)
+    public Shoal(GameBoard gameBoard, int x, int y)
     {
+        super(gameBoard, x, y);
         try
         {
             shoal = ImageIO.read(new File("src/Resources/shoal.png"));
@@ -28,14 +26,10 @@ public class Shoal
             Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.mainPanel = mainPanel;
-        this.x = x;
-        this.y = y;
-
     }
 
-    public void draw(Graphics g)
+    public void drawObject(Graphics g)
     {
-        g.drawImage(shoal, mainPanel.convertX(x), mainPanel.convertY(y), null);
+        g.drawImage(shoal, gameBoard.convertX(x), gameBoard.convertY(y), null);
     }
 }

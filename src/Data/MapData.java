@@ -8,6 +8,7 @@ package Data;
 import GameElement.Bush;
 import GameElement.Cactus;
 import GameElement.Gold;
+import GameElement.ObjectElement;
 import GameElement.Relic;
 import GameElement.Sand;
 import GameElement.Shoal;
@@ -30,15 +31,16 @@ import java.util.logging.Logger;
 public class MapData
 {
 
-    private List<Tree> treeList;
-    private List<Gold> goldList;
-    private List<Stone> stoneList;
-    private List<Relic> relicList;
-    private List<Bush> bushList;
-    private List<Cactus> cactusList;
-    private List<Sand> sandList;
-    private List<Shoal> shoalList;
-    private List<Water> waterList;
+    private List<ObjectElement> objects;
+//    private List<Tree> treeList;
+//    private List<Gold> goldList;
+//    private List<Stone> stoneList;
+//    private List<Relic> relicList;
+//    private List<Bush> bushList;
+//    private List<Cactus> cactusList;
+//    private List<Sand> sandList;
+//    private List<Shoal> shoalList;
+//    private List<Water> waterList;
 
     int matrixX;
     int matrixY;
@@ -54,8 +56,7 @@ public class MapData
     private final char sandChar = 'A';
     private final char shoalChar = 'H';
     private final char waterChar = 'W';
-    
-    
+
     // WHAT THE FUCK ???
     private GameBoard gameBoard;
     // REALLY ???
@@ -63,16 +64,16 @@ public class MapData
     public MapData(GameBoard gameBoard)
     {
         this.gameBoard = gameBoard;
-
-        treeList = new ArrayList<>();
-        goldList = new ArrayList<>();
-        stoneList = new ArrayList<>();
-        relicList = new ArrayList<>();
-        bushList = new ArrayList<>();
-        cactusList = new ArrayList<>();
-        sandList = new ArrayList<>();
-        shoalList = new ArrayList<>();
-        waterList = new ArrayList<>();
+        this.objects = new ArrayList<>();
+//        treeList = new ArrayList<>();
+//        goldList = new ArrayList<>();
+//        stoneList = new ArrayList<>();
+//        relicList = new ArrayList<>();
+//        bushList = new ArrayList<>();
+//        cactusList = new ArrayList<>();
+//        sandList = new ArrayList<>();
+//        shoalList = new ArrayList<>();
+//        waterList = new ArrayList<>();
 
         initMatrix();
         fillLists();
@@ -131,39 +132,39 @@ public class MapData
                 switch (mapMatrix[i][j])
                 {
                     case treeChar:
-                        treeList.add(new Tree(gameBoard, j * 25, i * 25));
+                        objects.add(new Tree(gameBoard, j * 25, i * 25));
                         System.out.println("Added tree");
                         break;
                     case goldChar:
-                        goldList.add(new Gold(gameBoard, j * 25, i * 25));
+                        objects.add(new Gold(gameBoard, j * 25, i * 25));
                         System.out.println("Added gold");
                         break;
                     case stoneChar:
-                        stoneList.add(new Stone(gameBoard, j * 25, i * 25));
+                        objects.add(new Stone(gameBoard, j * 25, i * 25));
                         System.out.println("Added stone");
                         break;
                     case relicChar:
-                        relicList.add(new Relic(gameBoard, j * 25, i * 25));
+                        objects.add(new Relic(gameBoard, j * 25, i * 25));
                         System.out.println("Added relic");
                         break;
                     case bushChar:
-                        bushList.add(new Bush(gameBoard, j * 25, i * 25));
+                        objects.add(new Bush(gameBoard, j * 25, i * 25));
                         System.out.println("Added bush");
                         break;
                     case cactusChar:
-                        cactusList.add(new Cactus(gameBoard, j * 25, i * 25));
+                        objects.add(new Cactus(gameBoard, j * 25, i * 25));
                         System.out.println("Added cactus");
                         break;
                     case sandChar:
-                        sandList.add(new Sand(gameBoard, j * 25, i * 25));
+                        objects.add(new Sand(gameBoard, j * 25, i * 25));
                         System.out.println("Added sand");
                         break;
                     case shoalChar:
-                        shoalList.add(new Shoal(gameBoard, j * 25, i * 25));
+                        objects.add(new Shoal(gameBoard, j * 25, i * 25));
                         System.out.println("Added shoal");
                         break;
                     case waterChar:
-                        waterList.add(new Water(gameBoard, j * 25, i * 25));
+                        objects.add(new Water(gameBoard, j * 25, i * 25));
                         System.out.println("Added water");
                         break;
                 }
@@ -173,44 +174,53 @@ public class MapData
 
     ;
 
+//    public List<Tree> getTreeList()
+//    {
+//        return treeList;
+//    }
+//
+//    public List<Stone> getStoneList()
+//    {
+//        return stoneList;
+//    }
+//
+//    public List<Gold> getGoldList()
+//    {
+//        return goldList;
+//    }
+//
+//    public List<Relic> getRelicList()
+//    {
+//        return relicList;
+//    }
+//
+//    public List<Bush> getBushList()
+//    {
+//        return bushList;
+//    }
+//
+//    public List<Water> getWaterList()
+//    {
+//        return waterList;
+//    }
+//
+//    public List<Cactus> getCactusList()
+//    {
+//        return cactusList;
+//    }
+//
+//    public List<Shoal> getShoalList()
+//    {
+//        return shoalList;
+//    }
+//
+//    public List<Sand> getSandList()
+//    {
+//        return sandList;
+//    }
 
-    public List<Tree> getTreeList()
+    public List<ObjectElement> getMapData()
     {
-        return treeList;
-    }
-
-    public List<Stone> getStoneList()
-    {
-        return stoneList;
-    }
-
-    public List<Gold> getGoldList()
-    {
-        return goldList;
-    }
-
-    public List<Relic> getRelicList()
-    {
-        return relicList;
-    }
-
-    public List<Bush> getBushList() {
-        return bushList;
-    }
-
-    public List<Water> getWaterList() {
-        return waterList;
-    }
-
-    public List<Cactus> getCactusList() {
-        return cactusList;
-    }
-
-    public List<Shoal> getShoalList() {
-        return shoalList;
-    }
-
-    public List<Sand> getSandList() {
-        return sandList;
+        return objects;
     }
 }

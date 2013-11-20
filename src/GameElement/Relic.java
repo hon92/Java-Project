@@ -9,16 +9,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class Relic
+public class Relic extends ObjectElement
 {
 
     private BufferedImage relic;
-    private GameBoard mainPanel;
-    private int x;
-    private int y;
 
-    public Relic(GameBoard mainPanel, int x, int y)
+    public Relic(GameBoard gameBoard, int x, int y)
     {
+        super(gameBoard, x, y);
         try
         {
             relic = ImageIO.read(new File("src/Resources/relic.png"));
@@ -28,16 +26,12 @@ public class Relic
             Logger.getLogger(Relic.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.mainPanel = mainPanel;
-        this.x = x;
-        this.y = y;
-
-        mainPanel.setFieldIndex(x/25, y/25, 3);
-        mainPanel.setFieldIndex(x/25, y/25+25, 3);
+        gameBoard.setFieldIndex(x / 25, y / 25, 3);
+        gameBoard.setFieldIndex(x / 25, y / 25 + 25, 3);
     }
 
-    public void draw(Graphics g)
+    public void drawObject(Graphics g)
     {
-        g.drawImage(relic, mainPanel.convertX(x), mainPanel.convertY(y), null);
+        g.drawImage(relic, gameBoard.convertX(x), gameBoard.convertY(y), null);
     }
 }

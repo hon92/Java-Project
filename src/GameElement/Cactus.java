@@ -17,18 +17,14 @@ import javax.imageio.ImageIO;
  *
  * @author Tom
  */
-public class Cactus
+public class Cactus extends ObjectElement
 {
 
     private BufferedImage cactus;
-    private GameBoard mainPanel;
-    
-    private int x;
-    private int y;
-    
-    
-    public Cactus(GameBoard mainPanel, int x, int y)
+
+    public Cactus(GameBoard gameBoard, int x, int y)
     {
+        super(gameBoard, x, y);
         try
         {
             cactus = ImageIO.read(new File("src/Resources/cactus.png"));
@@ -38,15 +34,11 @@ public class Cactus
             Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.mainPanel = mainPanel;
-        this.x = x;
-        this.y = y;
-        
-        mainPanel.setFieldIndex(x/25, y/25, 5);
+        gameBoard.setFieldIndex(x / 25, y / 25, 5);
     }
-    
-    public void draw(Graphics g)
+
+    public void drawObject(Graphics g)
     {
-        g.drawImage(cactus, mainPanel.convertX(x), mainPanel.convertY(y), null);
-    }   
+        g.drawImage(cactus, gameBoard.convertX(x), gameBoard.convertY(y), null);
+    }
 }

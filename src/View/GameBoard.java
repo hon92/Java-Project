@@ -8,6 +8,7 @@ import GameElement.Bush;
 import GameElement.Cactus;
 import GameElement.Gold;
 import GameElement.Grass;
+import GameElement.ObjectElement;
 import GameElement.Relic;
 import GameElement.Sand;
 import GameElement.Shoal;
@@ -40,7 +41,7 @@ public class GameBoard extends JPanel
 
     private List<Cactus> cactusList;
     private List<Bush> bushList;
-    private List<Grass> grassList;
+    //private List<Grass> grassList;
     private List<Relic> relicList;
     private List<Tree> treesList;
     private List<Gold> goldList;
@@ -48,6 +49,8 @@ public class GameBoard extends JPanel
     private List<Water> waterList;
     private List<Shoal> shoalList;
     private List<Sand> sandList;
+
+    private List<ObjectElement> objects;
 
     public GameBoard()
     {
@@ -58,18 +61,20 @@ public class GameBoard extends JPanel
     {
 
         miniMap = new MiniMap();
+        objects = new ArrayList<>();
         mapData = new MapData(this);
 
-        grassList = new ArrayList<>();
-        relicList = mapData.getRelicList();
-        treesList = mapData.getTreeList();
-        goldList = mapData.getGoldList();
-        stoneList = mapData.getStoneList();
-        bushList = mapData.getBushList();
-        cactusList = mapData.getCactusList();
-        waterList = mapData.getWaterList();
-        shoalList = mapData.getShoalList();
-        sandList = mapData.getSandList();
+//        grassList = new ArrayList<>();
+        objects = mapData.getMapData();
+//        relicList = mapData.getRelicList();
+//        treesList = mapData.getTreeList();
+//        goldList = mapData.getGoldList();
+//        stoneList = mapData.getStoneList();
+//        bushList = mapData.getBushList();
+//        cactusList = mapData.getCactusList();
+//        waterList = mapData.getWaterList();
+//        shoalList = mapData.getShoalList();
+//        sandList = mapData.getSandList();
 
         try
         {
@@ -128,63 +133,63 @@ public class GameBoard extends JPanel
     {
         super.paintComponent(g);
 
-        for (Grass grass : grassList)
+        for (ObjectElement ob : objects)
         {
-            grass.draw(g);
-        }
-        for (Water water : waterList)
-        {
-            water.draw(g);
-        }
-        for (Shoal shoal : shoalList)
-        {
-            shoal.draw(g);
-        }
-        for (Sand sand : sandList)
-        {
-            sand.draw(g);
+            ob.drawObject(g);
         }
 
-        for (Tree t : treesList)
-        {
-            t.draw(g);
-        }
-        for (Relic r : relicList)
-        {
-            r.draw(g);
-        }
-        for (Gold gold : goldList)
-        {
-            gold.draw(g);
-        }
-        for (Stone stone : stoneList)
-        {
-            stone.draw(g);
-        }
-        for (Bush bush : bushList)
-        {
-            bush.draw(g);
-        }
-        for (Cactus cactus : cactusList)
-        {
-            cactus.draw(g);
-        }
-
+//        for (Water water : waterList)
+//        {
+//            water.draw(g);
+//        }
+//        for (Shoal shoal : shoalList)
+//        {
+//            shoal.draw(g);
+//        }
+//        for (Sand sand : sandList)
+//        {
+//            sand.draw(g);
+//        }
+//
+//        for (Tree t : treesList)
+//        {
+//            t.draw(g);
+//        }
+//        for (Relic r : relicList)
+//        {
+//            r.draw(g);
+//        }
+//        for (Gold gold : goldList)
+//        {
+//            gold.draw(g);
+//        }
+//        for (Stone stone : stoneList)
+//        {
+//            stone.draw(g);
+//        }
+//        for (Bush bush : bushList)
+//        {
+//            bush.draw(g);
+//        }
+//        for (Cactus cactus : cactusList)
+//        {
+//            cactus.draw(g);
+//        }
         g.drawImage(topPanel, 0, 0, null);
         g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - 235, null);
         miniMap.drawMiniMap(g);
+        miniMap.setData(objects);
 
     }
-    
+
     public int getFieldIndex(int x, int y)
     {
         return field[x][y];
     }
-    
+
     public void setFieldIndex(int x, int y, int value)
     {
-        field[x][y]= value;
+        field[x][y] = value;
     }
-    
 
 }

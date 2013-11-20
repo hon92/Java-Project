@@ -17,19 +17,16 @@ import javax.imageio.ImageIO;
  *
  * @author Tom
  */
-public class Bush
+public class Bush extends ObjectElement
 {
+
     private int startFood;
     private int currentFood;
     private BufferedImage bush;
-    private GameBoard mainPanel;
-    
-    private int x;
-    private int y;
-    
-    
-    public Bush(GameBoard mainPanel, int x, int y)
+
+    public Bush(GameBoard gameBoard, int x, int y)
     {
+        super(gameBoard, x, y);
         try
         {
             bush = ImageIO.read(new File("src/Resources/bush.png"));
@@ -39,15 +36,12 @@ public class Bush
             Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.mainPanel = mainPanel;
-        this.x = x;
-        this.y = y;
-        this.startFood=300;
-        this.currentFood=300;
+        this.startFood = 300;
+        this.currentFood = 300;
     }
-    
-    public void draw(Graphics g)
+
+    public void drawObject(Graphics g)
     {
-        g.drawImage(bush, mainPanel.convertX(x), mainPanel.convertY(y), null);
-    }   
+        g.drawImage(bush, gameBoard.convertX(x), gameBoard.convertY(y), null);
+    }
 }

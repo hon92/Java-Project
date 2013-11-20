@@ -17,19 +17,16 @@ import javax.imageio.ImageIO;
  *
  * @author Tom
  */
-public class Gold
+public class Gold extends ObjectElement
 {
+
     private int startGold;
     private int currentGold;
     private BufferedImage gold;
-    private GameBoard mainPanel;
-    
-    private int x;
-    private int y;
-    
-    
-    public Gold(GameBoard mainPanel, int x, int y)
+
+    public Gold(GameBoard gameBoard, int x, int y)
     {
+        super(gameBoard, x, y);
         try
         {
             gold = ImageIO.read(new File("src/Resources/gold.png"));
@@ -39,15 +36,12 @@ public class Gold
             Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.mainPanel = mainPanel;
-        this.x = x;
-        this.y = y;
-        this.startGold=500;
-        this.currentGold=500;
+        this.startGold = 500;
+        this.currentGold = 500;
     }
-    
-    public void draw(Graphics g)
+
+    public void drawObject(Graphics g)
     {
-        g.drawImage(gold, mainPanel.convertX(x), mainPanel.convertY(y), null);
-    }   
+        g.drawImage(gold, gameBoard.convertX(x), gameBoard.convertY(y), null);
+    }
 }

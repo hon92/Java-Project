@@ -10,19 +10,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class Tree
+public class Tree extends ObjectElement
 {
 
     private BufferedImage tree1;
-    //private BufferedImage tree2;
-    private GameBoard mainPanel;
-    private int x;
-    private int y;
     private int startWood;
     private int currentWood;
 
-    public Tree(GameBoard mainPanel, int x, int y)
+    public Tree(GameBoard gameBoard, int x, int y)
     {
+        super(gameBoard, x, y);
         try
         {
             tree1 = ImageIO.read(new File("src/Resources/tree1.png"));
@@ -31,24 +28,21 @@ public class Tree
         {
             Logger.getLogger(Tree.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.mainPanel = mainPanel;
-        this.x = x;
-        this.y = y;
-        this.currentWood=100;
-        this.startWood=100;
-        
-        
+
+        this.currentWood = 100;
+        this.startWood = 100;
+
     }
 
-    public void draw(Graphics g)
+    public void drawObject(Graphics g)
     {
         if ((x / GameData.BOXSIZE == 0) && (y / GameData.BOXSIZE == 0))
         {
-            g.drawImage(tree1, mainPanel.convertX(x), mainPanel.convertY(y), null);
+            g.drawImage(tree1, gameBoard.convertX(x), gameBoard.convertY(y), null);
         }
         else
         {
-            g.drawImage(tree1, mainPanel.convertX(x), mainPanel.convertY(y), null);
+            g.drawImage(tree1, gameBoard.convertX(x), gameBoard.convertY(y), null);
         }
     }
 }

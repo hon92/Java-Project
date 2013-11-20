@@ -17,19 +17,16 @@ import javax.imageio.ImageIO;
  *
  * @author Tom
  */
-public class Stone
+public class Stone extends ObjectElement
 {
+
     private int startStone;
     private int currentStone;
     private BufferedImage stone;
-    private GameBoard mainPanel;
-    
-    private int x;
-    private int y;
-    
-    
-    public Stone(GameBoard mainPanel, int x, int y)
+
+    public Stone(GameBoard gameBoard, int x, int y)
     {
+        super(gameBoard, x, y);
         try
         {
             stone = ImageIO.read(new File("src/Resources/stone.png"));
@@ -39,15 +36,12 @@ public class Stone
             Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.mainPanel = mainPanel;
-        this.x = x;
-        this.y = y;
-        this.startStone=500;
-        this.currentStone=500;
+        this.startStone = 500;
+        this.currentStone = 500;
     }
-    
-    public void draw(Graphics g)
+
+    public void drawObject(Graphics g)
     {
-        g.drawImage(stone, mainPanel.convertX(x), mainPanel.convertY(y), null);
-    }   
+        g.drawImage(stone, gameBoard.convertX(x), gameBoard.convertY(y), null);
+    }
 }
