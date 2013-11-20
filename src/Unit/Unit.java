@@ -5,6 +5,7 @@
  */
 package Unit;
 
+import Data.UnitType;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
