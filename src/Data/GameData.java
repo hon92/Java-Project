@@ -14,8 +14,8 @@ public final class GameData
 
     public static final int WINDOW_WIDTH = 1200;
     public static final int WINDOW_HEIGHT = 800;
-    public static final int MAP_WIDTH = 4000;
-    public static final int MAP_HEIGHT = 4000;
+    public static final int MAP_WIDTH = 3500;
+    public static final int MAP_HEIGHT = 1800;
     public static final int BOXSIZE = 25;
     
     //grass = 1
