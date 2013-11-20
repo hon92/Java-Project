@@ -18,6 +18,8 @@ public class Tree
     private GameBoard mainPanel;
     private int x;
     private int y;
+    private int maxWood;
+    private int currentWood;
 
     public Tree(GameBoard mainPanel, int x, int y)
     {
@@ -32,6 +34,8 @@ public class Tree
         this.mainPanel = mainPanel;
         this.x = x;
         this.y = y;
+        this.currentWood=100;
+        this.maxWood=100;
         
         
     }
