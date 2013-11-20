@@ -32,6 +32,8 @@ public class Relic
         this.x = x;
         this.y = y;
 
+        mainPanel.setFieldIndex(x/25, y/25, 3);
+        mainPanel.setFieldIndex(x/25, y/25+25, 3);
     }
 
     public void draw(Graphics g)

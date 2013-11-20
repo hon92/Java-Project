@@ -41,6 +41,8 @@ public class Cactus
         this.mainPanel = mainPanel;
         this.x = x;
         this.y = y;
+        
+        mainPanel.setFieldIndex(x/25, y/25, 5);
     }
     
     public void draw(Graphics g)
