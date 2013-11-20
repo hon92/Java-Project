@@ -61,11 +61,10 @@ public class GameBoard extends JPanel
         mapData = new MapData(this);
 
         grassList = new ArrayList<>();
-        relicList = new ArrayList<>();
-        //treesList = new ArrayList<>();
+        relicList = mapData.getRelicList();
         treesList = mapData.getTreeList();
-        goldList = new ArrayList<>();
-        stoneList = new ArrayList<>();
+        goldList = mapData.getGoldList();
+        stoneList = mapData.getStoneList();
         bushList = new ArrayList<>();
         cactusList = new ArrayList<>();
         waterList = new ArrayList<>();
