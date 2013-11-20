@@ -16,5 +16,6 @@ public final class GameData
     public static final int WINDOW_HEIGHT = 960;
     public static final int MAP_WIDTH = 4000;
     public static final int MAP_HEIGHT = 4000;
+    public static final int BOXSIZE = 25;
 
 }

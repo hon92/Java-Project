@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package View;
 
 import Controls.Key;
@@ -13,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -25,6 +21,11 @@ public class GameBoard extends javax.swing.JPanel
     private BufferedImage botPanel;
     private Key key;
     private Mouse mouse;
+    private int currentWindowX;
+    private int currentWindowY;
+//    private List<Grass> grass;
+//    private List<Relic> relic;
+//    private List<Tree> trees;
 
     public GameBoard()
     {
@@ -38,7 +39,7 @@ public class GameBoard extends javax.swing.JPanel
         try
         {
             topPanel = ImageIO.read(new File("src/Resources/topPanel.jpg"));
-            botPanel = ImageIO.read(new File("src/Resources/botPanel.jpg"));
+            botPanel = ImageIO.read(new File("src/Resources/botPanel.png"));
         }
         catch (IOException ex)
         {
@@ -48,11 +49,6 @@ public class GameBoard extends javax.swing.JPanel
         addMouseListener(new Mouse(this));
         addKeyListener(new Key(this));
         drawMap();
-
-    }
-
-    public void moveWindow(int x, int y)
-    {
 
     }
 
@@ -72,6 +68,16 @@ public class GameBoard extends javax.swing.JPanel
                 }
             }
         }
+    }
+
+    public int convertX(int x)
+    {
+        return x - currentWindowX;
+    }
+
+    public int convertY(int y)
+    {
+        return y - currentWindowY;
     }
 
     @Override
