@@ -3,6 +3,7 @@ package View;
 import Controls.Key;
 import Controls.Mouse;
 import Data.GameData;
+import Data.MapData;
 import GameElement.Bush;
 import GameElement.Cactus;
 import GameElement.Gold;
@@ -35,9 +36,8 @@ public class GameBoard extends JPanel
     private final int lenX = GameData.MAP_WIDTH / GameData.BOXSIZE;
     private final int lenY = GameData.MAP_HEIGHT / GameData.BOXSIZE;
     private int[][] field = new int[lenX][lenY];
+    private MapData mapData;
 
-    
-    
     private List<Cactus> cactusList;
     private List<Bush> bushList;
     private List<Grass> grassList;
@@ -58,9 +58,12 @@ public class GameBoard extends JPanel
     {
 
         miniMap = new MiniMap();
+        mapData = new MapData(this);
+
         grassList = new ArrayList<>();
         relicList = new ArrayList<>();
-        treesList = new ArrayList<>();
+        //treesList = new ArrayList<>();
+        treesList = mapData.getTreeList();
         goldList = new ArrayList<>();
         stoneList = new ArrayList<>();
         bushList = new ArrayList<>();
