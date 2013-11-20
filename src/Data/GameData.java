@@ -27,5 +27,10 @@ public final class GameData
     //shoal = 7
     //sand = 8
     
+    //barracks [12][7]
+    //mill [8][5]
+    //house [7][4]
+    //town center [16][8]
+    
 
 }

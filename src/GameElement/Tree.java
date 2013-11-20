@@ -32,7 +32,8 @@ public class Tree
         this.mainPanel = mainPanel;
         this.x = x;
         this.y = y;
-
+        
+        
     }
 
     public void draw(Graphics g)

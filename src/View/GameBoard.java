@@ -32,9 +32,12 @@ public class GameBoard extends JPanel
     private MiniMap miniMap;
     private int currentWindowX;
     private int currentWindowY;
-    private final int len = GameData.MAP_WIDTH / GameData.BOXSIZE;
-    private int[][] field = new int[len][len];
+    private final int lenX = GameData.MAP_WIDTH / GameData.BOXSIZE;
+    private final int lenY = GameData.MAP_HEIGHT / GameData.BOXSIZE;
+    private int[][] field = new int[lenX][lenY];
 
+    
+    
     private List<Cactus> cactusList;
     private List<Bush> bushList;
     private List<Grass> grassList;
@@ -177,9 +180,9 @@ public class GameBoard extends JPanel
             }
         }
 
-        for (int i = 0; i < len; i++)
+        for (int i = 0; i < lenX; i++)
         {
-            for (int j = 0; j < len; j++)
+            for (int j = 0; j < lenY; j++)
             {
                 field[i][j] = 1;
             }
