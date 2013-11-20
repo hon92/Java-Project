@@ -108,19 +108,19 @@ public class MapData
                 switch (mapMatrix[i][j])
                 {
                     case treeChar:
-                        treeList.add(new Tree(gameBoard, i * 25, j * 25));
+                        treeList.add(new Tree(gameBoard, j * 25, i * 25));
                         System.out.println("Added tree");
                         break;
                     case goldChar:
-                        goldList.add(new Gold(gameBoard, i * 25, j * 25));
+                        goldList.add(new Gold(gameBoard, j * 25, i * 25));
                         System.out.println("Added gold");
                         break;
                     case stoneChar:
-                        stoneList.add(new Stone(gameBoard, i * 25, j * 25));
+                        stoneList.add(new Stone(gameBoard, j * 25, i * 25));
                         System.out.println("Added stone");
                         break;
                     case relicChar:
-                        relicList.add(new Relic(gameBoard, i * 25, j * 25));
+                        relicList.add(new Relic(gameBoard, j * 25, i * 25));
                         System.out.println("Added relic");
                         break;
                 }
