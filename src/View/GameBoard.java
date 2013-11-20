@@ -27,13 +27,11 @@ public class GameBoard extends JPanel
     private BufferedImage topPanel;
     private BufferedImage botPanel;
     private MiniMap miniMap;
-    private Key key;
-    private Mouse mouse;
     private int currentWindowX;
     private int currentWindowY;
-    private int len = GameData.MAP_WIDTH / GameData.BOXSIZE;
+    private final int len = GameData.MAP_WIDTH / GameData.BOXSIZE;
     private int[][] field = new int[len][len];
-    
+
     private List<Cactus> cactusList;
     private List<Bush> bushList;
     private List<Grass> grassList;
@@ -150,19 +148,19 @@ public class GameBoard extends JPanel
         relicList.add(r);
         field[20][20] = 3;
     }
-    
-    private void generateCactus() {
-        Cactus c = new Cactus(this,75,75);
+
+    private void generateCactus()
+    {
+        Cactus c = new Cactus(this, 75, 75);
         cactusList.add(c);
     }
 
-    private void generateBush() {
-        Bush b = new Bush(this,250,150);
+    private void generateBush()
+    {
+        Bush b = new Bush(this, 250, 150);
         bushList.add(b);
     }
-    
-    
-    
+
     public void addToCurrentWindowX(int increment)
     {
         this.currentWindowX += increment;
@@ -227,16 +225,14 @@ public class GameBoard extends JPanel
         {
             stone.draw(g);
         }
-        for(Bush bush : bushList)
+        for (Bush bush : bushList)
         {
             bush.draw(g);
         }
-        for(Cactus cactus : cactusList)
+        for (Cactus cactus : cactusList)
         {
             cactus.draw(g);
         }
-        
-        
 
         g.drawImage(topPanel, 0, 0, null);
         g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - 235, null);
@@ -244,5 +240,4 @@ public class GameBoard extends JPanel
 
     }
 
-    
 }
