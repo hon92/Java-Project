@@ -8,8 +8,11 @@ import GameElement.Cactus;
 import GameElement.Gold;
 import GameElement.Grass;
 import GameElement.Relic;
+import GameElement.Sand;
+import GameElement.Shoal;
 import GameElement.Stone;
 import GameElement.Tree;
+import GameElement.Water;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -41,6 +44,9 @@ public class GameBoard extends JPanel
     private List<Tree> treesList;
     private List<Gold> goldList;
     private List<Stone> stoneList;
+    private List<Water> waterList;
+    private List<Shoal> shoalList;
+    private List<Sand> sandList;
 
     public GameBoard()
     {
@@ -58,6 +64,9 @@ public class GameBoard extends JPanel
         stoneList = new ArrayList<>();
         bushList = new ArrayList<>();
         cactusList = new ArrayList<>();
+        waterList = new ArrayList<>();
+        shoalList = new ArrayList<>();
+        sandList = new ArrayList<>();
 
         try
         {
@@ -73,15 +82,55 @@ public class GameBoard extends JPanel
         addKeyListener(new Key(this));
 
         generateGrass();
+        generateWater();
         generateTrees();
         generateRelics();
         generateGold();
         generateStone();
         generateCactus();
         generateBush();
+        generateShoal();
+        generateSand();
+        
 
     }
 
+    private void generateSand()
+    {
+       Sand gr = new Sand(this, 0, 0);
+        sandList.add(gr);
+        for (int i = 0; i < GameData.MAP_WIDTH; i += 200)
+        {
+                gr = new Sand(this, i, GameData.MAP_HEIGHT/10+50);
+                sandList.add(gr);
+        }  
+    }
+    
+    private void generateShoal()
+    {
+        Shoal gr = new Shoal(this, 0, 0);
+        shoalList.add(gr);
+        for (int i = 0; i < GameData.MAP_WIDTH; i += 200)
+        {
+                gr = new Shoal(this, i, GameData.MAP_HEIGHT/10);
+                shoalList.add(gr);
+        } 
+    }
+    
+    private void generateWater()
+    {
+       Water gr = new Water(this, 0, 0);
+        waterList.add(gr);
+        for (int i = 0; i < GameData.MAP_WIDTH; i += 200)
+        {
+            for (int j = 0; j < GameData.MAP_HEIGHT/10; j += 200)
+            {
+                gr = new Water(this, i, j);
+                waterList.add(gr);
+            }
+        } 
+    }
+    
     private void generateStone()
     {
         Gold gold = new Gold(this, 600, 500);
@@ -123,7 +172,7 @@ public class GameBoard extends JPanel
         grassList.add(gr);
         for (int i = 0; i < GameData.MAP_WIDTH; i += 400)
         {
-            for (int j = 0; j < GameData.MAP_WIDTH; j += 400)
+            for (int j = 0; j < GameData.MAP_HEIGHT; j += 400)
             {
                 gr = new Grass(this, i, j);
                 grassList.add(gr);
@@ -209,8 +258,20 @@ public class GameBoard extends JPanel
         for (Grass grass : grassList)
         {
             grass.draw(g);
-
         }
+        for(Water water : waterList)
+        {
+            water.draw(g);
+        }
+        for(Shoal shoal : shoalList)
+        {
+            shoal.draw(g);
+        }
+        for(Sand sand : sandList)
+        {
+            sand.draw(g);
+        }
+        
         for (Tree t : treesList)
         {
             t.draw(g);

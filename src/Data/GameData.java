@@ -24,6 +24,8 @@ public final class GameData
     //water = 4
     //cactus = 5
     //bush = 6
+    //shoal = 7
+    //sand = 8
     
 
 }
