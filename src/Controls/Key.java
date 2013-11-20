@@ -34,14 +34,19 @@ public class Key implements KeyListener
         switch (e.getKeyCode())
         {
             case KeyEvent.VK_LEFT:
+                gameBoard.addToCurrentWindowX(-100);
                 break;
             case KeyEvent.VK_RIGHT:
+                gameBoard.addToCurrentWindowX(100);
                 break;
             case KeyEvent.VK_UP:
+                gameBoard.addToCurrentWindowY(-100);
                 break;
             case KeyEvent.VK_DOWN:
+                gameBoard.addToCurrentWindowY(100);
                 break;
         }
+        gameBoard.repaint();
     }
 
     @Override

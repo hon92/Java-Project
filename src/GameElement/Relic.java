@@ -1,3 +1,4 @@
+package GameElement;
 
 import View.GameBoard;
 import java.awt.Graphics;
