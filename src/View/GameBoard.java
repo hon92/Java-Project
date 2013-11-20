@@ -3,6 +3,8 @@ package View;
 import Controls.Key;
 import Controls.Mouse;
 import Data.GameData;
+import GameElement.Bush;
+import GameElement.Cactus;
 import GameElement.Gold;
 import GameElement.Grass;
 import GameElement.Relic;
@@ -31,6 +33,9 @@ public class GameBoard extends JPanel
     private int currentWindowY;
     private int len = GameData.MAP_WIDTH / GameData.BOXSIZE;
     private int[][] field = new int[len][len];
+    
+    private List<Cactus> cactusList;
+    private List<Bush> bushList;
     private List<Grass> grassList;
     private List<Relic> relicList;
     private List<Tree> treesList;
@@ -51,6 +56,8 @@ public class GameBoard extends JPanel
         treesList = new ArrayList<>();
         goldList = new ArrayList<>();
         stoneList = new ArrayList<>();
+        bushList = new ArrayList<>();
+        cactusList = new ArrayList<>();
 
         try
         {
@@ -70,6 +77,8 @@ public class GameBoard extends JPanel
         generateRelics();
         generateGold();
         generateStone();
+        generateCactus();
+        generateBush();
 
     }
 
@@ -142,7 +151,19 @@ public class GameBoard extends JPanel
         relicList.add(r);
         field[20][20] = 3;
     }
+    
+    private void generateCactus() {
+        Cactus c = new Cactus(this,75,75);
+        cactusList.add(c);
+    }
 
+    private void generateBush() {
+        Bush b = new Bush(this,250,150);
+        bushList.add(b);
+    }
+    
+    
+    
     public void addToCurrentWindowX(int increment)
     {
         this.currentWindowX += increment;
@@ -207,10 +228,21 @@ public class GameBoard extends JPanel
         {
             stone.draw(g);
         }
+        for(Bush bush : bushList)
+        {
+            bush.draw(g);
+        }
+        for(Cactus cactus : cactusList)
+        {
+            cactus.draw(g);
+        }
+        
         
 
         g.drawImage(topPanel, 0, 0, null);
         g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - 245, null);
 
     }
+
+    
 }

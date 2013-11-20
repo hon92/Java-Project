@@ -17,5 +17,13 @@ public final class GameData
     public static final int MAP_WIDTH = 4000;
     public static final int MAP_HEIGHT = 4000;
     public static final int BOXSIZE = 25;
+    
+    //grass = 1
+    //tree = 2
+    //relic = 3
+    //water = 4
+    //cactus = 5
+    //bush = 6
+    
 
 }
