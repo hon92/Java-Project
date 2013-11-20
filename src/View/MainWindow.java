@@ -9,7 +9,7 @@ public class MainWindow extends JFrame
 
     public MainWindow() throws HeadlessException
     {
-        super("Age of Empires----");
+        super("Age of Empires The ZIHOMO Expansion");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT);
 
