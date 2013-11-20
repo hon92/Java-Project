@@ -24,9 +24,9 @@ import javax.swing.JPanel;
 public class GameBoard extends JPanel
 {
 
-    private BufferedImage map;
     private BufferedImage topPanel;
     private BufferedImage botPanel;
+    private MiniMap miniMap;
     private Key key;
     private Mouse mouse;
     private int currentWindowX;
@@ -49,8 +49,8 @@ public class GameBoard extends JPanel
 
     private void initGameBoard()
     {
-        map = new BufferedImage(GameData.MAP_WIDTH, GameData.MAP_HEIGHT, BufferedImage.BITMASK);
 
+        miniMap = new MiniMap();
         grassList = new ArrayList<>();
         relicList = new ArrayList<>();
         treesList = new ArrayList<>();
@@ -84,17 +84,16 @@ public class GameBoard extends JPanel
 
     private void generateStone()
     {
-        Gold gold = new Gold(this,600,500);
+        Gold gold = new Gold(this, 600, 500);
         goldList.add(gold);
     }
-    
+
     private void generateGold()
     {
-        Stone stone = new Stone(this,600,600);
-        stoneList.add(stone);        
+        Stone stone = new Stone(this, 600, 600);
+        stoneList.add(stone);
     }
-    
-    
+
     private void generateTrees()
     {
         Tree tr = new Tree(this, 150, 150);
@@ -240,7 +239,8 @@ public class GameBoard extends JPanel
         
 
         g.drawImage(topPanel, 0, 0, null);
-        g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - 245, null);
+        g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - 235, null);
+        miniMap.drawMiniMap(g);
 
     }
 
