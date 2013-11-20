@@ -3,8 +3,10 @@ package View;
 import Controls.Key;
 import Controls.Mouse;
 import Data.GameData;
+import GameElement.Gold;
 import GameElement.Grass;
 import GameElement.Relic;
+import GameElement.Stone;
 import GameElement.Tree;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -33,6 +35,8 @@ public class GameBoard extends JPanel
     private List<Grass> grassList;
     private List<Relic> relicList;
     private List<Tree> treesList;
+    private List<Gold> goldList;
+    private List<Stone> stoneList;
 
     public GameBoard()
     {
@@ -47,6 +51,8 @@ public class GameBoard extends JPanel
         grassList = new ArrayList<>();
         relicList = new ArrayList<>();
         treesList = new ArrayList<>();
+        goldList = new ArrayList<>();
+        stoneList = new ArrayList<>();
 
         try
         {
@@ -64,9 +70,24 @@ public class GameBoard extends JPanel
         generateGrass();
         generateTrees();
         generateRelics();
+        generateGold();
+        generateStone();
 
     }
 
+    private void generateStone()
+    {
+        Gold gold = new Gold(this,600,500);
+        goldList.add(gold);
+    }
+    
+    private void generateGold()
+    {
+        Stone stone = new Stone(this,600,600);
+        stoneList.add(stone);        
+    }
+    
+    
     private void generateTrees()
     {
         Tree tr = new Tree(this, 150, 150);
@@ -180,6 +201,15 @@ public class GameBoard extends JPanel
         {
             r.draw(g);
         }
+        for (Gold gold : goldList)
+        {
+            gold.draw(g);
+        }
+        for (Stone stone : stoneList)
+        {
+            stone.draw(g);
+        }
+        
 
         g.drawImage(topPanel, 0, 0, null);
         g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - botPanel.getHeight(), null);
