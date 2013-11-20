@@ -12,7 +12,7 @@ public class MainWindow extends JFrame
         super("Age of Empires The ZIHOMO Expansion");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT);
-
+        setResizable(false);
         add(new GameBoard());
 
     }
