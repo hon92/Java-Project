@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
  */
 public class Gold
 {
-    private int maxGold;
+    private int startGold;
     private int currentGold;
     private BufferedImage gold;
     private GameBoard mainPanel;
@@ -42,7 +42,7 @@ public class Gold
         this.mainPanel = mainPanel;
         this.x = x;
         this.y = y;
-        this.maxGold=500;
+        this.startGold=500;
         this.currentGold=500;
     }
     

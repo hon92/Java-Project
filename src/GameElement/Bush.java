@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
  */
 public class Bush
 {
-    private int maxFood;
+    private int startFood;
     private int currentFood;
     private BufferedImage bush;
     private GameBoard mainPanel;
@@ -42,7 +42,7 @@ public class Bush
         this.mainPanel = mainPanel;
         this.x = x;
         this.y = y;
-        this.maxFood=300;
+        this.startFood=300;
         this.currentFood=300;
     }
     
