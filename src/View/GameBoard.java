@@ -6,7 +6,6 @@ import Data.GameData;
 import GameElement.Grass;
 import GameElement.Relic;
 import GameElement.Tree;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
