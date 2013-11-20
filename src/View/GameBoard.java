@@ -175,5 +175,16 @@ public class GameBoard extends JPanel
         miniMap.drawMiniMap(g);
 
     }
+    
+    public int getFieldIndex(int x, int y)
+    {
+        return field[x][y];
+    }
+    
+    public void setFieldIndex(int x, int y, int value)
+    {
+        field[x][y]= value;
+    }
+    
 
 }
