@@ -89,46 +89,45 @@ public class GameBoard extends JPanel
         generateBush();
         generateShoal();
         generateSand();
-        
 
     }
 
     private void generateSand()
     {
-       Sand gr = new Sand(this, 0, 0);
+        Sand gr = new Sand(this, 0, 0);
         sandList.add(gr);
         for (int i = 0; i < GameData.MAP_WIDTH; i += 200)
         {
-                gr = new Sand(this, i, GameData.MAP_HEIGHT/10+50);
-                sandList.add(gr);
-        }  
+            gr = new Sand(this, i, GameData.MAP_HEIGHT / 10 + 50);
+            sandList.add(gr);
+        }
     }
-    
+
     private void generateShoal()
     {
         Shoal gr = new Shoal(this, 0, 0);
         shoalList.add(gr);
         for (int i = 0; i < GameData.MAP_WIDTH; i += 200)
         {
-                gr = new Shoal(this, i, GameData.MAP_HEIGHT/10);
-                shoalList.add(gr);
-        } 
+            gr = new Shoal(this, i, GameData.MAP_HEIGHT / 10);
+            shoalList.add(gr);
+        }
     }
-    
+
     private void generateWater()
     {
-       Water gr = new Water(this, 0, 0);
+        Water gr = new Water(this, 0, 0);
         waterList.add(gr);
         for (int i = 0; i < GameData.MAP_WIDTH; i += 200)
         {
-            for (int j = 0; j < GameData.MAP_HEIGHT/10; j += 200)
+            for (int j = 0; j < GameData.MAP_HEIGHT / 10; j += 200)
             {
                 gr = new Water(this, i, j);
                 waterList.add(gr);
             }
-        } 
+        }
     }
-    
+
     private void generateStone()
     {
         Gold gold = new Gold(this, 600, 500);
@@ -257,19 +256,19 @@ public class GameBoard extends JPanel
         {
             grass.draw(g);
         }
-        for(Water water : waterList)
+        for (Water water : waterList)
         {
             water.draw(g);
         }
-        for(Shoal shoal : shoalList)
+        for (Shoal shoal : shoalList)
         {
             shoal.draw(g);
         }
-        for(Sand sand : sandList)
+        for (Sand sand : sandList)
         {
             sand.draw(g);
         }
-        
+
         for (Tree t : treesList)
         {
             t.draw(g);
