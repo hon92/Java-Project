@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
  */
 public class Stone
 {
-    private int maxStone;
+    private int startStone;
     private int currentStone;
     private BufferedImage stone;
     private GameBoard mainPanel;
@@ -42,7 +42,7 @@ public class Stone
         this.mainPanel = mainPanel;
         this.x = x;
         this.y = y;
-        this.maxStone=500;
+        this.startStone=500;
         this.currentStone=500;
     }
     

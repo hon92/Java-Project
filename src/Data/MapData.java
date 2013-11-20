@@ -5,10 +5,15 @@
  */
 package Data;
 
+import GameElement.Bush;
+import GameElement.Cactus;
 import GameElement.Gold;
 import GameElement.Relic;
+import GameElement.Sand;
+import GameElement.Shoal;
 import GameElement.Stone;
 import GameElement.Tree;
+import GameElement.Water;
 import View.GameBoard;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -29,6 +34,11 @@ public class MapData
     private List<Gold> goldList;
     private List<Stone> stoneList;
     private List<Relic> relicList;
+    private List<Bush> bushList;
+    private List<Cactus> cactusList;
+    private List<Sand> sandList;
+    private List<Shoal> shoalList;
+    private List<Water> waterList;
 
     int matrixX;
     int matrixY;
@@ -38,7 +48,14 @@ public class MapData
     private final char stoneChar = 'S';
     private final char goldChar = 'G';
     private final char relicChar = 'R';
-
+    // new added
+    private final char bushChar = 'B';
+    private final char cactusChar = 'C';
+    private final char sandChar = 'A';
+    private final char shoalChar = 'H';
+    private final char waterChar = 'W';
+    
+    
     // WHAT THE FUCK ???
     private GameBoard gameBoard;
     // REALLY ???
@@ -51,6 +68,12 @@ public class MapData
         goldList = new ArrayList<>();
         stoneList = new ArrayList<>();
         relicList = new ArrayList<>();
+        bushList = new ArrayList<>();
+        cactusList = new ArrayList<>();
+        sandList = new ArrayList<>();
+        shoalList = new ArrayList<>();
+        waterList = new ArrayList<>();
+
         initMatrix();
         fillLists();
     }
@@ -123,6 +146,26 @@ public class MapData
                         relicList.add(new Relic(gameBoard, j * 25, i * 25));
                         System.out.println("Added relic");
                         break;
+                    case bushChar:
+                        bushList.add(new Bush(gameBoard, j * 25, i * 25));
+                        System.out.println("Added bush");
+                        break;
+                    case cactusChar:
+                        cactusList.add(new Cactus(gameBoard, j * 25, i * 25));
+                        System.out.println("Added cactus");
+                        break;
+                    case sandChar:
+                        sandList.add(new Sand(gameBoard, j * 25, i * 25));
+                        System.out.println("Added sand");
+                        break;
+                    case shoalChar:
+                        shoalList.add(new Shoal(gameBoard, j * 25, i * 25));
+                        System.out.println("Added shoal");
+                        break;
+                    case waterChar:
+                        waterList.add(new Water(gameBoard, j * 25, i * 25));
+                        System.out.println("Added water");
+                        break;
                 }
             }
         }
@@ -149,5 +192,25 @@ public class MapData
     public List<Relic> getRelicList()
     {
         return relicList;
+    }
+
+    public List<Bush> getBushList() {
+        return bushList;
+    }
+
+    public List<Water> getWaterList() {
+        return waterList;
+    }
+
+    public List<Cactus> getCactusList() {
+        return cactusList;
+    }
+
+    public List<Shoal> getShoalList() {
+        return shoalList;
+    }
+
+    public List<Sand> getSandList() {
+        return sandList;
     }
 }

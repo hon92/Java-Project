@@ -65,11 +65,11 @@ public class GameBoard extends JPanel
         treesList = mapData.getTreeList();
         goldList = mapData.getGoldList();
         stoneList = mapData.getStoneList();
-        bushList = new ArrayList<>();
-        cactusList = new ArrayList<>();
-        waterList = new ArrayList<>();
-        shoalList = new ArrayList<>();
-        sandList = new ArrayList<>();
+        bushList = mapData.getBushList();
+        cactusList = mapData.getCactusList();
+        waterList = mapData.getWaterList();
+        shoalList = mapData.getShoalList();
+        sandList = mapData.getSandList();
 
         try
         {
