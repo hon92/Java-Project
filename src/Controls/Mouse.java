@@ -23,7 +23,8 @@ import static javax.swing.SwingUtilities.isLeftMouseButton;
  *
  * @author Honza
  */
-public class Mouse implements MouseListener, MouseMotionListener {
+public class Mouse implements MouseListener, MouseMotionListener
+{
 
     private GameBoard gameBoard;
 
@@ -46,7 +47,8 @@ public class Mouse implements MouseListener, MouseMotionListener {
     private boolean active = false;
     private boolean firstDrag = false;
 
-    public Mouse(GameBoard gameBoard) {
+    public Mouse(GameBoard gameBoard)
+    {
         this.gameBoard = gameBoard;
     }
 
@@ -97,39 +99,49 @@ public class Mouse implements MouseListener, MouseMotionListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(MouseEvent e)
+    {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(MouseEvent e)
+    {
         active = false;
         firstDrag = false;
         clickedX = 0;
         clickedY = 0;
         currentX = 0;
         currentY = 0;
+        gameBoard.repaint();
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(MouseEvent e)
+    {
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseExited(MouseEvent e)
+    {
     }
 
-    public void drawRect(Graphics g) {
-        if (active) {
+    public void drawRect(Graphics g)
+    {
+        if (active)
+        {
             g.setColor(dragColor);
             g.fillRect(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
         }
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
-        if (isLeftMouseButton(e)) {
+    public void mouseDragged(MouseEvent e)
+    {
+        if (isLeftMouseButton(e))
+        {
             active = true;
-            if (!firstDrag) {
+            if (!firstDrag)
+            {
                 clickedX = e.getX();
                 clickedY = e.getY();
                 firstDrag = true;
@@ -137,10 +149,12 @@ public class Mouse implements MouseListener, MouseMotionListener {
             currentX = e.getX();
             currentY = e.getY();
         }
+        gameBoard.repaint();
     }
 
     @Override
-    public void mouseMoved(MouseEvent e) {
+    public void mouseMoved(MouseEvent e)
+    {
 
     }
 }

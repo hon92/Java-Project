@@ -2,6 +2,7 @@ package View;
 
 import Controls.Key;
 import Controls.Mouse;
+
 import Data.GameData;
 import Data.MapData;
 import GameElement.Bush;
@@ -15,23 +16,15 @@ import GameElement.Shoal;
 import GameElement.Stone;
 import GameElement.Tree;
 import GameElement.Water;
+import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class GameBoard extends JPanel
 {
 
-    private BufferedImage topPanel;
-    private BufferedImage botPanel;
-    private MiniMap miniMap;
     private int currentWindowX;
     private int currentWindowY;
     private final int lenX = GameData.MAP_WIDTH / GameData.BOXSIZE;
@@ -40,9 +33,9 @@ public class GameBoard extends JPanel
     private ObjectElement[][]objectField = new ObjectElement[lenX][lenY];
     private MapData mapData;
     private List<ObjectElement> objects;
-    
-    private Mouse mouse = new Mouse(this);
-    
+
+    private Mouse mouse;
+
     public GameBoard()
     {
         initGameBoard();
@@ -50,26 +43,16 @@ public class GameBoard extends JPanel
 
     private void initGameBoard()
     {
-
-        miniMap = new MiniMap();
+        setPreferredSize(new Dimension(GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT - 45 - 200));//velikost bot a top panelu -vysky jejich
         objects = new ArrayList<>();
         mapData = new MapData(this);
+        mouse = new Mouse(this);
         objects = mapData.getMapData();
 
-        try
-        {
-            topPanel = ImageIO.read(new File("src/Resources/topPanel.png"));
-            botPanel = ImageIO.read(new File("src/Resources/botPanel.png"));
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(GameBoard.class.getName()).log(Level.SEVERE, null, ex);
-        }
         setFocusable(true);
         addMouseListener(mouse);
         addMouseMotionListener(mouse);
         addKeyListener(new Key(this));
-
         generateGrass();
     }
 
@@ -90,6 +73,34 @@ public class GameBoard extends JPanel
     public void addToCurrentWindowY(int increment)
     {
         this.currentWindowY += increment;
+        if (currentWindowY < 0)
+        {
+            currentWindowY = 0;
+        }
+        if (currentWindowY > GameData.MAP_HEIGHT - GameData.WINDOW_HEIGHT)
+        {
+            currentWindowY = GameData.MAP_HEIGHT - GameData.WINDOW_HEIGHT;
+        }
+
+    }
+
+    public void setWindowsX(int increment)
+    {
+        this.currentWindowX = increment;
+        if (currentWindowX < 0)
+        {
+            this.currentWindowX = 0;
+        }
+        if (currentWindowX > GameData.MAP_WIDTH - GameData.WINDOW_WIDTH)
+        {
+            currentWindowX = GameData.MAP_WIDTH - GameData.WINDOW_WIDTH;
+        }
+
+    }
+
+    public void setWindowsY(int increment)
+    {
+        this.currentWindowY = increment;
         if (currentWindowY < 0)
         {
             currentWindowY = 0;
@@ -196,12 +207,8 @@ public class GameBoard extends JPanel
             }
         }
 
-        g.drawImage(topPanel, 0, 0, null);
-        g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - 228, null);
-        miniMap.drawMiniMap(g);
-        miniMap.setData(objects);
         mouse.drawRect(g);
-        this.repaint();
+
     }
 
     private void generateGrass()
