@@ -169,53 +169,6 @@ public class MapData
         }
     }
 
-    ;
-
-//    public List<Tree> getTreeList()
-//    {
-//        return treeList;
-//    }
-//
-//    public List<Stone> getStoneList()
-//    {
-//        return stoneList;
-//    }
-//
-//    public List<Gold> getGoldList()
-//    {
-//        return goldList;
-//    }
-//
-//    public List<Relic> getRelicList()
-//    {
-//        return relicList;
-//    }
-//
-//    public List<Bush> getBushList()
-//    {
-//        return bushList;
-//    }
-//
-//    public List<Water> getWaterList()
-//    {
-//        return waterList;
-//    }
-//
-//    public List<Cactus> getCactusList()
-//    {
-//        return cactusList;
-//    }
-//
-//    public List<Shoal> getShoalList()
-//    {
-//        return shoalList;
-//    }
-//
-//    public List<Sand> getSandList()
-//    {
-//        return sandList;
-//    }
-
     public List<ObjectElement> getMapData()
     {
         return objects;
