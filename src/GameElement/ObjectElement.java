@@ -5,7 +5,6 @@
  */
 package GameElement;
 
-import Data.GameData;
 import View.GameBoard;
 import java.awt.Graphics;
 
@@ -31,13 +30,11 @@ public abstract class ObjectElement
 
     public int getX()
     {
-        // return x / GameData.BOXSIZE;
         return x;
     }
 
     public int getY()
     {
-        //return y / GameData.BOXSIZE;
         return y;
     }
 }

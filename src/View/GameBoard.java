@@ -214,6 +214,7 @@ public class GameBoard extends JPanel
         {
             for (int j = 0; j < GameData.MAP_HEIGHT; j += GameData.BOXSIZE)
             {
+
                 g.drawRect(i, j, 25, 25);
             }
         }
