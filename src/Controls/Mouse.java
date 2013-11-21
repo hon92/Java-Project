@@ -59,6 +59,7 @@ public class Mouse implements MouseListener, MouseMotionListener
         clickedY = 0;
         currentX = 0;
         currentY = 0;
+        gameBoard.repaint();
     }
 
     @Override
@@ -95,6 +96,7 @@ public class Mouse implements MouseListener, MouseMotionListener
             currentX = e.getX();
             currentY = e.getY();
         }
+        gameBoard.repaint();
     }
 
     @Override

@@ -207,7 +207,7 @@ public class GameBoard extends JPanel
         }
 
         mouse.drawRect(g);
-        this.repaint();
+
     }
 
     private void generateGrass()
