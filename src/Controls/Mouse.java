@@ -6,38 +6,42 @@
 package Controls;
 
 import View.GameBoard;
-import View.MiniMap;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 /**
  *
  * @author Honza
  */
-public class Mouse implements MouseListener
+public class Mouse implements MouseListener, MouseMotionListener
 {
 
     private GameBoard gameBoard;
-    private MiniMap miniMap;
 
-    public Mouse(GameBoard gameBoard, MiniMap miniMap)
+    Thread testingThread;
+
+    private Color dragColor = new Color(0, 255, 50, 128);
+
+    private int clickedX = 0;
+    private int clickedY = 0;
+
+    private int currentX = 0;
+    private int currentY = 0;
+
+    private boolean active = false;
+    private boolean firstDrag = false;
+
+    public Mouse(GameBoard gameBoard)
     {
         this.gameBoard = gameBoard;
-        this.miniMap = miniMap;
-
     }
 
     @Override
     public void mouseClicked(MouseEvent e)
     {
-        int x = e.getX();
-        int y = e.getY();
-
-        if (miniMap.intersect(x, y))
-        {
-            miniMap.setAction(x, y);
-        }
-
     }
 
     @Override
@@ -48,6 +52,12 @@ public class Mouse implements MouseListener
     @Override
     public void mouseReleased(MouseEvent e)
     {
+        active = false;
+        firstDrag = false;
+        clickedX = 0;
+        clickedY = 0;
+        currentX = 0;
+        currentY = 0;
     }
 
     @Override
@@ -60,4 +70,32 @@ public class Mouse implements MouseListener
     {
     }
 
+    public void drawRect(Graphics g)
+    {
+        if (active)
+        {
+            g.setColor(dragColor);
+            g.fillRect(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
+        }
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e)
+    {
+        active = true;
+        if (!firstDrag)
+        {
+            clickedX = e.getX();
+            clickedY = e.getY();
+            firstDrag = true;
+        }
+        currentX = e.getX();
+        currentY = e.getY();
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e)
+    {
+
+    }
 }
