@@ -139,7 +139,6 @@ public class MiniMap extends JPanel
                 int objy = ob.getY();
                 g.fillRect(x + convertX(objx), y + convertY(objy), 5, 5);
             }
-
         }
     }
 

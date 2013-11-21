@@ -30,6 +30,7 @@ public class GameBoard extends JPanel
     private final int lenX = GameData.MAP_WIDTH / GameData.BOXSIZE;
     private final int lenY = GameData.MAP_HEIGHT / GameData.BOXSIZE;
     private int[][] field = new int[lenX][lenY];
+    private ObjectElement[][]objectField = new ObjectElement[lenX][lenY];
     private MapData mapData;
     private List<ObjectElement> objects;
     private Mouse mouse;
@@ -246,6 +247,16 @@ public class GameBoard extends JPanel
     public void setFieldIndex(int x, int y, int value)
     {
         field[x][y] = value;
+    }
+    
+    public ObjectElement getObjectFieldObject(int x, int y)
+    {
+        return objectField[x][y];
+    }
+    
+    public void setObjectFieldObject(int x, int y,ObjectElement object)
+    {
+        objectField[x][y]=object;
     }
 
     List<ObjectElement> getObjects()

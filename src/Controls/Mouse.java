@@ -5,6 +5,12 @@
  */
 package Controls;
 
+import GameElement.Bush;
+import GameElement.Gold;
+import GameElement.ObjectElement;
+import GameElement.Relic;
+import GameElement.Stone;
+import GameElement.Tree;
 import View.GameBoard;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -27,9 +33,15 @@ public class Mouse implements MouseListener, MouseMotionListener
     private int clickedX = 0;
     private int clickedY = 0;
 
+    private int clickedObjectX=0;
+    private int clickedObjectY=0;
+    
     private int currentX = 0;
     private int currentY = 0;
 
+    private int clickedIndexX;
+    private int clickedIndexY;
+    
     private boolean active = false;
     private boolean firstDrag = false;
 
@@ -39,8 +51,49 @@ public class Mouse implements MouseListener, MouseMotionListener
     }
 
     @Override
-    public void mouseClicked(MouseEvent e)
-    {
+    public void mouseClicked(MouseEvent e) {
+        clickedX=e.getX();
+        clickedY=e.getY();
+        
+        clickedIndexX = clickedX/25;
+        clickedIndexY=clickedY/25;
+        
+        //clickedObjectX=clickedIndexX*25;
+        //clickedObjectY=clickedIndexY*25;
+        
+        System.out.println("clicked on: ");
+        
+        System.out.println(clickedIndexX);
+        System.out.println(clickedIndexY);
+        if(gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexX) instanceof Tree)
+        {
+            Tree tr = (Tree) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
+            System.out.println(tr.getName());
+            System.out.println("Wood: "+tr.getRemainingWood());
+        }
+        else if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexX) instanceof Bush)
+        {
+            Bush b = (Bush) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
+            System.out.println(b.getName());
+            System.out.println("Food: "+b.getRemainingFood());
+        }
+        else if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexX) instanceof Stone)
+        {
+           Stone st = (Stone) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY); 
+           System.out.println(st.getName());
+           System.out.println("Stone: "+st.getRemainStone());
+        }
+        else if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexX) instanceof Gold)
+        {
+           Gold g = (Gold) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY); 
+           System.out.println(g.getName());
+           System.out.println("Gold: "+g.getRemainingGold());
+        }
+        else if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexX) instanceof Relic)
+        {
+           Relic r = (Relic) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY); 
+           System.out.println(r.getName());
+        }
     }
 
     @Override
