@@ -2,6 +2,9 @@ package View;
 
 import Data.GameData;
 import GameElement.ObjectElement;
+import GameElement.Sand;
+import GameElement.Shoal;
+import GameElement.Water;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -32,10 +35,11 @@ public class MiniMap
 
         for (ObjectElement ob : objects)
         {
-
+            if(!((ob instanceof Water) || (ob instanceof Sand) || (ob instanceof Shoal))){
             int objx = ob.getX();
             int objy = ob.getY();
             g.fillRect(x + convertX(objx), y + convertY(objy), 5, 5);
+            }
 
         }
 
