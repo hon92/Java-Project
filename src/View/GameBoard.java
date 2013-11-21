@@ -1,7 +1,7 @@
 package View;
 
 import Controls.Key;
-import Controls.Mouse;
+
 import Data.GameData;
 import Data.MapData;
 import GameElement.Bush;
@@ -31,9 +31,9 @@ public class GameBoard extends JPanel
     private int[][] field = new int[lenX][lenY];
     private MapData mapData;
     private List<ObjectElement> objects;
-    
-    private Mouse mouse = new Mouse(this);
-    
+
+    private Mouse mouse;
+
     public GameBoard()
     {
         initGameBoard();
@@ -205,10 +205,6 @@ public class GameBoard extends JPanel
             }
         }
 
-        g.drawImage(topPanel, 0, 0, null);
-        g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - 228, null);
-        miniMap.drawMiniMap(g);
-        miniMap.setData(objects);
         mouse.drawRect(g);
         this.repaint();
     }
