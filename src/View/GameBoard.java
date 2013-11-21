@@ -47,7 +47,7 @@ public class GameBoard extends JPanel
 
     private void initGameBoard()
     {
-
+        setSize(1200, 500);
         miniMap = new MiniMap(this);
         objects = new ArrayList<>();
         mapData = new MapData(this);
@@ -222,7 +222,7 @@ public class GameBoard extends JPanel
 
         g.drawImage(topPanel, 0, 0, null);
         g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - 228, null);
-        miniMap.drawMiniMap(g);
+
         miniMap.setData(objects);
 
     }

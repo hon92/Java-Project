@@ -16,13 +16,20 @@ import javax.swing.JFrame;
 public class MainWindow extends JFrame
 {
 
+    private GameBoard gameBoard;
+    private MiniMap miniMap;
+
     public MainWindow() throws HeadlessException
     {
         super("Age of Empires The ZIHOMO Expansion");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT);
         setResizable(false);
-        add(new GameBoard());
+
+        initWindow();
+        add(gameBoard);
+        add(miniMap);
+
         Toolkit toolkit = Toolkit.getDefaultToolkit();
 
         try
@@ -36,6 +43,12 @@ public class MainWindow extends JFrame
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    private void initWindow()
+    {
+        gameBoard = new GameBoard();
+        miniMap = new MiniMap(gameBoard);
     }
 
     public static void main(String args[])

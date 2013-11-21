@@ -12,11 +12,11 @@ import GameElement.Tree;
 import GameElement.Water;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JPanel;
 
-public class MiniMap
+public class MiniMap extends JPanel
 {
 
     private int sizeWidth = 350;
@@ -43,7 +43,7 @@ public class MiniMap
 
     }
 
-    public void drawMiniMap(Graphics g)
+    public void paintComponent(Graphics g)
     {
         g.setColor(brownColor);
         g.fillRect(x, y, sizeWidth, sizeHeight);

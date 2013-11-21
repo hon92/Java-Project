@@ -12,12 +12,12 @@ package Data;
 public final class GameData
 {
 
-    public static final int WINDOW_WIDTH = 1200;
-    public static final int WINDOW_HEIGHT = 800;
+    public static final int WINDOW_WIDTH = 1280;
+    public static final int WINDOW_HEIGHT = 900;
     public static final int MAP_WIDTH = 7000;
     public static final int MAP_HEIGHT = 3600;
     public static final int BOXSIZE = 25;
-    
+
     //grass = 1
     //tree = 2
     //relic = 3
@@ -28,11 +28,8 @@ public final class GameData
     //sand = 8
     // gold = 9
     //stone = 10
-    
     //barracks [12][7]
     //mill [8][5]
     //house [7][4]
     //town center [16][8]
-    
-
 }
