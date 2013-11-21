@@ -14,9 +14,14 @@ import GameElement.Water;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class MiniMap extends JPanel
 {
@@ -35,14 +40,59 @@ public class MiniMap extends JPanel
     final private Color silverColor = new Color(237, 237, 237);
     final private Color greenColor = new Color(8, 135, 40);
     final private Color grayColor = new Color(89, 97, 86);
-
     private List<ObjectElement> objects;
+    private Timer mapRefresh;
+    private int refreshDelay = 1000;
 
-    public MiniMap(GameBoard gameBoard)
+    public MiniMap(final GameBoard gameBoard)
     {
         this.gameBoard = gameBoard;
         setPreferredSize(new Dimension(sizeWidth, sizeHeight));
         objects = new ArrayList<>();
+
+        mapRefresh = new Timer(refreshDelay, new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                objects = gameBoard.getObjects();
+                repaint();
+
+            }
+        }
+        );
+        mapRefresh.start();
+
+    }
+
+    private class MouseMiniMap implements MouseListener
+    {
+
+        @Override
+        public void mouseClicked(MouseEvent e)
+        {
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e)
+        {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e)
+        {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e)
+        {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e)
+        {
+        }
 
     }
 

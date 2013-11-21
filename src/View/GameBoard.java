@@ -248,4 +248,9 @@ public class GameBoard extends JPanel
         field[x][y] = value;
     }
 
+    List<ObjectElement> getObjects()
+    {
+        return objects;
+    }
+
 }
