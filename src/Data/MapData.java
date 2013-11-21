@@ -8,6 +8,7 @@ package Data;
 import GameElement.Bush;
 import GameElement.Cactus;
 import GameElement.Gold;
+import GameElement.Grass;
 import GameElement.ObjectElement;
 import GameElement.Relic;
 import GameElement.Sand;
@@ -56,6 +57,7 @@ public class MapData
     private final char sandChar = 'A';
     private final char shoalChar = 'H';
     private final char waterChar = 'W';
+    private final char grassChar = 'I';
 
     // WHAT THE FUCK ???
     private GameBoard gameBoard;
@@ -154,6 +156,10 @@ public class MapData
                     case cactusChar:
                         objects.add(new Cactus(gameBoard, j * 25, i * 25));
                         System.out.println("Added cactus");
+                        break;
+                    case grassChar:
+                        objects.add(new Grass(gameBoard,j * 25, i * 25));
+                        System.out.println("Added grass");
                         break;
                     case sandChar:
                         objects.add(new Sand(gameBoard, j * 25, i * 25));

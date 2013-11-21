@@ -31,6 +31,13 @@ public class Tree extends ObjectElement
 
         this.currentWood = 100;
         this.startWood = 100;
+        
+        gameBoard.setFieldIndex(x/25, y/25+2, 2);
+        gameBoard.setFieldIndex(x/25+1, y/25+2, 2);
+        
+        gameBoard.setFieldIndex(x/25, y/25+3, 2);
+        gameBoard.setFieldIndex(x/25+1, y/25+3, 2);
+        
 
     }
 

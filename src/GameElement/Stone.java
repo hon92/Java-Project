@@ -38,6 +38,13 @@ public class Stone extends ObjectElement
 
         this.startStone = 500;
         this.currentStone = 500;
+        
+        gameBoard.setFieldIndex(x/25, y/25, 10);
+        gameBoard.setFieldIndex(x/25+1, y/25, 10);
+        gameBoard.setFieldIndex(x/25+2, y/25, 10);
+        gameBoard.setFieldIndex(x/25, y/25+1, 10);
+        gameBoard.setFieldIndex(x/25+1, y/25+1, 10);
+        gameBoard.setFieldIndex(x/25+2, y/25+1, 10);
     }
 
     public void drawObject(Graphics g)

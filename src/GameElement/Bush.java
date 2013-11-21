@@ -38,6 +38,13 @@ public class Bush extends ObjectElement
 
         this.startFood = 300;
         this.currentFood = 300;
+        
+        gameBoard.setFieldIndex(x/25, y/25, 6);
+        gameBoard.setFieldIndex(x/25+25, y/25, 6);
+        gameBoard.setFieldIndex(x/25+50, y/25, 6);
+        gameBoard.setFieldIndex(x/25, y/25+25, 6);
+        gameBoard.setFieldIndex(x/25+25, y/25+25, 6);
+        gameBoard.setFieldIndex(x/25+50, y/25+25, 6);
     }
 
     public void drawObject(Graphics g)

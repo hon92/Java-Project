@@ -38,6 +38,13 @@ public class Gold extends ObjectElement
 
         this.startGold = 500;
         this.currentGold = 500;
+        
+        gameBoard.setFieldIndex(x/25, y/25, 9);
+        gameBoard.setFieldIndex(x/25+1, y/25, 9);
+        gameBoard.setFieldIndex(x/25+2, y/25, 9);
+        gameBoard.setFieldIndex(x/25, y/25+1, 9);
+        gameBoard.setFieldIndex(x/25+1, y/25+1, 9);
+        gameBoard.setFieldIndex(x/25+2, y/25+1, 9);
     }
 
     public void drawObject(Graphics g)

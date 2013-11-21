@@ -25,6 +25,12 @@ public class Shoal extends ObjectElement
         {
             Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        for(int i =0;i<8;i++)
+        {
+            gameBoard.setFieldIndex(x/25+i, y/25, 7);
+            gameBoard.setFieldIndex(x/25+i, y/25+25, 7);
+        }
 
     }
 

@@ -14,8 +14,8 @@ public final class GameData
 
     public static final int WINDOW_WIDTH = 1200;
     public static final int WINDOW_HEIGHT = 800;
-    public static final int MAP_WIDTH = 3500;
-    public static final int MAP_HEIGHT = 1800;
+    public static final int MAP_WIDTH = 7000;
+    public static final int MAP_HEIGHT = 3600;
     public static final int BOXSIZE = 25;
     
     //grass = 1
@@ -26,6 +26,8 @@ public final class GameData
     //bush = 6
     //shoal = 7
     //sand = 8
+    // gold = 9
+    //stone = 10
     
     //barracks [12][7]
     //mill [8][5]
