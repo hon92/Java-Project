@@ -5,6 +5,7 @@
  */
 package View;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -24,10 +25,13 @@ public class BotPanel extends JPanel
 
     private static BufferedImage botPanel;
     private GameBoard gameBoard;
+    private MiniMap miniMap;
 
     BotPanel(GameBoard gameBoard)
     {
         this.gameBoard = gameBoard;
+        miniMap = new MiniMap(gameBoard);
+        add(miniMap, BorderLayout.WEST);
 
         try
         {
@@ -46,6 +50,7 @@ public class BotPanel extends JPanel
     {
         super.paintComponent(g);
         g.drawImage(botPanel, 0, 0, null);
+
     }
 
 }

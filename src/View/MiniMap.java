@@ -12,6 +12,7 @@ import GameElement.Stone;
 import GameElement.Tree;
 import GameElement.Water;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,8 @@ public class MiniMap extends JPanel
     private int sizeWidth = 350;
     private int sizeHeight = 180;
     private GameBoard gameBoard;
-    private int x = GameData.WINDOW_WIDTH - sizeWidth - 20;
-    private int y = GameData.WINDOW_HEIGHT - sizeHeight - 30;
+    //private int x = GameData.WINDOW_WIDTH - sizeWidth - 20;
+    //private int y = GameData.WINDOW_HEIGHT - sizeHeight - 30;
     private int scaleX = GameData.MAP_WIDTH / sizeWidth;
     private int scaleY = GameData.MAP_HEIGHT / sizeHeight;
     private int viewRectWidth = (GameData.MAP_WIDTH / GameData.WINDOW_WIDTH) * 10;
@@ -40,6 +41,7 @@ public class MiniMap extends JPanel
     public MiniMap(GameBoard gameBoard)
     {
         this.gameBoard = gameBoard;
+        setPreferredSize(new Dimension(sizeWidth, sizeHeight));
         objects = new ArrayList<>();
 
     }
@@ -47,13 +49,13 @@ public class MiniMap extends JPanel
     public void paintComponent(Graphics g)
     {
         g.setColor(brownColor);
-        g.fillRect(x, y, sizeWidth, sizeHeight);
+        g.fillRect(0, 0, sizeWidth, sizeHeight);
         g.setColor(Color.red);
 
-        g.drawRect(x, y, viewRectWidth, viewRectHeight);
+        g.drawRect(0, 0, viewRectWidth, viewRectHeight);
         for (ObjectElement ob : objects)
         {
-            if (!((ob instanceof Water) || (ob instanceof Sand) ||(ob instanceof Cactus)|| (ob instanceof Shoal) || (ob instanceof Grass)))
+            if (!((ob instanceof Water) || (ob instanceof Sand) || (ob instanceof Cactus) || (ob instanceof Shoal) || (ob instanceof Grass)))
             {
 
                 if (ob instanceof Gold)
@@ -75,7 +77,7 @@ public class MiniMap extends JPanel
 
                 int objx = ob.getX();
                 int objy = ob.getY();
-                g.fillRect(x + convertX(objx), y + convertY(objy), 5, 5);
+                g.fillRect(0 + convertX(objx), 0 + convertY(objy), 5, 5);
             }
 
         }
@@ -113,11 +115,11 @@ public class MiniMap extends JPanel
 
     public boolean intersect(int x, int y)
     {
-        if (x >= this.x && y >= this.y)
-        {
-            return true;
-        }
-        else
+//        if (x >= this.x && y >= this.y)
+//        {
+//            return true;
+//        }
+//        else
         {
             return false;
         }
