@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -64,11 +65,13 @@ public class MiniMap extends JPanel
         );
         mapRefresh.start();
 
-        addMouseListener(new MouseMiniMap());
+        MouseMiniMap mouse = new MouseMiniMap();
+        addMouseListener(mouse);
+        addMouseMotionListener(mouse);
 
     }
 
-    private class MouseMiniMap implements MouseListener
+    private class MouseMiniMap implements MouseListener, MouseMotionListener
     {
 
         @Override
@@ -76,10 +79,15 @@ public class MiniMap extends JPanel
         {
             int mapx = e.getX();
             int mapy = e.getY();
-            System.err.println("x: " + mapx + " y: " + mapy);
 
-            x = mapx + sizeWidth / 2;
-            y = mapy + sizeHeight / 2;
+            x = mapx - viewRectWidth / 2;
+            y = mapy - viewRectHeight / 2;
+
+            int setx = mapx * scaleX;
+            int sety = mapy * scaleY;
+            gameBoard.setWindowsX(setx);
+            gameBoard.setWindowsY(sety);
+            gameBoard.repaint();
             repaint();
 
         }
@@ -92,6 +100,7 @@ public class MiniMap extends JPanel
         @Override
         public void mouseReleased(MouseEvent e)
         {
+
         }
 
         @Override
@@ -101,6 +110,27 @@ public class MiniMap extends JPanel
 
         @Override
         public void mouseExited(MouseEvent e)
+        {
+        }
+
+        @Override
+        public void mouseDragged(MouseEvent e)
+        {
+            int mapx = e.getX();
+            int mapy = e.getY();
+
+            x = mapx - viewRectWidth / 2;
+            y = mapy - viewRectHeight / 2;
+            int setx = mapx * scaleX;
+            int sety = mapy * scaleY;
+            gameBoard.setWindowsX(setx);
+            gameBoard.setWindowsY(sety);
+            gameBoard.repaint();
+            repaint();
+        }
+
+        @Override
+        public void mouseMoved(MouseEvent e)
         {
         }
 
@@ -137,7 +167,7 @@ public class MiniMap extends JPanel
 
                 int objx = ob.getX();
                 int objy = ob.getY();
-                g.fillRect(x + convertX(objx), y + convertY(objy), 5, 5);
+                g.fillRect(0 + convertX(objx), 0 + convertY(objy), 5, 5);
             }
         }
     }
