@@ -66,11 +66,7 @@ public class Tree extends ObjectElement
                {
                g.drawImage(tree2, gameBoard.convertX(x), gameBoard.convertY(y), null);
                }
-            else if (((x+y)/25) % 4 == 1)
-            {
-                g.drawImage(deadTree, gameBoard.convertX(x), gameBoard.convertY(y), null);
-            }
-            else
+            else 
             {
                 g.drawImage(gayTree, gameBoard.convertX(x), gameBoard.convertY(y), null);
             }
