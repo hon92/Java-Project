@@ -27,6 +27,7 @@ public class Mouse implements MouseListener
     public void mouseClicked(MouseEvent e)
     {
         System.out.println("ccc");
+
     }
 
     @Override
