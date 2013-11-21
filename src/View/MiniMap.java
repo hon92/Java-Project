@@ -142,12 +142,15 @@ public class MiniMap extends JPanel
         g.fillRect(0, 0, sizeWidth, sizeHeight);
         g.setColor(Color.red);
 
-        g.drawRect(x, y, viewRectWidth, viewRectHeight);
         for (ObjectElement ob : objects)
         {
             if (!((ob instanceof Water) || (ob instanceof Sand) || (ob instanceof Cactus) || (ob instanceof Shoal) || (ob instanceof Grass)))
             {
 
+                if (ob instanceof Water)
+                {
+                    g.setColor(Color.blue);
+                }
                 if (ob instanceof Gold)
                 {
                     g.setColor(goldColor);
@@ -170,6 +173,7 @@ public class MiniMap extends JPanel
                 g.fillRect(0 + convertX(objx), 0 + convertY(objy), 5, 5);
             }
         }
+        g.drawRect(x, y, viewRectWidth, viewRectHeight);
     }
 
     void setData(List<ObjectElement> objects
