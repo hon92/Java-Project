@@ -135,43 +135,43 @@ public class MapData
                 {
                     case treeChar:
                         objects.add(new Tree(gameBoard, j * 25, i * 25));
-                        System.out.println("Added tree");
+                        //System.out.println("Added tree");
                         break;
                     case goldChar:
                         objects.add(new Gold(gameBoard, j * 25, i * 25));
-                        System.out.println("Added gold");
+                        //System.out.println("Added gold");
                         break;
                     case stoneChar:
                         objects.add(new Stone(gameBoard, j * 25, i * 25));
-                        System.out.println("Added stone");
+                        //System.out.println("Added stone");
                         break;
                     case relicChar:
                         objects.add(new Relic(gameBoard, j * 25, i * 25));
-                        System.out.println("Added relic");
+                        //System.out.println("Added relic");
                         break;
                     case bushChar:
                         objects.add(new Bush(gameBoard, j * 25, i * 25));
-                        System.out.println("Added bush");
+                        //System.out.println("Added bush");
                         break;
                     case cactusChar:
                         objects.add(new Cactus(gameBoard, j * 25, i * 25));
-                        System.out.println("Added cactus");
+                        //System.out.println("Added cactus");
                         break;
                     case grassChar:
                         objects.add(new Grass(gameBoard,j * 25, i * 25));
-                        System.out.println("Added grass");
+                        //System.out.println("Added grass");
                         break;
                     case sandChar:
                         objects.add(new Sand(gameBoard, j * 25, i * 25));
-                        System.out.println("Added sand");
+                        //System.out.println("Added sand");
                         break;
                     case shoalChar:
                         objects.add(new Shoal(gameBoard, j * 25, i * 25));
-                        System.out.println("Added shoal");
+                        //System.out.println("Added shoal");
                         break;
                     case waterChar:
                         objects.add(new Water(gameBoard, j * 25, i * 25));
-                        System.out.println("Added water");
+                        //System.out.println("Added water");
                         break;
                 }
             }
