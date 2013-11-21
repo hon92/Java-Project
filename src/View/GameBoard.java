@@ -88,6 +88,8 @@ public class GameBoard extends JPanel
         setFocusable(true);
         addMouseListener(new Mouse(this));
         addKeyListener(new Key(this));
+        
+        generateGrass();
     }
 
     public void addToCurrentWindowX(int increment)
@@ -180,6 +182,33 @@ public class GameBoard extends JPanel
         miniMap.drawMiniMap(g);
         miniMap.setData(objects);
 
+    }
+    
+    private void generateGrass()
+    {
+      Grass gr = new Grass(this,0,850);
+      objects.add(gr);
+      
+      for(int i =0;i<GameData.MAP_WIDTH-200;i+=400)
+          for(int j =850;j<GameData.MAP_HEIGHT-400;j+=400)
+          {
+             gr= new Grass(this,i,j);
+             objects.add(gr); 
+          }
+      for(int i=850;i<GameData.MAP_HEIGHT-400;i+=400)
+      {
+          gr= new Grass(this,GameData.MAP_WIDTH-400,i);
+          objects.add(gr);
+      }
+      
+      for(int i=0;i<GameData.MAP_WIDTH-200;i+=400)
+      {
+          gr= new Grass(this,i,GameData.MAP_HEIGHT-400);
+          objects.add(gr);
+      }
+      
+      gr= new Grass(this,GameData.MAP_WIDTH-400,GameData.MAP_HEIGHT-400);
+      objects.add(gr);
     }
 
     public int getFieldIndex(int x, int y)
