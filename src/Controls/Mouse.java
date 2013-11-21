@@ -5,6 +5,7 @@
  */
 package Controls;
 
+import Data.GameData;
 import GameElement.Bush;
 import GameElement.Gold;
 import GameElement.ObjectElement;
@@ -65,6 +66,48 @@ public class Mouse implements MouseListener, MouseMotionListener
         
         System.out.println("clicked on: ");
         
+
+//            for(int j =140;j<144;j++)
+//            {
+//                if(gameBoard.getObjectFieldObject(0, j)==null)
+//                {
+//                    System.out.println("NULL");
+//                }
+//                else
+//                {
+//                    System.out.println("not NULL");
+//                    if (gameBoard.getObjectFieldObject(0, j) instanceof Tree)
+//                    {
+//                        System.out.println("Tree");
+//                    }
+//                }
+//            
+//             }
+        
+//            for(int i =30;i<150;i++)
+//            {
+//                for(int j =60;j<130;j++)
+//                {
+//                    if (gameBoard.getObjectFieldObject(i, j)instanceof Gold)
+//                    {
+//                        System.out.println("GOLD");
+//                        System.out.println(i);
+//                        System.out.println(j);
+//                    }
+//                }
+//            }
+        
+//        if(gameBoard.getObjectFieldObject(22, 75)==null)
+//        {
+//            System.out.println("NULL");
+//            if (gameBoard.getObjectFieldObject(22, 75)instanceof Gold)
+//                    {
+//                        System.out.println("GOLD");
+//                    }
+//        }
+        
+        clickedIndexX=convertX(clickedIndexX);
+        clickedIndexY=convertY(clickedIndexY);
         System.out.println(clickedIndexX);
         System.out.println(clickedIndexY);
         if(gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexX) instanceof Tree)
@@ -157,4 +200,15 @@ public class Mouse implements MouseListener, MouseMotionListener
     {
 
     }
+    
+    public int convertX(int x)
+    {
+        return x+gameBoard.getCurrWinX()/25;
+    }
+    
+    public int convertY(int y)
+    {
+        return y+gameBoard.getCurrWinY()/25;
+    }
+    
 }

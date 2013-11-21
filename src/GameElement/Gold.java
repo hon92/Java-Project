@@ -23,7 +23,9 @@ public class Gold extends ObjectElement
     private int startGold;
     private int currentGold;
     private static BufferedImage gold;
-
+    private static String name = "Gold";
+    
+    
     public Gold(GameBoard gameBoard, int x, int y)
     {
         super(gameBoard, x, y);
@@ -45,10 +47,28 @@ public class Gold extends ObjectElement
         gameBoard.setFieldIndex(x/25, y/25+1, 9);
         gameBoard.setFieldIndex(x/25+1, y/25+1, 9);
         gameBoard.setFieldIndex(x/25+2, y/25+1, 9);
+        
+        gameBoard.setObjectFieldObject(x/25, y/25, this);
+        gameBoard.setObjectFieldObject(x/25+1, y/25, this);
+        gameBoard.setObjectFieldObject(x/25+2, y/25, this);
+        gameBoard.setObjectFieldObject(x/25, y/25+1, this);
+        gameBoard.setObjectFieldObject(x/25+1, y/25+1, this);
+        gameBoard.setObjectFieldObject(x/25+2, y/25+1, this);
+ 
     }
 
     public void drawObject(Graphics g)
     {
         g.drawImage(gold, gameBoard.convertX(x), gameBoard.convertY(y), null);
     }
+    public String getName()
+    {
+        return name;
+    }
+    
+    public int getRemainingGold()
+    {
+        return currentGold;
+    }
+    
 }

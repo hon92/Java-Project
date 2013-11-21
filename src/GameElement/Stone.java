@@ -23,7 +23,9 @@ public class Stone extends ObjectElement
     private int startStone;
     private int currentStone;
     private static BufferedImage stone;
-
+    private static String name = "Stone";
+    
+    
     public Stone(GameBoard gameBoard, int x, int y)
     {
         super(gameBoard, x, y);
@@ -45,10 +47,27 @@ public class Stone extends ObjectElement
         gameBoard.setFieldIndex(x/25, y/25+1, 10);
         gameBoard.setFieldIndex(x/25+1, y/25+1, 10);
         gameBoard.setFieldIndex(x/25+2, y/25+1, 10);
+        
+        gameBoard.setObjectFieldObject(x/25, y/25, this);
+        gameBoard.setObjectFieldObject(x/25+1, y/25, this);
+        gameBoard.setObjectFieldObject(x/25+2, y/25, this);
+        gameBoard.setObjectFieldObject(x/25, y/25+1, this);
+        gameBoard.setObjectFieldObject(x/25+1, y/25+1, this);
+        gameBoard.setObjectFieldObject(x/25+2, y/25+1, this);
     }
 
     public void drawObject(Graphics g)
     {
         g.drawImage(stone, gameBoard.convertX(x), gameBoard.convertY(y), null);
+    }
+    
+    public String getName()
+    {
+        return name;
+    }
+    
+    public int getRemainStone()
+    {
+        return currentStone;
     }
 }
