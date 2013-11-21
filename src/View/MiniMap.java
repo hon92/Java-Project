@@ -64,6 +64,8 @@ public class MiniMap extends JPanel
         );
         mapRefresh.start();
 
+        addMouseListener(new MouseMiniMap());
+
     }
 
     private class MouseMiniMap implements MouseListener
@@ -72,6 +74,14 @@ public class MiniMap extends JPanel
         @Override
         public void mouseClicked(MouseEvent e)
         {
+            int mapx = e.getX();
+            int mapy = e.getY();
+            System.err.println("x: " + mapx + " y: " + mapy);
+
+            x = mapx + sizeWidth / 2;
+            y = mapy + sizeHeight / 2;
+            repaint();
+
         }
 
         @Override
@@ -99,7 +109,7 @@ public class MiniMap extends JPanel
     public void paintComponent(Graphics g)
     {
         g.setColor(brownColor);
-        g.fillRect(x, y, sizeWidth, sizeHeight);
+        g.fillRect(0, 0, sizeWidth, sizeHeight);
         g.setColor(Color.red);
 
         g.drawRect(x, y, viewRectWidth, viewRectHeight);
