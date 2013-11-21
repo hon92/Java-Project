@@ -33,7 +33,6 @@ public class GameBoard extends JPanel
     private ObjectElement[][]objectField = new ObjectElement[lenX][lenY];
     private MapData mapData;
     private List<ObjectElement> objects;
-
     private Mouse mouse;
 
     public GameBoard()
@@ -268,6 +267,11 @@ public class GameBoard extends JPanel
     public int getCurrWinY()
     {
         return currentWindowY;
+    }
+
+    List<ObjectElement> getObjects()
+    {
+        return objects;
     }
 
 }

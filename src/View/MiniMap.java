@@ -14,18 +14,24 @@ import GameElement.Water;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class MiniMap extends JPanel
 {
 
-    private int sizeWidth = 350;
-    private int sizeHeight = 180;
+    private int sizeWidth = 360;
+    private int sizeHeight = 200;
     private GameBoard gameBoard;
-    //private int x = GameData.WINDOW_WIDTH - sizeWidth - 20;
-    //private int y = GameData.WINDOW_HEIGHT - sizeHeight - 30;
+    private int x = 0;
+    private int y = 0;
     private int scaleX = GameData.MAP_WIDTH / sizeWidth;
     private int scaleY = GameData.MAP_HEIGHT / sizeHeight;
     private int viewRectWidth = (GameData.MAP_WIDTH / GameData.WINDOW_WIDTH) * 10;
@@ -35,14 +41,98 @@ public class MiniMap extends JPanel
     final private Color silverColor = new Color(237, 237, 237);
     final private Color greenColor = new Color(8, 135, 40);
     final private Color grayColor = new Color(89, 97, 86);
-
     private List<ObjectElement> objects;
+    private Timer mapRefresh;
+    private int refreshDelay = 1000;
 
-    public MiniMap(GameBoard gameBoard)
+    public MiniMap(final GameBoard gameBoard)
     {
         this.gameBoard = gameBoard;
         setPreferredSize(new Dimension(sizeWidth, sizeHeight));
         objects = new ArrayList<>();
+
+        mapRefresh = new Timer(refreshDelay, new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                objects = gameBoard.getObjects();
+                repaint();
+
+            }
+        }
+        );
+        mapRefresh.start();
+
+        MouseMiniMap mouse = new MouseMiniMap();
+        addMouseListener(mouse);
+        addMouseMotionListener(mouse);
+
+    }
+
+    private class MouseMiniMap implements MouseListener, MouseMotionListener
+    {
+
+        @Override
+        public void mouseClicked(MouseEvent e)
+        {
+            int mapx = e.getX();
+            int mapy = e.getY();
+
+            x = mapx - viewRectWidth / 2;
+            y = mapy - viewRectHeight / 2;
+
+            int setx = mapx * scaleX;
+            int sety = mapy * scaleY;
+            gameBoard.setWindowsX(setx);
+            gameBoard.setWindowsY(sety);
+            gameBoard.repaint();
+            repaint();
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e)
+        {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e)
+        {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e)
+        {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e)
+        {
+        }
+
+        @Override
+        public void mouseDragged(MouseEvent e)
+        {
+            int mapx = e.getX();
+            int mapy = e.getY();
+
+            x = mapx - viewRectWidth / 2;
+            y = mapy - viewRectHeight / 2;
+            int setx = mapx * scaleX;
+            int sety = mapy * scaleY;
+            gameBoard.setWindowsX(setx);
+            gameBoard.setWindowsY(sety);
+            gameBoard.repaint();
+            repaint();
+        }
+
+        @Override
+        public void mouseMoved(MouseEvent e)
+        {
+        }
 
     }
 
@@ -52,7 +142,7 @@ public class MiniMap extends JPanel
         g.fillRect(0, 0, sizeWidth, sizeHeight);
         g.setColor(Color.red);
 
-        g.drawRect(0, 0, viewRectWidth, viewRectHeight);
+        g.drawRect(x, y, viewRectWidth, viewRectHeight);
         for (ObjectElement ob : objects)
         {
             if (!((ob instanceof Water) || (ob instanceof Sand) || (ob instanceof Cactus) || (ob instanceof Shoal) || (ob instanceof Grass)))
@@ -114,11 +204,11 @@ public class MiniMap extends JPanel
 
     public boolean intersect(int x, int y)
     {
-//        if (x >= this.x && y >= this.y)
-//        {
-//            return true;
-//        }
-//        else
+        if (x >= this.x && y >= this.y)
+        {
+            return true;
+        }
+        else
         {
             return false;
         }
