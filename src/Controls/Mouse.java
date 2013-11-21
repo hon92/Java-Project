@@ -84,13 +84,13 @@ public class Mouse implements MouseListener, MouseMotionListener
 //            
 //             }
         
-//            for(int i =30;i<150;i++)
+//            for(int i =3;i<200;i++)
 //            {
-//                for(int j =60;j<130;j++)
+//                for(int j =0;j<130;j++)
 //                {
-//                    if (gameBoard.getObjectFieldObject(i, j)instanceof Gold)
+//                    if (gameBoard.getObjectFieldObject(i, j)instanceof Relic)
 //                    {
-//                        System.out.println("GOLD");
+//                        System.out.println("RELIC");
 //                        System.out.println(i);
 //                        System.out.println(j);
 //                    }
@@ -203,12 +203,12 @@ public class Mouse implements MouseListener, MouseMotionListener
     
     public int convertX(int x)
     {
-        return x+gameBoard.getCurrWinX()/25;
+        return x+(gameBoard.getCurrWinX()/25);
     }
     
     public int convertY(int y)
     {
-        return y+gameBoard.getCurrWinY()/25;
+        return y+(gameBoard.getCurrWinY()/25);
     }
     
 }
