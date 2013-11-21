@@ -32,7 +32,6 @@ public class GameBoard extends JPanel
     private int[][] field = new int[lenX][lenY];
     private MapData mapData;
     private List<ObjectElement> objects;
-
     private Mouse mouse;
 
     public GameBoard()

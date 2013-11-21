@@ -22,8 +22,6 @@ public class Mouse implements MouseListener, MouseMotionListener
 
     private GameBoard gameBoard;
 
-    Thread testingThread;
-
     private Color dragColor = new Color(0, 255, 50, 128);
 
     private int clickedX = 0;

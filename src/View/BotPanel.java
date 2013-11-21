@@ -30,8 +30,11 @@ public class BotPanel extends JPanel
     BotPanel(GameBoard gameBoard)
     {
         this.gameBoard = gameBoard;
+        setLayout(new BorderLayout());
         miniMap = new MiniMap(gameBoard);
-        add(miniMap, BorderLayout.WEST);
+        add(miniMap, BorderLayout.EAST);
+        //add(new MiniMap(gameBoard), BorderLayout.WEST);
+        //add(new MiniMap(gameBoard), BorderLayout.CENTER);
 
         try
         {
