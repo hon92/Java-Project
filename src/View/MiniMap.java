@@ -14,6 +14,9 @@ public class MiniMap
     private int sizeHeight = 180;
     private int x = GameData.WINDOW_WIDTH - sizeWidth - 20;
     private int y = GameData.WINDOW_HEIGHT - sizeHeight - 40;
+    private int scaleX = GameData.MAP_WIDTH / sizeWidth;
+    private int scaleY = GameData.MAP_HEIGHT / sizeHeight;
+
     private List<ObjectElement> objects;
 
     public MiniMap()
@@ -45,11 +48,11 @@ public class MiniMap
 
     private int convertX(int x)
     {
-        return x / 10;
+        return x / scaleX;
     }
 
     private int convertY(int y)
     {
-        return y / 10;
+        return y / scaleY;
     }
 }
