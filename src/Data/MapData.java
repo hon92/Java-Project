@@ -58,15 +58,6 @@ public class MapData
     {
         this.gameBoard = gameBoard;
         this.objects = new ArrayList<>();
-//        treeList = new ArrayList<>();
-//        goldList = new ArrayList<>();
-//        stoneList = new ArrayList<>();
-//        relicList = new ArrayList<>();
-//        bushList = new ArrayList<>();
-//        cactusList = new ArrayList<>();
-//        sandList = new ArrayList<>();
-//        shoalList = new ArrayList<>();
-//        waterList = new ArrayList<>();
 
         initMatrix();
         fillLists();
