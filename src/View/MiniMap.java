@@ -1,6 +1,7 @@
 package View;
 
 import Data.GameData;
+import GameElement.Cactus;
 import GameElement.Gold;
 import GameElement.Grass;
 import GameElement.ObjectElement;
@@ -46,7 +47,7 @@ public class MiniMap
 
         for (ObjectElement ob : objects)
         {
-            if (!((ob instanceof Water) || (ob instanceof Sand) || (ob instanceof Shoal) || (ob instanceof Grass)))
+            if (!((ob instanceof Water) || (ob instanceof Sand) ||(ob instanceof Cactus)|| (ob instanceof Shoal) || (ob instanceof Grass)))
             {
 
                 if (ob instanceof Gold)
