@@ -12,6 +12,7 @@ import GameElement.Tree;
 import GameElement.Water;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,11 +21,13 @@ public class MiniMap
 
     private int sizeWidth = 350;
     private int sizeHeight = 180;
+    private GameBoard gameBoard;
     private int x = GameData.WINDOW_WIDTH - sizeWidth - 20;
     private int y = GameData.WINDOW_HEIGHT - sizeHeight - 30;
     private int scaleX = GameData.MAP_WIDTH / sizeWidth;
     private int scaleY = GameData.MAP_HEIGHT / sizeHeight;
-
+    private int viewRectWidth = (GameData.MAP_WIDTH / GameData.WINDOW_WIDTH) * 10;
+    private int viewRectHeight = (GameData.MAP_HEIGHT / GameData.WINDOW_HEIGHT) * 10;
     final private Color brownColor = new Color(129, 39, 3);
     final private Color goldColor = new Color(211, 189, 13);
     final private Color silverColor = new Color(237, 237, 237);
@@ -33,9 +36,11 @@ public class MiniMap
 
     private List<ObjectElement> objects;
 
-    public MiniMap()
+    public MiniMap(GameBoard gameBoard)
     {
+        this.gameBoard = gameBoard;
         objects = new ArrayList<>();
+
     }
 
     public void drawMiniMap(Graphics g)
@@ -44,6 +49,7 @@ public class MiniMap
         g.fillRect(x, y, sizeWidth, sizeHeight);
         g.setColor(Color.red);
 
+        g.drawRect(x, y, viewRectWidth, viewRectHeight);
         for (ObjectElement ob : objects)
         {
             if (!((ob instanceof Water) || (ob instanceof Sand) || (ob instanceof Shoal) || (ob instanceof Grass)))
@@ -88,6 +94,30 @@ public class MiniMap
     private int convertY(int y)
     {
         return y / scaleY;
+    }
+
+    public void setAction(int x, int y)
+    {
+        System.err.println("qwdqd");
+        int newx = x * scaleX;
+        int newy = y * scaleY;
+
+        gameBoard.addToCurrentWindowX(newy);
+        gameBoard.addToCurrentWindowY(newy);
+        gameBoard.repaint();
+
+    }
+
+    public boolean intersect(int x, int y)
+    {
+        if (x >= this.x && y >= this.y)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }

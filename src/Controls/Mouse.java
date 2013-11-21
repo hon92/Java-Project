@@ -6,6 +6,7 @@
 package Controls;
 
 import View.GameBoard;
+import View.MiniMap;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -17,16 +18,25 @@ public class Mouse implements MouseListener
 {
 
     private GameBoard gameBoard;
+    private MiniMap miniMap;
 
-    public Mouse(GameBoard gameBoard)
+    public Mouse(GameBoard gameBoard, MiniMap miniMap)
     {
         this.gameBoard = gameBoard;
+        this.miniMap = miniMap;
+
     }
 
     @Override
     public void mouseClicked(MouseEvent e)
     {
-        System.out.println("ccc");
+        int x = e.getX();
+        int y = e.getY();
+
+        if (miniMap.intersect(x, y))
+        {
+            miniMap.setAction(x, y);
+        }
 
     }
 

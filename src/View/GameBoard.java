@@ -48,7 +48,7 @@ public class GameBoard extends JPanel
     private void initGameBoard()
     {
 
-        miniMap = new MiniMap();
+        miniMap = new MiniMap(this);
         objects = new ArrayList<>();
         mapData = new MapData(this);
         objects = mapData.getMapData();
@@ -63,7 +63,7 @@ public class GameBoard extends JPanel
             Logger.getLogger(GameBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
         setFocusable(true);
-        addMouseListener(new Mouse(this));
+        addMouseListener(new Mouse(this, miniMap));
         addKeyListener(new Key(this));
 
         generateGrass();
