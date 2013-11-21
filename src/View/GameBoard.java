@@ -235,7 +235,7 @@ public class GameBoard extends JPanel
 //            cactus.draw(g);
 //        }
         g.drawImage(topPanel, 0, 0, null);
-        g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - 235, null);
+        g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - 228, null);
         miniMap.drawMiniMap(g);
         miniMap.setData(objects);
 
