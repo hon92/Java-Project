@@ -85,9 +85,9 @@ public class Mouse implements MouseListener, MouseMotionListener
 //            {
 //                for(int j =0;j<130;j++)
 //                {
-//                    if (gameBoard.getObjectFieldObject(i, j)instanceof Relic)
+//                    if (gameBoard.getObjectFieldObject(i, j)instanceof Bush)
 //                    {
-//                        System.out.println("RELIC");
+//                        System.out.println("Bush");
 //                        System.out.println(i);
 //                        System.out.println(j);
 //                    }
