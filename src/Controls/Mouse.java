@@ -107,6 +107,7 @@ public class Mouse implements MouseListener, MouseMotionListener
 
         if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexX) instanceof Tree)
         {
+            System.out.println("gazy");
             Tree tr = (Tree) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
             System.out.println(tr.getName());
             System.out.println("Wood: " + tr.getRemainingWood());

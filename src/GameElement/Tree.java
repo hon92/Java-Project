@@ -52,9 +52,11 @@ public class Tree extends ObjectElement
         gameBoard.setObjectFieldObject(x/25, y/25, this);
         gameBoard.setObjectFieldObject(x/25, y/25+1, this);
         gameBoard.setObjectFieldObject(x/25, y/25+2, this);
+        gameBoard.setObjectFieldObject(x/25, y/25+3, this);
         gameBoard.setObjectFieldObject(x/25+1, y/25, this);
         gameBoard.setObjectFieldObject(x/25+1, y/25+1, this);
         gameBoard.setObjectFieldObject(x/25+1, y/25+2, this);
+        gameBoard.setObjectFieldObject(x/25+1, y/25+3, this);
 
     }
 
