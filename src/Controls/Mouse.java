@@ -80,7 +80,6 @@ public class Mouse implements MouseListener, MouseMotionListener
 //                }
 //
 //             }
-        
 //            for(int i =3;i<200;i++)
 //            {
 //                for(int j =0;j<130;j++)
@@ -105,6 +104,7 @@ public class Mouse implements MouseListener, MouseMotionListener
         clickedIndexY = convertY(clickedIndexY);
         System.out.println(clickedIndexX);
         System.out.println(clickedIndexY);
+
         if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexX) instanceof Tree)
         {
             Tree tr = (Tree) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
@@ -198,12 +198,12 @@ public class Mouse implements MouseListener, MouseMotionListener
 
     public int convertX(int x)
     {
-        return x+(gameBoard.getCurrWinX()/25);
+        return x + (gameBoard.getCurrWinX() / 25);
     }
 
     public int convertY(int y)
     {
-        return y+(gameBoard.getCurrWinY()/25);
+        return y + (gameBoard.getCurrWinY() / 25);
     }
 
 }
