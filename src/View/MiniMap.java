@@ -102,8 +102,10 @@ public class MiniMap
         int newx = x * scaleX;
         int newy = y * scaleY;
 
-        gameBoard.addToCurrentWindowX(newy);
-        gameBoard.addToCurrentWindowY(newy);
+        int xx = newx + viewRectWidth / 2;
+        int yy = newy + viewRectHeight / 2;
+        gameBoard.addToCurrentWindowX(xx);
+        gameBoard.addToCurrentWindowY(yy);
         gameBoard.repaint();
 
     }
