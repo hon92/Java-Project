@@ -5,8 +5,6 @@
  */
 package View;
 
-import Data.GameData;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
