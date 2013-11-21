@@ -22,7 +22,7 @@ public class Bush extends ObjectElement
 
     private int startFood;
     private int currentFood;
-    private BufferedImage bush;
+    private static BufferedImage bush;
 
     public Bush(GameBoard gameBoard, int x, int y)
     {

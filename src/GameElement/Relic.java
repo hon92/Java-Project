@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 public class Relic extends ObjectElement
 {
 
-    private BufferedImage relic;
+    private static BufferedImage relic;
 
     public Relic(GameBoard gameBoard, int x, int y)
     {

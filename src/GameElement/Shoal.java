@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 public class Shoal extends ObjectElement
 {
 
-    private BufferedImage shoal;
+    private static BufferedImage shoal;
 
     public Shoal(GameBoard gameBoard, int x, int y)
     {

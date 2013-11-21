@@ -13,11 +13,11 @@ import javax.imageio.ImageIO;
 public class Tree extends ObjectElement
 {
 
-    private BufferedImage tree1;
-    private BufferedImage tree2;
-    private BufferedImage gayTree;
-    private BufferedImage deadTree;
-    private BufferedImage treeDown;
+    private static BufferedImage tree1;
+    private static BufferedImage tree2;
+    private static BufferedImage gayTree;
+    private static BufferedImage deadTree;
+    private static BufferedImage treeDown;
     private int startWood;
     private int currentWood;
 

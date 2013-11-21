@@ -20,7 +20,7 @@ import javax.imageio.ImageIO;
 public class Cactus extends ObjectElement
 {
 
-    private BufferedImage cactus;
+    private static BufferedImage cactus;
 
     public Cactus(GameBoard gameBoard, int x, int y)
     {
