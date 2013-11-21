@@ -33,15 +33,6 @@ public class MapData
 {
 
     private List<ObjectElement> objects;
-//    private List<Tree> treeList;
-//    private List<Gold> goldList;
-//    private List<Stone> stoneList;
-//    private List<Relic> relicList;
-//    private List<Bush> bushList;
-//    private List<Cactus> cactusList;
-//    private List<Sand> sandList;
-//    private List<Shoal> shoalList;
-//    private List<Water> waterList;
 
     int matrixX;
     int matrixY;
@@ -67,15 +58,6 @@ public class MapData
     {
         this.gameBoard = gameBoard;
         this.objects = new ArrayList<>();
-//        treeList = new ArrayList<>();
-//        goldList = new ArrayList<>();
-//        stoneList = new ArrayList<>();
-//        relicList = new ArrayList<>();
-//        bushList = new ArrayList<>();
-//        cactusList = new ArrayList<>();
-//        sandList = new ArrayList<>();
-//        shoalList = new ArrayList<>();
-//        waterList = new ArrayList<>();
 
         initMatrix();
         fillLists();
@@ -158,7 +140,7 @@ public class MapData
                         //System.out.println("Added cactus");
                         break;
                     case grassChar:
-                        objects.add(new Grass(gameBoard,j * 25, i * 25));
+                        objects.add(new Grass(gameBoard, j * 25, i * 25));
                         //System.out.println("Added grass");
                         break;
                     case sandChar:
@@ -177,53 +159,6 @@ public class MapData
             }
         }
     }
-
-    ;
-
-//    public List<Tree> getTreeList()
-//    {
-//        return treeList;
-//    }
-//
-//    public List<Stone> getStoneList()
-//    {
-//        return stoneList;
-//    }
-//
-//    public List<Gold> getGoldList()
-//    {
-//        return goldList;
-//    }
-//
-//    public List<Relic> getRelicList()
-//    {
-//        return relicList;
-//    }
-//
-//    public List<Bush> getBushList()
-//    {
-//        return bushList;
-//    }
-//
-//    public List<Water> getWaterList()
-//    {
-//        return waterList;
-//    }
-//
-//    public List<Cactus> getCactusList()
-//    {
-//        return cactusList;
-//    }
-//
-//    public List<Shoal> getShoalList()
-//    {
-//        return shoalList;
-//    }
-//
-//    public List<Sand> getSandList()
-//    {
-//        return sandList;
-//    }
 
     public List<ObjectElement> getMapData()
     {

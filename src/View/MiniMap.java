@@ -15,7 +15,8 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MiniMap {
+public class MiniMap
+{
 
     private int sizeWidth = 350;
     private int sizeHeight = 180;
@@ -29,31 +30,39 @@ public class MiniMap {
     final private Color silverColor = new Color(237, 237, 237);
     final private Color greenColor = new Color(8, 135, 40);
     final private Color grayColor = new Color(89, 97, 86);
-    
+
     private List<ObjectElement> objects;
 
-    public MiniMap() {
+    public MiniMap()
+    {
         objects = new ArrayList<>();
     }
 
-    public void drawMiniMap(Graphics g) {
+    public void drawMiniMap(Graphics g)
+    {
         g.setColor(brownColor);
         g.fillRect(x, y, sizeWidth, sizeHeight);
         g.setColor(Color.red);
 
-        for (ObjectElement ob : objects) {
-            if (!((ob instanceof Water) || (ob instanceof Sand) || (ob instanceof Shoal) || (ob instanceof Grass))) {
+        for (ObjectElement ob : objects)
+        {
+            if (!((ob instanceof Water) || (ob instanceof Sand) || (ob instanceof Shoal) || (ob instanceof Grass)))
+            {
 
-                if (ob instanceof Gold) {
+                if (ob instanceof Gold)
+                {
                     g.setColor(goldColor);
                 }
-                if (ob instanceof Relic) {
+                if (ob instanceof Relic)
+                {
                     g.setColor(silverColor);
                 }
-                if (ob instanceof Tree) {
+                if (ob instanceof Tree)
+                {
                     g.setColor(greenColor);
                 }
-                if (ob instanceof Stone) {
+                if (ob instanceof Stone)
+                {
                     g.setColor(grayColor);
                 }
 
@@ -63,18 +72,22 @@ public class MiniMap {
             }
 
         }
-
     }
 
-    void setData(List<ObjectElement> objects) {
+    void setData(List<ObjectElement> objects
+    )
+    {
         this.objects = objects;
     }
 
-    private int convertX(int x) {
+    private int convertX(int x)
+    {
         return x / scaleX;
     }
 
-    private int convertY(int y) {
+    private int convertY(int y)
+    {
         return y / scaleY;
     }
+
 }
