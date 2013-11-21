@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 public class Sand extends ObjectElement
 {
 
-    private BufferedImage sand;
+    private static BufferedImage sand;
 
     public Sand(GameBoard gameBoard, int x, int y)
     {

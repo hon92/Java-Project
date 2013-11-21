@@ -22,7 +22,7 @@ public class Stone extends ObjectElement
 
     private int startStone;
     private int currentStone;
-    private BufferedImage stone;
+    private static BufferedImage stone;
 
     public Stone(GameBoard gameBoard, int x, int y)
     {

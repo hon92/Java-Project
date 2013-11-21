@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 public class Water extends ObjectElement
 {
 
-    private BufferedImage water;
+    private static BufferedImage water;
 
     public Water(GameBoard gameBoard, int x, int y)
     {

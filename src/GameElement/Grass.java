@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 public class Grass extends ObjectElement
 {
 
-    private BufferedImage grass;
+    private static BufferedImage grass;
 
     public Grass(GameBoard gameBoard, int x, int y)
     {

@@ -13,11 +13,11 @@ import javax.imageio.ImageIO;
 public class Tree extends ObjectElement
 {
 
-    private BufferedImage tree1;
-    private BufferedImage tree2;
-    private BufferedImage gayTree;
-    private BufferedImage deadTree;
-    private BufferedImage treeDown;
+    private static BufferedImage tree1;
+    private static BufferedImage tree2;
+    private static BufferedImage gayTree;
+    private static BufferedImage deadTree;
+    private static BufferedImage treeDown;
     private int startWood;
     private int currentWood;
 
@@ -66,11 +66,7 @@ public class Tree extends ObjectElement
                {
                g.drawImage(tree2, gameBoard.convertX(x), gameBoard.convertY(y), null);
                }
-            else if (((x+y)/25) % 4 == 1)
-            {
-                g.drawImage(deadTree, gameBoard.convertX(x), gameBoard.convertY(y), null);
-            }
-            else
+            else 
             {
                 g.drawImage(gayTree, gameBoard.convertX(x), gameBoard.convertY(y), null);
             }

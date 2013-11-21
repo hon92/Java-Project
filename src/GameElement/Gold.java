@@ -22,7 +22,7 @@ public class Gold extends ObjectElement
 
     private int startGold;
     private int currentGold;
-    private BufferedImage gold;
+    private static BufferedImage gold;
 
     public Gold(GameBoard gameBoard, int x, int y)
     {
