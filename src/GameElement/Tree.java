@@ -14,6 +14,10 @@ public class Tree extends ObjectElement
 {
 
     private BufferedImage tree1;
+    private BufferedImage tree2;
+    private BufferedImage gayTree;
+    private BufferedImage deadTree;
+    private BufferedImage treeDown;
     private int startWood;
     private int currentWood;
 
@@ -23,6 +27,11 @@ public class Tree extends ObjectElement
         try
         {
             tree1 = ImageIO.read(new File("src/Resources/tree1.png"));
+            tree2 = ImageIO.read(new File("src/Resources/tree2_1.png"));
+            gayTree = ImageIO.read(new File("src/Resources/gayTree.png"));
+            deadTree = ImageIO.read(new File("src/Resources/deadTree.png"));
+            treeDown = ImageIO.read(new File("src/Resources/treeDown.png"));
+            
         }
         catch (IOException ex)
         {
@@ -43,13 +52,28 @@ public class Tree extends ObjectElement
 
     public void drawObject(Graphics g)
     {
-        if ((x / GameData.BOXSIZE == 0) && (y / GameData.BOXSIZE == 0))
+        if(currentWood<100)
         {
-            g.drawImage(tree1, gameBoard.convertX(x), gameBoard.convertY(y), null);
+            g.drawImage(tree1, gameBoard.convertX(x), gameBoard.convertY(y)+75, null);
         }
         else
         {
-            g.drawImage(tree1, gameBoard.convertX(x), gameBoard.convertY(y), null);
-        }
+            if ((((x+y)/25) % 4 == 3))
+               {
+                g.drawImage(tree1, gameBoard.convertX(x), gameBoard.convertY(y), null);
+               }
+            else if(((x+y)/25) % 4==2)
+               {
+               g.drawImage(tree2, gameBoard.convertX(x), gameBoard.convertY(y), null);
+               }
+            else if (((x+y)/25) % 4 == 1)
+            {
+                g.drawImage(deadTree, gameBoard.convertX(x), gameBoard.convertY(y), null);
+            }
+            else
+            {
+                g.drawImage(gayTree, gameBoard.convertX(x), gameBoard.convertY(y), null);
+            }
+        }   
     }
 }
