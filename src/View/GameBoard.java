@@ -16,6 +16,7 @@ import GameElement.Shoal;
 import GameElement.Stone;
 import GameElement.Tree;
 import GameElement.Water;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class GameBoard extends JPanel
     private final int lenX = GameData.MAP_WIDTH / GameData.BOXSIZE;
     private final int lenY = GameData.MAP_HEIGHT / GameData.BOXSIZE;
     private int[][] field = new int[lenX][lenY];
-    private ObjectElement[][]objectField = new ObjectElement[lenX][lenY];
+    private ObjectElement[][] objectField = new ObjectElement[lenX][lenY];
     private MapData mapData;
     private List<ObjectElement> objects;
     private Mouse mouse;
@@ -208,6 +209,15 @@ public class GameBoard extends JPanel
 
         mouse.drawRect(g);
 
+        g.setColor(Color.white);
+        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
+        {
+            for (int j = 0; j < GameData.MAP_HEIGHT; j += GameData.BOXSIZE)
+            {
+                g.drawRect(i, j, 25, 25);
+            }
+        }
+
     }
 
     private void generateGrass()
@@ -248,22 +258,22 @@ public class GameBoard extends JPanel
     {
         field[x][y] = value;
     }
-    
+
     public ObjectElement getObjectFieldObject(int x, int y)
     {
         return objectField[x][y];
     }
-    
-    public void setObjectFieldObject(int x, int y,ObjectElement object)
+
+    public void setObjectFieldObject(int x, int y, ObjectElement object)
     {
-        objectField[x][y]=object;
+        objectField[x][y] = object;
     }
-    
+
     public int getCurrWinX()
     {
         return currentWindowX;
     }
-    
+
     public int getCurrWinY()
     {
         return currentWindowY;

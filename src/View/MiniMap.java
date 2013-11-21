@@ -140,7 +140,6 @@ public class MiniMap extends JPanel
     {
         g.setColor(brownColor);
         g.fillRect(0, 0, sizeWidth, sizeHeight);
-        g.setColor(Color.red);
 
         for (ObjectElement ob : objects)
         {
@@ -173,6 +172,7 @@ public class MiniMap extends JPanel
                 g.fillRect(0 + convertX(objx), 0 + convertY(objy), 5, 5);
             }
         }
+        g.setColor(Color.black);
         g.drawRect(x, y, viewRectWidth, viewRectHeight);
     }
 
