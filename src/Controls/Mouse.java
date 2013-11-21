@@ -100,6 +100,18 @@ public class Mouse implements MouseListener, MouseMotionListener
 //                        System.out.println("GOLD");
 //                    }
 //        }
+        
+        for(int i =0;i<10;i++)
+        {
+            for(int j =0;j<10;j++)
+            {
+               if(gameBoard.getObjectFieldObject(i, j) instanceof Tree)
+               {
+                   System.out.println(i+"+"+j);
+               }
+            }
+        }
+        
         clickedIndexX = convertX(clickedIndexX);
         clickedIndexY = convertY(clickedIndexY);
         System.out.println(clickedIndexX);
