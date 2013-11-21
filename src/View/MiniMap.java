@@ -25,7 +25,17 @@ public class MiniMap
     {
         g.setColor(Color.green);
         g.fillRect(x, y, sizeWidth, sizeHeight);
-        //TODO
+        g.setColor(Color.red);
+
+        for (ObjectElement ob : objects)
+        {
+
+            int objx = ob.getX();
+            int objy = ob.getY();
+            g.fillRect(x + convertX(objx), y + convertY(objy), 5, 5);
+
+        }
+
     }
 
     void setData(List<ObjectElement> objects)
@@ -35,11 +45,11 @@ public class MiniMap
 
     private int convertX(int x)
     {
-        return 1;
+        return x / 10;
     }
 
     private int convertY(int y)
     {
-        return 1;
+        return y / 10;
     }
 }
