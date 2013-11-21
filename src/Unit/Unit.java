@@ -32,5 +32,4 @@ public abstract class Unit
     {
         return currentHp <= 0 ? false : true;
     }
-
 }
