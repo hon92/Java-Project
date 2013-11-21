@@ -11,6 +11,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import static javax.swing.SwingUtilities.isLeftMouseButton;
 
 /**
  *
@@ -21,15 +22,15 @@ public class Mouse implements MouseListener, MouseMotionListener {
     private GameBoard gameBoard;
 
     Thread testingThread;
-    
+
     private Color dragColor = new Color(0, 255, 50, 128);
-    
+
     private int clickedX = 0;
     private int clickedY = 0;
-    
+
     private int currentX = 0;
     private int currentY = 0;
-    
+
     private boolean active = false;
     private boolean firstDrag = false;
 
@@ -72,18 +73,20 @@ public class Mouse implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        active = true;
-        if(!firstDrag){
-            clickedX = e.getX();
-            clickedY = e.getY();
-            firstDrag = true;
+        if (isLeftMouseButton(e)) {
+            active = true;
+            if (!firstDrag) {
+                clickedX = e.getX();
+                clickedY = e.getY();
+                firstDrag = true;
+            }
+            currentX = e.getX();
+            currentY = e.getY();
         }
-        currentX = e.getX();
-        currentY = e.getY();
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        
+
     }
 }
