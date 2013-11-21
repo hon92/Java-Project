@@ -1,6 +1,7 @@
 package View;
 
 import Controls.Key;
+import Controls.Mouse;
 
 import Data.GameData;
 import Data.MapData;
