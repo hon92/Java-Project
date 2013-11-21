@@ -97,6 +97,34 @@ public class GameBoard extends JPanel
 
     }
 
+    public void setWindowsX(int increment)
+    {
+        this.currentWindowX = increment;
+        if (currentWindowX < 0)
+        {
+            this.currentWindowX = 0;
+        }
+        if (currentWindowX > GameData.MAP_WIDTH - GameData.WINDOW_WIDTH)
+        {
+            currentWindowX = GameData.MAP_WIDTH - GameData.WINDOW_WIDTH;
+        }
+
+    }
+
+    public void setWindowsY(int increment)
+    {
+        this.currentWindowY = increment;
+        if (currentWindowY < 0)
+        {
+            currentWindowY = 0;
+        }
+        if (currentWindowY > GameData.MAP_HEIGHT - GameData.WINDOW_HEIGHT)
+        {
+            currentWindowY = GameData.MAP_HEIGHT - GameData.WINDOW_HEIGHT;
+        }
+
+    }
+
     public int convertX(int x)
     {
         return x - currentWindowX;

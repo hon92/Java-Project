@@ -98,14 +98,14 @@ public class MiniMap
 
     public void setAction(int x, int y)
     {
-        System.err.println("qwdqd");
-        int newx = x * scaleX;
-        int newy = y * scaleY;
 
+        int newx = GameData.WINDOW_WIDTH - x;
+        int newy = GameData.WINDOW_HEIGHT - y;
+        System.err.println("X: " + newx + "Y: " + newy);
         int xx = newx + viewRectWidth / 2;
         int yy = newy + viewRectHeight / 2;
-        gameBoard.addToCurrentWindowX(xx);
-        gameBoard.addToCurrentWindowY(yy);
+        gameBoard.setWindowsX(xx);
+        gameBoard.setWindowsY(yy);
         gameBoard.repaint();
 
     }
