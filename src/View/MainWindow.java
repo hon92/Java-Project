@@ -1,7 +1,16 @@
 package View;
 
 import Data.GameData;
+import java.awt.Cursor;
 import java.awt.HeadlessException;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 public class MainWindow extends JFrame
@@ -14,6 +23,18 @@ public class MainWindow extends JFrame
         setSize(GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT);
         setResizable(false);
         add(new GameBoard());
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+
+        try
+        {
+            Cursor c;
+            c = toolkit.createCustomCursor(ImageIO.read(new File("src/Resources/cursor.png")), new Point(16, 16), "img");
+            getRootPane().setCursor(c);
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

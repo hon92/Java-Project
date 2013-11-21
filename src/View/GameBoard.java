@@ -38,18 +38,6 @@ public class GameBoard extends JPanel
     private final int lenY = GameData.MAP_HEIGHT / GameData.BOXSIZE;
     private int[][] field = new int[lenX][lenY];
     private MapData mapData;
-
-    private List<Cactus> cactusList;
-    private List<Bush> bushList;
-    //private List<Grass> grassList;
-    private List<Relic> relicList;
-    private List<Tree> treesList;
-    private List<Gold> goldList;
-    private List<Stone> stoneList;
-    private List<Water> waterList;
-    private List<Shoal> shoalList;
-    private List<Sand> sandList;
-
     private List<ObjectElement> objects;
 
     public GameBoard()
@@ -63,18 +51,7 @@ public class GameBoard extends JPanel
         miniMap = new MiniMap();
         objects = new ArrayList<>();
         mapData = new MapData(this);
-
-//        grassList = new ArrayList<>();
         objects = mapData.getMapData();
-//        relicList = mapData.getRelicList();
-//        treesList = mapData.getTreeList();
-//        goldList = mapData.getGoldList();
-//        stoneList = mapData.getStoneList();
-//        bushList = mapData.getBushList();
-//        cactusList = mapData.getCactusList();
-//        waterList = mapData.getWaterList();
-//        shoalList = mapData.getShoalList();
-//        sandList = mapData.getSandList();
 
         try
         {
@@ -88,7 +65,7 @@ public class GameBoard extends JPanel
         setFocusable(true);
         addMouseListener(new Mouse(this));
         addKeyListener(new Key(this));
-        
+
         generateGrass();
     }
 
@@ -137,135 +114,118 @@ public class GameBoard extends JPanel
 
         for (ObjectElement ob : objects)
         {
-            if(ob instanceof Water)
-            ob.drawObject(g);
+            if (ob instanceof Water)
+            {
+                ob.drawObject(g);
+            }
         }
-        
-        for (ObjectElement ob : objects)
-        {
-            if(ob instanceof Grass)
-            ob.drawObject(g);
-        }
-        
-        for (ObjectElement ob : objects)
-        {
-            if(ob instanceof Shoal)
-            ob.drawObject(g);
-        }
-        
-        for (ObjectElement ob : objects)
-        {
-            if(ob instanceof Sand)
-            ob.drawObject(g);
-        }
-        
-        for (ObjectElement ob : objects)
-        {
-            if(ob instanceof Tree)
-            ob.drawObject(g);
-        }
-        
-        for (ObjectElement ob : objects)
-        {
-            if(ob instanceof Bush)
-            ob.drawObject(g);
-        }
-        
-        for (ObjectElement ob : objects)
-        {
-            if(ob instanceof Gold)
-            ob.drawObject(g);
-        }
-        
-        for (ObjectElement ob : objects)
-        {
-            if(ob instanceof Stone)
-            ob.drawObject(g);
-        }
-        
-        for (ObjectElement ob : objects)
-        {
-            if(ob instanceof Relic)
-            ob.drawObject(g);
-        }
-        
-        for (ObjectElement ob : objects)
-        {
-            if(ob instanceof Cactus)
-            ob.drawObject(g);
-        }
-        
-        
 
-//        for (Water water : waterList)
-//        {
-//            water.draw(g);
-//        }
-//        for (Shoal shoal : shoalList)
-//        {
-//            shoal.draw(g);
-//        }
-//        for (Sand sand : sandList)
-//        {
-//            sand.draw(g);
-//        }
-//
-//        for (Tree t : treesList)
-//        {
-//            t.draw(g);
-//        }
-//        for (Relic r : relicList)
-//        {
-//            r.draw(g);
-//        }
-//        for (Gold gold : goldList)
-//        {
-//            gold.draw(g);
-//        }
-//        for (Stone stone : stoneList)
-//        {
-//            stone.draw(g);
-//        }
-//        for (Bush bush : bushList)
-//        {
-//            bush.draw(g);
-//        }
-//        for (Cactus cactus : cactusList)
-//        {
-//            cactus.draw(g);
-//        }
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Grass)
+            {
+                ob.drawObject(g);
+            }
+        }
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Shoal)
+            {
+                ob.drawObject(g);
+            }
+        }
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Sand)
+            {
+                ob.drawObject(g);
+            }
+        }
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Tree)
+            {
+                ob.drawObject(g);
+            }
+        }
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Bush)
+            {
+                ob.drawObject(g);
+            }
+        }
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Gold)
+            {
+                ob.drawObject(g);
+            }
+        }
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Stone)
+            {
+                ob.drawObject(g);
+            }
+        }
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Relic)
+            {
+                ob.drawObject(g);
+            }
+        }
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Cactus)
+            {
+                ob.drawObject(g);
+            }
+        }
+
         g.drawImage(topPanel, 0, 0, null);
         g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - 228, null);
         miniMap.drawMiniMap(g);
         miniMap.setData(objects);
 
     }
-    
+
     private void generateGrass()
     {
-      Grass gr = new Grass(this,0,850);
-      objects.add(gr);
-      
-      for(int i =0;i<GameData.MAP_WIDTH-200;i+=400)
-          for(int j =850;j<GameData.MAP_HEIGHT-400;j+=400)
-          {
-             gr= new Grass(this,i,j);
-             objects.add(gr); 
-          }
-      for(int i=850;i<GameData.MAP_HEIGHT-400;i+=400)
-      {
-          gr= new Grass(this,GameData.MAP_WIDTH-400,i);
-          objects.add(gr);
-      }
-      
-      for(int i=0;i<GameData.MAP_WIDTH-200;i+=400)
-      {
-          gr= new Grass(this,i,GameData.MAP_HEIGHT-400);
-          objects.add(gr);
-      }
-      
-      gr= new Grass(this,GameData.MAP_WIDTH-400,GameData.MAP_HEIGHT-400);
-      objects.add(gr);
+        Grass gr = new Grass(this, 0, 850);
+        objects.add(gr);
+
+        for (int i = 0; i < GameData.MAP_WIDTH - 200; i += 400)
+        {
+            for (int j = 850; j < GameData.MAP_HEIGHT - 400; j += 400)
+            {
+                gr = new Grass(this, i, j);
+                objects.add(gr);
+            }
+        }
+        for (int i = 850; i < GameData.MAP_HEIGHT - 400; i += 400)
+        {
+            gr = new Grass(this, GameData.MAP_WIDTH - 400, i);
+            objects.add(gr);
+        }
+
+        for (int i = 0; i < GameData.MAP_WIDTH - 200; i += 400)
+        {
+            gr = new Grass(this, i, GameData.MAP_HEIGHT - 400);
+            objects.add(gr);
+        }
+
+        gr = new Grass(this, GameData.MAP_WIDTH - 400, GameData.MAP_HEIGHT - 400);
+        objects.add(gr);
     }
 
     public int getFieldIndex(int x, int y)
