@@ -12,8 +12,8 @@ package Data;
 public final class GameData
 {
 
-    public static final int WINDOW_WIDTH = 1280;
-    public static final int WINDOW_HEIGHT = 900;
+    public static final int WINDOW_WIDTH = 1200;
+    public static final int WINDOW_HEIGHT = 800;
     public static final int MAP_WIDTH = 7000;
     public static final int MAP_HEIGHT = 3600;
     public static final int BOXSIZE = 25;

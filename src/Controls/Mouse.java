@@ -20,9 +20,6 @@ public class Mouse implements MouseListener, MouseMotionListener
 {
 
     private GameBoard gameBoard;
-
-    Thread testingThread;
-
     private Color dragColor = new Color(0, 255, 50, 128);
 
     private int clickedX = 0;
@@ -58,6 +55,7 @@ public class Mouse implements MouseListener, MouseMotionListener
         clickedY = 0;
         currentX = 0;
         currentY = 0;
+        gameBoard.repaint();
     }
 
     @Override
@@ -76,6 +74,7 @@ public class Mouse implements MouseListener, MouseMotionListener
         {
             g.setColor(dragColor);
             g.fillRect(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
+
         }
     }
 
@@ -91,6 +90,7 @@ public class Mouse implements MouseListener, MouseMotionListener
         }
         currentX = e.getX();
         currentY = e.getY();
+        gameBoard.repaint();
     }
 
     @Override
