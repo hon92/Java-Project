@@ -144,7 +144,7 @@ public class MiniMap extends JPanel
 
         for (ObjectElement ob : objects)
         {
-            if (!((ob instanceof Water) || (ob instanceof Sand) || (ob instanceof Cactus) || (ob instanceof Shoal) || (ob instanceof Grass)))
+            if (!((ob instanceof Sand) || (ob instanceof Cactus) || (ob instanceof Shoal) || (ob instanceof Grass)))
             {
 
                 if (ob instanceof Water)
