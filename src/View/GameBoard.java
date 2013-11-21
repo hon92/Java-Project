@@ -137,8 +137,65 @@ public class GameBoard extends JPanel
 
         for (ObjectElement ob : objects)
         {
+            if(ob instanceof Water)
             ob.drawObject(g);
         }
+        
+        for (ObjectElement ob : objects)
+        {
+            if(ob instanceof Grass)
+            ob.drawObject(g);
+        }
+        
+        for (ObjectElement ob : objects)
+        {
+            if(ob instanceof Shoal)
+            ob.drawObject(g);
+        }
+        
+        for (ObjectElement ob : objects)
+        {
+            if(ob instanceof Sand)
+            ob.drawObject(g);
+        }
+        
+        for (ObjectElement ob : objects)
+        {
+            if(ob instanceof Tree)
+            ob.drawObject(g);
+        }
+        
+        for (ObjectElement ob : objects)
+        {
+            if(ob instanceof Bush)
+            ob.drawObject(g);
+        }
+        
+        for (ObjectElement ob : objects)
+        {
+            if(ob instanceof Gold)
+            ob.drawObject(g);
+        }
+        
+        for (ObjectElement ob : objects)
+        {
+            if(ob instanceof Stone)
+            ob.drawObject(g);
+        }
+        
+        for (ObjectElement ob : objects)
+        {
+            if(ob instanceof Relic)
+            ob.drawObject(g);
+        }
+        
+        for (ObjectElement ob : objects)
+        {
+            if(ob instanceof Cactus)
+            ob.drawObject(g);
+        }
+        
+        
 
 //        for (Water water : waterList)
 //        {

@@ -30,7 +30,6 @@ public class Grass extends ObjectElement
         {
             for(int j =0;j<16;j++)
             {
-                System.out.println(x/25+j);
                 gameBoard.setFieldIndex(x/25+i, y/25+j, 1);
             }
         }
