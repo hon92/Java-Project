@@ -33,15 +33,6 @@ public class MapData
 {
 
     private List<ObjectElement> objects;
-//    private List<Tree> treeList;
-//    private List<Gold> goldList;
-//    private List<Stone> stoneList;
-//    private List<Relic> relicList;
-//    private List<Bush> bushList;
-//    private List<Cactus> cactusList;
-//    private List<Sand> sandList;
-//    private List<Shoal> shoalList;
-//    private List<Water> waterList;
 
     int matrixX;
     int matrixY;
@@ -158,7 +149,7 @@ public class MapData
                         //System.out.println("Added cactus");
                         break;
                     case grassChar:
-                        objects.add(new Grass(gameBoard,j * 25, i * 25));
+                        objects.add(new Grass(gameBoard, j * 25, i * 25));
                         //System.out.println("Added grass");
                         break;
                     case sandChar:
