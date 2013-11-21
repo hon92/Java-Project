@@ -31,8 +31,9 @@ public class GameBoard extends JPanel
     private int[][] field = new int[lenX][lenY];
     private MapData mapData;
     private List<ObjectElement> objects;
-    private Mouse mouse;
-
+    
+    private Mouse mouse = new Mouse(this);
+    
     public GameBoard()
     {
         initGameBoard();
@@ -204,8 +205,12 @@ public class GameBoard extends JPanel
             }
         }
 
+        g.drawImage(topPanel, 0, 0, null);
+        g.drawImage(botPanel, 0, GameData.WINDOW_HEIGHT - 228, null);
+        miniMap.drawMiniMap(g);
+        miniMap.setData(objects);
         mouse.drawRect(g);
-
+        this.repaint();
     }
 
     private void generateGrass()
