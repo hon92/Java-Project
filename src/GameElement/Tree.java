@@ -20,7 +20,9 @@ public class Tree extends ObjectElement
     private static BufferedImage treeDown;
     private int startWood;
     private int currentWood;
-
+    private static String name = "Tree";
+    
+    
     public Tree(GameBoard gameBoard, int x, int y)
     {
         super(gameBoard, x, y);
@@ -47,6 +49,12 @@ public class Tree extends ObjectElement
         gameBoard.setFieldIndex(x/25, y/25+3, 2);
         gameBoard.setFieldIndex(x/25+1, y/25+3, 2);
         
+        gameBoard.setObjectFieldObject(x/25, y/25, this);
+        gameBoard.setObjectFieldObject(x/25, y/25+1, this);
+        gameBoard.setObjectFieldObject(x/25, y/25+2, this);
+        gameBoard.setObjectFieldObject(x/25+1, y/25, this);
+        gameBoard.setObjectFieldObject(x/25+1, y/25+1, this);
+        gameBoard.setObjectFieldObject(x/25+1, y/25+2, this);
 
     }
 
@@ -71,5 +79,15 @@ public class Tree extends ObjectElement
                 g.drawImage(gayTree, gameBoard.convertX(x), gameBoard.convertY(y), null);
             }
         }   
+    }
+    
+    public String getName()
+    {
+        return name;
+    }
+    
+    public int getRemainingWood()
+    {
+        return currentWood;
     }
 }

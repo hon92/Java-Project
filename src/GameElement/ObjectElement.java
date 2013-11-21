@@ -25,7 +25,6 @@ public abstract class ObjectElement
         this.x = x;
         this.y = y;
         this.gameBoard = gameBoard;
-
     }
 
     public abstract void drawObject(Graphics g);
@@ -41,5 +40,4 @@ public abstract class ObjectElement
         //return y / GameData.BOXSIZE;
         return y;
     }
-
 }

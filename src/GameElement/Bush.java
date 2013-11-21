@@ -23,6 +23,7 @@ public class Bush extends ObjectElement
     private int startFood;
     private int currentFood;
     private static BufferedImage bush;
+    private static String name="Bush";
 
     public Bush(GameBoard gameBoard, int x, int y)
     {
@@ -38,17 +39,36 @@ public class Bush extends ObjectElement
 
         this.startFood = 300;
         this.currentFood = 300;
-        
         gameBoard.setFieldIndex(x/25, y/25, 6);
         gameBoard.setFieldIndex(x/25+1, y/25, 6);
         gameBoard.setFieldIndex(x/25+2, y/25, 6);
         gameBoard.setFieldIndex(x/25, y/25+1, 6);
         gameBoard.setFieldIndex(x/25+1, y/25+1, 6);
         gameBoard.setFieldIndex(x/25+2, y/25+1, 6);
+        
+        gameBoard.setObjectFieldObject(x/25, y/25, this);
+        gameBoard.setObjectFieldObject(x/25+1, y/25, this);
+        gameBoard.setObjectFieldObject(x/25+2, y/25, this);
+        gameBoard.setObjectFieldObject(x/25, y/25, this);
+        gameBoard.setObjectFieldObject(x/25+1, y/25+1, this);
+        gameBoard.setObjectFieldObject(x/25+2, y/25+1, this);
     }
-
+ 
+    
+    @Override
     public void drawObject(Graphics g)
     {
         g.drawImage(bush, gameBoard.convertX(x), gameBoard.convertY(y), null);
     }
+    
+    public String getName()
+    {
+        return name;
+    }
+    
+    public int getRemainingFood()
+    {
+        return currentFood;
+    }
+    
 }

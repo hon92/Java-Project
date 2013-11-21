@@ -258,6 +258,16 @@ public class GameBoard extends JPanel
     {
         objectField[x][y]=object;
     }
+    
+    public int getCurrWinX()
+    {
+        return currentWindowX;
+    }
+    
+    public int getCurrWinY()
+    {
+        return currentWindowY;
+    }
 
     List<ObjectElement> getObjects()
     {

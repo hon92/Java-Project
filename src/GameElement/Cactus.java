@@ -21,6 +21,7 @@ public class Cactus extends ObjectElement
 {
 
     private static BufferedImage cactus;
+    private static String name = "Cactus";
 
     public Cactus(GameBoard gameBoard, int x, int y)
     {
@@ -40,5 +41,9 @@ public class Cactus extends ObjectElement
     public void drawObject(Graphics g)
     {
         g.drawImage(cactus, gameBoard.convertX(x), gameBoard.convertY(y), null);
+    }
+    public String getName()
+    {
+        return name;
     }
 }

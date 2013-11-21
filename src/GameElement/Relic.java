@@ -13,7 +13,8 @@ public class Relic extends ObjectElement
 {
 
     private static BufferedImage relic;
-
+    private static String name = "Relic";
+    
     public Relic(GameBoard gameBoard, int x, int y)
     {
         super(gameBoard, x, y);
@@ -34,4 +35,9 @@ public class Relic extends ObjectElement
     {
         g.drawImage(relic, gameBoard.convertX(x), gameBoard.convertY(y), null);
     }
+    public String getName()
+    {
+        return name;
+    }
+    
 }
