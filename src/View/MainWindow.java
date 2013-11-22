@@ -37,7 +37,7 @@ public class MainWindow extends JFrame
         {
             Cursor cursor;
             cursor = toolkit.createCustomCursor(ImageIO.read(new File("src/Resources/cursor.png")), new Point(16, 16), "img");
-            getRootPane().setCursor(cursor);
+            //getRootPane().setCursor(cursor);
         }
         catch (IOException ex)
         {

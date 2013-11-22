@@ -61,97 +61,32 @@ public class Mouse implements MouseListener, MouseMotionListener
         clickedIndexX = clickedX / 25;
         clickedIndexY = clickedY / 25;
 
-        //clickedObjectX=clickedIndexX*25;
-        //clickedObjectY=clickedIndexY*25;
-        //System.out.println("clicked on: ");
-//            for(int j =140;j<144;j++)
-//            {
-//                if(gameBoard.getObjectFieldObject(0, j)==null)
-//                {
-//                    System.out.println("NULL");
-//                }
-//                else
-//                {
-//                    System.out.println("not NULL");
-//                    if (gameBoard.getObjectFieldObject(0, j) instanceof Tree)
-//                    {
-//                        System.out.println("Tree");
-//                    }
-//                }
-//
-//             }
-//            for(int i =3;i<200;i++)
-//            {
-//                for(int j =0;j<130;j++)
-//                {
-//                    if (gameBoard.getObjectFieldObject(i, j)instanceof Bush)
-//                    {
-//                        System.out.println("Bush");
-//                        System.out.println(i);
-//                        System.out.println(j);
-//                    }
-//                }
-//            }
-//        if(gameBoard.getObjectFieldObject(22, 75)==null)
-//        {
-//            System.out.println("NULL");
-//            if (gameBoard.getObjectFieldObject(22, 75)instanceof Gold)
-//                    {
-//                        System.out.println("GOLD");
-//                    }
-//        }
-//        for(int i =0;i<10;i++)
-//        {
-//            for(int j =0;j<10;j++)
-//            {
-//               if(gameBoard.getObjectFieldObject(i, j) instanceof Tree)
-//               {
-//                   System.out.println(i+"+"+j);
-//               }
-//            }
-//        }
-        clickedIndexX = gameBoard.convertX(clickedIndexX);
-        clickedIndexY = gameBoard.convertY(clickedIndexY);
+        clickedIndexX = convertX(clickedIndexX);
+        clickedIndexY = convertY(clickedIndexY);
         System.err.println("x: " + clickedIndexX + " y: " + clickedIndexY);
 
-//        if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexX) instanceof Tree)
-//        {
-//            System.out.println("gazy");
-//            Tree tr = (Tree) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
-//            System.out.println(tr.getName());
-//            System.out.println("Wood: " + tr.getRemainingWood());
-//        }
-//        else if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexX) instanceof Bush)
-//        {
-//            Bush b = (Bush) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
-//            System.out.println(b.getName());
-//            System.out.println("Food: " + b.getRemainingFood());
-//        }
-//        else if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexX) instanceof Stone)
-//        {
-//            Stone st = (Stone) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
-//            System.out.println(st.getName());
-//            System.out.println("Stone: " + st.getRemainStone());
-//        }
-//        else if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexX) instanceof Gold)
-//        {
-//            Gold g = (Gold) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
-//            System.out.println(g.getName());
-//            System.out.println("Gold: " + g.getRemainingGold());
-//        }
-//        if (gameBoard.getFieldIndex(clickedIndexX, clickedIndexY) == 5)
-//        {
-//            System.out.println("rrr");
-//        }
-        if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Relic)
+        if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) != null)
         {
-            Relic r = (Relic) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
-            System.out.print(r.getName());
-        }
-        if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Cactus)
-        {
-            Cactus c = (Cactus) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
-            System.out.print(c.getName());
+            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Gold)
+            {
+                Gold g = (Gold) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
+                System.out.println(g.getName());
+                System.out.println("Gold: " + g.getRemainingGold());
+            }
+            if (gameBoard.getFieldIndex(clickedIndexX, clickedIndexY) == 5)
+            {
+                System.out.println("rrr");
+            }
+            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Relic)
+            {
+                Relic r = (Relic) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
+                System.out.print(r.getName());
+            }
+            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Cactus)
+            {
+                Cactus c = (Cactus) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
+                System.out.print(c.getName());
+            }
         }
 
     }

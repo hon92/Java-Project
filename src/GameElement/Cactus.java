@@ -4,6 +4,7 @@
  */
 package GameElement;
 
+import Data.GameData;
 import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -35,13 +36,12 @@ public class Cactus extends ObjectElement
             Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        gameBoard.setFieldIndex(x / 25, y / 25, 5);
         gameBoard.setObjectFieldObject(x, y, this);
     }
 
     public void drawObject(Graphics g)
     {
-        g.drawImage(cactus, gameBoard.convertX(x), gameBoard.convertY(y), null);
+        g.drawImage(cactus, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE), null);
     }
 
     public String getName()

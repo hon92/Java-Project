@@ -4,6 +4,7 @@
  */
 package GameElement;
 
+import Data.GameData;
 import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -24,8 +25,7 @@ public class Stone extends ObjectElement
     private int currentStone;
     private static BufferedImage stone;
     private static String name = "Stone";
-    
-    
+
     public Stone(GameBoard gameBoard, int x, int y)
     {
         super(gameBoard, x, y);
@@ -40,32 +40,25 @@ public class Stone extends ObjectElement
 
         this.startStone = 500;
         this.currentStone = 500;
-        
-        gameBoard.setFieldIndex(x/25, y/25, 10);
-        gameBoard.setFieldIndex(x/25+1, y/25, 10);
-        gameBoard.setFieldIndex(x/25+2, y/25, 10);
-        gameBoard.setFieldIndex(x/25, y/25+1, 10);
-        gameBoard.setFieldIndex(x/25+1, y/25+1, 10);
-        gameBoard.setFieldIndex(x/25+2, y/25+1, 10);
-        
-        gameBoard.setObjectFieldObject(x/25, y/25, this);
-        gameBoard.setObjectFieldObject(x/25+1, y/25, this);
-        gameBoard.setObjectFieldObject(x/25+2, y/25, this);
-        gameBoard.setObjectFieldObject(x/25, y/25+1, this);
-        gameBoard.setObjectFieldObject(x/25+1, y/25+1, this);
-        gameBoard.setObjectFieldObject(x/25+2, y/25+1, this);
+
+        gameBoard.setObjectFieldObject(x, y, this);
+        gameBoard.setObjectFieldObject(x + 1, y, this);
+        gameBoard.setObjectFieldObject(x + 2, y, this);
+        gameBoard.setObjectFieldObject(x, y + 1, this);
+        gameBoard.setObjectFieldObject(x + 1, y + 1, this);
+        gameBoard.setObjectFieldObject(x + 2, y + 1, this);
     }
 
     public void drawObject(Graphics g)
     {
-        g.drawImage(stone, gameBoard.convertX(x), gameBoard.convertY(y), null);
+        g.drawImage(stone, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE), null);
     }
-    
+
     public String getName()
     {
         return name;
     }
-    
+
     public int getRemainStone()
     {
         return currentStone;

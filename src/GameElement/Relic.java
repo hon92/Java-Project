@@ -1,5 +1,6 @@
 package GameElement;
 
+import Data.GameData;
 import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -27,16 +28,13 @@ public class Relic extends ObjectElement
             Logger.getLogger(Relic.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        gameBoard.setFieldIndex(x / 25, y / 25, 3);
-        gameBoard.setFieldIndex(x / 25, y / 25 + 1, 3);
-
         gameBoard.setObjectFieldObject(x, y, this);
         gameBoard.setObjectFieldObject(x, y + 1, this);
     }
 
     public void drawObject(Graphics g)
     {
-        g.drawImage(relic, gameBoard.convertX(x * 25), gameBoard.convertY(y * 25), null);
+        g.drawImage(relic, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE), null);
     }
 
     public String getName()

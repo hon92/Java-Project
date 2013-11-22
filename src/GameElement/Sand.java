@@ -1,5 +1,6 @@
 package GameElement;
 
+import Data.GameData;
 import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -26,15 +27,15 @@ public class Sand extends ObjectElement
             Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        for(int i =0;i<8;i++)
+        for (int i = 0; i <= 8; i++)
         {
-            gameBoard.setFieldIndex(x/25+i, y/25, 8);
+            gameBoard.setObjectFieldObject(x + i, y, this);
         }
-        
+
     }
 
     public void drawObject(Graphics g)
     {
-        g.drawImage(sand, gameBoard.convertX(x), gameBoard.convertY(y), null);
+        g.drawImage(sand, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE), null);
     }
 }

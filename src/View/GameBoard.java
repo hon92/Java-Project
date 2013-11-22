@@ -28,17 +28,17 @@ public class GameBoard extends JPanel
 
     private int currentWindowX;
     private int currentWindowY;
-    private final int lenX = GameData.MAP_WIDTH / GameData.BOXSIZE;
-    private final int lenY = GameData.MAP_HEIGHT / GameData.BOXSIZE;
-    private int[][] field = new int[lenY][lenX];
-    private ObjectElement[][] objectField = new ObjectElement[lenY][lenX];
+    private final int columns = GameData.MAP_WIDTH / GameData.BOXSIZE;
+    private final int rows = GameData.MAP_HEIGHT / GameData.BOXSIZE;
+    private int[][] field = new int[rows][columns];
+    private ObjectElement[][] objectField = new ObjectElement[rows][columns];
     private MapData mapData;
     private List<ObjectElement> objects;
     private Mouse mouse;
 
     public GameBoard()
     {
-        System.err.println("MAP: " + lenX + " x " + lenY);
+        System.err.println("MAP: " + rows + " x " + columns);
         initGameBoard();
 
     }
@@ -56,22 +56,11 @@ public class GameBoard extends JPanel
         addMouseMotionListener(mouse);
         addKeyListener(new Key(this));
         //generateGrass();
-        //generateDebug();
+        generateDebug();
     }
 
     private void generateDebug()
     {
-        Cactus r = new Cactus(this, 0, 0);
-        Cactus rr = new Cactus(this, 2, 2);
-        Relic rel = new Relic(this, 4, 4);
-//        for (int i = 0; i < 10; i++)
-//        {
-//            for (int j = 0; j < 10; j++)
-//            {
-//                System.out.print(field[i][j]);
-//            }
-//            System.out.println();
-//        }
 
         for (int i = 0; i < 10; i++)
         {
@@ -250,6 +239,23 @@ public class GameBoard extends JPanel
             }
         }
 
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                if (objectField[i][j] != null)
+                {
+                    if (objectField[i][j] instanceof Gold)
+                    {
+
+                        g.setColor(Color.red);
+                        g.fillRect(i * 25, j * 25, 25, 25);
+                    }
+                }
+            }
+
+        }
+
     }
 
     private void generateGrass()
@@ -281,25 +287,25 @@ public class GameBoard extends JPanel
         objects.add(gr);
     }
 
-    public int getFieldIndex(int x, int y)
+    public int getFieldIndex(int x, int y)//nvm
     {
         return field[y][x];
     }
 
-    public void setFieldIndex(int x, int y, int value)
+    public void setFieldIndex(int x, int y, int value)//nvm
     {
         field[y][x] = value;
     }
 
     public ObjectElement getObjectFieldObject(int x, int y)
     {
-        return objectField[y][x];
+        return objectField[x][y];
     }
 
     public void setObjectFieldObject(int x, int y, ObjectElement object)
     {
 
-        objectField[y][x] = object;
+        objectField[x][y] = object;
 
     }
 
