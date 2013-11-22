@@ -109,34 +109,34 @@ public class MapData
 
     private void fillLists()
     {
-        for (int i = 0; i < matrixX; i++)
+        for (int i = 0; i < matrixY; i++)
         {
-            for (int j = 0; j < matrixY; j++)
+            for (int j = 0; j < matrixX; j++)
             {
-                switch (mapMatrix[i][j])
+                switch (mapMatrix[j][i])
                 {
                     case treeChar:
-                        objects.add(new Tree(gameBoard, j * 25, i * 25));
+                        objects.add(new Tree(gameBoard, j, i));
                         //System.out.println("Added tree");
                         break;
                     case goldChar:
-                        objects.add(new Gold(gameBoard, j * 25, i * 25));
+                        objects.add(new Gold(gameBoard, j, i));
                         //System.out.println("Added gold");
                         break;
                     case stoneChar:
-                        objects.add(new Stone(gameBoard, j * 25, i * 25));
+                        objects.add(new Stone(gameBoard, j, i));
                         //System.out.println("Added stone");
                         break;
                     case relicChar:
-                        objects.add(new Relic(gameBoard, j * 25, i * 25));
+                        objects.add(new Relic(gameBoard, j, i));
                         //System.out.println("Added relic");
                         break;
                     case bushChar:
-                        objects.add(new Bush(gameBoard, j * 25, i * 25));
+                        objects.add(new Bush(gameBoard, j, i));
                         //System.out.println("Added bush");
                         break;
                     case cactusChar:
-                        objects.add(new Cactus(gameBoard, j * 25, i * 25));
+                        objects.add(new Cactus(gameBoard, j, i));
                         //System.out.println("Added cactus");
                         break;
                     case grassChar:

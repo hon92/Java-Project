@@ -36,7 +36,7 @@ public class Relic extends ObjectElement
 
     public void drawObject(Graphics g)
     {
-        g.drawImage(relic, gameBoard.convertX(x), gameBoard.convertY(y), null);
+        g.drawImage(relic, gameBoard.convertX(x * 25), gameBoard.convertY(y * 25), null);
     }
 
     public String getName()
