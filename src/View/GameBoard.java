@@ -56,25 +56,13 @@ public class GameBoard extends JPanel
         addMouseMotionListener(mouse);
         addKeyListener(new Key(this));
         generateGrass();
-        generateDebug();
+        //generateDebug();
     }
 
     private void generateDebug()
     {
 
         objects.add(new Relic(this, 3, 4));
-//        for (int i = 0; i < 10; i++)
-//        {
-//            for (int j = 0; j < 10; j++)
-//            {
-//                if (objectField[i][j] != null)
-//                {
-//                    System.out.print("pozice: " + objectField[i][j].getX() + " " + objectField[i][j].getY());
-//                }
-//            }
-//            System.out.println();
-//        }
-
     }
 
     public void addToCurrentWindowX(int increment)
@@ -230,16 +218,15 @@ public class GameBoard extends JPanel
 
         mouse.drawRect(g);
 
-        g.setColor(Color.white);
-        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
-        {
-            for (int j = 0; j < GameData.MAP_HEIGHT; j += GameData.BOXSIZE)
-            {
-
-                g.drawRect(i, j, 25, 25);
-            }
-        }
-
+//        g.setColor(Color.white);
+//        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
+//        {
+//            for (int j = 0; j < GameData.MAP_HEIGHT; j += GameData.BOXSIZE)
+//            {
+//
+//                g.drawRect(i, j, 25, 25);
+//            }
+//        }
     }
 
     private void generateGrass()
