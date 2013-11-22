@@ -143,11 +143,17 @@ public class Mouse implements MouseListener, MouseMotionListener
 //        {
 //            System.out.println("rrr");
 //        }
+        if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Relic)
+        {
+            Relic r = (Relic) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
+            System.out.print(r.getName());
+        }
         if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Cactus)
         {
-            //Relic r = (Relic) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
-            System.out.print("relic");
+            Cactus c = (Cactus) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
+            System.out.print(c.getName());
         }
+
     }
 
     @Override

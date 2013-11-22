@@ -63,6 +63,7 @@ public class GameBoard extends JPanel
     {
         Cactus r = new Cactus(this, 0, 0);
         Cactus rr = new Cactus(this, 2, 2);
+        Relic rel = new Relic(this, 4, 4);
 //        for (int i = 0; i < 10; i++)
 //        {
 //            for (int j = 0; j < 10; j++)
@@ -298,11 +299,8 @@ public class GameBoard extends JPanel
     public void setObjectFieldObject(int x, int y, ObjectElement object)
     {
 
-        if (object instanceof Cactus)
+        objectField[y][x] = object;
 
-        {
-            objectField[y][x] = object;
-        }
     }
 
     public int getCurrWinX()
