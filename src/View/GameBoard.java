@@ -31,7 +31,7 @@ public class GameBoard extends JPanel
     private final int columns = GameData.MAP_WIDTH / GameData.BOXSIZE;
     private final int rows = GameData.MAP_HEIGHT / GameData.BOXSIZE;
     private int[][] field = new int[rows][columns];
-    private ObjectElement[][] objectField = new ObjectElement[rows][columns];
+    private ObjectElement[][] objectField = new ObjectElement[columns][rows];
     private MapData mapData;
     private List<ObjectElement> objects;
     private Mouse mouse;

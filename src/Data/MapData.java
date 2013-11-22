@@ -76,17 +76,17 @@ public class MapData
                 loadedStrings.add(reader.nextLine());
             }
 
-            matrixX = loadedStrings.size();
-            matrixY = loadedStrings.get(0).length();
+            matrixX = loadedStrings.size();//pocet radku
+            matrixY = loadedStrings.get(0).length(); // delka radku
 
             mapMatrix = new char[matrixX][matrixY];
 
             int i = 0;
             for (String string : loadedStrings)
             {
-                for (int k = 0; k < matrixX; k++)
+                for (int k = 0; k < matrixY; k++)
                 {
-                    mapMatrix[i][k] = string.charAt(k);
+                    mapMatrix[i][k] = string.charAt(k);//check
                 }
                 i++;
             }
@@ -110,12 +110,14 @@ public class MapData
 
     private void fillLists()
     {
-        for (int i = 0; i < 280; i++)
+        for (int i = 0; i < matrixX; i++)
         {
-            for (int j = 0; j < 144; j++)
+            for (int j = 0; j < matrixY; j++)
             {
-                switch (mapMatrix[j][i])
+                switch (mapMatrix[i][j])
                 {
+                    case '#':
+                        break;
                     case treeChar:
                         objects.add(new Tree(gameBoard, j, i));
                         System.out.println("Added tree");
@@ -153,7 +155,7 @@ public class MapData
                         //System.out.println("Added shoal");
                         break;
                     case waterChar:
-                        objects.add(new Water(gameBoard, j * 25, i * 25));
+                        objects.add(new Water(gameBoard, j, i));
                         //System.out.println("Added water");
                         break;
                 }

@@ -1,5 +1,6 @@
 package GameElement;
 
+import Data.GameData;
 import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -25,12 +26,12 @@ public class Water extends ObjectElement
         {
             Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        for(int i =0;i<8;i++)
+
+        for (int i = 0; i < 8; i++)
         {
-            for(int j =0;j<8;j++)
+            for (int j = 0; j < 8; j++)
             {
-                gameBoard.setFieldIndex(x/25+i, y/25+j, 4);
+                gameBoard.setFieldIndex(x / 25 + i, y / 25 + j, 4);
             }
         }
 
@@ -38,6 +39,6 @@ public class Water extends ObjectElement
 
     public void drawObject(Graphics g)
     {
-        g.drawImage(water, gameBoard.convertX(x), gameBoard.convertY(y), null);
+        g.drawImage(water, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE), null);
     }
 }
