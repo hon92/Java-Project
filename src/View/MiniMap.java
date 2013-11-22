@@ -170,6 +170,11 @@ public class MiniMap extends JPanel
                 int objx = ob.getX();
                 int objy = ob.getY();
                 g.fillRect(0 + convertX(objx * 25), 0 + convertY(objy * 25), 5, 5);
+                if (ob instanceof Water)
+                {
+                    g.fillRect(0 + convertX((objx) * 25), 0 + convertY(objy * 25), 11, 11);
+                }
+                
             }
         }
         int currx = gameBoard.getCurrWinX() / scaleX;
