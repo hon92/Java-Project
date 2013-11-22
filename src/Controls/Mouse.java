@@ -110,9 +110,9 @@ public class Mouse implements MouseListener, MouseMotionListener
 //               }
 //            }
 //        }
-        clickedIndexX = (clickedIndexX);
-        clickedIndexY = (clickedIndexY);
-        System.err.print("x: " + clickedIndexX + " y: " + clickedIndexY);
+        clickedIndexX = gameBoard.convertX(clickedIndexX);
+        clickedIndexY = gameBoard.convertY(clickedIndexY);
+        System.err.println("x: " + clickedIndexX + " y: " + clickedIndexY);
 
 //        if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexX) instanceof Tree)
 //        {
@@ -143,7 +143,7 @@ public class Mouse implements MouseListener, MouseMotionListener
 //        {
 //            System.out.println("rrr");
 //        }
-        if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexX) instanceof Cactus)
+        if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Cactus)
         {
             //Relic r = (Relic) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
             System.out.print("relic");

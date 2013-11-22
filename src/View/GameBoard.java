@@ -297,8 +297,12 @@ public class GameBoard extends JPanel
 
     public void setObjectFieldObject(int x, int y, ObjectElement object)
     {
-        //objectField[y][x] = new Cactus(this, x, y);////errrorr
-        objectField[y][x] = object;
+
+        if (object instanceof Cactus)
+
+        {
+            objectField[y][x] = object;
+        }
     }
 
     public int getCurrWinX()

@@ -36,7 +36,7 @@ public class Cactus extends ObjectElement
         }
 
         gameBoard.setFieldIndex(x / 25, y / 25, 5);
-        gameBoard.setObjectFieldObject(x / 25, y / 25, this);
+        gameBoard.setObjectFieldObject(x, y, this);
     }
 
     public void drawObject(Graphics g)
