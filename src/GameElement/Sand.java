@@ -27,7 +27,7 @@ public class Sand extends ObjectElement
             Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        for (int i = 0; i <= 8; i++)
+        for (int i = 0; i < 8; i++)
         {
             gameBoard.setObjectFieldObject(x + i, y, this);
         }

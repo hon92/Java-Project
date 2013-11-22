@@ -91,14 +91,15 @@ public class MapData
                 i++;
             }
 
-            /* test jestli se dobre naplnilo
-             for (int j = 0; j < matrixX; j++) {
-             for (int k = 0;k < matrixY; k++) {
-             System.out.print(mapMatrix[j][k]);
-             }
-             System.out.println();
-             }
-             */
+            // test jestli se dobre naplnilo
+//            for (int j = 0; j < matrixX; j++)
+//            {
+//                for (int k = 0; k < matrixY; k++)
+//                {
+//                    System.out.print(mapMatrix[j][k]);
+//                }
+//                System.out.println();
+//            }
         }
         catch (FileNotFoundException ex)
         {
@@ -109,15 +110,15 @@ public class MapData
 
     private void fillLists()
     {
-        for (int i = 0; i < matrixY; i++)
+        for (int i = 0; i < 100; i++)
         {
-            for (int j = 0; j < matrixX; j++)
+            for (int j = 0; j < 100; j++)
             {
-                switch (mapMatrix[j][i])
+                switch (mapMatrix[i][j])
                 {
                     case treeChar:
                         objects.add(new Tree(gameBoard, j, i));
-                        //System.out.println("Added tree");
+                        System.out.println("Added tree");
                         break;
                     case goldChar:
                         objects.add(new Gold(gameBoard, j, i));
@@ -152,7 +153,7 @@ public class MapData
                         //System.out.println("Added shoal");
                         break;
                     case waterChar:
-                        objects.add(new Water(gameBoard, j, i));
+                        objects.add(new Water(gameBoard, j * 25, i * 25));
                         //System.out.println("Added water");
                         break;
                 }
