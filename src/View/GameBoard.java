@@ -55,8 +55,8 @@ public class GameBoard extends JPanel
         addMouseListener(mouse);
         addMouseMotionListener(mouse);
         addKeyListener(new Key(this));
-        //generateGrass();
-        generateDebug();
+        generateGrass();
+        // generateDebug();
     }
 
     private void generateDebug()

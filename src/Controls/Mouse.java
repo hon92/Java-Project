@@ -5,12 +5,12 @@
  */
 package Controls;
 
-import Data.GameData;
 import GameElement.Bush;
 import GameElement.Cactus;
 import GameElement.Gold;
-import GameElement.ObjectElement;
 import GameElement.Relic;
+import GameElement.Sand;
+import GameElement.Shoal;
 import GameElement.Stone;
 import GameElement.Tree;
 import View.GameBoard;
@@ -69,23 +69,35 @@ public class Mouse implements MouseListener, MouseMotionListener
         {
             if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Gold)
             {
-                Gold g = (Gold) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
-                System.out.println(g.getName());
-                System.out.println("Gold: " + g.getRemainingGold());
-            }
-            if (gameBoard.getFieldIndex(clickedIndexX, clickedIndexY) == 5)
-            {
-                System.out.println("rrr");
+                System.out.println("Gold");
             }
             if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Relic)
             {
-                Relic r = (Relic) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
-                System.out.print(r.getName());
+                System.out.println("Relics");
             }
             if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Cactus)
             {
-                Cactus c = (Cactus) gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY);
-                System.out.print(c.getName());
+                System.out.print("Cactus");
+            }
+            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Tree)
+            {
+                System.out.println("Tree");
+            }
+            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Stone)
+            {
+                System.out.println("Stone");
+            }
+            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Sand)
+            {
+                System.out.println("Sand");
+            }
+            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Shoal)
+            {
+                System.out.println("Shoal");
+            }
+            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Bush)
+            {
+                System.out.println("Bush");
             }
         }
 
