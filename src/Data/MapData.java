@@ -84,7 +84,7 @@ public class MapData
             int i = 0;
             for (String string : loadedStrings)
             {
-                for (int k = 0; k < matrixY; k++)
+                for (int k = 0; k < matrixX; k++)
                 {
                     mapMatrix[i][k] = string.charAt(k);
                 }
@@ -110,11 +110,11 @@ public class MapData
 
     private void fillLists()
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 280; i++)
         {
-            for (int j = 0; j < 100; j++)
+            for (int j = 0; j < 144; j++)
             {
-                switch (mapMatrix[i][j])
+                switch (mapMatrix[j][i])
                 {
                     case treeChar:
                         objects.add(new Tree(gameBoard, j, i));
@@ -153,7 +153,7 @@ public class MapData
                         //System.out.println("Added shoal");
                         break;
                     case waterChar:
-                        objects.add(new Water(gameBoard, j * 25, i * 25));
+                        objects.add(new Water(gameBoard, j, i));
                         //System.out.println("Added water");
                         break;
                 }
