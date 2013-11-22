@@ -56,23 +56,24 @@ public class GameBoard extends JPanel
         addMouseMotionListener(mouse);
         addKeyListener(new Key(this));
         generateGrass();
-        // generateDebug();
+        generateDebug();
     }
 
     private void generateDebug()
     {
 
-        for (int i = 0; i < 10; i++)
-        {
-            for (int j = 0; j < 10; j++)
-            {
-                if (objectField[i][j] != null)
-                {
-                    System.out.print("pozice: " + objectField[i][j].getX() + " " + objectField[i][j].getY());
-                }
-            }
-            System.out.println();
-        }
+        objects.add(new Relic(this, 3, 4));
+//        for (int i = 0; i < 10; i++)
+//        {
+//            for (int j = 0; j < 10; j++)
+//            {
+//                if (objectField[i][j] != null)
+//                {
+//                    System.out.print("pozice: " + objectField[i][j].getX() + " " + objectField[i][j].getY());
+//                }
+//            }
+//            System.out.println();
+//        }
 
     }
 
@@ -237,23 +238,6 @@ public class GameBoard extends JPanel
 
                 g.drawRect(i, j, 25, 25);
             }
-        }
-
-        for (int i = 0; i < 10; i++)
-        {
-            for (int j = 0; j < 10; j++)
-            {
-                if (objectField[i][j] != null)
-                {
-                    if (objectField[i][j] instanceof Gold)
-                    {
-
-                        g.setColor(Color.red);
-                        g.fillRect(i * 25, j * 25, 25, 25);
-                    }
-                }
-            }
-
         }
 
     }

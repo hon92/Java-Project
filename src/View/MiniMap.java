@@ -43,7 +43,7 @@ public class MiniMap extends JPanel
     final private Color grayColor = new Color(89, 97, 86);
     private List<ObjectElement> objects;
     private Timer mapRefresh;
-    private int refreshDelay = 1000;
+    private int refreshDelay = 300;
 
     public MiniMap(final GameBoard gameBoard)
     {
@@ -83,8 +83,8 @@ public class MiniMap extends JPanel
             x = mapx - viewRectWidth / 2;
             y = mapy - viewRectHeight / 2;
 
-            int setx = mapx * scaleX;
-            int sety = mapy * scaleY;
+            int setx = mapx * scaleX - GameData.WINDOW_WIDTH / 2;
+            int sety = mapy * scaleY - GameData.WINDOW_HEIGHT / 2;
             gameBoard.setWindowsX(setx);
             gameBoard.setWindowsY(sety);
             gameBoard.repaint();
@@ -121,8 +121,8 @@ public class MiniMap extends JPanel
 
             x = mapx - viewRectWidth / 2;
             y = mapy - viewRectHeight / 2;
-            int setx = mapx * scaleX;
-            int sety = mapy * scaleY;
+            int setx = mapx * scaleX - GameData.WINDOW_WIDTH / 2;
+            int sety = mapy * scaleY - GameData.WINDOW_HEIGHT / 2;
             gameBoard.setWindowsX(setx);
             gameBoard.setWindowsY(sety);
             gameBoard.repaint();
@@ -169,9 +169,13 @@ public class MiniMap extends JPanel
 
                 int objx = ob.getX();
                 int objy = ob.getY();
-                g.fillRect(0 + convertX(objx), 0 + convertY(objy), 5, 5);
+                g.fillRect(0 + convertX(objx * 25), 0 + convertY(objy * 25), 5, 5);
             }
         }
+        int currx = gameBoard.getCurrWinX() / scaleX;
+        int curry = gameBoard.getCurrWinY() / scaleY;
+        x = currx;
+        y = curry;
         g.setColor(Color.black);
         g.drawRect(x, y, viewRectWidth, viewRectHeight);
     }
