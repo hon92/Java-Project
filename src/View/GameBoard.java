@@ -30,15 +30,17 @@ public class GameBoard extends JPanel
     private int currentWindowY;
     private final int lenX = GameData.MAP_WIDTH / GameData.BOXSIZE;
     private final int lenY = GameData.MAP_HEIGHT / GameData.BOXSIZE;
-    private int[][] field = new int[lenX][lenY];
-    private ObjectElement[][] objectField = new ObjectElement[lenX][lenY];
+    private int[][] field = new int[lenY][lenX];
+    private ObjectElement[][] objectField = new ObjectElement[lenY][lenX];
     private MapData mapData;
     private List<ObjectElement> objects;
     private Mouse mouse;
 
     public GameBoard()
     {
+        System.err.println("MAP: " + lenX + " x " + lenY);
         initGameBoard();
+
     }
 
     private void initGameBoard()
@@ -53,7 +55,35 @@ public class GameBoard extends JPanel
         addMouseListener(mouse);
         addMouseMotionListener(mouse);
         addKeyListener(new Key(this));
-        generateGrass();
+        //generateGrass();
+        generateDebug();
+    }
+
+    private void generateDebug()
+    {
+        Cactus r = new Cactus(this, 0, 0);
+        Cactus rr = new Cactus(this, 2, 2);
+//        for (int i = 0; i < 10; i++)
+//        {
+//            for (int j = 0; j < 10; j++)
+//            {
+//                System.out.print(field[i][j]);
+//            }
+//            System.out.println();
+//        }
+
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                if (objectField[i][j] != null)
+                {
+                    System.out.print("pozice: " + objectField[i][j].getX() + " " + objectField[i][j].getY());
+                }
+            }
+            System.out.println();
+        }
+
     }
 
     public void addToCurrentWindowX(int increment)
@@ -252,22 +282,23 @@ public class GameBoard extends JPanel
 
     public int getFieldIndex(int x, int y)
     {
-        return field[x][y];
+        return field[y][x];
     }
 
     public void setFieldIndex(int x, int y, int value)
     {
-        field[x][y] = value;
+        field[y][x] = value;
     }
 
     public ObjectElement getObjectFieldObject(int x, int y)
     {
-        return objectField[x][y];
+        return objectField[y][x];
     }
 
     public void setObjectFieldObject(int x, int y, ObjectElement object)
     {
-        objectField[x][y] = object;
+        //objectField[y][x] = new Cactus(this, x, y);////errrorr
+        objectField[y][x] = object;
     }
 
     public int getCurrWinX()
