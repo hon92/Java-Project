@@ -153,7 +153,7 @@ public class MapData
                         //System.out.println("Added shoal");
                         break;
                     case waterChar:
-                        objects.add(new Water(gameBoard, j, i));
+                        objects.add(new Water(gameBoard, j * 25, i * 25));
                         //System.out.println("Added water");
                         break;
                 }
