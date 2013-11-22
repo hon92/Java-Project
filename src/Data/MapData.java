@@ -140,19 +140,19 @@ public class MapData
                         //System.out.println("Added cactus");
                         break;
                     case grassChar:
-                        objects.add(new Grass(gameBoard, j * 25, i * 25));
+                        objects.add(new Grass(gameBoard, j, i));
                         //System.out.println("Added grass");
                         break;
                     case sandChar:
-                        objects.add(new Sand(gameBoard, j * 25, i * 25));
+                        objects.add(new Sand(gameBoard, j, i));
                         //System.out.println("Added sand");
                         break;
                     case shoalChar:
-                        objects.add(new Shoal(gameBoard, j * 25, i * 25));
+                        objects.add(new Shoal(gameBoard, j, i));
                         //System.out.println("Added shoal");
                         break;
                     case waterChar:
-                        objects.add(new Water(gameBoard, j * 25, i * 25));
+                        objects.add(new Water(gameBoard, j, i));
                         //System.out.println("Added water");
                         break;
                 }
