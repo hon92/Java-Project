@@ -2,7 +2,6 @@ package View;
 
 import Controls.Key;
 import Controls.Mouse;
-import Controls.SelectMouse;
 
 import Data.GameData;
 import Data.MapData;
@@ -18,7 +17,7 @@ import GameElement.Stone;
 import GameElement.Tree;
 import GameElement.Water;
 import Unit.Unit;
-import java.awt.Color;
+import Unit.Villager.Villager;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -54,6 +53,7 @@ public class GameBoard extends JPanel
         objects = mapData.getMapData();
         units = new ArrayList<Unit>();
 
+        units.add(new Villager(this, 30, 80, 0));
         setFocusable(true);
         addMouseListener(mouse);
         addMouseMotionListener(mouse);
@@ -219,6 +219,10 @@ public class GameBoard extends JPanel
             }
         }
 
+        for (Unit u : units)
+        {
+            u.drawUnit(g);
+        }
         mouse.drawRect(g);
 
 //        g.setColor(Color.white);

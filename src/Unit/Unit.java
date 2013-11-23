@@ -6,6 +6,7 @@
 package Unit;
 
 import Data.UnitType;
+import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -21,8 +22,18 @@ public abstract class Unit
     protected int speed;
     protected int locationX;
     protected int locationY;
+    protected int direction;
     protected UnitType typeUnit;
     protected BufferedImage sourceImg;
+    protected GameBoard gameBoard;
+
+    public Unit(GameBoard gameBoard, int x, int y, int dir)
+    {
+        this.gameBoard = gameBoard;
+        locationX = x;
+        locationY = y;
+        direction = dir;
+    }
 
     public abstract void move(int x, int y);
 
@@ -31,5 +42,15 @@ public abstract class Unit
     public boolean isAlive()
     {
         return currentHp <= 0 ? false : true;
+    }
+
+    public int getDirection()
+    {
+        return direction;
+    }
+
+    public void setDirection(int dir)
+    {
+        direction = dir;
     }
 }

@@ -7,6 +7,7 @@ package Unit.Villager;
 
 import Data.GameData;
 import GameElement.Grass;
+import Unit.Unit;
 import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -20,7 +21,7 @@ import javax.imageio.ImageIO;
  *
  * @author Honza
  */
-public class Villager
+public class Villager extends Unit
 {
 
     private static int maxHealth;
@@ -42,31 +43,30 @@ public class Villager
     private static BufferedImage villagerRightTop;
     private static BufferedImage villagerLeftTop;
     private static BufferedImage villagerLeftBot;
-    
-    public Villager(GameBoard gameBoard, int x, int y)
+
+    public Villager(GameBoard gameBoard, int x, int y, int dir)
     {
+        super(gameBoard, x, y, dir);
         try
         {
             villagerDown = ImageIO.read(new File("src/Resources/villagerImg/villagerDown.png"));
-            villagerIcon=ImageIO.read(new File("src/Resources/villagerImg/villagerIcon.png"));
-            villagerTop=ImageIO.read(new File("src/Resources/villagerImg/villagerTop.png"));
-            villagerRightBot=  ImageIO.read(new File("src/Resources/villagerImg/villagerRightBot.png"));      
-            villagerRight=ImageIO.read(new File("src/Resources/villagerImg/villagerRight.png"));
-            villagerLeftBot=  ImageIO.read(new File("src/Resources/villagerImg/villagerLeftBot.png"));
-            villagerLeftTop=ImageIO.read(new File("src/Resources/villagerImg/villagerLeftTop.png"));
-            villagerRightTop=  ImageIO.read(new File("src/Resources/villagerImg/villagerRightTop.png")); 
-            villagerLeft=  ImageIO.read(new File("src/Resources/villagerImg/villagerLeft.png"));      
+            villagerIcon = ImageIO.read(new File("src/Resources/villagerImg/villagerIcon.png"));
+            villagerTop = ImageIO.read(new File("src/Resources/villagerImg/villagerTop.png"));
+            villagerRightBot = ImageIO.read(new File("src/Resources/villagerImg/villagerRightBot.png"));
+            villagerRight = ImageIO.read(new File("src/Resources/villagerImg/villagerRight.png"));
+            villagerLeftBot = ImageIO.read(new File("src/Resources/villagerImg/villagerLeftBot.png"));
+            villagerLeftTop = ImageIO.read(new File("src/Resources/villagerImg/villagerLeftTop.png"));
+            villagerRightTop = ImageIO.read(new File("src/Resources/villagerImg/villagerRightTop.png"));
+            villagerLeft = ImageIO.read(new File("src/Resources/villagerImg/villagerLeft.png"));
         }
         catch (IOException ex)
         {
             Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        gameBoard.setFieldIndex(x, y+1, 11);        
+
+        gameBoard.setFieldIndex(x, y + 1, 11);
     }
-    
-    
-    
+
     public void move()
     {
 
@@ -75,5 +75,17 @@ public class Villager
     public void build()
     {
 
+    }
+
+    @Override
+    public void move(int x, int y)
+    {
+
+    }
+
+    @Override
+    public void drawUnit(Graphics g)
+    {
+        g.drawImage(villagerDown, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
     }
 }
