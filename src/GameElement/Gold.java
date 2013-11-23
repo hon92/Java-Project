@@ -21,7 +21,7 @@ import javax.imageio.ImageIO;
 public class Gold extends ObjectElement
 {
 
-    private int startGold;
+    private static int startGold;
     private int currentGold;
     private static BufferedImage gold;
     private static String name = "Gold";

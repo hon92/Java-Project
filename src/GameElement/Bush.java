@@ -21,7 +21,7 @@ import javax.imageio.ImageIO;
 public class Bush extends ObjectElement
 {
 
-    private int startFood;
+    private static int startFood;
     private int currentFood;
     private static BufferedImage bush;
     private static String name = "Bush";

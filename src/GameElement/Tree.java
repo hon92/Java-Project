@@ -18,7 +18,7 @@ public class Tree extends ObjectElement
     private static BufferedImage gayTree;
     private static BufferedImage deadTree;
     private static BufferedImage treeDown;
-    private int startWood;
+    private static int startWood;
     private int currentWood;
     private static String name = "Tree";
 

@@ -21,7 +21,7 @@ import javax.imageio.ImageIO;
 public class Stone extends ObjectElement
 {
 
-    private int startStone;
+    private static int startStone;
     private int currentStone;
     private static BufferedImage stone;
     private static String name = "Stone";
