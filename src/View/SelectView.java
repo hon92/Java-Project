@@ -42,6 +42,7 @@ public class SelectView extends JPanel
         if (element instanceof Source)
         {
             Source s = (Source) element;
+            g.drawImage(s.getIcon(), 20, 20, null);
             g.drawString(element.getName(), 50, 60);
             g.drawString("Remaining resources: " + s.getRemainingResource(), 50, 70);
         }
