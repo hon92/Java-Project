@@ -48,7 +48,7 @@ public class Villager extends Unit
         super(gameBoard, x, y, dir);
 
         maxHp = 50;
-        currentHp = 25;
+        currentHp = 10;
 
         try
         {
@@ -76,9 +76,9 @@ public class Villager extends Unit
 
     }
 
-    public int getHpDown()
+    public double getHpDown()
     {
-        return (int) ((currentHp / (double) maxHp));
+        return ((currentHp / (double) maxHp));
     }
 
     public void build()
@@ -101,7 +101,7 @@ public class Villager extends Unit
 
             g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), 25, 5);
             g.setColor(Color.red);
-            g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), 25 * getHpDown(), 5);
+            g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), 25 - (int) (25 * getHpDown()), 5);
         }
         g.drawImage(villagerDown, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
     }
