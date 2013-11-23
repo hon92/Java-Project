@@ -17,6 +17,7 @@ import GameElement.Tree;
 import GameElement.Water;
 import Unit.Unit;
 import Unit.Villager.Villager;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -225,15 +226,15 @@ public class GameBoard extends JPanel
         }
         mouse.drawRect(g);
 
-//        g.setColor(Color.white);
-//        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
-//        {
-//            for (int j = 0; j < GameData.MAP_HEIGHT; j += GameData.BOXSIZE)
-//            {
-//
-//                g.drawRect(i, j, 25, 25);
-//            }
-//        }
+        g.setColor(Color.white);
+        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
+        {
+            for (int j = 0; j < GameData.MAP_HEIGHT; j += GameData.BOXSIZE)
+            {
+
+                g.drawRect(i, j, 25, 25);
+            }
+        }
     }
 
     private void generateGrass()
