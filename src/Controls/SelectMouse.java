@@ -28,6 +28,11 @@ public class SelectMouse
         this.selectView = selectView;
         element = gameBoard.getObjectFieldObject(indexX, indexY);
         unit = gameBoard.getUnitField(indexX, indexY);
+
+        if (unit != null)
+        {
+            unit.setSelected(true);
+        }
         selectView.setObjectElement(element);
         selectView.setObjectUnit(unit);
         selectView.repaint();

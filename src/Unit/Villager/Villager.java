@@ -9,6 +9,7 @@ import Data.GameData;
 import GameElement.Grass;
 import Unit.Unit;
 import View.GameBoard;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -24,8 +25,6 @@ import javax.imageio.ImageIO;
 public class Villager extends Unit
 {
 
-    private static int maxHealth;
-    private int currentHealth;
     private int createTime;
     private int carriedResources;
 
@@ -47,6 +46,10 @@ public class Villager extends Unit
     public Villager(GameBoard gameBoard, int x, int y, int dir)
     {
         super(gameBoard, x, y, dir);
+
+        maxHp = 50;
+        currentHp = 25;
+
         try
         {
             villagerDown = ImageIO.read(new File("src/Resources/villagerImg/villagerDown.png"));
@@ -73,6 +76,11 @@ public class Villager extends Unit
 
     }
 
+    public int getHpDown()
+    {
+        return (int) ((currentHp / (double) maxHp));
+    }
+
     public void build()
     {
 
@@ -87,13 +95,15 @@ public class Villager extends Unit
     @Override
     public void drawUnit(Graphics g)
     {
+        if (isSelected())
+        {
+            g.setColor(Color.green);
+
+            g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), 25, 5);
+            g.setColor(Color.red);
+            g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), 25 * getHpDown(), 5);
+        }
         g.drawImage(villagerDown, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
-    }
-
-    @Override
-    public void drawHpBar(Graphics g)
-    {
-
     }
 
     @Override
@@ -117,13 +127,13 @@ public class Villager extends Unit
     @Override
     public int getHp()
     {
-        return currentHealth;
+        return currentHp;
     }
 
     @Override
     public int getMaxHp()
     {
-        return maxHealth;
+        return maxHp;
     }
 
     @Override
