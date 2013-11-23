@@ -25,6 +25,7 @@ public class Stone extends ObjectElement implements Source
     private static int startStone;
     private int currentStone;
     private static BufferedImage stone;
+    private static BufferedImage stoneIcon;
     private static String name = "Stone";
 
     public Stone(GameBoard gameBoard, int x, int y)
@@ -33,6 +34,7 @@ public class Stone extends ObjectElement implements Source
         try
         {
             stone = ImageIO.read(new File("src/Resources/stone.png"));
+            stoneIcon = ImageIO.read(new File("src/Resources/stoneIcon.png"));
         }
         catch (IOException ex)
         {
@@ -77,5 +79,10 @@ public class Stone extends ObjectElement implements Source
     public void setRemainingResource(int count)
     {
         currentStone = count;
+    }
+
+    @Override
+    public BufferedImage getIcon() {
+        return stoneIcon;
     }
 }

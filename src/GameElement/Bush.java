@@ -25,6 +25,7 @@ public class Bush extends ObjectElement implements Source
     private static int startFood;
     private int currentFood;
     private static BufferedImage bush;
+    private static BufferedImage bushIcon;
     private static String name = "Bush";
 
     public Bush(GameBoard gameBoard, int x, int y)
@@ -33,6 +34,7 @@ public class Bush extends ObjectElement implements Source
         try
         {
             bush = ImageIO.read(new File("src/Resources/bush.png"));
+            bushIcon = ImageIO.read(new File("src/Resources/bushIcon.png"));
         }
         catch (IOException ex)
         {
@@ -78,6 +80,11 @@ public class Bush extends ObjectElement implements Source
     public void setRemainingResource(int count)
     {
         currentFood = count;
+    }
+
+    @Override
+    public BufferedImage getIcon() {
+        return bushIcon;
     }
 
 }

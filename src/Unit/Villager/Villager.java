@@ -15,6 +15,7 @@ public class Villager
     private static int maxHealth;
     private int currentHealth;
     private int createTime;
+    private int carriedResources;
 
     private static int attack;
     private static int armor;

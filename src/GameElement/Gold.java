@@ -25,6 +25,7 @@ public class Gold extends ObjectElement implements Source
     private static int startGold;
     private int currentGold;
     private static BufferedImage gold;
+    private static BufferedImage goldIcon;
     private static String name = "Gold";
 
     public Gold(GameBoard gameBoard, int x, int y)
@@ -33,6 +34,7 @@ public class Gold extends ObjectElement implements Source
         try
         {
             gold = ImageIO.read(new File("src/Resources/gold.png"));
+            goldIcon = ImageIO.read(new File("src/Resources/goldIcon.png"));
         }
         catch (IOException ex)
         {
@@ -78,6 +80,11 @@ public class Gold extends ObjectElement implements Source
     public void setRemainingResource(int count)
     {
         currentGold = count;
+    }
+
+    @Override
+    public BufferedImage getIcon() {
+        return goldIcon;
     }
 
 }

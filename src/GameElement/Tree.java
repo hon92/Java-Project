@@ -19,6 +19,9 @@ public class Tree extends ObjectElement implements Source
     private static BufferedImage gayTree;
     private static BufferedImage deadTree;
     private static BufferedImage treeDown;
+    
+    private static BufferedImage treeIcon;
+    
     private static int startWood;
     private int currentWood;
     private static String name = "Tree";
@@ -33,6 +36,8 @@ public class Tree extends ObjectElement implements Source
             gayTree = ImageIO.read(new File("src/Resources/gayTree.png"));
             deadTree = ImageIO.read(new File("src/Resources/deadTree.png"));
             treeDown = ImageIO.read(new File("src/Resources/treeDown.png"));
+            
+            treeIcon = ImageIO.read(new File("src/Resources/treeIcon.png"));
 
         }
         catch (IOException ex)
@@ -98,5 +103,10 @@ public class Tree extends ObjectElement implements Source
     public void setRemainingResource(int count)
     {
         currentWood = count;
+    }
+
+    @Override
+    public BufferedImage getIcon() {
+        return treeIcon;
     }
 }
