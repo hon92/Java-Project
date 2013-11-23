@@ -27,7 +27,7 @@ public class SelectMouse
         this.gameBoard = gameBoard;
         this.selectView = selectView;
         element = gameBoard.getObjectFieldObject(indexX, indexY);
-        unit = gameBoard.getUnitField(indexY, indexY);
+        unit = gameBoard.getUnitField(indexX, indexY);
         selectView.setObjectElement(element);
         selectView.setObjectUnit(unit);
         selectView.repaint();

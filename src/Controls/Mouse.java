@@ -56,7 +56,7 @@ public class Mouse implements MouseListener, MouseMotionListener
 
         clickedIndexX = convertX(clickedIndexX);
         clickedIndexY = convertY(clickedIndexY);
-        if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) != null && gameBoard.getUnitField(clickedIndexX, clickedIndexY) != null)
+        if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) != null || gameBoard.getUnitField(clickedIndexX, clickedIndexY) != null)
         {
             new SelectMouse(gameBoard, MainWindow.botPanel.getSelectPanel(), clickedIndexX, clickedIndexY);
         }
