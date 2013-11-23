@@ -91,6 +91,12 @@ public class Villager extends Unit
     }
 
     @Override
+    public void drawHpBar(Graphics g)
+    {
+
+    }
+
+    @Override
     public String getName()
     {
         return "Villager";
