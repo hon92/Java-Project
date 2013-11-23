@@ -31,6 +31,7 @@ public class MainWindow extends JFrame
         add(topPanel, BorderLayout.NORTH);
         add(gameBoard, BorderLayout.CENTER);
         add(botPanel, BorderLayout.SOUTH);
+        setLocationRelativeTo(null);
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         try
