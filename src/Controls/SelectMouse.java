@@ -19,19 +19,15 @@ public class SelectMouse
 
     private static GameBoard gameBoard;
     private static SelectView selectView;
+    private ObjectElement element;
 
     public SelectMouse(GameBoard gameBoard, SelectView selectView, int indexX, int indexY)
     {
         this.gameBoard = gameBoard;
         this.selectView = selectView;
-        ObjectElement element = gameBoard.getObjectFieldObject(indexX, indexY);
-        System.out.println(element.getName());
-        if (element instanceof Source)
-        {
-            Source s = (Source) element;
-            System.out.println(s.getRemainingResource());
-        }
-
+        element = gameBoard.getObjectFieldObject(indexX, indexY);
+        selectView.setObjectElement(element);
+        selectView.repaint();
     }
 
 }

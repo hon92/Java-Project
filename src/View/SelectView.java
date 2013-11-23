@@ -5,6 +5,9 @@
  */
 package View;
 
+import Controls.SelectMouse;
+import Data.Source;
+import GameElement.ObjectElement;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -18,6 +21,8 @@ public class SelectView extends JPanel
 {
 
     private GameBoard gameBoard;
+    private SelectMouse mouseSelect;
+    private ObjectElement element;
 
     public SelectView(GameBoard gameBoard)
     {
@@ -30,7 +35,26 @@ public class SelectView extends JPanel
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
+        if (element == null)
+        {
+            g.drawString("Nic", 50, 50);
+        }
+        if (element instanceof Source)
+        {
+            Source s = (Source) element;
+            g.drawString(element.getName(), 50, 60);
+            g.drawString("Surovin zbyva: " + s.getRemainingResource(), 50, 70);
+        }
+        else if (element != null)
+        {
+            g.drawString(element.getName(), 50, 60);
+        }
 
+    }
+
+    public void setObjectElement(ObjectElement element)
+    {
+        this.element = element;
     }
 
 }
