@@ -53,4 +53,17 @@ public abstract class Unit
     {
         direction = dir;
     }
+
+    public abstract String getName();
+
+    public abstract int getAttack();
+
+    public abstract int getArmor();
+
+    public abstract int getHp();
+
+    public abstract int getMaxHp();
+
+    public abstract BufferedImage getIcon();
+
 }

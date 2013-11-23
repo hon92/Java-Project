@@ -8,6 +8,7 @@ package View;
 import Controls.SelectMouse;
 import Data.Source;
 import GameElement.ObjectElement;
+import Unit.Unit;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -23,11 +24,12 @@ public class SelectView extends JPanel
     private GameBoard gameBoard;
     private SelectMouse mouseSelect;
     private ObjectElement element;
+    private Unit unit;
 
     public SelectView(GameBoard gameBoard)
     {
         setPreferredSize(new Dimension(360, 200));
-        setBackground(Color.green);
+        //setBackground(Color.green);
         this.gameBoard = gameBoard;
     }
 
@@ -35,7 +37,7 @@ public class SelectView extends JPanel
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        if (element == null)
+        if (element == null && unit == null)
         {
             g.drawString("Nic", 50, 50);
         }
@@ -45,6 +47,15 @@ public class SelectView extends JPanel
             g.drawImage(s.getIcon(), 20, 20, null);
             g.drawString(element.getName(), 50, 30);
             g.drawString("Remaining resources: " + s.getRemainingResource(), 50, 45);
+        }
+        if (unit instanceof Unit)
+        {
+            g.drawImage(unit.getIcon(), 20, 20, null);
+            g.drawString(unit.getName(), 50, 30);
+            g.drawString("Attack: " + unit.getAttack(), 50, 40);
+            g.drawString("Armor: " + unit.getArmor(), 50, 50);
+            g.drawString("Max Hp: " + unit.getMaxHp(), 50, 60);
+            g.drawString("Current Hp: " + unit.getHp(), 50, 70);
         }
         else if (element != null)
         {
@@ -56,6 +67,11 @@ public class SelectView extends JPanel
     public void setObjectElement(ObjectElement element)
     {
         this.element = element;
+    }
+
+    public void setObjectUnit(Unit unit)
+    {
+        this.unit = unit;
     }
 
 }

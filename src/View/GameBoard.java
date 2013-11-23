@@ -2,7 +2,6 @@ package View;
 
 import Controls.Key;
 import Controls.Mouse;
-
 import Data.GameData;
 import Data.MapData;
 import GameElement.Bush;
@@ -33,6 +32,7 @@ public class GameBoard extends JPanel
     private final int rows = GameData.MAP_HEIGHT / GameData.BOXSIZE;
     private int[][] field = new int[rows][columns];
     private ObjectElement[][] objectField = new ObjectElement[columns][rows];
+    private Unit[][] unitField = new Unit[columns][rows];
     private MapData mapData;
     private List<ObjectElement> objects;
     private List<Unit> units;
@@ -265,12 +265,12 @@ public class GameBoard extends JPanel
         objects.add(gr);
     }
 
-    public int getFieldIndex(int x, int y)//nvm
+    public int getFieldIndex(int x, int y)
     {
         return field[y][x];
     }
 
-    public void setFieldIndex(int x, int y, int value)//nvm
+    public void setFieldIndex(int x, int y, int value)
     {
         field[y][x] = value;
     }
@@ -285,6 +285,16 @@ public class GameBoard extends JPanel
 
         objectField[x][y] = object;
 
+    }
+
+    public void setUnitField(int x, int y, Unit unit)
+    {
+        unitField[x][y] = unit;
+    }
+
+    public Unit getUnitField(int x, int y)
+    {
+        return unitField[x][y];
     }
 
     public int getCurrWinX()

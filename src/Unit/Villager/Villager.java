@@ -63,7 +63,8 @@ public class Villager extends Unit
         {
             Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        gameBoard.setUnitField(x, y, this);
+        gameBoard.setUnitField(x, y + 1, this);
         gameBoard.setFieldIndex(x, y + 1, 11);
     }
 
@@ -88,4 +89,41 @@ public class Villager extends Unit
     {
         g.drawImage(villagerDown, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
     }
+
+    @Override
+    public String getName()
+    {
+        return "Villager";
+    }
+
+    @Override
+    public int getAttack()
+    {
+        return attack;
+    }
+
+    @Override
+    public int getArmor()
+    {
+        return armor;
+    }
+
+    @Override
+    public int getHp()
+    {
+        return currentHealth;
+    }
+
+    @Override
+    public int getMaxHp()
+    {
+        return maxHealth;
+    }
+
+    @Override
+    public BufferedImage getIcon()
+    {
+        return villagerIcon;
+    }
+
 }

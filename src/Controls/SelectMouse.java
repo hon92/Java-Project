@@ -5,8 +5,8 @@
  */
 package Controls;
 
-import Data.Source;
 import GameElement.ObjectElement;
+import Unit.Unit;
 import View.GameBoard;
 import View.SelectView;
 
@@ -20,13 +20,16 @@ public class SelectMouse
     private static GameBoard gameBoard;
     private static SelectView selectView;
     private ObjectElement element;
+    private Unit unit;
 
     public SelectMouse(GameBoard gameBoard, SelectView selectView, int indexX, int indexY)
     {
         this.gameBoard = gameBoard;
         this.selectView = selectView;
         element = gameBoard.getObjectFieldObject(indexX, indexY);
+        unit = gameBoard.getUnitField(indexY, indexY);
         selectView.setObjectElement(element);
+        selectView.setObjectUnit(unit);
         selectView.repaint();
     }
 
