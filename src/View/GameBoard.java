@@ -17,6 +17,7 @@ import GameElement.Shoal;
 import GameElement.Stone;
 import GameElement.Tree;
 import GameElement.Water;
+import Unit.Unit;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -35,11 +36,11 @@ public class GameBoard extends JPanel
     private ObjectElement[][] objectField = new ObjectElement[columns][rows];
     private MapData mapData;
     private List<ObjectElement> objects;
+    private List<Unit> units;
     private Mouse mouse;
 
     public GameBoard()
     {
-        System.err.println("MAP: " + rows + " x " + columns);
         initGameBoard();
 
     }
@@ -51,6 +52,7 @@ public class GameBoard extends JPanel
         mapData = new MapData(this);
         mouse = new Mouse(this);
         objects = mapData.getMapData();
+        units = new ArrayList<Unit>();
 
         setFocusable(true);
         addMouseListener(mouse);
