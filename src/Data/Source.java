@@ -14,5 +14,7 @@ public interface Source
 
     public int getRemainingResource();
 
+    
+    
     public void setRemainingResource(int count);
 }
