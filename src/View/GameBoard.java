@@ -99,7 +99,9 @@ public class GameBoard extends JPanel
 
     public void setWindowsX(int increment)
     {
-        this.currentWindowX = increment;
+        int modulo = increment % 25;
+        int newx = 25 - modulo + increment;
+        this.currentWindowX = newx;
         if (currentWindowX < 0)
         {
             this.currentWindowX = 0;
@@ -113,7 +115,9 @@ public class GameBoard extends JPanel
 
     public void setWindowsY(int increment)
     {
-        this.currentWindowY = increment;
+        int modulo = increment % 25;
+        int newy = 25 - modulo + increment;
+        this.currentWindowY = newy;
         if (currentWindowY < 0)
         {
             currentWindowY = 0;
