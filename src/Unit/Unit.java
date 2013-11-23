@@ -26,6 +26,8 @@ public abstract class Unit
     protected UnitType typeUnit;
     protected BufferedImage sourceImg;
     protected GameBoard gameBoard;
+    
+    protected boolean selected=false;
 
     public Unit(GameBoard gameBoard, int x, int y, int dir)
     {
@@ -54,6 +56,24 @@ public abstract class Unit
         direction = dir;
     }
 
+    public void drawHP()
+    {
+        if (isSelected())
+        {
+            
+        }
+    }
+    
+    public boolean isSelected()
+    {
+        return selected;
+    }
+    
+    public void setSelected()
+    {
+        
+    }
+    
     public abstract String getName();
 
     public abstract int getAttack();
