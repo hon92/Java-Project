@@ -5,6 +5,8 @@
  */
 package Data;
 
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author Honza
@@ -15,4 +17,6 @@ public interface Source
     public int getRemainingResource();
 
     public void setRemainingResource(int count);
+
+    public BufferedImage getIcon();
 }
