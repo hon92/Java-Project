@@ -15,22 +15,20 @@ public class Villager
     private static int maxHealth;
     private int currentHealth;
     private int createTime;
-    
+
     private static int attack;
     private static int armor;
-    
+
     private static int speed;
-    
-    
+
     public void move()
     {
-        
+
     }
-    
+
     public void build()
     {
-        
+
     }
-            
-    
+
 }

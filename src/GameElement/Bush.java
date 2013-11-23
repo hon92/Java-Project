@@ -47,13 +47,13 @@ public class Bush extends ObjectElement
         gameBoard.setObjectFieldObject(x, y + 1, this);
         gameBoard.setObjectFieldObject(x + 1, y + 1, this);
         gameBoard.setObjectFieldObject(x + 2, y + 1, this);
-        
+
         gameBoard.setFieldIndex(x, y, 6);
-        gameBoard.setFieldIndex(x+1, y, 6);
-        gameBoard.setFieldIndex(x+2, y, 6);
-        gameBoard.setFieldIndex(x, y+1, 6);
-        gameBoard.setFieldIndex(x+1, y+1, 6);
-        gameBoard.setFieldIndex(x+2, y+1, 6);
+        gameBoard.setFieldIndex(x + 1, y, 6);
+        gameBoard.setFieldIndex(x + 2, y, 6);
+        gameBoard.setFieldIndex(x, y + 1, 6);
+        gameBoard.setFieldIndex(x + 1, y + 1, 6);
+        gameBoard.setFieldIndex(x + 2, y + 1, 6);
     }
 
     @Override

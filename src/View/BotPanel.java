@@ -5,14 +5,12 @@
  */
 package View;
 
-import GameElement.ObjectElement;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -28,14 +26,20 @@ public class BotPanel extends JPanel
     private static BufferedImage botPanel;
     private GameBoard gameBoard;
     private MiniMap miniMap;
+    private SelectView selectView;
+    private ActionView actionView;
 
     BotPanel(GameBoard gameBoard)
     {
         this.gameBoard = gameBoard;
         setLayout(new BorderLayout());
         miniMap = new MiniMap(gameBoard);
-        add(miniMap, BorderLayout.EAST);
+        selectView = new SelectView(gameBoard);
+        actionView = new ActionView(gameBoard);
 
+        add(miniMap, BorderLayout.EAST);
+        add(actionView, BorderLayout.WEST);
+        add(selectView, BorderLayout.CENTER);
         try
         {
 
