@@ -41,6 +41,7 @@ public class MiniMap extends JPanel
     final private Color silverColor = new Color(237, 237, 237);
     final private Color greenColor = new Color(8, 135, 40);
     final private Color grayColor = new Color(89, 97, 86);
+    final private Color blueColor = new Color(136, 206, 250);
     private List<ObjectElement> objects;
     private Timer mapRefresh;
     private int refreshDelay = 300;
@@ -148,7 +149,7 @@ public class MiniMap extends JPanel
 
                 if (ob instanceof Water)
                 {
-                    g.setColor(Color.blue);
+                    g.setColor(blueColor);
                 }
                 if (ob instanceof Gold)
                 {

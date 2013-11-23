@@ -47,6 +47,13 @@ public class Stone extends ObjectElement
         gameBoard.setObjectFieldObject(x, y + 1, this);
         gameBoard.setObjectFieldObject(x + 1, y + 1, this);
         gameBoard.setObjectFieldObject(x + 2, y + 1, this);
+        
+        gameBoard.setFieldIndex(x, y, 10);
+        gameBoard.setFieldIndex(x+1, y, 10);
+        gameBoard.setFieldIndex(x+2, y, 10);
+        gameBoard.setFieldIndex(x, y+1, 10);
+        gameBoard.setFieldIndex(x+1, y+1, 10);
+        gameBoard.setFieldIndex(x+2, y+1, 10);
     }
 
     public void drawObject(Graphics g)

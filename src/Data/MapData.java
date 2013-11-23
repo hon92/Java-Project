@@ -120,7 +120,7 @@ public class MapData
                         break;
                     case treeChar:
                         objects.add(new Tree(gameBoard, j, i));
-                        System.out.println("Added tree");
+                        //System.out.println("Added tree");
                         break;
                     case goldChar:
                         objects.add(new Gold(gameBoard, j, i));

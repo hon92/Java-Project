@@ -47,6 +47,13 @@ public class Gold extends ObjectElement
         gameBoard.setObjectFieldObject(x, y + 1, this);
         gameBoard.setObjectFieldObject(x + 2, y + 1, this);
         gameBoard.setObjectFieldObject(x + 1, y + 1, this);
+        
+        gameBoard.setFieldIndex(x, y, 9);
+        gameBoard.setFieldIndex(x+1, y, 9);
+        gameBoard.setFieldIndex(x+2, y, 9);
+        gameBoard.setFieldIndex(x, y+1, 9);
+        gameBoard.setFieldIndex(x+2, y+1, 9);
+        gameBoard.setFieldIndex(x+1, y+1, 9);
 
     }
 

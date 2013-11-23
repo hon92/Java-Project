@@ -30,6 +30,9 @@ public class Relic extends ObjectElement
 
         gameBoard.setObjectFieldObject(x, y, this);
         gameBoard.setObjectFieldObject(x, y + 1, this);
+        
+        gameBoard.setFieldIndex(x, y, 3);
+        gameBoard.setFieldIndex(x, y+1, 3);
     }
 
     public void drawObject(Graphics g)
