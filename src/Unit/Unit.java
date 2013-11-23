@@ -39,6 +39,8 @@ public abstract class Unit
 
     public abstract void drawUnit(Graphics g);
 
+    public abstract void drawHpBar(Graphics g);
+
     public boolean isAlive()
     {
         return currentHp <= 0 ? false : true;
