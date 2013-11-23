@@ -29,13 +29,34 @@ public class SelectMouse
         element = gameBoard.getObjectFieldObject(indexX, indexY);
         unit = gameBoard.getUnitField(indexX, indexY);
 
+        if (element == null)
+        {
+            selectView.setObjectElement(null);
+        }
+        if (unit == null)
+        {
+            selectView.setObjectUnit(null);
+        }
+
         if (unit != null)
         {
             unit.setSelected(true);
+            selectView.setObjectUnit(unit);
         }
-        selectView.setObjectElement(element);
-        selectView.setObjectUnit(unit);
+        if (element != null)
+        {
+            selectView.setObjectElement(element);
+        }
+
         selectView.repaint();
+    }
+
+    void setUnitSelect(boolean b)
+    {
+        if (unit != null)
+        {
+            unit.setSelected(b);
+        }
     }
 
 }

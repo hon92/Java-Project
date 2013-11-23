@@ -22,7 +22,7 @@ public class Mouse implements MouseListener, MouseMotionListener
 {
 
     private GameBoard gameBoard;
-
+    private SelectMouse selectMouse = null;
     private Color dragColor = new Color(0, 255, 50, 128);
 
     private int clickedX = 0;
@@ -56,47 +56,24 @@ public class Mouse implements MouseListener, MouseMotionListener
 
         clickedIndexX = convertX(clickedIndexX);
         clickedIndexY = convertY(clickedIndexY);
-        if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) != null || gameBoard.getUnitField(clickedIndexX, clickedIndexY) != null)
-        {
-            new SelectMouse(gameBoard, MainWindow.botPanel.getSelectPanel(), clickedIndexX, clickedIndexY);
-        }
+
+        selectMouse = new SelectMouse(gameBoard, MainWindow.botPanel.getSelectPanel(), clickedIndexX, clickedIndexY);
+
+//        if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) != null || gameBoard.getUnitField(clickedIndexX, clickedIndexY) != null)
+//        {
+//
+//            selectMouse = new SelectMouse(gameBoard, MainWindow.botPanel.getSelectPanel(), clickedIndexX, clickedIndexY);
+//        }
+//        else
+//        {
+//            if (selectMouse != null)
+//            {
+//                selectMouse.setUnitSelect(false);
+//            }
+//
+//        }
         System.err.println("x: " + clickedIndexX + " y: " + clickedIndexY);
 
-//        if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) != null)
-//        {
-//            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Gold)
-//            {
-//                System.out.println("Gold");
-//            }
-//            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Relic)
-//            {
-//                System.out.println("Relics");
-//            }
-//            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Cactus)
-//            {
-//                System.out.print("Cactus");
-//            }
-//            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Tree)
-//            {
-//                System.out.println("Tree");
-//            }
-//            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Stone)
-//            {
-//                System.out.println("Stone");
-//            }
-//            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Sand)
-//            {
-//                System.out.println("Sand");
-//            }
-//            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Shoal)
-//            {
-//                System.out.println("Shoal");
-//            }
-//            if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) instanceof Bush)
-//            {
-//                System.out.println("Bush");
-//            }
-//        }
     }
 
     @Override

@@ -48,6 +48,10 @@ public class SelectView extends JPanel
             g.drawString(element.getName(), 50, 30);
             g.drawString("Remaining resources: " + s.getRemainingResource(), 50, 45);
         }
+        else if (element != null)
+        {
+            g.drawString(element.getName(), 50, 60);
+        }
         if (unit instanceof Unit)
         {
             g.drawImage(unit.getIcon(), 20, 20, null);
@@ -56,10 +60,6 @@ public class SelectView extends JPanel
             g.drawString("Armor: " + unit.getArmor(), 50, 50);
             g.drawString("Max Hp: " + unit.getMaxHp(), 50, 60);
             g.drawString("Current Hp: " + unit.getHp(), 50, 70);
-        }
-        else if (element != null)
-        {
-            g.drawString(element.getName(), 50, 60);
         }
 
     }
@@ -71,6 +71,10 @@ public class SelectView extends JPanel
 
     public void setObjectUnit(Unit unit)
     {
+        if (this.unit != null && this.unit.isSelected() && unit == null)
+        {
+            this.unit.setSelected(false);
+        }
         this.unit = unit;
     }
 

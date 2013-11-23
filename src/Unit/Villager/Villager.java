@@ -98,7 +98,6 @@ public class Villager extends Unit
         if (isSelected())
         {
             g.setColor(Color.red);
-
             g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), 25, 5);
             g.setColor(Color.green);
             g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), (int) (25 * getHpDown()), 5);

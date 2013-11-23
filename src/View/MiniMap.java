@@ -86,6 +86,7 @@ public class MiniMap extends JPanel
 
             int setx = mapx * scaleX - GameData.WINDOW_WIDTH / 2;
             int sety = mapy * scaleY - GameData.WINDOW_HEIGHT / 2;
+
             gameBoard.setWindowsX(setx);
             gameBoard.setWindowsY(sety);
             gameBoard.repaint();
@@ -175,7 +176,7 @@ public class MiniMap extends JPanel
                 {
                     g.fillRect(0 + convertX((objx) * 25), 0 + convertY(objy * 25), 11, 11);
                 }
-                
+
             }
         }
         int currx = gameBoard.getCurrWinX() / scaleX;
