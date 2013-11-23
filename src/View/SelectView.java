@@ -43,7 +43,7 @@ public class SelectView extends JPanel
         {
             Source s = (Source) element;
             g.drawString(element.getName(), 50, 60);
-            g.drawString("Surovin zbyva: " + s.getRemainingResource(), 50, 70);
+            g.drawString("Remaining resources: " + s.getRemainingResource(), 50, 70);
         }
         else if (element != null)
         {
