@@ -60,4 +60,19 @@ public class BotPanel extends JPanel
 
     }
 
+    public MiniMap getMiniMapPanel()
+    {
+        return miniMap;
+    }
+
+    public SelectView getSelectPanel()
+    {
+        return selectView;
+    }
+
+    public ActionView getActionPanel()
+    {
+        return actionView;
+    }
+
 }

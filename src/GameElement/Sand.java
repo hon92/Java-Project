@@ -34,6 +34,12 @@ public class Sand extends ObjectElement
 
     }
 
+    @Override
+    public String getName()
+    {
+        return "Sand";
+    }
+
     public void drawObject(Graphics g)
     {
         g.drawImage(sand, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE), null);

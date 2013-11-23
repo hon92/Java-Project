@@ -37,6 +37,12 @@ public class Water extends ObjectElement
 
     }
 
+    @Override
+    public String getName()
+    {
+        return "Water";
+    }
+
     public void drawObject(Graphics g)
     {
         g.drawImage(water, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE), null);

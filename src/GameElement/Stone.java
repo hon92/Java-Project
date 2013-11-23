@@ -5,6 +5,7 @@
 package GameElement;
 
 import Data.GameData;
+import Data.Source;
 import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -18,7 +19,7 @@ import javax.imageio.ImageIO;
  *
  * @author Tom
  */
-public class Stone extends ObjectElement
+public class Stone extends ObjectElement implements Source
 {
 
     private static int startStone;
@@ -47,13 +48,13 @@ public class Stone extends ObjectElement
         gameBoard.setObjectFieldObject(x, y + 1, this);
         gameBoard.setObjectFieldObject(x + 1, y + 1, this);
         gameBoard.setObjectFieldObject(x + 2, y + 1, this);
-        
+
         gameBoard.setFieldIndex(x, y, 10);
-        gameBoard.setFieldIndex(x+1, y, 10);
-        gameBoard.setFieldIndex(x+2, y, 10);
-        gameBoard.setFieldIndex(x, y+1, 10);
-        gameBoard.setFieldIndex(x+1, y+1, 10);
-        gameBoard.setFieldIndex(x+2, y+1, 10);
+        gameBoard.setFieldIndex(x + 1, y, 10);
+        gameBoard.setFieldIndex(x + 2, y, 10);
+        gameBoard.setFieldIndex(x, y + 1, 10);
+        gameBoard.setFieldIndex(x + 1, y + 1, 10);
+        gameBoard.setFieldIndex(x + 2, y + 1, 10);
     }
 
     public void drawObject(Graphics g)
@@ -66,8 +67,15 @@ public class Stone extends ObjectElement
         return name;
     }
 
-    public int getRemainStone()
+    @Override
+    public int getRemainingResource()
     {
         return currentStone;
+    }
+
+    @Override
+    public void setRemainingResource(int count)
+    {
+        currentStone = count;
     }
 }

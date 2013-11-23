@@ -28,6 +28,8 @@ public abstract class ObjectElement
 
     public abstract void drawObject(Graphics g);
 
+    public abstract String getName();
+
     public int getX()
     {
         return x;

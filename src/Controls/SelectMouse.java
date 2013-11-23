@@ -5,6 +5,11 @@
  */
 package Controls;
 
+import Data.Source;
+import GameElement.ObjectElement;
+import View.GameBoard;
+import View.SelectView;
+
 /**
  *
  * @author Honza
@@ -12,8 +17,20 @@ package Controls;
 public class SelectMouse
 {
 
-    public SelectMouse(int indexX, int indexY)
+    private static GameBoard gameBoard;
+    private static SelectView selectView;
+
+    public SelectMouse(GameBoard gameBoard, SelectView selectView, int indexX, int indexY)
     {
+        this.gameBoard = gameBoard;
+        this.selectView = selectView;
+        ObjectElement element = gameBoard.getObjectFieldObject(indexX, indexY);
+        System.out.println(element.getName());
+        if (element instanceof Source)
+        {
+            Source s = (Source) element;
+            System.out.println(s.getRemainingResource());
+        }
 
     }
 

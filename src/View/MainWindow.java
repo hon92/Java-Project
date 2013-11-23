@@ -17,9 +17,9 @@ import javax.swing.JFrame;
 public class MainWindow extends JFrame
 {
 
-    private TopPanel topPanel;
-    private BotPanel botPanel;
-    private GameBoard gameBoard;
+    public static TopPanel topPanel;
+    public static BotPanel botPanel;
+    public static GameBoard gameBoard;
 
     public MainWindow() throws HeadlessException
     {

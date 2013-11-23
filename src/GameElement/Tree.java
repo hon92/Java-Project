@@ -1,6 +1,7 @@
 package GameElement;
 
 import Data.GameData;
+import Data.Source;
 import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -10,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class Tree extends ObjectElement
+public class Tree extends ObjectElement implements Source
 {
 
     private static BufferedImage tree1;
@@ -50,12 +51,12 @@ public class Tree extends ObjectElement
         gameBoard.setObjectFieldObject(x + 1, y + 1, this);
         gameBoard.setObjectFieldObject(x + 1, y + 2, this);
         gameBoard.setObjectFieldObject(x + 1, y + 3, this);
-        
-        gameBoard.setFieldIndex(x, y+2, 2);      
-        gameBoard.setFieldIndex(x+1, y+2, 2);
-        
-        gameBoard.setFieldIndex(x, y+2, 3);      
-        gameBoard.setFieldIndex(x+1, y+2, 3);
+
+        gameBoard.setFieldIndex(x, y + 2, 2);
+        gameBoard.setFieldIndex(x + 1, y + 2, 2);
+
+        gameBoard.setFieldIndex(x, y + 2, 3);
+        gameBoard.setFieldIndex(x + 1, y + 2, 3);
 
     }
 
@@ -87,8 +88,15 @@ public class Tree extends ObjectElement
         return name;
     }
 
-    public int getRemainingWood()
+    @Override
+    public int getRemainingResource()
     {
         return currentWood;
+    }
+
+    @Override
+    public void setRemainingResource(int count)
+    {
+        currentWood = count;
     }
 }

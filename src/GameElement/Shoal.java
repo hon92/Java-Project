@@ -35,6 +35,12 @@ public class Shoal extends ObjectElement
 
     }
 
+    @Override
+    public String getName()
+    {
+        return "Shoal";
+    }
+
     public void drawObject(Graphics g)
     {
         g.drawImage(shoal, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE), null);

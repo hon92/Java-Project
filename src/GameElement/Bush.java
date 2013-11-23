@@ -5,6 +5,7 @@
 package GameElement;
 
 import Data.GameData;
+import Data.Source;
 import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -18,7 +19,7 @@ import javax.imageio.ImageIO;
  *
  * @author Tom
  */
-public class Bush extends ObjectElement
+public class Bush extends ObjectElement implements Source
 {
 
     private static int startFood;
@@ -67,9 +68,16 @@ public class Bush extends ObjectElement
         return name;
     }
 
-    public int getRemainingFood()
+    @Override
+    public int getRemainingResource()
     {
         return currentFood;
+    }
+
+    @Override
+    public void setRemainingResource(int count)
+    {
+        currentFood = count;
     }
 
 }
