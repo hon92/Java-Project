@@ -5,14 +5,6 @@
  */
 package Controls;
 
-import GameElement.Bush;
-import GameElement.Cactus;
-import GameElement.Gold;
-import GameElement.Relic;
-import GameElement.Sand;
-import GameElement.Shoal;
-import GameElement.Stone;
-import GameElement.Tree;
 import View.GameBoard;
 import View.MainWindow;
 import java.awt.Color;
@@ -64,7 +56,7 @@ public class Mouse implements MouseListener, MouseMotionListener
 
         clickedIndexX = convertX(clickedIndexX);
         clickedIndexY = convertY(clickedIndexY);
-        if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) != null)
+        if (gameBoard.getObjectFieldObject(clickedIndexX, clickedIndexY) != null && gameBoard.getUnitField(clickedIndexX, clickedIndexY) != null)
         {
             new SelectMouse(gameBoard, MainWindow.botPanel.getSelectPanel(), clickedIndexX, clickedIndexY);
         }
