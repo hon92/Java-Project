@@ -32,4 +32,5 @@ public final class GameData
     //mill [8][5]
     //house [7][4]
     //town center [16][8]
+    //villager 11
 }
