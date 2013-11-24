@@ -5,10 +5,13 @@
  */
 package View;
 
+import Data.ImgResources;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
+import sun.swing.BakedArrayList;
 
 /**
  *
@@ -17,12 +20,13 @@ import javax.swing.JPanel;
 public class ActionView extends JPanel
 {
 
+    private BufferedImage background;
     private GameBoard gameBoard;
 
     public ActionView(GameBoard gameBoard)
     {
         setPreferredSize(new Dimension(360, 200));
-        setBackground(new Color(0, 0, 0, 32));
+        background = ImgResources.getImg("actionView");
         this.gameBoard = gameBoard;
     }
 
@@ -30,6 +34,7 @@ public class ActionView extends JPanel
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
+        g.drawImage(background, background.getWidth(), background.getHeight(), null);
         g.dispose();
 
     }

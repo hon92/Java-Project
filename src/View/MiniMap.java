@@ -23,9 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
-import javax.swing.plaf.BorderUIResource;
 
 public class MiniMap extends JPanel
 {

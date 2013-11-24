@@ -6,12 +6,19 @@
 package View;
 
 import Controls.SelectMouse;
+import Data.ImgResources;
 import Data.Source;
 import GameElement.ObjectElement;
 import Unit.Unit;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
@@ -21,6 +28,7 @@ import javax.swing.JPanel;
 public class SelectView extends JPanel
 {
 
+    private BufferedImage background;
     private GameBoard gameBoard;
     private SelectMouse mouseSelect;
     private ObjectElement element;
@@ -31,19 +39,24 @@ public class SelectView extends JPanel
         setPreferredSize(new Dimension(360, 200));
         setBackground(new Color(0, 0, 0, 32));
         this.gameBoard = gameBoard;
+        background = ImgResources.getImg("selectView");
+
     }
 
     @Override
     protected void paintComponent(Graphics g)
     {
-        MainWindow.botPanel.repaint();
+
         super.paintComponent(g);
+        g.drawImage(background, background.getWidth(), background.getHeight(), null);
         if (element == null && unit == null)
         {
+
             g.drawString("Nic", 50, 50);
         }
         if (element instanceof Source)
         {
+            MainWindow.botPanel.repaint();
             Source s = (Source) element;
             g.drawImage(s.getIcon(), 20, 20, null);
             g.drawString(element.getName(), 50, 30);
@@ -62,7 +75,6 @@ public class SelectView extends JPanel
             g.drawString("Max Hp: " + unit.getMaxHp(), 50, 60);
             g.drawString("Current Hp: " + unit.getHp(), 50, 70);
         }
-
         g.dispose();
 
     }

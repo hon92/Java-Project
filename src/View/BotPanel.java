@@ -5,6 +5,7 @@
  */
 package View;
 
+import Data.GameData;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -23,7 +24,6 @@ import javax.swing.JPanel;
 public class BotPanel extends JPanel
 {
 
-    private static BufferedImage botPanel;
     private GameBoard gameBoard;
     private MiniMap miniMap;
     private SelectView selectView;
@@ -40,25 +40,14 @@ public class BotPanel extends JPanel
         add(miniMap, BorderLayout.EAST);
         add(actionView, BorderLayout.WEST);
         add(selectView, BorderLayout.CENTER);
-        try
-        {
 
-            botPanel = ImageIO.read(new File("src/Resources/botPanel.png"));
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(GameBoard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        setPreferredSize(new Dimension(botPanel.getWidth(), botPanel.getHeight()));
+        setPreferredSize(new Dimension(GameData.WINDOW_WIDTH, 200));
     }
 
     @Override
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        g.drawImage(botPanel, 0, 0, null);
-        //g.dispose();
-
     }
 
     public MiniMap getMiniMapPanel()
