@@ -65,7 +65,7 @@ public class Villager extends Unit
         }
         gameBoard.setUnitField(x, y, this);
         gameBoard.setUnitField(x, y + 1, this);
-        //gameBoard.setFieldIndex(x, y + 1, 11);
+        gameBoard.setFieldIndex(x, y + 1, 11);
     }
 
     public void move()
