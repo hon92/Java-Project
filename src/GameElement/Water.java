@@ -31,7 +31,7 @@ public class Water extends ObjectElement
         {
             for (int j = 0; j < 8; j++)
             {
-                gameBoard.setFieldIndex(x / 25 + i, y / 25 + j, 4);
+                gameBoard.setFieldIndex(x + i, y + j, 4);
             }
         }
 

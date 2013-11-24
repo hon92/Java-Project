@@ -60,6 +60,13 @@ public class GameBoard extends JPanel
         addMouseMotionListener(mouse);
         addKeyListener(new Key(this));
         generateGrass();
+//        for(int i=0;i<columns;i++)
+//        {
+//            for(int j =0;j<rows;j++)
+//            {
+//                System.out.println(i+ " + " +j+ " = "+ getFieldIndex(i,j));
+//            }
+//        }
         //generateDebug();
     }
 
@@ -239,6 +246,7 @@ public class GameBoard extends JPanel
 //                g.drawRect(i, j, 25, 25);
 //            }
 //        }
+        
     }
 
     private void generateGrass()

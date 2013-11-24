@@ -31,6 +31,9 @@ public class Shoal extends ObjectElement
         {
             gameBoard.setObjectFieldObject(x + i, y, this);
             gameBoard.setObjectFieldObject(x + i, y + 1, this);
+            
+            gameBoard.setFieldIndex(x+i, y, 7);
+            gameBoard.setFieldIndex(x+i, y+1, 7);
         }
 
     }
