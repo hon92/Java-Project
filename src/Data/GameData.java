@@ -18,7 +18,7 @@ public final class GameData
     public static final int MAP_HEIGHT = 3600;
     public static final int BOXSIZE = 25;
 
-    //grass = 1
+    //grass = 0
     //tree = 2
     //relic = 3
     //water = 4
@@ -33,4 +33,6 @@ public final class GameData
     //house [7][4]
     //town center [16][8]
     //villager 11
+    
+    //walkable = 0,8,5
 }
