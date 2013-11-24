@@ -1,5 +1,6 @@
 package GameElement;
 
+import Data.ImgResources;
 import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -17,14 +18,8 @@ public class Grass extends ObjectElement
     public Grass(GameBoard gameBoard, int x, int y)
     {
         super(gameBoard, x, y);
-        try
-        {
-            grass = ImageIO.read(new File("src/Resources/grass.png"));
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        grass = ImgResources.getImg("grass");
 
 //        for (int i = 0; i < 16; i++)
 //        {
@@ -33,7 +28,6 @@ public class Grass extends ObjectElement
 //                gameBoard.setFieldIndex(x/25 + i, y/25  + j, 1);
 //            }
 //        }
-
     }
 
     @Override

@@ -24,6 +24,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,18 +73,13 @@ public class MapData
         try
         {
             BufferedReader reader = new BufferedReader(new FileReader("src/Resources/map.data"), 10);
-            //Scanner reader = new Scanner(new FileInputStream("src/Resources/map.data"));
-
             List<String> loadedStrings = new ArrayList<>();
 
             for (int i = 0; i < GameData.MAP_HEIGHT / GameData.BOXSIZE; i++)
             {
                 loadedStrings.add(reader.readLine());
             }
-//            while (reader.hasNextLine())
-//            {
-//                loadedStrings.add(reader.nextLine());
-//            }
+
             matrixX = loadedStrings.size();//pocet radku
             matrixY = loadedStrings.get(0).length(); // delka radku
 
@@ -122,6 +118,7 @@ public class MapData
 
     private void fillLists()
     {
+        Random r = new Random();
         for (int i = 0; i < matrixX; i++)
         {
             for (int j = 0; j < matrixY; j++)
@@ -131,7 +128,21 @@ public class MapData
                     case '#':
                         break;
                     case treeChar:
-                        objects.add(new Tree(gameBoard, j, i));
+                        switch (r.nextInt(4))
+                        {
+                            case 0:
+                                objects.add(new Tree(gameBoard, j, i, "tree1"));
+                                break;
+                            case 1:
+                                objects.add(new Tree(gameBoard, j, i, "tree2"));
+                                break;
+                            case 2:
+                                objects.add(new Tree(gameBoard, j, i, "gayTree"));
+                                break;
+                            case 3:
+                                objects.add(new Tree(gameBoard, j, i, "deadTree"));
+                                break;
+                        }
                         //System.out.println("Added tree");
                         break;
                     case goldChar:

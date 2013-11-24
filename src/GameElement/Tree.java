@@ -1,6 +1,7 @@
 package GameElement;
 
 import Data.GameData;
+import Data.ImgResources;
 import Data.Source;
 import View.GameBoard;
 import java.awt.Graphics;
@@ -14,37 +15,39 @@ import javax.imageio.ImageIO;
 public class Tree extends ObjectElement implements Source
 {
 
-    private static BufferedImage tree1;
-    private static BufferedImage tree2;
-    private static BufferedImage gayTree;
-    private static BufferedImage deadTree;
-    private static BufferedImage treeDown;
-    
+    private BufferedImage tree;
     private static BufferedImage treeIcon;
-    
+//    private static BufferedImage tree2;
+//    private static BufferedImage gayTree;
+//    private static BufferedImage deadTree;
+//    private static BufferedImage treeDown;
+//    private static BufferedImage treeIcon;
+
     private static int startWood;
     private int currentWood;
     private static String name = "Tree";
 
-    public Tree(GameBoard gameBoard, int x, int y)
+    public Tree(GameBoard gameBoard, int x, int y, String treename)
     {
         super(gameBoard, x, y);
-        try
-        {
-            tree1 = ImageIO.read(new File("src/Resources/tree1.png"));
-            tree2 = ImageIO.read(new File("src/Resources/tree2_1.png"));
-            gayTree = ImageIO.read(new File("src/Resources/gayTree.png"));
-            deadTree = ImageIO.read(new File("src/Resources/deadTree.png"));
-            treeDown = ImageIO.read(new File("src/Resources/treeDown.png"));
-            
-            treeIcon = ImageIO.read(new File("src/Resources/treeIcon.png"));
+//        try
+//        {
+//            tree1 = ImageIO.read(new File("src/Resources/tree1.png"));
+//            tree2 = ImageIO.read(new File("src/Resources/tree2_1.png"));
+//            gayTree = ImageIO.read(new File("src/Resources/gayTree.png"));
+//            deadTree = ImageIO.read(new File("src/Resources/deadTree.png"));
+//            treeDown = ImageIO.read(new File("src/Resources/treeDown.png"));
+//
+//            treeIcon = ImageIO.read(new File("src/Resources/treeIcon.png"));
+//
+//        }
+//        catch (IOException ex)
+//        {
+//            Logger.getLogger(Tree.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(Tree.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        tree = ImgResources.getImg(treename);
+        treeIcon = ImgResources.getImg("treeIcon");
         this.currentWood = 100;
         this.startWood = 100;
 
@@ -69,21 +72,21 @@ public class Tree extends ObjectElement implements Source
     {
         if (currentWood < 100)
         {
-            g.drawImage(tree1, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE) + 75, null);
+            g.drawImage(tree, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE) + 75, null);
         }
         else
         {
             if ((((x + y) / 25) % 4 == 3))
             {
-                g.drawImage(tree1, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE), null);
+                g.drawImage(tree, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE), null);
             }
             else if (((x + y) / 25) % 4 == 2)
             {
-                g.drawImage(tree2, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE), null);
+                g.drawImage(tree, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE), null);
             }
             else
             {
-                g.drawImage(gayTree, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE), null);
+                g.drawImage(tree, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE), null);
             }
         }
     }
@@ -106,7 +109,8 @@ public class Tree extends ObjectElement implements Source
     }
 
     @Override
-    public BufferedImage getIcon() {
+    public BufferedImage getIcon()
+    {
         return treeIcon;
     }
 }

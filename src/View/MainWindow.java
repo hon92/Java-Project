@@ -1,6 +1,7 @@
 package View;
 
 import Data.GameData;
+import Data.ImgResources;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -17,6 +18,7 @@ import javax.swing.JFrame;
 public class MainWindow extends JFrame
 {
 
+    public static ImgResources imgResources = new ImgResources();
     public static TopPanel topPanel;
     public static BotPanel botPanel;
     public static GameBoard gameBoard;
