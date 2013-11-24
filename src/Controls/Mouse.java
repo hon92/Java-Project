@@ -57,10 +57,13 @@ public class Mouse implements MouseListener, MouseMotionListener
         clickedIndexX = convertX(clickedIndexX);
         clickedIndexY = convertY(clickedIndexY);
 
-        selectMouse = new SelectMouse(gameBoard, MainWindow.botPanel.getSelectPanel(), clickedIndexX, clickedIndexY);
+        if (e.getButton() == MouseEvent.BUTTON1)
+        {
+            selectMouse = new SelectMouse(gameBoard, MainWindow.botPanel.getSelectPanel(), clickedIndexX, clickedIndexY);
+        }
 
         System.err.println("x: " + clickedIndexX + " y: " + clickedIndexY);
-        
+
     }
 
     @Override
