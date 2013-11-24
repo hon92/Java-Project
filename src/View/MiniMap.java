@@ -185,6 +185,8 @@ public class MiniMap extends JPanel
         y = curry;
         g.setColor(Color.black);
         g.drawRect(x, y, viewRectWidth, viewRectHeight);
+
+        g.dispose();
     }
 
     void setData(List<ObjectElement> objects

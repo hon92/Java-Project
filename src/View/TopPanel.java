@@ -46,6 +46,7 @@ public class TopPanel extends JPanel
     {
         super.paintComponent(g);
         g.drawImage(topPanel, 0, 0, null);
+        g.dispose();
 
     }
 

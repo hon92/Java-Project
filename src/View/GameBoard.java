@@ -239,6 +239,8 @@ public class GameBoard extends JPanel
 //                g.drawRect(i, j, 25, 25);
 //            }
 //        }
+        g.dispose();
+
     }
 
     private void generateGrass()

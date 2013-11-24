@@ -90,6 +90,7 @@ public class MapData
                 }
                 i++;
             }
+            reader.close();
 
             // test jestli se dobre naplnilo
 //            for (int j = 0; j < matrixX; j++)

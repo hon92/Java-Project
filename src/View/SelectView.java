@@ -62,6 +62,8 @@ public class SelectView extends JPanel
             g.drawString("Current Hp: " + unit.getHp(), 50, 70);
         }
 
+        g.dispose();
+
     }
 
     public void setObjectElement(ObjectElement element)

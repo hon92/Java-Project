@@ -30,6 +30,7 @@ public class ActionView extends JPanel
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
+        g.dispose();
 
     }
 
