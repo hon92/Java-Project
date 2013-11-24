@@ -58,7 +58,7 @@ public class GameBoard extends JPanel
         generateGrass();
         
         
-        units.add(new Villager(this, 30, 80, 0));
+        units.add(new Villager(this, 30, 80, 90));
         setFocusable(true);
         addMouseListener(mouse);
         addMouseMotionListener(mouse);
