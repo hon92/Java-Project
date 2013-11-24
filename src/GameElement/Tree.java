@@ -6,22 +6,12 @@ import Data.Source;
 import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
 public class Tree extends ObjectElement implements Source
 {
 
     private BufferedImage tree;
     private static BufferedImage treeIcon;
-//    private static BufferedImage tree2;
-//    private static BufferedImage gayTree;
-//    private static BufferedImage deadTree;
-//    private static BufferedImage treeDown;
-//    private static BufferedImage treeIcon;
 
     private static int startWood;
     private int currentWood;
@@ -30,21 +20,6 @@ public class Tree extends ObjectElement implements Source
     public Tree(GameBoard gameBoard, int x, int y, String treename)
     {
         super(gameBoard, x, y);
-//        try
-//        {
-//            tree1 = ImageIO.read(new File("src/Resources/tree1.png"));
-//            tree2 = ImageIO.read(new File("src/Resources/tree2_1.png"));
-//            gayTree = ImageIO.read(new File("src/Resources/gayTree.png"));
-//            deadTree = ImageIO.read(new File("src/Resources/deadTree.png"));
-//            treeDown = ImageIO.read(new File("src/Resources/treeDown.png"));
-//
-//            treeIcon = ImageIO.read(new File("src/Resources/treeIcon.png"));
-//
-//        }
-//        catch (IOException ex)
-//        {
-//            Logger.getLogger(Tree.class.getName()).log(Level.SEVERE, null, ex);
-//        }
 
         tree = ImgResources.getImg(treename);
         treeIcon = ImgResources.getImg("treeIcon");
