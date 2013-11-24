@@ -17,8 +17,11 @@ import GameElement.Stone;
 import GameElement.Tree;
 import GameElement.Water;
 import View.GameBoard;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -65,17 +68,22 @@ public class MapData
 
     private void initMatrix()
     {
+
         try
         {
-            Scanner reader = new Scanner(new FileInputStream("src/Resources/map.data"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/Resources/map.data"), 10);
+            //Scanner reader = new Scanner(new FileInputStream("src/Resources/map.data"));
 
             List<String> loadedStrings = new ArrayList<>();
 
-            while (reader.hasNextLine())
+            for (int i = 0; i < GameData.MAP_HEIGHT / GameData.BOXSIZE; i++)
             {
-                loadedStrings.add(reader.nextLine());
+                loadedStrings.add(reader.readLine());
             }
-
+//            while (reader.hasNextLine())
+//            {
+//                loadedStrings.add(reader.nextLine());
+//            }
             matrixX = loadedStrings.size();//pocet radku
             matrixY = loadedStrings.get(0).length(); // delka radku
 
@@ -90,7 +98,6 @@ public class MapData
                 }
                 i++;
             }
-            reader.close();
 
             // test jestli se dobre naplnilo
 //            for (int j = 0; j < matrixX; j++)
@@ -103,6 +110,10 @@ public class MapData
 //            }
         }
         catch (FileNotFoundException ex)
+        {
+            Logger.getLogger(MapData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (IOException ex)
         {
             Logger.getLogger(MapData.class.getName()).log(Level.SEVERE, null, ex);
         }
