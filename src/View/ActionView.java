@@ -22,7 +22,7 @@ public class ActionView extends JPanel
     public ActionView(GameBoard gameBoard)
     {
         setPreferredSize(new Dimension(360, 200));
-        setBackground(Color.red);
+        setBackground(new Color(0, 0, 0, 32));
         this.gameBoard = gameBoard;
     }
 

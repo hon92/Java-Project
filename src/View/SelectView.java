@@ -29,13 +29,14 @@ public class SelectView extends JPanel
     public SelectView(GameBoard gameBoard)
     {
         setPreferredSize(new Dimension(360, 200));
-        //setBackground(Color.green);
+        setBackground(new Color(0, 0, 0, 32));
         this.gameBoard = gameBoard;
     }
 
     @Override
     protected void paintComponent(Graphics g)
     {
+        MainWindow.botPanel.repaint();
         super.paintComponent(g);
         if (element == null && unit == null)
         {

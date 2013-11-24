@@ -57,7 +57,7 @@ public class BotPanel extends JPanel
     {
         super.paintComponent(g);
         g.drawImage(botPanel, 0, 0, null);
-        g.dispose();
+        //g.dispose();
 
     }
 
