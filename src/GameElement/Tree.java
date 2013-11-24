@@ -60,8 +60,8 @@ public class Tree extends ObjectElement implements Source
         gameBoard.setFieldIndex(x, y + 2, 2);
         gameBoard.setFieldIndex(x + 1, y + 2, 2);
 
-        gameBoard.setFieldIndex(x, y + 2, 3);
-        gameBoard.setFieldIndex(x + 1, y + 2, 3);
+        gameBoard.setFieldIndex(x, y + 3, 2);
+        gameBoard.setFieldIndex(x + 1, y + 3, 2);
 
     }
 

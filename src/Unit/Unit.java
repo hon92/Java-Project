@@ -17,6 +17,7 @@ import java.awt.image.BufferedImage;
 public abstract class Unit
 {
 
+    protected int createTime;
     protected int currentHp;
     protected int maxHp;
     protected int speed;
