@@ -66,6 +66,8 @@ public class Mouse implements MouseListener, MouseMotionListener
     @Override
     public void mousePressed(MouseEvent e)
     {
+        clickedX = e.getX();
+        clickedY = e.getY();
     }
 
     @Override
@@ -96,6 +98,7 @@ public class Mouse implements MouseListener, MouseMotionListener
         {
             g.setColor(dragColor);
             g.fillRect(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
+            //g.fillRect(clickedX, clickedY, clickedX, clickedY);
         }
     }
 
@@ -105,12 +108,12 @@ public class Mouse implements MouseListener, MouseMotionListener
         if (isLeftMouseButton(e))
         {
             active = true;
-            if (!firstDrag)
-            {
-                clickedX = e.getX();
-                clickedY = e.getY();
-                firstDrag = true;
-            }
+//            if (!firstDrag)
+//            {
+//                clickedX = e.getX();
+//                clickedY = e.getY();
+//                firstDrag = true;
+//            }
             currentX = e.getX();
             currentY = e.getY();
         }
