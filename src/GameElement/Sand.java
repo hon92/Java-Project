@@ -29,11 +29,11 @@ public class Sand extends ObjectElement
 
         for (int i = 0; i < 8; i++)
         {
-            if (gameBoard.getFieldIndex(x+i, y)==0)
+            if (gameBoard.getFieldIndex(x + i, y) == 0)
             {
-                gameBoard.setFieldIndex(x+i, y, 8);
+                gameBoard.setFieldIndex(x + i, y, 8);
             }
-            gameBoard.setObjectFieldObject(x + i, y, this);
+            //gameBoard.setObjectFieldObject(x + i, y, this);
         }
 
     }

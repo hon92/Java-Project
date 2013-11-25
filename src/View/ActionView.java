@@ -34,7 +34,7 @@ public class ActionView extends JPanel
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        g.drawImage(background, background.getWidth(), background.getHeight(), null);
+        g.drawImage(background, 0, 0, null);
         g.dispose();
 
     }

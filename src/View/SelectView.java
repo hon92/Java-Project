@@ -14,11 +14,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
@@ -37,7 +32,6 @@ public class SelectView extends JPanel
     public SelectView(GameBoard gameBoard)
     {
         setPreferredSize(new Dimension(360, 200));
-        setBackground(new Color(0, 0, 0, 32));
         this.gameBoard = gameBoard;
         background = ImgResources.getImg("selectView");
 
@@ -48,7 +42,7 @@ public class SelectView extends JPanel
     {
 
         super.paintComponent(g);
-        g.drawImage(background, background.getWidth(), background.getHeight(), null);
+        g.drawImage(background, 0, 0, null);
         if (element == null && unit == null)
         {
 

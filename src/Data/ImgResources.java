@@ -39,7 +39,7 @@ public class ImgResources
             imgs.put("grass", ImageIO.read(new File("src/Resources/grass.png")));
             imgs.put("water", ImageIO.read(new File("src/Resources/water.png")));
             imgs.put("selectView", ImageIO.read(new File("src/Resources/selectView.png")));
-            imgs.put("actiontView", ImageIO.read(new File("src/Resources/actionView.png")));
+            imgs.put("actionView", ImageIO.read(new File("src/Resources/actionView.png")));
 
         }
         catch (IOException ex)
