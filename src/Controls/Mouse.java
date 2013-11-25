@@ -28,9 +28,6 @@ public class Mouse implements MouseListener, MouseMotionListener
     private int clickedX = 0;
     private int clickedY = 0;
 
-    private int clickedObjectX = 0;
-    private int clickedObjectY = 0;
-
     private int currentX = 0;
     private int currentY = 0;
 

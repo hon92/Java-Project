@@ -51,19 +51,18 @@ public class GameBoard extends JPanel
         objects = new ArrayList<>();
         mapData = new MapData(this);
         mouse = new Mouse(this);
-        
+
         objects = mapData.getMapData();
         units = new ArrayList<Unit>();
-        
+
         generateGrass();
-        
-        
+
         units.add(new Villager(this, 30, 80, 90));
         setFocusable(true);
         addMouseListener(mouse);
         addMouseMotionListener(mouse);
         addKeyListener(new Key(this));
-        
+
 //        for(int i=0;i<columns;i++)
 //        {
 //            for(int j =0;j<rows;j++)
@@ -242,15 +241,15 @@ public class GameBoard extends JPanel
         mouse.drawRect(g);
 
         g.setColor(Color.red);
-                
-        for(int i=0;i<columns;i++)
+
+        for (int i = 0; i < columns; i++)
         {
-            for(int j =0;j<rows;j++)
+            for (int j = 0; j < rows; j++)
             {
-                g.drawString(""+getFieldIndex(i,j), convertX(i*25+12), convertY(j*25+12));
+                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
             }
         }
-        
+
 //        g.setColor(Color.white);
 //        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
 //        {
@@ -260,6 +259,7 @@ public class GameBoard extends JPanel
 //                g.drawRect(i, j, 25, 25);
 //            }
 //        }
+        //repaint(currentWindowX, currentWindowY, GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT);
         g.dispose();
 
     }

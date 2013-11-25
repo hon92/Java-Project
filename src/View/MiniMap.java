@@ -44,7 +44,7 @@ public class MiniMap extends JPanel
     final private Color blueColor = new Color(136, 206, 250);
     private List<ObjectElement> objects;
     private Timer mapRefresh;
-    private int refreshDelay = 300;
+    private int refreshDelay = 100;
 
     public MiniMap(final GameBoard gameBoard)
     {
