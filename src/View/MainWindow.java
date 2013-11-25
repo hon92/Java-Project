@@ -59,6 +59,8 @@ public class MainWindow extends JFrame
     public static void main(String args[])
     {
 
+        System.setProperty("sun.java2d.opengl", "true");
+
         try
         {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
@@ -66,6 +68,9 @@ public class MainWindow extends JFrame
                 if ("Windows".equals(info.getName()))
                 {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    //logger.info("Disabling DirectDraw (sun.java2d.noddraw=true)");
+                    //System.setProperty("sun.java2d.noddraw", "true");
+
                     break;
                 }
             }

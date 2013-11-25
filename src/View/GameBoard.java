@@ -20,6 +20,7 @@ import Unit.Villager.Villager;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -259,7 +260,6 @@ public class GameBoard extends JPanel
 //                g.drawRect(i, j, 25, 25);
 //            }
 //        }
-        //repaint(currentWindowX, currentWindowY, GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT);
         g.dispose();
 
     }
