@@ -2,6 +2,7 @@ package View;
 
 import Controls.Key;
 import Controls.Mouse;
+import Controls.SelectRectangle;
 import Data.GameData;
 import Data.MapData;
 import GameElement.Bush;
@@ -233,23 +234,21 @@ public class GameBoard extends JPanel
                 ob.drawObject(g);
             }
         }
-
+        mouse.drawRect(g);
         for (Unit u : units)
         {
             u.drawUnit(g);
         }
-        mouse.drawRect(g);
 
         g.setColor(Color.red);
 
-        for (int i = 0; i < columns; i++)
-        {
-            for (int j = 0; j < rows; j++)
-            {
-                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
-            }
-        }
-
+//        for (int i = 0; i < columns; i++)
+//        {
+//            for (int j = 0; j < rows; j++)
+//            {
+//                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
+//            }
+//        }
 //        g.setColor(Color.white);
 //        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
 //        {
