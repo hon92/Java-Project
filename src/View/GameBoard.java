@@ -23,6 +23,8 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 public class GameBoard extends JPanel
@@ -44,7 +46,6 @@ public class GameBoard extends JPanel
     public GameBoard()
     {
         initGameBoard();
-
     }
 
     private void initGameBoard()
@@ -64,6 +65,7 @@ public class GameBoard extends JPanel
         addMouseListener(mouse);
         addMouseMotionListener(mouse);
         addKeyListener(new Key(this));
+        gameLoop();
 
 //        for(int i=0;i<columns;i++)
 //        {
@@ -73,6 +75,45 @@ public class GameBoard extends JPanel
 //            }
 //        }
         //generateDebug();
+    }
+
+    private void gameLoop()
+    {
+        Thread gameThread = new Thread(new Runnable()
+        {
+
+            @Override
+            public void run()
+            {
+                while (true)
+                {
+                    tick();
+                    repaint();
+                    try
+                    {
+                        //50ms - 20 fps
+                        //33ms - 30fps
+                        //16ms - 60 fps
+                        Thread.sleep(16);
+                    }
+                    catch (InterruptedException ex)
+                    {
+                        Logger.getLogger(GameBoard.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+            }
+
+        }, "gameThread");
+        gameThread.start();
+    }
+
+    public void tick()
+    {
+        for (Unit u : units)
+        {
+            u.tick();
+        }
     }
 
     private void fillBackground()

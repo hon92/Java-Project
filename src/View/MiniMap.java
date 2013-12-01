@@ -89,7 +89,7 @@ public class MiniMap extends JPanel
 
             gameBoard.setWindowsX(setx);
             gameBoard.setWindowsY(sety);
-            gameBoard.repaint();
+            //gameBoard.repaint();
             repaint();
 
         }
@@ -127,7 +127,7 @@ public class MiniMap extends JPanel
             int sety = mapy * scaleY - GameData.WINDOW_HEIGHT / 2;
             gameBoard.setWindowsX(setx);
             gameBoard.setWindowsY(sety);
-            gameBoard.repaint();
+            //gameBoard.repaint();
             repaint();
         }
 
@@ -215,7 +215,7 @@ public class MiniMap extends JPanel
         int yy = newy + viewRectHeight / 2;
         gameBoard.setWindowsX(xx);
         gameBoard.setWindowsY(yy);
-        gameBoard.repaint();
+        //gameBoard.repaint();
 
     }
 

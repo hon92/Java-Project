@@ -79,4 +79,6 @@ public abstract class Unit
 
     public abstract BufferedImage getIcon();
 
+    public abstract void tick();
+
 }

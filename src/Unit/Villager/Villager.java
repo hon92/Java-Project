@@ -24,6 +24,7 @@ import javax.imageio.ImageIO;
  */
 public class Villager extends Unit
 {
+
     private int carriedResources;
 
     private static int attack;
@@ -99,41 +100,41 @@ public class Villager extends Unit
             g.setColor(Color.green);
             g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), (int) (25 * getHpDown()), 5);
         }
-        if((direction>=247) && (direction<292))
-           {
-               g.drawImage(villagerTop, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);     
-           }
-        else if ((direction>=78) && (direction < 123))
+        if ((direction >= 247) && (direction < 292))
+        {
+            g.drawImage(villagerTop, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
+        }
+        else if ((direction >= 78) && (direction < 123))
         {
             g.drawImage(villagerDown, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
         }
-        
-        else if ((direction >=158) && (direction <203))
+
+        else if ((direction >= 158) && (direction < 203))
         {
             g.drawImage(villagerLeft, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
         }
-        
-        else if ((direction >=338) || (direction <23))
+
+        else if ((direction >= 338) || (direction < 23))
         {
             g.drawImage(villagerRight, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
         }
-        
-        else if ((direction <338) && (direction >=292))
+
+        else if ((direction < 338) && (direction >= 292))
         {
             g.drawImage(villagerRightTop, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
         }
-        
-        else if ((direction >=203) && (direction <247))
+
+        else if ((direction >= 203) && (direction < 247))
         {
             g.drawImage(villagerLeftTop, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
         }
-        
-        else if ((direction >=123) && (direction <158))
+
+        else if ((direction >= 123) && (direction < 158))
         {
             g.drawImage(villagerLeftBot, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
         }
-        
-        else if ((direction >=23) && (direction <78))
+
+        else if ((direction >= 23) && (direction < 78))
         {
             g.drawImage(villagerRightBot, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
         }
@@ -173,6 +174,12 @@ public class Villager extends Unit
     public BufferedImage getIcon()
     {
         return villagerIcon;
+    }
+
+    @Override
+    public void tick()
+    {
+
     }
 
 }
