@@ -59,4 +59,9 @@ public class SelectMouse
         }
     }
 
+    void goTo(int clickedIndexX, int clickedIndexY)
+    {
+        unit.move(clickedIndexX, clickedIndexY);
+    }
+
 }

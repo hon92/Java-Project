@@ -17,12 +17,14 @@ import GameElement.Tree;
 import GameElement.Water;
 import Unit.Unit;
 import Unit.Villager.Villager;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 public class GameBoard extends JPanel
@@ -30,6 +32,7 @@ public class GameBoard extends JPanel
 
     private int currentWindowX;
     private int currentWindowY;
+    private BufferStrategy bufferStrategy;
     private final int columns = GameData.MAP_WIDTH / GameData.BOXSIZE;
     private final int rows = GameData.MAP_HEIGHT / GameData.BOXSIZE;
     private int[][] field = new int[rows][columns];
@@ -39,11 +42,135 @@ public class GameBoard extends JPanel
     private List<ObjectElement> objects;
     private List<Unit> units;
     private Mouse mouse;
+    private boolean running;
 
-    public GameBoard()
+    public GameBoard(BufferStrategy bufferStrategy)
     {
+        this.bufferStrategy = bufferStrategy;
         initGameBoard();
+        start();
 
+    }
+
+    private void start()
+    {
+        running = true;
+        Thread gameThread = new Thread(new Runnable()
+        {
+
+            @Override
+            public void run()
+            {
+                while (running)
+                {
+
+                    tick();//logika hry
+                    render();//vykresleni hry
+                    try
+                    {
+                        Thread.sleep(8);//120fps
+                    }
+                    catch (InterruptedException ex)
+                    {
+                        Logger.getLogger(GameBoard.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+                System.out.println("game end");
+            }
+        }, "GameThread");
+        gameThread.start();
+
+    }
+
+    public void render()
+    {
+
+        Graphics g = bufferStrategy.getDrawGraphics();
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Water)
+            {
+                ob.drawObject(g);
+            }
+        }
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Grass)
+            {
+                ob.drawObject(g);
+            }
+        }
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Shoal)
+            {
+                ob.drawObject(g);
+            }
+        }
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Sand)
+            {
+                ob.drawObject(g);
+            }
+        }
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Tree)
+            {
+                ob.drawObject(g);
+            }
+        }
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Bush)
+            {
+                ob.drawObject(g);
+            }
+        }
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Gold)
+            {
+                ob.drawObject(g);
+            }
+        }
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Stone)
+            {
+                ob.drawObject(g);
+            }
+        }
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Relic)
+            {
+                ob.drawObject(g);
+            }
+        }
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Cactus)
+            {
+                ob.drawObject(g);
+            }
+        }
+        //MainWindow.botPanel.getMiniMapPanel().paintComponent(g);
+        mouse.drawRect(g);
+        g.dispose();
+        bufferStrategy.show();
+
+        Toolkit.getDefaultToolkit().sync();
     }
 
     private void initGameBoard()
@@ -71,13 +198,6 @@ public class GameBoard extends JPanel
 //                System.out.println(getFieldIndex(i,j));
 //            }
 //        }
-        //generateDebug();
-    }
-
-    private void generateDebug()
-    {
-
-        objects.add(new Relic(this, 3, 4));
     }
 
     public void addToCurrentWindowX(int increment)
@@ -150,98 +270,98 @@ public class GameBoard extends JPanel
         return y - currentWindowY;
     }
 
-    @Override
-    protected void paintComponent(Graphics g)
-    {
-        super.paintComponent(g);
-
-        for (ObjectElement ob : objects)
-        {
-            if (ob instanceof Water)
-            {
-                ob.drawObject(g);
-            }
-        }
-
-        for (ObjectElement ob : objects)
-        {
-            if (ob instanceof Grass)
-            {
-                ob.drawObject(g);
-            }
-        }
-
-        for (ObjectElement ob : objects)
-        {
-            if (ob instanceof Shoal)
-            {
-                ob.drawObject(g);
-            }
-        }
-
-        for (ObjectElement ob : objects)
-        {
-            if (ob instanceof Sand)
-            {
-                ob.drawObject(g);
-            }
-        }
-
-        for (ObjectElement ob : objects)
-        {
-            if (ob instanceof Tree)
-            {
-                ob.drawObject(g);
-            }
-        }
-
-        for (ObjectElement ob : objects)
-        {
-            if (ob instanceof Bush)
-            {
-                ob.drawObject(g);
-            }
-        }
-
-        for (ObjectElement ob : objects)
-        {
-            if (ob instanceof Gold)
-            {
-                ob.drawObject(g);
-            }
-        }
-
-        for (ObjectElement ob : objects)
-        {
-            if (ob instanceof Stone)
-            {
-                ob.drawObject(g);
-            }
-        }
-
-        for (ObjectElement ob : objects)
-        {
-            if (ob instanceof Relic)
-            {
-                ob.drawObject(g);
-            }
-        }
-
-        for (ObjectElement ob : objects)
-        {
-            if (ob instanceof Cactus)
-            {
-                ob.drawObject(g);
-            }
-        }
-        mouse.drawRect(g);
-        for (Unit u : units)
-        {
-            u.drawUnit(g);
-        }
-
-        g.setColor(Color.red);
-
+    //@Override
+    //protected void paintComponent(Graphics g)
+//    {
+//
+//        super.paintComponent(g);
+//        for (ObjectElement ob : objects)
+//        {
+//            if (ob instanceof Water)
+//            {
+//                ob.drawObject(g);
+//            }
+//        }
+//
+//        for (ObjectElement ob : objects)
+//        {
+//            if (ob instanceof Grass)
+//            {
+//                ob.drawObject(g);
+//            }
+//        }
+//
+//        for (ObjectElement ob : objects)
+//        {
+//            if (ob instanceof Shoal)
+//            {
+//                ob.drawObject(g);
+//            }
+//        }
+//
+//        for (ObjectElement ob : objects)
+//        {
+//            if (ob instanceof Sand)
+//            {
+//                ob.drawObject(g);
+//            }
+//        }
+//
+//        for (ObjectElement ob : objects)
+//        {
+//            if (ob instanceof Tree)
+//            {
+//                ob.drawObject(g);
+//            }
+//        }
+//
+//        for (ObjectElement ob : objects)
+//        {
+//            if (ob instanceof Bush)
+//            {
+//                ob.drawObject(g);
+//            }
+//        }
+//
+//        for (ObjectElement ob : objects)
+//        {
+//            if (ob instanceof Gold)
+//            {
+//                ob.drawObject(g);
+//            }
+//        }
+//
+//        for (ObjectElement ob : objects)
+//        {
+//            if (ob instanceof Stone)
+//            {
+//                ob.drawObject(g);
+//            }
+//        }
+//
+//        for (ObjectElement ob : objects)
+//        {
+//            if (ob instanceof Relic)
+//            {
+//                ob.drawObject(g);
+//            }
+//        }
+//
+//        for (ObjectElement ob : objects)
+//        {
+//            if (ob instanceof Cactus)
+//            {
+//                ob.drawObject(g);
+//            }
+//        }
+//        mouse.drawRect(g);
+//        for (Unit u : units)
+//        {
+//            u.drawUnit(g);
+//        }
+//
+//        g.setColor(Color.red);
+//
 //        for (int i = 0; i < columns; i++)
 //        {
 //            for (int j = 0; j < rows; j++)
@@ -249,26 +369,25 @@ public class GameBoard extends JPanel
 //                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
 //            }
 //        }
-//        g.setColor(Color.white);
-//        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
-//        {
-//            for (int j = 0; j < GameData.MAP_HEIGHT; j += GameData.BOXSIZE)
-//            {
+//        //        g.setColor(Color.white);
+//        //        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
+//        //        {
+//        //            for (int j = 0; j < GameData.MAP_HEIGHT; j += GameData.BOXSIZE)
+//        //            {
+//        //
+//        //                g.drawRect(i, j, 25, 25);
+//        //            }
+//        //        }
 //
-//                g.drawRect(i, j, 25, 25);
-//            }
-//        }
-        Toolkit.getDefaultToolkit().sync();
-
-        g.dispose();
-
-    }
-
-    public void repaint()
-    {
-        repaint(0, 0, GameData.WINDOW_WIDTH, GameData.MAP_HEIGHT - 200);
-    }
-
+//        g.dispose();
+//
+//        Toolkit.getDefaultToolkit().sync();
+//
+//    }
+//    public void repaint()
+//    {
+//        repaint(0, 0, GameData.WINDOW_WIDTH, GameData.MAP_HEIGHT - 200);
+//    }
     private void generateGrass()
     {
         Grass gr = new Grass(this, 0, 850);
@@ -343,6 +462,11 @@ public class GameBoard extends JPanel
     List<ObjectElement> getObjects()
     {
         return objects;
+    }
+
+    private void tick()
+    {
+        //System.err.println("tick");
     }
 
 }

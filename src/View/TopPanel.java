@@ -7,6 +7,7 @@ package View;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class TopPanel extends JPanel
     private static BufferedImage topPanel;
 
     private GameBoard gameBoard;
+    private BufferStrategy bs;
 
     TopPanel(GameBoard gameBoard)
     {
@@ -41,13 +43,17 @@ public class TopPanel extends JPanel
 
     }
 
-    @Override
-    protected void paintComponent(Graphics g)
+    TopPanel(GameBoard gameBoard, BufferStrategy bufferStrategy)
     {
-        super.paintComponent(g);
+        this(gameBoard);
+        bs = bufferStrategy;
+    }
+
+    public void render()
+    {
+        Graphics g = bs.getDrawGraphics();
         g.drawImage(topPanel, 0, 0, null);
         g.dispose();
-
     }
 
 }

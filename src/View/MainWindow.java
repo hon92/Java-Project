@@ -26,40 +26,39 @@ public class MainWindow extends JFrame
     public MainWindow() throws HeadlessException
     {
         super("Age of Empires The ZIHOMO Expansion");
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(new Dimension(GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT));
         setResizable(false);
+        setVisible(true);
+        createBufferStrategy(3);
         initWindow();
-        add(topPanel, BorderLayout.NORTH);
-        add(gameBoard, BorderLayout.CENTER);
-        add(botPanel, BorderLayout.SOUTH);
         setLocationRelativeTo(null);
-
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         try
         {
             Cursor cursor;
-            cursor = toolkit.createCustomCursor(ImageIO.read(new File("src/Resources/cursor.png")), new Point(16, 16), "img");
-            //getRootPane().setCursor(cursor);
+            cursor = toolkit.createCustomCursor(ImageIO.read(new File("src/Resources/cursor.png")), new Point(5, 5), "img");
+            getRootPane().setCursor(cursor);
         }
         catch (IOException ex)
         {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     private void initWindow()
     {
-        gameBoard = new GameBoard();
-        topPanel = new TopPanel(gameBoard);
-        botPanel = new BotPanel(gameBoard);
+        gameBoard = new GameBoard(getBufferStrategy());
+        topPanel = new TopPanel(gameBoard, getBufferStrategy());
+        botPanel = new BotPanel(gameBoard, getBufferStrategy());
+        add(gameBoard, BorderLayout.CENTER);
+        add(topPanel, BorderLayout.NORTH);
+        add(botPanel, BorderLayout.SOUTH);
     }
 
     public static void main(String args[])
     {
-
-        System.setProperty("sun.java2d.opengl", "true");
 
         try
         {
@@ -68,9 +67,6 @@ public class MainWindow extends JFrame
                 if ("Windows".equals(info.getName()))
                 {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    //logger.info("Disabling DirectDraw (sun.java2d.noddraw=true)");
-                    //System.setProperty("sun.java2d.noddraw", "true");
-
                     break;
                 }
             }
@@ -96,7 +92,7 @@ public class MainWindow extends JFrame
         {
             public void run()
             {
-                new MainWindow().setVisible(true);
+                new MainWindow();
             }
         });
     }

@@ -9,12 +9,7 @@ import Data.GameData;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
+import java.awt.image.BufferStrategy;
 import javax.swing.JPanel;
 
 /**
@@ -28,6 +23,7 @@ public class BotPanel extends JPanel
     private MiniMap miniMap;
     private SelectView selectView;
     private ActionView actionView;
+    private BufferStrategy bs;
 
     BotPanel(GameBoard gameBoard)
     {
@@ -44,10 +40,16 @@ public class BotPanel extends JPanel
         setPreferredSize(new Dimension(GameData.WINDOW_WIDTH, 200));
     }
 
-    @Override
-    protected void paintComponent(Graphics g)
+    BotPanel(GameBoard gameBoard, BufferStrategy bufferStrategy)
     {
-        super.paintComponent(g);
+        this(gameBoard);
+        bs = bufferStrategy;
+    }
+
+    public void render()
+    {
+        Graphics g = bs.getDrawGraphics();
+
     }
 
     public MiniMap getMiniMapPanel()

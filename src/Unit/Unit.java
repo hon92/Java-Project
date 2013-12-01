@@ -36,6 +36,7 @@ public abstract class Unit
         locationX = x;
         locationY = y;
         direction = dir;
+
     }
 
     public abstract void move(int x, int y);

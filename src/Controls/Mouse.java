@@ -59,7 +59,10 @@ public class Mouse implements MouseListener, MouseMotionListener
         {
             selectMouse = new SelectMouse(gameBoard, MainWindow.botPanel.getSelectPanel(), clickedIndexX, clickedIndexY);
         }
-
+        if (e.getButton() == MouseEvent.BUTTON3 && selectMouse != null)
+        {
+            selectMouse.goTo(clickedIndexX, clickedIndexY);
+        }
         System.err.println("x: " + clickedIndexX + " y: " + clickedIndexY);
 
     }
@@ -82,7 +85,8 @@ public class Mouse implements MouseListener, MouseMotionListener
         currentY = 0;
 
         rectx = recty = rectw = recth = 0;
-        gameBoard.repaint();
+        //gameBoard.repaint();
+        //gameBoard.render();
     }
 
     @Override
@@ -120,7 +124,8 @@ public class Mouse implements MouseListener, MouseMotionListener
 
             currentX = e.getX();
             currentY = e.getY();
-            gameBoard.repaint();
+            //gameBoard.repaint();
+            //gameBoard.render();
 //            if (e.getX() >= clickedX && e.getY() >= clickedY)
 //            {
 //

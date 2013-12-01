@@ -46,7 +46,8 @@ public class Key implements KeyListener
                 gameBoard.addToCurrentWindowY(100);
                 break;
         }
-        gameBoard.repaint();
+        //gameBoard.repaint();
+        //gameBoard.render();
     }
 
     @Override
