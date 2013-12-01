@@ -17,10 +17,10 @@ import GameElement.Tree;
 import GameElement.Water;
 import Unit.Unit;
 import Unit.Villager.Villager;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -39,6 +39,7 @@ public class GameBoard extends JPanel
     private List<ObjectElement> objects;
     private List<Unit> units;
     private Mouse mouse;
+    private BufferedImage background;
 
     public GameBoard()
     {
@@ -57,7 +58,7 @@ public class GameBoard extends JPanel
         units = new ArrayList<Unit>();
 
         generateGrass();
-
+        fillBackground();
         units.add(new Villager(this, 30, 80, 90));
         setFocusable(true);
         addMouseListener(mouse);
@@ -72,6 +73,38 @@ public class GameBoard extends JPanel
 //            }
 //        }
         //generateDebug();
+    }
+
+    private void fillBackground()
+    {
+        background = new BufferedImage(GameData.MAP_WIDTH, GameData.MAP_HEIGHT, BufferedImage.TYPE_INT_RGB);// new BufferedImage(GameData.MAP_WIDTH, GameData.MAP_WIDTH, BufferedImage.TYPE_INT_RGB);
+        Graphics g = background.getGraphics();
+
+        for (ObjectElement ob : objects)
+        {
+            if (ob instanceof Water)
+            {
+                ob.drawObject(g);
+                continue;
+            }
+            if (ob instanceof Grass)
+            {
+                ob.drawObject(g);
+                continue;
+            }
+            if (ob instanceof Shoal)
+            {
+                ob.drawObject(g);
+                continue;
+            }
+            if (ob instanceof Sand)
+            {
+                ob.drawObject(g);
+                continue;
+            }
+        }
+        g.dispose();
+
     }
 
     private void generateDebug()
@@ -154,94 +187,53 @@ public class GameBoard extends JPanel
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-
-        for (ObjectElement ob : objects)
+        if (background != null)
         {
-            if (ob instanceof Water)
-            {
-                ob.drawObject(g);
-            }
+            g.drawImage(background, -currentWindowX, -currentWindowY, GameData.MAP_WIDTH, GameData.MAP_HEIGHT, null);
         }
-
-        for (ObjectElement ob : objects)
-        {
-            if (ob instanceof Grass)
-            {
-                ob.drawObject(g);
-            }
-        }
-
-        for (ObjectElement ob : objects)
-        {
-            if (ob instanceof Shoal)
-            {
-                ob.drawObject(g);
-            }
-        }
-
-        for (ObjectElement ob : objects)
-        {
-            if (ob instanceof Sand)
-            {
-                ob.drawObject(g);
-            }
-        }
+        //udelat image,nakreslit na nej travu a vodu,pak vykreslit ten image a az pak vykreslit suroviny atd
 
         for (ObjectElement ob : objects)
         {
             if (ob instanceof Tree)
             {
                 ob.drawObject(g);
+                continue;
             }
-        }
-
-        for (ObjectElement ob : objects)
-        {
             if (ob instanceof Bush)
             {
                 ob.drawObject(g);
+                continue;
             }
-        }
-
-        for (ObjectElement ob : objects)
-        {
             if (ob instanceof Gold)
             {
                 ob.drawObject(g);
+                continue;
             }
-        }
-
-        for (ObjectElement ob : objects)
-        {
             if (ob instanceof Stone)
             {
                 ob.drawObject(g);
+                continue;
             }
-        }
-
-        for (ObjectElement ob : objects)
-        {
             if (ob instanceof Relic)
             {
                 ob.drawObject(g);
+                continue;
             }
-        }
-
-        for (ObjectElement ob : objects)
-        {
             if (ob instanceof Cactus)
             {
                 ob.drawObject(g);
+                continue;
             }
         }
+
         mouse.drawRect(g);
         for (Unit u : units)
         {
             u.drawUnit(g);
         }
 
-        g.setColor(Color.red);
-
+        //g.setColor(Color.red);
 //        for (int i = 0; i < columns; i++)
 //        {
 //            for (int j = 0; j < rows; j++)
@@ -258,17 +250,14 @@ public class GameBoard extends JPanel
 //                g.drawRect(i, j, 25, 25);
 //            }
 //        }
-        Toolkit.getDefaultToolkit().sync();
-
         g.dispose();
-
+        Toolkit.getDefaultToolkit().sync();
     }
 
-    public void repaint()
-    {
-        repaint(0, 0, GameData.WINDOW_WIDTH, GameData.MAP_HEIGHT - 200);
-    }
-
+//    public void repaint()
+//    {
+//        repaint(0, 0, GameData.WINDOW_WIDTH, GameData.MAP_HEIGHT - 200);
+//    }
     private void generateGrass()
     {
         Grass gr = new Grass(this, 0, 850);
