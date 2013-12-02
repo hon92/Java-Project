@@ -86,17 +86,13 @@ public class Villager extends Unit
     {
 
         gameBoard.setFieldIndex(locationX, locationY + 1, 0);
-        gameBoard.setUnitField(locationX, locationY, null);
-        gameBoard.setUnitField(locationX, locationY+1, null);
+
         if (currentPoint < moves.size())
         {
             locationX = moves.get(currentPoint).getX();
-            locationY = moves.get(currentPoint).getY();
+            locationY = moves.get(currentPoint).getY() - 1;
             gameBoard.setFieldIndex(locationX, locationY + 1, 11);
-            
-            gameBoard.setUnitField(locationX, locationY, this);
-            gameBoard.setUnitField(locationX, locationY+1, this);
-            
+
             System.out.println("New Location:  " + "Lx: " + locationX + "  " + "Ly: " + locationY);
         }
         currentPoint++;
@@ -231,9 +227,8 @@ public class Villager extends Unit
 
     private boolean isMoving()
     {
-        if (locationX != newLocationX || locationY != newLocationY)
+        if (locationX != newLocationX && locationY != newLocationY)
         {
-            
             return true;
         }
         else
