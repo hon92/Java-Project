@@ -91,7 +91,7 @@ public class Villager extends Unit
         if (currentPoint < moves.size())
         {
             locationX = moves.get(currentPoint).getX();
-            locationY = moves.get(currentPoint).getY() - 1;
+            locationY = moves.get(currentPoint).getY();
             gameBoard.setFieldIndex(locationX, locationY + 1, 11);
             
             gameBoard.setUnitField(locationX, locationY, this);
@@ -231,9 +231,9 @@ public class Villager extends Unit
 
     private boolean isMoving()
     {
-        if (locationX != newLocationX && locationY != newLocationY)
+        if (locationX != newLocationX || locationY != newLocationY)
         {
-            System.out.println("piiico");
+            
             return true;
         }
         else
