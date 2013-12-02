@@ -86,13 +86,17 @@ public class Villager extends Unit
     {
 
         gameBoard.setFieldIndex(locationX, locationY + 1, 0);
+        gameBoard.setUnitField(locationX, locationY, null);
+        gameBoard.setUnitField(locationX, locationY + 1, null);
+        System.out.println("velikost" + moves.size());
 
         if (currentPoint < moves.size())
         {
             locationX = moves.get(currentPoint).getX();
-            locationY = moves.get(currentPoint).getY() - 1;
+            locationY = moves.get(currentPoint).getY();
             gameBoard.setFieldIndex(locationX, locationY + 1, 11);
-
+            gameBoard.setUnitField(locationX, locationY, this);
+            gameBoard.setUnitField(locationX, locationY + 1, this);
             System.out.println("New Location:  " + "Lx: " + locationX + "  " + "Ly: " + locationY);
         }
         currentPoint++;
@@ -113,13 +117,13 @@ public class Villager extends Unit
     public void move(int x, int y)
     {
         currentPoint = 1;
-        moves = new Dijkstra(new ListItem(locationX, locationY + 1), new ListItem(x, y), gameBoard.getFieldArray()).getPath();
+        moves.clear();
+        moves = new Dijkstra(new ListItem(locationX, locationY + 1), new ListItem(x, y - 1), gameBoard.getFieldArray()).getPath();
 
         for (ListItem l : moves)
         {
             System.out.println(l.getItem());
         }
-
         newLocationX = x;
         newLocationY = y;
     }
@@ -133,6 +137,16 @@ public class Villager extends Unit
             g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), 25, 5);
             g.setColor(Color.green);
             g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), (int) (25 * getHpDown()), 5);
+//            g.setColor(Color.blue);
+//            g.fillRect(gameBoard.convertX(GameData.BOXSIZE * 35), gameBoard.convertX(GameData.BOXSIZE * 81), 25, 25);
+//            if (moves.size() != 0)
+//            {
+//                for (ListItem l : moves)
+//                {
+//                    g.setColor(Color.blue);
+//                    g.fillRect(gameBoard.convertX(GameData.BOXSIZE * l.getX()), gameBoard.convertX(GameData.BOXSIZE * l.getY()), 25, 25);
+//                }
+//            }
         }
         if ((direction >= 247) && (direction < 292))
         {
@@ -216,10 +230,11 @@ public class Villager extends Unit
         time++;
         if (time % 30 == 0)
         {
-
+            time = 0;
             if (isMoving())
             {
                 move();
+                System.out.println("move" + time);
             }
         }
 
@@ -227,15 +242,13 @@ public class Villager extends Unit
 
     private boolean isMoving()
     {
-        if (locationX != newLocationX && locationY != newLocationY)
+        if ((locationX != newLocationX) || (locationY != newLocationY))
         {
             return true;
         }
         else
         {
-            moves.clear();
             return false;
         }
     }
-
 }
