@@ -35,6 +35,7 @@ public class SelectMouse
         }
         if (unit == null)
         {
+            //unit.setSelected(false);
             selectView.setObjectUnit(null);
         }
 
@@ -47,16 +48,32 @@ public class SelectMouse
         {
             selectView.setObjectElement(element);
         }
-
         selectView.repaint();
     }
 
-    void setUnitSelect(boolean b)
+    public void setUnitSelect(boolean b)
     {
         if (unit != null)
         {
             unit.setSelected(b);
         }
+    }
+
+    public boolean isUnitSelected()
+    {
+        if (unit == null)
+        {
+            return false;
+        }
+        else
+        {
+            return unit.isSelected();
+        }
+    }
+
+    public Unit getUnit()
+    {
+        return unit;
     }
 
 }

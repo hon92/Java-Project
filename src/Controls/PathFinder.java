@@ -11,6 +11,7 @@ import Unit.Unit;
  *
  * @author Honza
  */
+@Deprecated
 public class PathFinder
 {
 

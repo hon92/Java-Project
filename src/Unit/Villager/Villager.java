@@ -5,6 +5,8 @@
  */
 package Unit.Villager;
 
+import Controls.Dijkstra;
+import Controls.ListItem;
 import Data.GameData;
 import GameElement.Grass;
 import Unit.Unit;
@@ -14,6 +16,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -40,6 +44,12 @@ public class Villager extends Unit
     private static BufferedImage villagerLeftTop;
     private static BufferedImage villagerLeftBot;
 
+    private int newLocationX;
+    private int newLocationY;
+    int time = 0;
+    private ArrayList<ListItem> moves;
+    private int currentPoint = 1;
+
     public Villager(GameBoard gameBoard, int x, int y, int dir)
     {
         super(gameBoard, x, y, dir);
@@ -47,7 +57,7 @@ public class Villager extends Unit
         maxHp = 50;
         currentHp = 10;
         speed = 2;
-
+        moves = new ArrayList<>();
         try
         {
             villagerDown = ImageIO.read(new File("src/Resources/villagerImg/villagerDown.png"));
@@ -67,10 +77,25 @@ public class Villager extends Unit
         gameBoard.setUnitField(x, y, this);
         gameBoard.setUnitField(x, y + 1, this);
         gameBoard.setFieldIndex(x, y + 1, 11);
+
+        newLocationX = locationX;
+        newLocationY = locationY;
     }
 
     public void move()
     {
+
+        gameBoard.setFieldIndex(locationX, locationY + 1, 0);
+
+        if (currentPoint < moves.size())
+        {
+            locationX = moves.get(currentPoint).getX();
+            locationY = moves.get(currentPoint).getY() - 1;
+            gameBoard.setFieldIndex(locationX, locationY + 1, 11);
+
+            System.out.println("New Location:  " + "Lx: " + locationX + "  " + "Ly: " + locationY);
+        }
+        currentPoint++;
 
     }
 
@@ -87,7 +112,16 @@ public class Villager extends Unit
     @Override
     public void move(int x, int y)
     {
+        currentPoint = 1;
+        moves = new Dijkstra(new ListItem(locationX, locationY + 1), new ListItem(x, y), gameBoard.getFieldArray()).getPath();
 
+        for (ListItem l : moves)
+        {
+            System.out.println(l.getItem());
+        }
+
+        newLocationX = x;
+        newLocationY = y;
     }
 
     @Override
@@ -179,7 +213,29 @@ public class Villager extends Unit
     @Override
     public void tick()
     {
+        time++;
+        if (time % 30 == 0)
+        {
 
+            if (isMoving())
+            {
+                move();
+            }
+        }
+
+    }
+
+    private boolean isMoving()
+    {
+        if (locationX != newLocationX && locationY != newLocationY)
+        {
+            return true;
+        }
+        else
+        {
+            moves.clear();
+            return false;
+        }
     }
 
 }

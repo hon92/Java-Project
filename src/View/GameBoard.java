@@ -17,6 +17,7 @@ import GameElement.Tree;
 import GameElement.Water;
 import Unit.Unit;
 import Unit.Villager.Villager;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
@@ -46,6 +47,7 @@ public class GameBoard extends JPanel
     public GameBoard()
     {
         initGameBoard();
+        setIgnoreRepaint(true);
     }
 
     private void initGameBoard()
@@ -150,7 +152,6 @@ public class GameBoard extends JPanel
 
     private void generateDebug()
     {
-
         objects.add(new Relic(this, 3, 4));
     }
 
@@ -274,31 +275,27 @@ public class GameBoard extends JPanel
             u.drawUnit(g);
         }
 
-        //g.setColor(Color.red);
-//        for (int i = 0; i < columns; i++)
-//        {
-//            for (int j = 0; j < rows; j++)
-//            {
-//                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
-//            }
-//        }
-//        g.setColor(Color.white);
-//        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
-//        {
-//            for (int j = 0; j < GameData.MAP_HEIGHT; j += GameData.BOXSIZE)
-//            {
-//
-//                g.drawRect(i, j, 25, 25);
-//            }
-//        }
+        g.setColor(Color.red);
+        for (int i = 0; i < columns; i++)
+        {
+            for (int j = 0; j < rows; j++)
+            {
+                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
+            }
+        }
+        g.setColor(Color.white);
+        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
+        {
+            for (int j = 0; j < GameData.MAP_HEIGHT; j += GameData.BOXSIZE)
+            {
+
+                g.drawRect(i, j, 25, 25);
+            }
+        }
         g.dispose();
         Toolkit.getDefaultToolkit().sync();
     }
 
-//    public void repaint()
-//    {
-//        repaint(0, 0, GameData.WINDOW_WIDTH, GameData.MAP_HEIGHT - 200);
-//    }
     private void generateGrass()
     {
         Grass gr = new Grass(this, 0, 850);
@@ -373,6 +370,11 @@ public class GameBoard extends JPanel
     List<ObjectElement> getObjects()
     {
         return objects;
+    }
+
+    public int[][] getFieldArray()
+    {
+        return field;
     }
 
 }
