@@ -76,9 +76,12 @@ public class Villager extends Unit
         {
             Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //gameBoard.setUnitField(x, y, this);
+//        gameBoard.setUnitField(x, y + 1, this);
+//        gameBoard.setFieldIndex(x, y + 1, 11);
+
         gameBoard.setUnitField(x, y, this);
-        gameBoard.setUnitField(x, y + 1, this);
-        gameBoard.setFieldIndex(x, y + 1, 11);
+        gameBoard.setFieldIndex(x, y, 11);
 
         newLocationX = locationX;
         newLocationY = locationY;
@@ -87,7 +90,7 @@ public class Villager extends Unit
     public void move()
     {
 
-        if ((locationX == newLocationX) && (locationY + 1 == newLocationY))
+        if ((locationX == newLocationX) && (locationY == newLocationY))
         {
             isFinish = true;
         }
@@ -96,7 +99,7 @@ public class Villager extends Unit
 
             gameBoard.setFieldIndex(locationX, locationY, 0);
             gameBoard.setUnitField(locationX, locationY, null);
-            gameBoard.setUnitField(locationX, locationY + 1, null);
+            //gameBoard.setUnitField(locationX, locationY + 1, null);
             //System.out.println("velikost" + moves.size());
 
             if (currentPoint < moves.size())
@@ -105,7 +108,7 @@ public class Villager extends Unit
                 locationY = moves.get(currentPoint).getY();
                 gameBoard.setFieldIndex(locationX, locationY, 11);
                 gameBoard.setUnitField(locationX, locationY, this);
-                gameBoard.setUnitField(locationX, locationY + 1, this);
+                //gameBoard.setUnitField(locationX, locationY + 1, this);
                 System.out.println("New Location:  " + "Lx: " + locationX + "  " + "Ly: " + locationY);
             }
             currentPoint++;
@@ -129,7 +132,7 @@ public class Villager extends Unit
         currentPoint = 1;
         moves.clear();
 
-        dd = new Dijkstra(new ListItem(locationX, locationY + 1), new ListItem(x, y), gameBoard.getFieldArray(), gameBoard);
+        dd = new Dijkstra(new ListItem(locationX, locationY), new ListItem(x, y), gameBoard.getFieldArray(), gameBoard);
         moves = dd.getPath();
         isFinish = false;
         for (ListItem l : moves)
