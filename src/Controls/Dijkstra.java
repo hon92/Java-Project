@@ -315,6 +315,8 @@ public class Dijkstra
         ListItem path = new ListItem(stop.getX(), stop.getY());
         path = stop;
         route.add(path);
+        
+        
         while (!(gay(start, path)))
         {
             if ((path.getX() + 1) < columns)
