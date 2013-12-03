@@ -87,6 +87,11 @@ public class Dijkstra
     public void drawPath(Graphics g)
     {
 
+        g.setColor(Color.blue);
+        for (ListItem l : route)
+        {
+            g.fillRect(gameBoard.convertX(l.getX() * 25), gameBoard.convertY((l.getY()) * 25), 25, 25);
+        }
         for (int i = 0; i < temp.length; i++)
         {
             for (int j = 0; j < temp[0].length; j++)
@@ -101,11 +106,6 @@ public class Dijkstra
 
             }
 
-//            g.setColor(Color.blue);
-//            for (ListItem l : route)
-//            {
-//                g.fillRect(gameBoard.convertX(l.getX() * 25), gameBoard.convertY((l.getY() + 1) * 25), 25, 25);
-//            }
 //        g.setColor(Color.yellow);
 //
 //        for (int i = 0; i < temp.length; i++)
