@@ -8,9 +8,11 @@ public class ListItem
     private int value;
     private boolean visited;
     private boolean examined;
+    private int direction;
 
     public ListItem(int x, int y)
     {
+        this.direction = 0;
         this.x = x;
         this.y = y;
         this.value = 999;
@@ -18,6 +20,16 @@ public class ListItem
         this.examined = false;
     }
 
+    public void setDirection(int x)
+    {
+        direction= x;
+    }
+    
+    public int getDirection()
+    {
+        return direction;
+    }
+    
     public void setItem(int x, int y)
     {
         this.x = x;

@@ -13,6 +13,8 @@ public class Dijkstra
     private ArrayList<ListItem> route;
     private ArrayList<ListItem> nodesToBeChecked;
 
+    
+    
     private ListItem start;
     private ListItem stop;
     private ListItem actualItem;
@@ -323,6 +325,7 @@ public class Dijkstra
                 if (temp[path.getX() + 1][path.getY()].getValue() < path.getValue())
                 {
                     path = temp[path.getX() + 1][path.getY()];
+                    path.setDirection(0);
                     route.add(path);
                     continue;
                 }
@@ -333,6 +336,7 @@ public class Dijkstra
                 if (temp[path.getX() + 1][path.getY() + 1].getValue() < path.getValue())
                 {
                     path = temp[path.getX() + 1][path.getY() + 1];
+                    path.setDirection(45);
                     route.add(path);
                     continue;
                 }
@@ -343,6 +347,7 @@ public class Dijkstra
                 if (temp[path.getX()][path.getY() + 1].getValue() < path.getValue())
                 {
                     path = temp[path.getX()][path.getY() + 1];
+                    path.setDirection(90);
                     route.add(path);
                     continue;
                 }
@@ -353,6 +358,7 @@ public class Dijkstra
                 if (temp[path.getX()][path.getY() - 1].getValue() < path.getValue())
                 {
                     path = temp[path.getX()][path.getY() - 1];
+                    path.setDirection(270);
                     route.add(path);
                     continue;
                 }
@@ -363,6 +369,7 @@ public class Dijkstra
                 if (temp[path.getX() - 1][path.getY()].getValue() < path.getValue())
                 {
                     path = temp[path.getX() - 1][path.getY()];
+                    path.setDirection(180);
                     route.add(path);
                     continue;
                 }
@@ -373,6 +380,7 @@ public class Dijkstra
                 if (temp[path.getX() - 1][path.getY() - 1].getValue() < path.getValue())
                 {
                     path = temp[path.getX() - 1][path.getY() - 1];
+                    path.setDirection(225);
                     route.add(path);
                     continue;
                 }
@@ -383,6 +391,7 @@ public class Dijkstra
                 if (temp[path.getX() + 1][path.getY() - 1].getValue() < path.getValue())
                 {
                     path = temp[path.getX() + 1][path.getY() - 1];
+                    path.setDirection(315);
                     route.add(path);
                     continue;
                 }
@@ -393,6 +402,7 @@ public class Dijkstra
                 if (temp[path.getX() - 1][path.getY() + 1].getValue() < path.getValue())
                 {
                     path = temp[path.getX() - 1][path.getY() + 1];
+                    path.setDirection(135);
                     route.add(path);
                     continue;
                 }
