@@ -130,7 +130,7 @@ public class Villager extends Unit
         currentPoint = 1;
         moves.clear();
 
-        dd = new Dijkstra(new ListItem(locationX, locationY), new ListItem(x, y - 1), gameBoard.getFieldArray(), gameBoard);
+        dd = new Dijkstra(new ListItem(locationX, locationY + 1), new ListItem(x, y - 1), gameBoard.getFieldArray(), gameBoard);
         moves = dd.getPath();
         isFinish = false;
         for (ListItem l : moves)
