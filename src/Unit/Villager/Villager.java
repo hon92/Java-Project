@@ -62,7 +62,7 @@ public class Villager extends Unit
         moves = new ArrayList<>();
         try
         {
-            villagerDown = ImageIO.read(new File("src/Resources/cactus.png"));
+            villagerDown = ImageIO.read(new File("src/Resources/villagerImg/villagerDown.png"));
             villagerIcon = ImageIO.read(new File("src/Resources/villagerImg/villagerIcon.png"));
             villagerTop = ImageIO.read(new File("src/Resources/villagerImg/villagerTop.png"));
             villagerRightBot = ImageIO.read(new File("src/Resources/villagerImg/villagerRightBot.png"));
@@ -76,13 +76,12 @@ public class Villager extends Unit
         {
             Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //gameBoard.setUnitField(x, y, this);
-//        gameBoard.setUnitField(x, y + 1, this);
-//        gameBoard.setFieldIndex(x, y + 1, 11);
-
         gameBoard.setUnitField(x, y, this);
-        gameBoard.setFieldIndex(x, y, 11);
+        gameBoard.setUnitField(x, y + 1, this);
+        gameBoard.setFieldIndex(x, y + 1, 11);
 
+//        gameBoard.setUnitField(x, y, this);
+//        gameBoard.setFieldIndex(x, y, 11);
         newLocationX = locationX;
         newLocationY = locationY;
     }
@@ -97,18 +96,17 @@ public class Villager extends Unit
         else
         {
 
-            gameBoard.setFieldIndex(locationX, locationY, 0);
+            gameBoard.setFieldIndex(locationX, locationY + 1, 0);
             gameBoard.setUnitField(locationX, locationY, null);
-            //gameBoard.setUnitField(locationX, locationY + 1, null);
-            //System.out.println("velikost" + moves.size());
+            gameBoard.setUnitField(locationX, locationY + 1, null);
 
             if (currentPoint < moves.size())
             {
                 locationX = moves.get(currentPoint).getX();
                 locationY = moves.get(currentPoint).getY();
-                gameBoard.setFieldIndex(locationX, locationY, 11);
+                gameBoard.setFieldIndex(locationX, locationY + 1, 11);
                 gameBoard.setUnitField(locationX, locationY, this);
-                //gameBoard.setUnitField(locationX, locationY + 1, this);
+                gameBoard.setUnitField(locationX, locationY + 1, this);
                 System.out.println("New Location:  " + "Lx: " + locationX + "  " + "Ly: " + locationY);
             }
             currentPoint++;
@@ -132,7 +130,7 @@ public class Villager extends Unit
         currentPoint = 1;
         moves.clear();
 
-        dd = new Dijkstra(new ListItem(locationX, locationY), new ListItem(x, y), gameBoard.getFieldArray(), gameBoard);
+        dd = new Dijkstra(new ListItem(locationX, locationY), new ListItem(x, y - 1), gameBoard.getFieldArray(), gameBoard);
         moves = dd.getPath();
         isFinish = false;
         for (ListItem l : moves)
