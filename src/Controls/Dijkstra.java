@@ -13,8 +13,6 @@ public class Dijkstra
     private ArrayList<ListItem> route;
     private ArrayList<ListItem> nodesToBeChecked;
 
-    
-    
     private ListItem start;
     private ListItem stop;
     private ListItem actualItem;
@@ -76,9 +74,9 @@ public class Dijkstra
     {
 
         g.setColor(Color.blue);
-        for (ListItem l : route)
+        for (int i = 1; i < route.size(); i++)
         {
-            g.fillRect(gameBoard.convertX(l.getX() * 25), gameBoard.convertY((l.getY() + 1) * 25), 25, 25);
+            g.fillRect(gameBoard.convertX(route.get(i).getX() * 25), gameBoard.convertY((route.get(i).getY() + 1) * 25), 25, 25);
         }
         for (int i = 0; i < temp.length; i++)
         {
