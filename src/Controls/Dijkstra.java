@@ -33,20 +33,6 @@ public class Dijkstra
         //actualValue = 1;
         this.gameBoard = gameBoard;
 
-        //map je 144 radku jako Y  a 281 sloupcu jako X
-//        int count = 0;
-//        for (int i = 0; i < 100; i++)
-//        {
-//            for (int j = 0; j < 50; j++)
-//            {
-//                if (map[i][j] == 9)
-//                {
-//                    System.out.println("Stone at: " + i + " " + j);
-//                    count++;
-//                }
-//            }
-//        }
-//        System.out.println("Stone count: " + count);
         for (int i = 0; i < columns; i++)
         {
             for (int j = 0; j < rows; j++)
