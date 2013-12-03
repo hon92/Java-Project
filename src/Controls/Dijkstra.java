@@ -294,28 +294,8 @@ public class Dijkstra
 
         while (!(gay(start, path)))
         {
-            if ((path.getX() + 1) < columns)
-            {
-                if (temp[path.getX() + 1][path.getY()].getValue() < path.getValue())
-                {
-                    path = temp[path.getX() + 1][path.getY()];
-                    path.setDirection(180);
-                    route.add(path);
-                    continue;
-                }
-            }
-
-            if (((path.getX() + 1) < columns) && (path.getY() + 1 < rows))
-            {
-                if (temp[path.getX() + 1][path.getY() + 1].getValue() < path.getValue())
-                {
-                    path = temp[path.getX() + 1][path.getY() + 1];
-                    path.setDirection(225);
-                    route.add(path);
-                    continue;
-                }
-            }
-
+                      
+            
             if ((path.getY() + 1) < rows)
             {
                 if (temp[path.getX()][path.getY() + 1].getValue() < path.getValue())
@@ -326,6 +306,19 @@ public class Dijkstra
                     continue;
                 }
             }
+          
+            
+            if ((path.getX() + 1) < columns)
+            {
+                if (temp[path.getX() + 1][path.getY()].getValue() < path.getValue())
+                {
+                    path = temp[path.getX() + 1][path.getY()];
+                    path.setDirection(180);
+                    route.add(path);
+                    continue;
+                }
+            }
+            
 
             if ((path.getY() - 1) >= 0)
             {
@@ -348,6 +341,18 @@ public class Dijkstra
                     continue;
                 }
             }
+            
+            if (((path.getX() + 1) < columns) && (path.getY() + 1 < rows))
+            {
+                if (temp[path.getX() + 1][path.getY() + 1].getValue() < path.getValue())
+                {
+                    path = temp[path.getX() + 1][path.getY() + 1];
+                    path.setDirection(225);
+                    route.add(path);
+                    continue;
+                }
+            }
+   
 
             if (((path.getX() - 1) >= 0) && (path.getY() - 1 >= 0))
             {

@@ -89,7 +89,7 @@ public class Villager extends Unit
 
         if ((locationX == newLocationX) && (locationY + 1 == newLocationY))
         {
-            isFinish = true;
+            isFinish = true;      
         }
         else
         {
@@ -106,7 +106,14 @@ public class Villager extends Unit
                 gameBoard.setFieldIndex(locationX, locationY + 1, 11);
                 gameBoard.setUnitField(locationX, locationY, this);
                 gameBoard.setUnitField(locationX, locationY + 1, this);
+ 
+                if(currentPoint == moves.size()-1)
+                {
+                    direction = moves.get(moves.size()-2).getDirection();
+                }
+                
                 System.out.println("New Location:  " + "Lx: " + locationX + "  " + "Ly: " + locationY);
+                
             }
             currentPoint++;
 
@@ -129,7 +136,8 @@ public class Villager extends Unit
         currentPoint = 1;
         moves.clear();
 
-        dd = new Dijkstra(new ListItem(locationX, locationY + 1), new ListItem(x, y - 1), gameBoard.getFieldArray(), gameBoard);
+        dd = new Dijkstra(new ListItem(locationX, locationY), new ListItem(x, y - 1), gameBoard.getFieldArray(), gameBoard);
+        
         moves = dd.getPath();
         isFinish = false;
         for (ListItem l : moves)
