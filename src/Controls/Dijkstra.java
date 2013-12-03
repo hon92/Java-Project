@@ -78,7 +78,7 @@ public class Dijkstra
         g.setColor(Color.blue);
         for (ListItem l : route)
         {
-            g.fillRect(gameBoard.convertX(l.getX() * 25), gameBoard.convertY((l.getY()) * 25), 25, 25);
+            g.fillRect(gameBoard.convertX(l.getX() * 25), gameBoard.convertY((l.getY() + 1) * 25), 25, 25);
         }
         for (int i = 0; i < temp.length; i++)
         {
