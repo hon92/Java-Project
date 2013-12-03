@@ -94,7 +94,7 @@ public class Villager extends Unit
         else
         {
 
-            gameBoard.setFieldIndex(locationX, locationY + 1, 0);
+            gameBoard.setFieldIndex(locationX, locationY, 0);
             gameBoard.setUnitField(locationX, locationY, null);
             gameBoard.setUnitField(locationX, locationY + 1, null);
             //System.out.println("velikost" + moves.size());
@@ -103,7 +103,7 @@ public class Villager extends Unit
             {
                 locationX = moves.get(currentPoint).getX();
                 locationY = moves.get(currentPoint).getY();
-                gameBoard.setFieldIndex(locationX, locationY + 1, 11);
+                gameBoard.setFieldIndex(locationX, locationY, 11);
                 gameBoard.setUnitField(locationX, locationY, this);
                 gameBoard.setUnitField(locationX, locationY + 1, this);
                 System.out.println("New Location:  " + "Lx: " + locationX + "  " + "Ly: " + locationY);
