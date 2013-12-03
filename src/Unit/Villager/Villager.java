@@ -49,6 +49,8 @@ public class Villager extends Unit
     int time = 0;
     private ArrayList<ListItem> moves;
     private int currentPoint = 1;
+    private boolean isFinish = true;
+    private Dijkstra dd = null;
 
     public Villager(GameBoard gameBoard, int x, int y, int dir)
     {
@@ -60,7 +62,7 @@ public class Villager extends Unit
         moves = new ArrayList<>();
         try
         {
-            villagerDown = ImageIO.read(new File("src/Resources/villagerImg/villagerDown.png"));
+            villagerDown = ImageIO.read(new File("src/Resources/cactus.png"));
             villagerIcon = ImageIO.read(new File("src/Resources/villagerImg/villagerIcon.png"));
             villagerTop = ImageIO.read(new File("src/Resources/villagerImg/villagerTop.png"));
             villagerRightBot = ImageIO.read(new File("src/Resources/villagerImg/villagerRightBot.png"));
@@ -85,22 +87,30 @@ public class Villager extends Unit
     public void move()
     {
 
-        gameBoard.setFieldIndex(locationX, locationY + 1, 0);
-        gameBoard.setUnitField(locationX, locationY, null);
-        gameBoard.setUnitField(locationX, locationY + 1, null);
-        System.out.println("velikost" + moves.size());
-
-        if (currentPoint < moves.size())
+        if ((locationX == newLocationX) && (locationY + 1 == newLocationY))
         {
-            locationX = moves.get(currentPoint).getX();
-            locationY = moves.get(currentPoint).getY();
-            gameBoard.setFieldIndex(locationX, locationY + 1, 11);
-            gameBoard.setUnitField(locationX, locationY, this);
-            gameBoard.setUnitField(locationX, locationY + 1, this);
-            System.out.println("New Location:  " + "Lx: " + locationX + "  " + "Ly: " + locationY);
+            isFinish = true;
         }
-        currentPoint++;
+        else
+        {
 
+            gameBoard.setFieldIndex(locationX, locationY + 1, 0);
+            gameBoard.setUnitField(locationX, locationY, null);
+            gameBoard.setUnitField(locationX, locationY + 1, null);
+            //System.out.println("velikost" + moves.size());
+
+            if (currentPoint < moves.size())
+            {
+                locationX = moves.get(currentPoint).getX();
+                locationY = moves.get(currentPoint).getY();
+                gameBoard.setFieldIndex(locationX, locationY + 1, 11);
+                gameBoard.setUnitField(locationX, locationY, this);
+                gameBoard.setUnitField(locationX, locationY + 1, this);
+                System.out.println("New Location:  " + "Lx: " + locationX + "  " + "Ly: " + locationY);
+            }
+            currentPoint++;
+
+        }
     }
 
     public double getHpDown()
@@ -118,14 +128,21 @@ public class Villager extends Unit
     {
         currentPoint = 1;
         moves.clear();
-        moves = new Dijkstra(new ListItem(locationX, locationY + 1), new ListItem(x, y - 1), gameBoard.getFieldArray()).getPath();
 
+        dd = new Dijkstra(new ListItem(locationX, locationY + 1), new ListItem(x, y), gameBoard.getFieldArray(), gameBoard);
+        moves = dd.getPath();
+        isFinish = false;
         for (ListItem l : moves)
         {
             System.out.println(l.getItem());
         }
         newLocationX = x;
         newLocationY = y;
+    }
+
+    public Dijkstra getDijkstra()
+    {
+        return dd;
     }
 
     @Override
@@ -137,16 +154,6 @@ public class Villager extends Unit
             g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), 25, 5);
             g.setColor(Color.green);
             g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), (int) (25 * getHpDown()), 5);
-//            g.setColor(Color.blue);
-//            g.fillRect(gameBoard.convertX(GameData.BOXSIZE * 35), gameBoard.convertX(GameData.BOXSIZE * 81), 25, 25);
-//            if (moves.size() != 0)
-//            {
-//                for (ListItem l : moves)
-//                {
-//                    g.setColor(Color.blue);
-//                    g.fillRect(gameBoard.convertX(GameData.BOXSIZE * l.getX()), gameBoard.convertX(GameData.BOXSIZE * l.getY()), 25, 25);
-//                }
-//            }
         }
         if ((direction >= 247) && (direction < 292))
         {
@@ -228,13 +235,13 @@ public class Villager extends Unit
     public void tick()
     {
         time++;
-        if (time % 30 == 0)
+        if (time % 60 == 0)
         {
             time = 0;
             if (isMoving())
             {
                 move();
-                System.out.println("move" + time);
+
             }
         }
 
@@ -242,7 +249,8 @@ public class Villager extends Unit
 
     private boolean isMoving()
     {
-        if ((locationX != newLocationX) || (locationY != newLocationY))
+
+        if (!isFinish)
         {
             return true;
         }
