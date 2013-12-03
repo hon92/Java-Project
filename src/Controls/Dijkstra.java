@@ -16,6 +16,7 @@ public class Dijkstra
     private ListItem start;
     private ListItem stop;
     private ListItem actualItem;
+    private boolean found;
     private int map[][];
     private int rows = GameData.MAP_HEIGHT / GameData.BOXSIZE;
     private int columns = GameData.MAP_WIDTH / GameData.BOXSIZE;
@@ -30,6 +31,7 @@ public class Dijkstra
         stop = end;
         this.start = start;
         map = mapInt;
+        found = false;
         //actualValue = 1;
         this.gameBoard = gameBoard;
 
@@ -131,6 +133,7 @@ public class Dijkstra
 
                         if (gay(stop, temp[actualItem.getX() + 1][actualItem.getY()]))
                         {
+                            found = true;
                             break;
                         }
                     }
@@ -149,6 +152,7 @@ public class Dijkstra
 
                         if (gay(stop, temp[actualItem.getX() + 1][actualItem.getY() + 1]))
                         {
+                            found = true;
                             break;
                         }
                     }
@@ -167,6 +171,7 @@ public class Dijkstra
 
                         if (gay(stop, temp[actualItem.getX()][actualItem.getY() + 1]))
                         {
+                            found = true;
                             break;
                         }
                     }
@@ -185,6 +190,7 @@ public class Dijkstra
 
                         if (gay(stop, temp[actualItem.getX()][actualItem.getY() - 1]))
                         {
+                            found = true;
                             break;
                         }
                     }
@@ -203,6 +209,7 @@ public class Dijkstra
 
                         if (gay(stop, temp[actualItem.getX() - 1][actualItem.getY()]))
                         {
+                            found = true;
                             break;
                         }
                     }
@@ -221,6 +228,7 @@ public class Dijkstra
 
                         if (gay(stop, temp[actualItem.getX() - 1][actualItem.getY() - 1]))
                         {
+                            found = true;
                             break;
                         }
                     }
@@ -239,6 +247,7 @@ public class Dijkstra
 
                         if (gay(stop, temp[actualItem.getX() + 1][actualItem.getY() - 1]))
                         {
+                            found = true;
                             break;
                         }
                     }
@@ -257,6 +266,7 @@ public class Dijkstra
 
                         if (gay(stop, temp[actualItem.getX() - 1][actualItem.getY() + 1]))
                         {
+                            found = true;
                             break;
                         }
                     }
@@ -265,7 +275,10 @@ public class Dijkstra
             }
 
         }
-        getRoute();
+        if(found)
+        {
+            getRoute();
+        }
 
     }
 
