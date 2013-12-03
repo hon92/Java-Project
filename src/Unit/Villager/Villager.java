@@ -141,6 +141,7 @@ public class Villager extends Unit
         }
         newLocationX = x;
         newLocationY = y;
+        int blblbl = 4564;
     }
 
     public Dijkstra getDijkstra()
