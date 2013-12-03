@@ -121,7 +121,9 @@ public class Dijkstra
                 actualItem = nodesToBeChecked.get(i);
                 if ((actualItem.getX() + 1) < columns)
                 {
-                    if ((temp[actualItem.getX() + 1][actualItem.getY()].notVisited())
+                    System.out.println("wqdqdqw: " + gameBoard.getFieldIndex(actualItem.getX(), actualItem.getY()));
+
+                    if ((temp[actualItem.getX() + 1][actualItem.getY()].notVisited())//test doprava
                             && (temp[actualItem.getX() + 1][actualItem.getY()].notExamined())
                             && (gameBoard.getFieldIndex(actualItem.getX() + 1, actualItem.getY()) == 0))
                     // && (map[actualItem.getX() + 1][actualItem.getY()] == 0))
@@ -141,7 +143,7 @@ public class Dijkstra
 
                 if (((actualItem.getX() + 1) < columns) && (actualItem.getY() + 1 < rows))
                 {
-                    if ((temp[actualItem.getX() + 1][actualItem.getY() + 1].notVisited())
+                    if ((temp[actualItem.getX() + 1][actualItem.getY() + 1].notVisited()) // test doprava dolu
                             && (temp[actualItem.getX() + 1][actualItem.getY() + 1].notExamined())
                             && (gameBoard.getFieldIndex(actualItem.getX() + 1, actualItem.getY() + 1) == 0))
                     //&& (map[actualItem.getX() + 1][actualItem.getY() + 1] == 0))
@@ -160,7 +162,7 @@ public class Dijkstra
 
                 if ((actualItem.getY() + 1) < rows)
                 {
-                    if ((temp[actualItem.getX()][actualItem.getY() + 1].notVisited())
+                    if ((temp[actualItem.getX()][actualItem.getY() + 1].notVisited())// test dolu
                             && (temp[actualItem.getX()][actualItem.getY() + 1].notExamined())
                             && (gameBoard.getFieldIndex(actualItem.getX(), actualItem.getY() + 1) == 0))
                     //&& (map[actualItem.getX()][actualItem.getY() + 1] == 0))
@@ -179,7 +181,7 @@ public class Dijkstra
 
                 if ((actualItem.getY() - 1) >= 0)
                 {
-                    if ((temp[actualItem.getX()][actualItem.getY() - 1].notVisited())
+                    if ((temp[actualItem.getX()][actualItem.getY() - 1].notVisited()) // test nahoru
                             && (temp[actualItem.getX()][actualItem.getY() - 1].notExamined())
                             && (gameBoard.getFieldIndex(actualItem.getX(), actualItem.getY() - 1) == 0))
                     //&& (map[actualItem.getX()][actualItem.getY() - 1] == 0))
@@ -198,7 +200,7 @@ public class Dijkstra
 
                 if ((actualItem.getX() - 1) >= 0)
                 {
-                    if ((temp[actualItem.getX() - 1][actualItem.getY()].notVisited())
+                    if ((temp[actualItem.getX() - 1][actualItem.getY()].notVisited())//test doleva
                             && (temp[actualItem.getX() - 1][actualItem.getY()].notExamined())
                             && (gameBoard.getFieldIndex(actualItem.getX() - 1, actualItem.getY()) == 0))
                     //&& (map[actualItem.getX() - 1][actualItem.getY()] == 0))
@@ -217,7 +219,7 @@ public class Dijkstra
 
                 if (((actualItem.getX() - 1) >= 0) && (actualItem.getY() - 1 >= 0))
                 {
-                    if ((temp[actualItem.getX() - 1][actualItem.getY() - 1].notVisited())
+                    if ((temp[actualItem.getX() - 1][actualItem.getY() - 1].notVisited())//test doleva nahoru
                             && (temp[actualItem.getX() - 1][actualItem.getY() - 1].notExamined())
                             && (gameBoard.getFieldIndex(actualItem.getX() - 1, actualItem.getY() - 1) == 0))
                     // && (map[actualItem.getX() - 1][actualItem.getY() - 1] == 0))
@@ -236,7 +238,7 @@ public class Dijkstra
 
                 if (((actualItem.getX() + 1) < columns) && (actualItem.getY() - 1 >= 0))
                 {
-                    if ((temp[actualItem.getX() + 1][actualItem.getY() - 1].notVisited())
+                    if ((temp[actualItem.getX() + 1][actualItem.getY() - 1].notVisited())//test doprava nahoru
                             && (temp[actualItem.getX() + 1][actualItem.getY() - 1].notExamined())
                             && (gameBoard.getFieldIndex(actualItem.getX() + 1, actualItem.getY() - 1) == 0))
                     //&& (map[actualItem.getX() + 1][actualItem.getY() - 1] == 0))
@@ -255,7 +257,7 @@ public class Dijkstra
 
                 if (((actualItem.getX() - 1) >= 0) && (actualItem.getY() + 1 < rows))
                 {
-                    if ((temp[actualItem.getX() - 1][actualItem.getY() + 1].notVisited())
+                    if ((temp[actualItem.getX() - 1][actualItem.getY() + 1].notVisited()) // test doleva dolu
                             && (temp[actualItem.getX() - 1][actualItem.getY() + 1].notExamined())
                             && (gameBoard.getFieldIndex(actualItem.getX() - 1, actualItem.getY() + 1) == 0))
                     //&& (map[actualItem.getX() - 1][actualItem.getY() + 1] == 0))
@@ -275,7 +277,7 @@ public class Dijkstra
             }
 
         }
-        if(found)
+        if (found)
         {
             getRoute();
         }
@@ -314,8 +316,7 @@ public class Dijkstra
         ListItem path = new ListItem(stop.getX(), stop.getY());
         path = stop;
         route.add(path);
-        
-        
+
         while (!(gay(start, path)))
         {
             if ((path.getX() + 1) < columns)
