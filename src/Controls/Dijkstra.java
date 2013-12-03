@@ -82,13 +82,13 @@ public class Dijkstra
         }
         for (int i = 0; i < temp.length; i++)
         {
-            for (int j = 0; j < temp[0].length; j++)
+            for (int j = 0; j < temp[0].length-1; j++)
             {
                 //g.setColor(Color.blue);
                 // g.fillRect(gameBoard.convertX(temp[i][j].getX() * 25), gameBoard.convertY((temp[i][j].getY() * 25 + 1)), 25, 25);
                 String val = new Integer(temp[i][j].getValue()).toString();
                 g.setColor(Color.yellow);
-                g.drawString(val, gameBoard.convertX(temp[i][j].getX() * 25 + 10), gameBoard.convertY((temp[i][j].getY() * 25 + 1 - 10)));
+                g.drawString(val, gameBoard.convertX(temp[i][j+1].getX() * 25 + 10), gameBoard.convertY((temp[i][j+1].getY() * 25 + 1 - 10)));
                 //g.drawString(new Integer(temp[i][j].getValue()).toString(), gameBoard.convertX(temp[i][j].getX()) * 25, gameBoard.convertY((temp[i][j].getY() + 1)));
                 //g.drawString(new Integer(temp[i][j].getValue()).toString(), gameBoard.convertX(temp[i][j].getX()), gameBoard.convertY(temp[i][j].getY()));
 
