@@ -13,7 +13,7 @@ public class ListItem
     {
         this.x = x;
         this.y = y;
-        this.value = 99999;
+        this.value = 999;
         this.visited = false;
         this.examined = false;
     }

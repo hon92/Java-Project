@@ -1,5 +1,6 @@
 package View;
 
+import Controls.Dijkstra;
 import Controls.Key;
 import Controls.Mouse;
 import Data.GameData;
@@ -270,19 +271,31 @@ public class GameBoard extends JPanel
         }
 
         mouse.drawRect(g);
+
+        //g.setColor(Color.blue);
+        if (units.get(0) instanceof Villager)
+        {
+            Villager v = (Villager) units.get(0);
+            Dijkstra d = v.getDijkstra();
+            if (d != null)
+            {
+                d.drawPath(g);
+            }
+        }
+
         for (Unit u : units)
         {
             u.drawUnit(g);
         }
 
-        g.setColor(Color.red);
-        for (int i = 0; i < columns; i++)
-        {
-            for (int j = 0; j < rows; j++)
-            {
-                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
-            }
-        }
+//        g.setColor(Color.red);
+//        for (int i = 0; i < columns; i++)
+//        {
+//            for (int j = 0; j < rows; j++)
+//            {
+//                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
+//            }
+//        }
         g.setColor(Color.white);
         for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
         {
@@ -292,7 +305,8 @@ public class GameBoard extends JPanel
                 g.drawRect(i, j, 25, 25);
             }
         }
-        g.dispose();
+
+        //g.dispose();
         Toolkit.getDefaultToolkit().sync();
     }
 
