@@ -30,16 +30,19 @@ public class SelectMouse
         this.selectView = selectView;
         element = gameBoard.getObjectFieldObject(indexX, indexY);
         unit = gameBoard.getUnitField(indexX, indexY);
-        // building = gameBoard.
-        
+        building = gameBoard.getBuildingFieldObject(indexX, indexY);
+
         if (element == null)
         {
             selectView.setObjectElement(null);
         }
         if (unit == null)
         {
-            //unit.setSelected(false);
             selectView.setObjectUnit(null);
+        }
+        if (building == null)
+        {
+            selectView.setBuildingObject(null);
         }
 
         if (unit != null)
@@ -50,6 +53,10 @@ public class SelectMouse
         if (element != null)
         {
             selectView.setObjectElement(element);
+        }
+        if (building != null)
+        {
+            selectView.setBuildingObject(building);
         }
         selectView.repaint();
     }

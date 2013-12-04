@@ -38,16 +38,18 @@ public class GameBoard extends JPanel
     private int currentWindowY;
     private final int columns = GameData.MAP_WIDTH / GameData.BOXSIZE;
     private final int rows = GameData.MAP_HEIGHT / GameData.BOXSIZE;
-    private int[][] field = new int[rows][columns];
-    private ObjectElement[][] objectField = new ObjectElement[columns][rows];
-    private Unit[][] unitField = new Unit[columns][rows];
-    private Building[][] buildingField = new Building[columns][rows];
+
     private MapData mapData;
     private List<ObjectElement> objects;
     private List<Unit> units;
     private List<Building> buildings;
     private Mouse mouse;
     private BufferedImage background;
+
+    private int[][] field = new int[rows][columns];
+    private ObjectElement[][] objectField = new ObjectElement[columns][rows];
+    private Unit[][] unitField = new Unit[columns][rows];
+    private Building[][] buildingField = new Building[columns][rows];
 
     public GameBoard()
     {
@@ -65,13 +67,13 @@ public class GameBoard extends JPanel
         objects = mapData.getMapData();
         units = new ArrayList<Unit>();
         buildings = new ArrayList<Building>();
-        
+
         generateGrass();
         fillBackground();
-        
+
         units.add(new Villager(this, 30, 80, 90));
         buildings.add(new Barracks(this, 50, 50));
-        
+
         setFocusable(true);
         addMouseListener(mouse);
         addMouseMotionListener(mouse);
@@ -293,20 +295,20 @@ public class GameBoard extends JPanel
         {
             u.drawUnit(g);
         }
-        
+
         for (Building b : buildings)
         {
             b.drawBuilding(g);
         }
 
-//        g.setColor(Color.red);
-//        for (int i = 0; i < columns; i++)
-//        {
-//            for (int j = 0; j < rows; j++)
-//            {
-//                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
-//            }
-//        }
+        g.setColor(Color.red);
+        for (int i = 0; i < columns; i++)
+        {
+            for (int j = 0; j < rows; j++)
+            {
+                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
+            }
+        }
         g.setColor(Color.white);
         for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
         {
@@ -371,8 +373,17 @@ public class GameBoard extends JPanel
         objectField[x][y] = object;
 
     }
-    
-    
+
+    public void setBuildingObjectField(int x, int y, Building building)
+    {
+        buildingField[x][y] = building;
+    }
+
+    public Building getBuildingFieldObject(int x, int y)
+    {
+        return buildingField[x][y];
+    }
+
     public void setUnitField(int x, int y, Unit unit)
     {
         unitField[x][y] = unit;
@@ -403,7 +414,8 @@ public class GameBoard extends JPanel
         return field;
     }
 
-    public List<Building> getBuildings() {
+    public List<Building> getBuildings()
+    {
         return buildings;
     }
 }

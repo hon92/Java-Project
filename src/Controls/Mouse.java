@@ -86,7 +86,7 @@ public class Mouse implements MouseListener, MouseMotionListener
         currentY = 0;
 
         rectx = recty = rectw = recth = 0;
-        //gameBoard.repaint();
+
     }
 
     @Override
@@ -115,40 +115,8 @@ public class Mouse implements MouseListener, MouseMotionListener
         if (isLeftMouseButton(e))
         {
             active = true;
-//            if (!firstDrag)
-//            {
-//                clickedX = e.getX();
-//                clickedY = e.getY();
-//                firstDrag = true;
-//            }
-
             currentX = e.getX();
             currentY = e.getY();
-            //gameBoard.repaint();
-//            if (e.getX() >= clickedX && e.getY() >= clickedY)
-//            {
-//
-//                rectx = clickedX;
-//                recty = clickedY;
-//                rectw = currentX - rectx;
-//                recth = currentY - recth;
-//                gameBoard.repaint();
-//
-//            }
-//            else if (e.getY() < clickedY)
-//            {
-//                rectx = e.getX() - clickedX;
-//                recty = e.getY() + clickedY;
-//                currentX = e.getX();
-//                currentY = e.getY();
-//                rectw = e.getX() - rectx;
-//                recth = e.getY() + recty;
-//
-//            }
-//            else if (e.getX() < clickedX)
-//            {
-//
-//            }
 
         }
 

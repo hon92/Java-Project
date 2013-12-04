@@ -5,6 +5,7 @@
  */
 package View;
 
+import Buildings.Building;
 import Controls.SelectMouse;
 import Data.ImgResources;
 import Data.Source;
@@ -28,6 +29,7 @@ public class SelectView extends JPanel
     private SelectMouse mouseSelect;
     private ObjectElement element;
     private Unit unit;
+    private Building building;
 
     public SelectView(GameBoard gameBoard)
     {
@@ -43,9 +45,8 @@ public class SelectView extends JPanel
 
         super.paintComponent(g);
         g.drawImage(background, 0, 0, null);
-        if (element == null && unit == null)
+        if (element == null && unit == null && building == null)
         {
-
             g.drawString("Nic", 50, 50);
         }
         if (element instanceof Source)
@@ -60,7 +61,7 @@ public class SelectView extends JPanel
         {
             g.drawString(element.getName(), 50, 60);
         }
-        if (unit instanceof Unit)
+        if (unit != null)
         {
             g.drawImage(unit.getIcon(), 20, 20, null);
             g.drawString(unit.getName(), 50, 30);
@@ -68,6 +69,14 @@ public class SelectView extends JPanel
             g.drawString("Armor: " + unit.getArmor(), 50, 50);
             g.drawString("Max Hp: " + unit.getMaxHp(), 50, 60);
             g.drawString("Current Hp: " + unit.getHp(), 50, 70);
+        }
+        if (building != null)
+        {
+            //g.drawImage(unit.getIcon(), 20, 20, null);
+            g.drawString(building.getName(), 50, 30);
+
+            g.drawString("Max Hp: " + building.getMaxHp(), 50, 60);
+            g.drawString("Current Hp: " + building.getCurrentHp(), 50, 70);
         }
         g.dispose();
 
@@ -85,6 +94,11 @@ public class SelectView extends JPanel
             this.unit.setSelected(false);
         }
         this.unit = unit;
+    }
+
+    public void setBuildingObject(Building building)
+    {
+        this.building = building;
     }
 
 }
