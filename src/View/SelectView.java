@@ -11,10 +11,10 @@ import Data.ImgResources;
 import Data.Source;
 import GameElement.ObjectElement;
 import Unit.Unit;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -28,7 +28,7 @@ public class SelectView extends JPanel
     private GameBoard gameBoard;
     private SelectMouse mouseSelect;
     private ObjectElement element;
-    private Unit unit;
+    private ArrayList<Unit> units;
     private Building building;
 
     public SelectView(GameBoard gameBoard)
@@ -36,7 +36,7 @@ public class SelectView extends JPanel
         setPreferredSize(new Dimension(360, 200));
         this.gameBoard = gameBoard;
         background = ImgResources.getImg("selectView");
-
+        units = new ArrayList<Unit>();
     }
 
     @Override
@@ -45,6 +45,7 @@ public class SelectView extends JPanel
 
         super.paintComponent(g);
         g.drawImage(background, 0, 0, null);
+
         if (element == null && unit == null && building == null)
         {
             g.drawString("Nic", 50, 50);
