@@ -72,6 +72,10 @@ public abstract class Building
         return actions;
     }
 
+    public BufferedImage getSourceImg() {
+        return sourceImg;
+    }
+    
     public abstract String getName();
 
     public abstract int getMaxHp();

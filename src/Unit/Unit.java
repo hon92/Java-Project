@@ -17,7 +17,7 @@ import java.awt.image.BufferedImage;
 public abstract class Unit
 {
 
-    protected int createTime;
+    protected static int createTime;
     protected int currentHp;
     protected int maxHp;
     protected int speed;
@@ -67,6 +67,11 @@ public abstract class Unit
         selected = set;
     }
 
+    static public int getCreateTime() {
+        return createTime;
+    }
+   
+    
     public abstract String getName();
 
     public abstract int getAttack();
@@ -80,5 +85,5 @@ public abstract class Unit
     public abstract BufferedImage getIcon();
 
     public abstract void tick();
-
+    
 }

@@ -22,18 +22,14 @@ import javax.imageio.ImageIO;
  *
  * @author Adam
  */
-public class Barracks extends Building
-{   
-    
-    public Barracks(GameBoard gameBoard, int x, int y)
-    {
+public class Barracks extends Building {
+
+    public Barracks(GameBoard gameBoard, int x, int y) {
         super(gameBoard, x, y);
         initBarracks();
 
-        for (int i = 0; i < 8; i++)
-        {
-            for (int j = 0; j < 6; j++)
-            {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 6; j++) {
                 gameBoard.setBuildingObjectField(x + i, y + j, this);
                 gameBoard.setFieldIndex(x + i, y + j, 15);
             }
@@ -42,10 +38,8 @@ public class Barracks extends Building
     }
 
     @Override
-    public void drawBuilding(Graphics g)
-    {
-        if (isSelected())
-        {
+    public void drawBuilding(Graphics g) {
+        if (isSelected()) {
             int imageWidth = sourceImg.getWidth();
 
             g.setColor(Color.red);
@@ -53,63 +47,50 @@ public class Barracks extends Building
             g.setColor(Color.green);
             g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), (int) (imageWidth * getHpDown()), 5);
         }
-        if (sourceImg != null)
-        {
+        if (sourceImg != null) {
             g.drawImage(sourceImg, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
         }
     }
 
-    private void initBarracks()
-    {
+    private void initBarracks() {
         buildingName = "Barracks";
         buildingType = BuildingType.BARRACKS;
-        
-        actions.add(new TrainSwordman());
-        actions.add(new TrainSwordman());
-        actions.add(new TrainSwordman());
-        actions.add(new TrainSwordman());
-        
+
+        actions.add(new TrainSwordman(gameBoard, this));
+
         buildTime = 30;
         maxHp = 500;
         currentHp = maxHp;
-        try
-        {
+        try {
             sourceImg = ImageIO.read(new File("src/Building/Barracks/barracks.png"));
             iconImg = ImageIO.read(new File("src/Building/Barracks/barracksicon.png"));
-        }
-        catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Logger.getLogger(Barracks.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public String getName()
-    {
+    public String getName() {
         return "Barracks";
     }
 
     @Override
-    public int getMaxHp()
-    {
+    public int getMaxHp() {
         return maxHp;
     }
 
     @Override
-    public int getCurrentHp()
-    {
+    public int getCurrentHp() {
         return currentHp;
     }
 
     @Override
-    public BufferedImage getIcon()
-    {
+    public BufferedImage getIcon() {
         return iconImg;
     }
 
     @Override
-    public void tick()
-    {
+    public void tick() {
 
     }
 

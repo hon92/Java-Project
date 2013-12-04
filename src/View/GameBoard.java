@@ -404,4 +404,9 @@ public class GameBoard extends JPanel
     {
         return buildings;
     }
+
+    public List<Unit> getUnits() {
+        return units;
+    }
+    
 }
