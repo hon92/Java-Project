@@ -85,22 +85,22 @@ public class Dijkstra
     public void drawPath(Graphics g)
     {
 
-        g.setColor(Color.blue);
-        for (int i = 1; i < route.size(); i++)
-        {
-            g.fillRect(gameBoard.convertX(route.get(i).getX() * 25), gameBoard.convertY((route.get(i).getY() + 1) * 25), 25, 25);
-        }
-        for (int i = 0; i < temp.length; i++)
-        {
-            for (int j = 0; j < temp[0].length-2; j++)
-            {
-                String val = new Integer(temp[i][j].getValue()).toString();
-                g.setColor(Color.yellow);
-                g.drawString(val, gameBoard.convertX(temp[i][j+2].getX() * 25 + 10), gameBoard.convertY((temp[i][j+2].getY() * 25 + 1 - 10)));
-
-            }
-
-        }
+//        g.setColor(Color.blue);
+//        for (int i = 1; i < route.size(); i++)
+//        {
+//            g.fillRect(gameBoard.convertX(route.get(i).getX() * 25), gameBoard.convertY((route.get(i).getY() + 1) * 25), 25, 25);
+//        }
+//        for (int i = 0; i < temp.length; i++)
+//        {
+//            for (int j = 0; j < temp[0].length-2; j++)
+//            {
+//                String val = new Integer(temp[i][j].getValue()).toString();
+//                g.setColor(Color.yellow);
+//                g.drawString(val, gameBoard.convertX(temp[i][j+2].getX() * 25 + 10), gameBoard.convertY((temp[i][j+2].getY() * 25 + 1 - 10)));
+//
+//            }
+//
+//        }
     }
 
     public void search()
@@ -306,9 +306,7 @@ public class Dijkstra
         route.add(path);
 
         while (!(gay(start, path)))
-        {
-               System.out.println("csda");       
-            
+        {     
             if ((path.getY() + 1) < rows)
             {
                 if (temp[path.getX()][path.getY() + 1].getValue() < path.getValue())
