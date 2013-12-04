@@ -141,7 +141,6 @@ public class Villager extends Unit
         if (t == 24)
         {
 
-            System.out.println("t: " + t + " " + (pixelX / 25) + "  " + (pixelY / 25 + 1));
             gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 0);
             gameBoard.setUnitField(pixelX / 25, pixelY / 25, null);
             gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, null);
@@ -156,22 +155,26 @@ public class Villager extends Unit
         {
             int newx = moves.get(currentPoint).getX() * 25;
             int newy = moves.get(currentPoint).getY() * 25;
-            this.direction = moves.get(currentPoint).getDirection();
-            //System.err.println(newx + "  " + newy);
+            //this.direction = moves.get(currentPoint).getDirection();
+
             if (newx > pixelX)
             {
+                direction = 0;
                 pixelX += 1;
             }
             if (newy > pixelY)
             {
+                direction = 90;
                 pixelY += 1;
             }
             if (newx < pixelX)
             {
+                direction = 180;
                 pixelX += -1;
             }
             if (newy < pixelY)
             {
+                direction = 270;
                 pixelY += -1;
             }
         }
