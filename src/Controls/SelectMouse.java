@@ -9,8 +9,10 @@ import Buildings.Building;
 import GameElement.ObjectElement;
 import Unit.Unit;
 import View.ActionView;
+import View.BotPanel;
 import View.GameBoard;
 import View.SelectView;
+import View.TopPanel;
 import java.util.ArrayList;
 
 /**
@@ -27,23 +29,23 @@ public class SelectMouse
     private Unit unit;
     private Building building;
 
-    public SelectMouse(GameBoard gameBoard, SelectView selectView, ActionView actionView, ArrayList<Unit> units)
+    public SelectMouse(GameBoard gameBoard, BotPanel botPanel, TopPanel topPanel)
     {
         this.gameBoard = gameBoard;
-        this.selectView = selectView;
-        this.actionView = actionView;
+        this.selectView = botPanel.getSelectPanel();
+        this.actionView = botPanel.getActionPanel();
 
+    }
+
+    public void setUnitSelectedList(ArrayList<Unit> units)
+    {
         System.err.println("size:" + units.size());
         selectView.setUnits(units);
         selectView.repaint();
     }
 
-    public SelectMouse(GameBoard gameBoard, SelectView selectView, ActionView actionView, int indexX, int indexY)
+    public void setData(int indexX, int indexY)
     {
-        this.gameBoard = gameBoard;
-        this.selectView = selectView;
-        this.actionView = actionView;
-
         element = gameBoard.getObjectFieldObject(indexX, indexY);
         unit = gameBoard.getUnitField(indexX, indexY);
         building = gameBoard.getBuildingFieldObject(indexX, indexY);

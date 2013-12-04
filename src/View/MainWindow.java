@@ -54,6 +54,7 @@ public class MainWindow extends JFrame
         gameBoard = new GameBoard();
         topPanel = new TopPanel(gameBoard);
         botPanel = new BotPanel(gameBoard);
+        gameBoard.initComponents(botPanel, topPanel);
     }
 
     public static void main(String args[])
