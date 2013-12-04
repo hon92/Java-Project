@@ -138,10 +138,10 @@ public class Villager extends Unit
 
         moves = dd.getPath();
         isFinish = false;
-        for (ListItem l : moves)
-        {
-            System.out.println(l.getItem());
-        }
+//        for (ListItem l : moves)
+//        {
+//            System.out.println(l.getItem());
+//        }
         newLocationX = x;
         newLocationY = y - 1;
 

@@ -61,7 +61,7 @@ public class Mouse implements MouseListener, MouseMotionListener
         }
         if (e.getButton() == MouseEvent.BUTTON3 && selectMouse != null && selectMouse.isUnitSelected())
         {
-            selectMouse.getUnit().move(clickedIndexX, clickedIndexY);
+            selectMouse.getUnit().move(clickedIndexX, clickedIndexY - 1);
         }
 
         System.err.println("x: " + clickedIndexX + " y: " + clickedIndexY);
