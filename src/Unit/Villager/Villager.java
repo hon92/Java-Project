@@ -128,29 +128,30 @@ public class Villager extends Unit
 
     public void movePixel()
     {
-        t++;
+
 //        gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 0);
 //        gameBoard.setUnitField(pixelX / 25, pixelY / 25, null);
 //        gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, null);
-
         int newx = moves.get(currentPoint).getX() * 25;
         int newy = moves.get(currentPoint).getY() * 25;
 
         if ((pixelX == newPixelX) && (pixelY == newPixelY - 25))
         {
-            gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 11);
-            gameBoard.setUnitField(pixelX / 25, pixelY / 25, this);
-            gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, this);
+            //gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 11);
+            //gameBoard.setUnitField(pixelX / 25, pixelY / 25, this);
+            //gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, this);
             isFinish = true;
         }
 
-        if (t == 10)
+        if (t == 25)
         {
             t = 0;
+            gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 0);
+            gameBoard.setUnitField(pixelX / 25, pixelY / 25, null);
+            gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, null);
             if (currentPoint + 1 < moves.size())
             {
                 currentPoint++;
-
             }
         }
 
@@ -162,14 +163,16 @@ public class Villager extends Unit
         {
             pixelY += 1;
         }
-//        if (newx < pixelX)
-//        {
-//            pixelX += -1;
-//        }
-//        if (newy < pixelY)
-//        {
-//            pixelY += -1;
-//        }
+        if (newx < pixelX)
+        {
+            pixelX += -1;
+        }
+        if (newy < pixelY)
+        {
+            pixelY += -1;
+        }
+
+        t++;
     }
 
     public double getHpDown()
@@ -297,13 +300,6 @@ public class Villager extends Unit
     {
         time++;
 
-//        if (time % 10 == 0)
-//        {
-//            if (isMoving())
-//            {
-//                moveByPixel();
-//            }
-//        }
         if (time % 2 == 0)
         {
             time = 0;
