@@ -5,6 +5,7 @@
  */
 package Controls;
 
+import Buildings.Building;
 import GameElement.ObjectElement;
 import Unit.Unit;
 import View.GameBoard;
@@ -21,6 +22,7 @@ public class SelectMouse
     private static SelectView selectView;
     private ObjectElement element;
     private Unit unit;
+    private Building building;
 
     public SelectMouse(GameBoard gameBoard, SelectView selectView, int indexX, int indexY)
     {
@@ -28,7 +30,8 @@ public class SelectMouse
         this.selectView = selectView;
         element = gameBoard.getObjectFieldObject(indexX, indexY);
         unit = gameBoard.getUnitField(indexX, indexY);
-
+        // building = gameBoard.
+        
         if (element == null)
         {
             selectView.setObjectElement(null);

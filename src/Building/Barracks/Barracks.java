@@ -7,7 +7,9 @@ package Building.Barracks;
 
 import Buildings.Building;
 import Buildings.BuildingType;
+import Data.GameData;
 import View.GameBoard;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
@@ -29,8 +31,16 @@ public class Barracks extends Building {
 
     @Override
     public void drawBuilding(Graphics g) {
+        if (!isSelected()) {
+            int imageWidth = sourceImg.getWidth();
+       
+            g.setColor(Color.red);
+            g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), imageWidth, 5);
+            g.setColor(Color.green);
+            g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), (int) (imageWidth * getHpDown()), 5);
+        }
         if (sourceImg != null) {
-            g.drawImage(sourceImg, locationX, locationY, null);
+            g.drawImage(sourceImg, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
         }
     }
 
@@ -43,7 +53,7 @@ public class Barracks extends Building {
         currentHp = maxHp;
         try {
             sourceImg = ImageIO.read(new File("src/Building/Barracks/barracks.png"));
-            iconImg = ImageIO.read(new File("src/Building/Barracks/barracksicon.png"));
+            // iconImg = ImageIO.read(new File("src/Building/Barracks/barracksicon.png"));
         } catch (IOException ex) {
             Logger.getLogger(Barracks.class.getName()).log(Level.SEVERE, null, ex);
         }

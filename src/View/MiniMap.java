@@ -1,5 +1,7 @@
 package View;
 
+import Building.Barracks.Barracks;
+import Buildings.Building;
 import Data.GameData;
 import GameElement.Cactus;
 import GameElement.Gold;
@@ -24,8 +26,7 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class MiniMap extends JPanel
-{
+public class MiniMap extends JPanel {
 
     private int sizeWidth = 360;
     private int sizeHeight = 200;
@@ -42,23 +43,24 @@ public class MiniMap extends JPanel
     final private Color greenColor = new Color(8, 135, 40);
     final private Color grayColor = new Color(89, 97, 86);
     final private Color blueColor = new Color(136, 206, 250);
+    final private Color darkBlueColor = new Color(0, 71, 229);
     private List<ObjectElement> objects;
+    private List<Building> buildings;
     private Timer mapRefresh;
     private int refreshDelay = 250;
 
-    public MiniMap(final GameBoard gameBoard)
-    {
+    public MiniMap(final GameBoard gameBoard) {
         this.gameBoard = gameBoard;
         setPreferredSize(new Dimension(sizeWidth, sizeHeight));
         objects = new ArrayList<>();
+        buildings = new ArrayList<Building>();
 
-        mapRefresh = new Timer(refreshDelay, new ActionListener()
-        {
+        mapRefresh = new Timer(refreshDelay, new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 objects = gameBoard.getObjects();
+                buildings = gameBoard.getBuildings();
                 repaint();
 
             }
@@ -72,12 +74,10 @@ public class MiniMap extends JPanel
 
     }
 
-    private class MouseMiniMap implements MouseListener, MouseMotionListener
-    {
+    private class MouseMiniMap implements MouseListener, MouseMotionListener {
 
         @Override
-        public void mouseClicked(MouseEvent e)
-        {
+        public void mouseClicked(MouseEvent e) {
             int mapx = e.getX();
             int mapy = e.getY();
 
@@ -95,29 +95,24 @@ public class MiniMap extends JPanel
         }
 
         @Override
-        public void mousePressed(MouseEvent e)
-        {
+        public void mousePressed(MouseEvent e) {
         }
 
         @Override
-        public void mouseReleased(MouseEvent e)
-        {
+        public void mouseReleased(MouseEvent e) {
 
         }
 
         @Override
-        public void mouseEntered(MouseEvent e)
-        {
+        public void mouseEntered(MouseEvent e) {
         }
 
         @Override
-        public void mouseExited(MouseEvent e)
-        {
+        public void mouseExited(MouseEvent e) {
         }
 
         @Override
-        public void mouseDragged(MouseEvent e)
-        {
+        public void mouseDragged(MouseEvent e) {
             int mapx = e.getX();
             int mapy = e.getY();
 
@@ -132,53 +127,54 @@ public class MiniMap extends JPanel
         }
 
         @Override
-        public void mouseMoved(MouseEvent e)
-        {
+        public void mouseMoved(MouseEvent e) {
         }
 
     }
 
-    public void paintComponent(Graphics g)
-    {
+    public void paintComponent(Graphics g) {
         g.setColor(brownColor);
         g.fillRect(0, 0, sizeWidth, sizeHeight);
 
-        for (ObjectElement ob : objects)
-        {
-            if (!((ob instanceof Sand) || (ob instanceof Cactus) || (ob instanceof Shoal) || (ob instanceof Grass)))
-            {
+        for (ObjectElement ob : objects) {
+            if (!((ob instanceof Sand) || (ob instanceof Cactus) || (ob instanceof Shoal) || (ob instanceof Grass))) {
 
-                if (ob instanceof Water)
-                {
+                if (ob instanceof Water) {
                     g.setColor(blueColor);
                 }
-                if (ob instanceof Gold)
-                {
+                if (ob instanceof Gold) {
                     g.setColor(goldColor);
                 }
-                if (ob instanceof Relic)
-                {
+                if (ob instanceof Relic) {
                     g.setColor(silverColor);
                 }
-                if (ob instanceof Tree)
-                {
+                if (ob instanceof Tree) {
                     g.setColor(greenColor);
                 }
-                if (ob instanceof Stone)
-                {
+                if (ob instanceof Stone) {
                     g.setColor(grayColor);
                 }
 
                 int objx = ob.getX();
                 int objy = ob.getY();
                 g.fillRect(0 + convertX(objx * 25), 0 + convertY(objy * 25), 5, 5);
-                if (ob instanceof Water)
-                {
+                if (ob instanceof Water) {
                     g.fillRect(0 + convertX((objx) * 25), 0 + convertY(objy * 25), 11, 11);
                 }
 
             }
+
         }
+
+        for (Building b : buildings) {
+            if (b instanceof Barracks) {
+                g.setColor(darkBlueColor);
+            }
+                int bX = b.getLocationX();
+                int bY = b.getLocationY();
+                g.fillRect(0 + convertX(bX * 25), 0 + convertY(bY * 25), 5, 5);
+        }
+
         int currx = gameBoard.getCurrWinX() / scaleX;
         int curry = gameBoard.getCurrWinY() / scaleY;
         x = currx;
@@ -189,24 +185,20 @@ public class MiniMap extends JPanel
         g.dispose();
     }
 
-    void setData(List<ObjectElement> objects
-    )
-    {
+    void setData(List<ObjectElement> objects, List<Building> buildings) {
         this.objects = objects;
+        this.buildings = buildings;
     }
 
-    private int convertX(int x)
-    {
+    private int convertX(int x) {
         return x / scaleX;
     }
 
-    private int convertY(int y)
-    {
+    private int convertY(int y) {
         return y / scaleY;
     }
 
-    public void setAction(int x, int y)
-    {
+    public void setAction(int x, int y) {
 
         int newx = GameData.WINDOW_WIDTH - x;
         int newy = GameData.WINDOW_HEIGHT - y;
@@ -219,14 +211,10 @@ public class MiniMap extends JPanel
 
     }
 
-    public boolean intersect(int x, int y)
-    {
-        if (x >= this.x && y >= this.y)
-        {
+    public boolean intersect(int x, int y) {
+        if (x >= this.x && y >= this.y) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }

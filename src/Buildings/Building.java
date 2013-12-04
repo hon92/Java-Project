@@ -38,4 +38,25 @@ public abstract class Building
     }
 
     public abstract void drawBuilding(Graphics g);
+
+    public int getLocationX() {
+        return locationX;
+    }
+
+    public int getLocationY() {
+        return locationY;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+    
+    public double getHpDown()
+    {
+        return ((currentHp / (double) maxHp));
+    }
 }
