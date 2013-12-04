@@ -57,7 +57,7 @@ public class Mouse implements MouseListener, MouseMotionListener
 
         if (e.getButton() == MouseEvent.BUTTON1)
         {
-            selectMouse = new SelectMouse(gameBoard, MainWindow.botPanel.getSelectPanel(), clickedIndexX, clickedIndexY);
+            selectMouse = new SelectMouse(gameBoard, MainWindow.botPanel.getSelectPanel(), MainWindow.botPanel.getActionPanel(), clickedIndexX, clickedIndexY);
         }
         if (e.getButton() == MouseEvent.BUTTON3 && selectMouse != null && selectMouse.isUnitSelected())
         {
