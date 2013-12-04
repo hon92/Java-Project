@@ -6,11 +6,11 @@
 package View;
 
 import Buildings.Building;
-import Controls.SelectMouse;
 import Data.ImgResources;
 import Data.Source;
 import GameElement.ObjectElement;
 import Unit.Unit;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -26,7 +26,6 @@ public class SelectView extends JPanel
 
     private BufferedImage background;
     private GameBoard gameBoard;
-    private SelectMouse mouseSelect;
     private ObjectElement element;
     private ArrayList<Unit> units;
     private Unit unit;
@@ -47,7 +46,7 @@ public class SelectView extends JPanel
         super.paintComponent(g);
         g.drawImage(background, 0, 0, null);
 
-        if (element == null && unit == null && building == null)
+        if (element == null && unit == null && building == null && units.size() == 0)
         {
             g.drawString("Nic", 50, 50);
         }
@@ -79,6 +78,26 @@ public class SelectView extends JPanel
             g.drawString("Max Hp: " + building.getMaxHp(), 60, 60);
             g.drawString("Current Hp: " + building.getCurrentHp(), 60, 70);
         }
+        if (units.size() != 0)
+        {
+            int j = 0;
+            for (int i = 0; i < units.size(); i++)
+            {
+                if (i % 5 == 0)
+                {
+                    j++;
+
+                }
+
+                units.get(i).setSelected(true);
+                g.drawImage(units.get(i).getIcon(), 20 + (i * 30), 20 + (j), null);
+                g.setColor(Color.red);
+                g.fillRect(20 + (i * 30), 20 + j + units.get(i).getIcon().getHeight() + 2, units.get(i).getIcon().getWidth(), 5);
+                g.setColor(Color.green);
+                g.fillRect(20 + (i * 30), 20 + j + units.get(i).getIcon().getHeight() + 2, (int) (25 * units.get(i).getHpDown()), 5);
+            }
+
+        }
         g.dispose();
 
     }
@@ -104,6 +123,18 @@ public class SelectView extends JPanel
             this.building.setSelected(false);
         }
         this.building = building;
+    }
+
+    public void setUnits(ArrayList<Unit> units)
+    {
+        if (units.size() == 0)
+        {
+            for (Unit u : gameBoard.getUnits())
+            {
+                u.setSelected(false);
+            }
+        }
+        this.units = units;
     }
 
 }

@@ -5,13 +5,17 @@
  */
 package Controls;
 
+import Unit.Unit;
 import View.GameBoard;
 import View.MainWindow;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 import static javax.swing.SwingUtilities.isLeftMouseButton;
 
 /**
@@ -35,8 +39,7 @@ public class Mouse implements MouseListener, MouseMotionListener
     private int clickedIndexY;
 
     private boolean active = false;
-    private boolean firstDrag = false;
-    private int rectx, recty, rectw, recth;
+    private Rectangle selectRectangle = null;
 
     public Mouse(GameBoard gameBoard)
     {
@@ -78,14 +81,15 @@ public class Mouse implements MouseListener, MouseMotionListener
     @Override
     public void mouseReleased(MouseEvent e)
     {
+
+        selectRectangle = new Rectangle(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
+        selectMouse = new SelectMouse(gameBoard, MainWindow.botPanel.getSelectPanel(), MainWindow.botPanel.getActionPanel(), getListSelectedUnits(selectRectangle));
+
         active = false;
-        firstDrag = false;
         clickedX = 0;
         clickedY = 0;
         currentX = 0;
         currentY = 0;
-
-        rectx = recty = rectw = recth = 0;
 
     }
 
@@ -107,6 +111,27 @@ public class Mouse implements MouseListener, MouseMotionListener
             g.fillRect(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
 
         }
+        else
+        {
+            selectRectangle = null;
+        }
+    }
+
+    public ArrayList<Unit> getListSelectedUnits(Rectangle rec)
+    {
+        ArrayList<Unit> selectedUnits = new ArrayList<Unit>();
+        for (Unit u : gameBoard.getUnits())
+        {
+            Rectangle r = new Rectangle(gameBoard.convertX(u.getX()), gameBoard.convertY(u.getY()), 25, 50);
+
+            if (rec.intersects(r))
+            {
+                selectedUnits.add(u);
+            }
+
+        }
+
+        return selectedUnits;
     }
 
     @Override
@@ -117,7 +142,6 @@ public class Mouse implements MouseListener, MouseMotionListener
             active = true;
             currentX = e.getX();
             currentY = e.getY();
-
         }
 
     }

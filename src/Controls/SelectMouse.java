@@ -11,6 +11,7 @@ import Unit.Unit;
 import View.ActionView;
 import View.GameBoard;
 import View.SelectView;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,13 +26,24 @@ public class SelectMouse
     private ObjectElement element;
     private Unit unit;
     private Building building;
-    
+
+    public SelectMouse(GameBoard gameBoard, SelectView selectView, ActionView actionView, ArrayList<Unit> units)
+    {
+        this.gameBoard = gameBoard;
+        this.selectView = selectView;
+        this.actionView = actionView;
+
+        System.err.println("size:" + units.size());
+        selectView.setUnits(units);
+        selectView.repaint();
+    }
+
     public SelectMouse(GameBoard gameBoard, SelectView selectView, ActionView actionView, int indexX, int indexY)
     {
         this.gameBoard = gameBoard;
         this.selectView = selectView;
         this.actionView = actionView;
-        
+
         element = gameBoard.getObjectFieldObject(indexX, indexY);
         unit = gameBoard.getUnitField(indexX, indexY);
         building = gameBoard.getBuildingFieldObject(indexX, indexY);

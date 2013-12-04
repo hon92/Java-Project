@@ -67,11 +67,21 @@ public abstract class Unit
         selected = set;
     }
 
-    static public int getCreateTime() {
+    static public int getCreateTime()
+    {
         return createTime;
     }
-   
-    
+
+    public int getX()
+    {
+        return locationX * 25;
+    }
+
+    public int getY()
+    {
+        return locationY * 25;
+    }
+
     public abstract String getName();
 
     public abstract int getAttack();
@@ -85,5 +95,7 @@ public abstract class Unit
     public abstract BufferedImage getIcon();
 
     public abstract void tick();
-    
+
+    public abstract double getHpDown();
+
 }
