@@ -72,6 +72,8 @@ public class GameBoard extends JPanel
         fillBackground();
 
         units.add(new Villager(this, 30, 80, 0));
+        units.add(new Villager(this, 40, 80, 90));
+        units.add(new Villager(this, 35, 80, 180));
         buildings.add(new Barracks(this, 50, 50));
 
         setFocusable(true);
