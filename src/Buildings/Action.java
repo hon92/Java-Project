@@ -48,5 +48,6 @@ public abstract class Action {
     
     protected abstract void initAction();
     public abstract void doAction();
+    public abstract void cancelAction();
     public abstract void tick();
 }
