@@ -8,6 +8,7 @@ package Controls;
 import Buildings.Building;
 import GameElement.ObjectElement;
 import Unit.Unit;
+import View.ActionView;
 import View.GameBoard;
 import View.SelectView;
 
@@ -20,14 +21,17 @@ public class SelectMouse
 
     private static GameBoard gameBoard;
     private static SelectView selectView;
+    private static ActionView actionView;
     private ObjectElement element;
     private Unit unit;
     private Building building;
 
-    public SelectMouse(GameBoard gameBoard, SelectView selectView, int indexX, int indexY)
+    public SelectMouse(GameBoard gameBoard, SelectView selectView, ActionView actionView, int indexX, int indexY)
     {
         this.gameBoard = gameBoard;
         this.selectView = selectView;
+        this.actionView = actionView;
+        
         element = gameBoard.getObjectFieldObject(indexX, indexY);
         unit = gameBoard.getUnitField(indexX, indexY);
         building = gameBoard.getBuildingFieldObject(indexX, indexY);
