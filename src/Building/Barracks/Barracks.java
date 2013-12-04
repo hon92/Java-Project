@@ -53,7 +53,7 @@ public class Barracks extends Building {
         currentHp = maxHp;
         try {
             sourceImg = ImageIO.read(new File("src/Building/Barracks/barracks.png"));
-            // iconImg = ImageIO.read(new File("src/Building/Barracks/barracksicon.png"));
+            iconImg = ImageIO.read(new File("src/Building/Barracks/barracksicon.png"));
         } catch (IOException ex) {
             Logger.getLogger(Barracks.class.getName()).log(Level.SEVERE, null, ex);
         }
