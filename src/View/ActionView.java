@@ -15,6 +15,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -29,6 +30,11 @@ public class ActionView extends JPanel
     private Building building;
     private ActionMouseClick actionMouseClick;
 
+    private JButton button1;
+    private JButton button2;
+    private JButton button3;
+    private JButton button4;
+    
     public ActionView(GameBoard gameBoard)
     {
         setPreferredSize(new Dimension(360, 200));
@@ -37,6 +43,12 @@ public class ActionView extends JPanel
         actionMouseClick = new ActionMouseClick();
         setFocusable(true);
         addMouseListener(actionMouseClick);
+        
+        button1 = new JButton("LOL");
+        button1.setBounds(30, 30, 100, 100);
+        button1.setEnabled(true);
+        button1.setVisible(true);
+        add(button1);
     }
 
     @Override
@@ -78,31 +90,31 @@ public class ActionView extends JPanel
         @Override
         public void mouseClicked(MouseEvent e)
         {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            
         }
 
         @Override
         public void mousePressed(MouseEvent e)
         {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            
         }
 
         @Override
         public void mouseReleased(MouseEvent e)
         {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           
         }
 
         @Override
         public void mouseEntered(MouseEvent e)
         {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           
         }
 
         @Override
         public void mouseExited(MouseEvent e)
         {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           
         }
 
     }
