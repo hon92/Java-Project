@@ -152,27 +152,29 @@ public class Villager extends Unit
             t = 0;
         }
 
-        int newx = moves.get(currentPoint).getX() * 25;
-        int newy = moves.get(currentPoint).getY() * 25;
-        this.direction = moves.get(currentPoint).getDirection();
-        //System.err.println(newx + "  " + newy);
-        if (newx > pixelX)
+        if (currentPoint < moves.size())
         {
-            pixelX += 1;
+            int newx = moves.get(currentPoint).getX() * 25;
+            int newy = moves.get(currentPoint).getY() * 25;
+            this.direction = moves.get(currentPoint).getDirection();
+            //System.err.println(newx + "  " + newy);
+            if (newx > pixelX)
+            {
+                pixelX += 1;
+            }
+            if (newy > pixelY)
+            {
+                pixelY += 1;
+            }
+            if (newx < pixelX)
+            {
+                pixelX += -1;
+            }
+            if (newy < pixelY)
+            {
+                pixelY += -1;
+            }
         }
-        if (newy > pixelY)
-        {
-            pixelY += 1;
-        }
-        if (newx < pixelX)
-        {
-            pixelX += -1;
-        }
-        if (newy < pixelY)
-        {
-            pixelY += -1;
-        }
-
         t++;
     }
 
