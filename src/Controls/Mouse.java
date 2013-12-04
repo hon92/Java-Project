@@ -6,8 +6,10 @@
 package Controls;
 
 import Unit.Unit;
+import View.BotPanel;
 import View.GameBoard;
 import View.MainWindow;
+import View.TopPanel;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -41,9 +43,10 @@ public class Mouse implements MouseListener, MouseMotionListener
     private boolean active = false;
     private Rectangle selectRectangle = null;
 
-    public Mouse(GameBoard gameBoard)
+    public Mouse(GameBoard gameBoard, BotPanel botPanel, TopPanel topPanel)
     {
         this.gameBoard = gameBoard;
+        selectMouse = new SelectMouse(gameBoard, botPanel, topPanel);//, MainWindow.botPanel.getSelectPanel(), MainWindow.botPanel.getActionPanel());
     }
 
     @Override
@@ -60,7 +63,7 @@ public class Mouse implements MouseListener, MouseMotionListener
 
         if (e.getButton() == MouseEvent.BUTTON1)
         {
-            selectMouse = new SelectMouse(gameBoard, MainWindow.botPanel.getSelectPanel(), MainWindow.botPanel.getActionPanel(), clickedIndexX, clickedIndexY);
+            selectMouse.setData(clickedIndexX, clickedIndexY);
         }
         if (e.getButton() == MouseEvent.BUTTON3 && selectMouse != null && selectMouse.isUnitSelected())
         {
@@ -83,7 +86,7 @@ public class Mouse implements MouseListener, MouseMotionListener
     {
 
         selectRectangle = new Rectangle(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
-        selectMouse = new SelectMouse(gameBoard, MainWindow.botPanel.getSelectPanel(), MainWindow.botPanel.getActionPanel(), getListSelectedUnits(selectRectangle));
+        selectMouse.setUnitSelectedList(getListSelectedUnits(selectRectangle));
 
         active = false;
         clickedX = 0;
@@ -109,7 +112,6 @@ public class Mouse implements MouseListener, MouseMotionListener
         {
             g.setColor(dragColor);
             g.fillRect(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
-
         }
         else
         {

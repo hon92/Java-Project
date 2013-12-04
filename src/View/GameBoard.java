@@ -46,6 +46,8 @@ public class GameBoard extends JPanel
     private List<Building> buildings;
     private Mouse mouse;
     private BufferedImage background;
+    private BotPanel botPanel;
+    private TopPanel topPanel;
 
     private int[][] field = new int[rows][columns];
     private ObjectElement[][] objectField = new ObjectElement[columns][rows];
@@ -58,13 +60,21 @@ public class GameBoard extends JPanel
         setIgnoreRepaint(true);
     }
 
+    public void initComponents(BotPanel bP, TopPanel tP)
+    {
+        this.botPanel = bP;
+        this.topPanel = tP;
+        mouse = new Mouse(this, botPanel, topPanel);
+        setFocusable(true);
+        addMouseListener(mouse);
+        addMouseMotionListener(mouse);
+    }
+
     private void initGameBoard()
     {
         setPreferredSize(new Dimension(GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT - 45 - 200));//velikost bot a top panelu -vysky jejich
         objects = new ArrayList<>();
         mapData = new MapData(this);
-        mouse = new Mouse(this);
-
         objects = mapData.getMapData();
         units = new ArrayList<Unit>();
         buildings = new ArrayList<Building>();
@@ -85,9 +95,6 @@ public class GameBoard extends JPanel
 //        units.add(new Villager(this, 35, 80, 180));
         buildings.add(new Barracks(this, 50, 50));
 
-        setFocusable(true);
-        addMouseListener(mouse);
-        addMouseMotionListener(mouse);
         addKeyListener(new Key(this));
         gameLoop();
 
@@ -133,7 +140,8 @@ public class GameBoard extends JPanel
         for (Building b : buildings)
         {
             b.tick();
-            for (Action a : b.getActions()) {
+            for (Action a : b.getActions())
+            {
                 a.tick();
             }
         }
