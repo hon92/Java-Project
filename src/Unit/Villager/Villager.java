@@ -300,7 +300,7 @@ public class Villager extends Unit
     {
         time++;
 
-        if (time % 2 == 0)
+        //if (time % 2 == 0)
         {
             time = 0;
 

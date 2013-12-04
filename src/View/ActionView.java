@@ -34,16 +34,16 @@ public class ActionView extends JPanel
     private JButton button2;
     private JButton button3;
     private JButton button4;
-    
+
     public ActionView(GameBoard gameBoard)
     {
         setPreferredSize(new Dimension(360, 200));
         background = ImgResources.getImg("actionView");
         this.gameBoard = gameBoard;
         actionMouseClick = new ActionMouseClick();
-        setFocusable(true);
+        //setFocusable(true);
         addMouseListener(actionMouseClick);
-        
+
         button1 = new JButton("LOL");
         button1.setBounds(30, 30, 100, 100);
         button1.setEnabled(true);
@@ -90,31 +90,31 @@ public class ActionView extends JPanel
         @Override
         public void mouseClicked(MouseEvent e)
         {
-            
+
         }
 
         @Override
         public void mousePressed(MouseEvent e)
         {
-            
+
         }
 
         @Override
         public void mouseReleased(MouseEvent e)
         {
-           
+
         }
 
         @Override
         public void mouseEntered(MouseEvent e)
         {
-           
+
         }
 
         @Override
         public void mouseExited(MouseEvent e)
         {
-           
+
         }
 
     }
