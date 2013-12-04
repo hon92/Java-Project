@@ -11,6 +11,7 @@ import Data.GameData;
 import Unit.Unit;
 import Unit.Villager.Villager;
 import View.GameBoard;
+import View.MainWindow;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -37,6 +38,8 @@ public class TrainSwordman extends Action {
     @Override
     protected void initAction() {
         actionName = "Train Swordman";
+        tickCount = -1;
+        remaining = -1;
         try {
             actionImage = ImageIO.read(new File("src/Building/Barracks/trainSwordman.png"));
         } catch (IOException ex) {
@@ -44,30 +47,26 @@ public class TrainSwordman extends Action {
         }
     }
 
-    ;
+    
     
     @Override
     public void doAction() {
-        if (!isActive) {
+        if(!isActive){
             isActive = true;
-            train(Villager.getCreateTime());
         }
     }
 
-    public void train(int createTime) {
-        final int creatiTimeFinal = createTime;
-        Timer timer = new Timer(1000, new ActionListener() {
-            int tickCount = 0;
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(tickCount > creatiTimeFinal){
-                   gameBoard.getUnits().add(new Villager(gameBoard, building.getLocationX() + (building.getSourceImg().getWidth() / 25), building.getLocationY() + (building.getSourceImg().getHeight() / 25), 0));
-                   isActive = false;
-                }
-                tickCount++;
+    @Override
+    public void tick() {
+        if(isActive){
+            remaining = Villager.getCreateTime()*60 - tickCount;
+            if(tickCount > Villager.getCreateTime() *60){
+                gameBoard.getUnits().add(new Villager(gameBoard, building.getLocationX() + (building.getSourceImg().getWidth() / 25), building.getLocationY() + (building.getSourceImg().getHeight() / 25), 0));
+                isActive = false;
+                tickCount = 0;
             }
-        });
-        timer.start();
+            tickCount++;
+            MainWindow.botPanel.getActionPanel().repaint();
+        }
     }
-;
 }

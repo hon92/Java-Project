@@ -64,6 +64,11 @@ public class ActionView extends JPanel {
                         (30 + (i * a.getActionImage().getWidth())) + i * 5,
                         (30 + (row * a.getActionImage().getHeight())) + row * 5,
                         null);
+                if(a.isIsActive()){
+                    g.setColor(Color.red);
+                    g.setFont(new Font("Verdana", 1, 20));
+                    g.drawString(""+(((a.getRemaining()-1)/60)+1), ((30 + (i * a.getActionImage().getWidth())) + i * 5)+a.getActionImage().getWidth()/2 - 8, ((30 + (row * a.getActionImage().getHeight())) + row * 5)+a.getActionImage().getHeight()/2+8);
+                }
                 i++;
             }
 //            for (Rectangle r : rectangles) {

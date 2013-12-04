@@ -19,6 +19,8 @@ public abstract class Action {
     protected Boolean isActive = false;
     protected GameBoard gameBoard;
     protected Building building;
+    protected int tickCount;
+    protected int remaining;
     
     public Action() {
         this.actionName = null;
@@ -34,7 +36,17 @@ public abstract class Action {
     public BufferedImage getActionImage() {
         return actionImage;
     }
+
+    public int getRemaining() {
+        return remaining;
+    }
+
+    public Boolean isIsActive() {
+        return isActive;
+    }
+    
     
     protected abstract void initAction();
     public abstract void doAction();
+    public abstract void tick();
 }

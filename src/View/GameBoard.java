@@ -1,6 +1,7 @@
 package View;
 
 import Building.Barracks.Barracks;
+import Buildings.Action;
 import Buildings.Building;
 import Controls.Dijkstra;
 import Controls.Key;
@@ -124,6 +125,9 @@ public class GameBoard extends JPanel
         for (Building b : buildings)
         {
             b.tick();
+            for (Action a : b.getActions()) {
+                a.tick();
+            }
         }
     }
 
