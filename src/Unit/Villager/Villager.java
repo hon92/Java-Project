@@ -129,23 +129,19 @@ public class Villager extends Unit
     public void movePixel()
     {
 
-//        gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 0);
-//        gameBoard.setUnitField(pixelX / 25, pixelY / 25, null);
-//        gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, null);
-        int newx = moves.get(currentPoint).getX() * 25;
-        int newy = moves.get(currentPoint).getY() * 25;
-
         if ((pixelX == newPixelX) && (pixelY == newPixelY - 25))
         {
-            //gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 11);
-            //gameBoard.setUnitField(pixelX / 25, pixelY / 25, this);
-            //gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, this);
+            gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 11);
+            gameBoard.setUnitField(pixelX / 25, pixelY / 25, this);
+            gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, this);
             isFinish = true;
+            return;
         }
 
-        if (t == 25)
+        if (t == 24)
         {
-            t = 0;
+
+            System.out.println("t: " + t + " " + (pixelX / 25) + "  " + (pixelY / 25 + 1));
             gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 0);
             gameBoard.setUnitField(pixelX / 25, pixelY / 25, null);
             gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, null);
@@ -153,8 +149,12 @@ public class Villager extends Unit
             {
                 currentPoint++;
             }
+            t = 0;
         }
 
+        int newx = moves.get(currentPoint).getX() * 25;
+        int newy = moves.get(currentPoint).getY() * 25;
+        //System.err.println(newx + "  " + newy);
         if (newx > pixelX)
         {
             pixelX += 1;
@@ -191,13 +191,22 @@ public class Villager extends Unit
         currentPoint = 1;
         moves.clear();
 
-        dd = new Dijkstra(new ListItem(locationX, locationY), new ListItem(x, y), gameBoard);
+        dd = new Dijkstra(new ListItem(pixelX / 25, pixelY / 25), new ListItem(x, y), gameBoard);
 
         moves = dd.getPath();
         isFinish = false;
         newLocationX = x;
         newLocationY = y + 1;
 
+        gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 0);
+        gameBoard.setUnitField(pixelX / 25, pixelY / 25, null);
+        gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, null);
+//        gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 0);
+//        gameBoard.setUnitField(pixelX / 25, pixelY / 25, null);
+//        gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, null);
+//        gameBoard.setFieldIndex(locationX, locationY + 1, 0);
+//        gameBoard.setUnitField(locationX, locationY, null);
+//        gameBoard.setUnitField(locationX, locationY + 1, null);
         newPixelX = x * 25;
         newPixelY = (y * 25);
 
