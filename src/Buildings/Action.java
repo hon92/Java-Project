@@ -6,6 +6,7 @@
 
 package Buildings;
 
+import View.GameBoard;
 import java.awt.image.BufferedImage;
 
 /**
@@ -16,10 +17,14 @@ public abstract class Action {
     protected String actionName;
     protected BufferedImage actionImage;
     protected Boolean isActive = false;
+    protected GameBoard gameBoard;
+    protected Building building;
     
     public Action() {
         this.actionName = null;
         this.actionImage = null;
+        this.gameBoard = null;
+        this.building = null;
     }
     
     public String getActionName(){
@@ -31,5 +36,5 @@ public abstract class Action {
     }
     
     protected abstract void initAction();
-    protected abstract void doAction();
+    public abstract void doAction();
 }

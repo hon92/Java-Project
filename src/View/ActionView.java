@@ -12,9 +12,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -22,98 +25,115 @@ import javax.swing.JPanel;
  *
  * @author Honza
  */
-public class ActionView extends JPanel
-{
+public class ActionView extends JPanel {
 
     private BufferedImage background;
     private GameBoard gameBoard;
     private Building building;
     private ActionMouseClick actionMouseClick;
+    private List<Rectangle> rectangles;
 
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
+    private int viewWidth = 290;
+    private int viewHeigth = 165;
 
-    public ActionView(GameBoard gameBoard)
-    {
+    public ActionView(GameBoard gameBoard) {
         setPreferredSize(new Dimension(360, 200));
         background = ImgResources.getImg("actionView");
         this.gameBoard = gameBoard;
         actionMouseClick = new ActionMouseClick();
-        //setFocusable(true);
+        setFocusable(true);
         addMouseListener(actionMouseClick);
-
-        button1 = new JButton("LOL");
-        button1.setBounds(30, 30, 100, 100);
-        button1.setEnabled(true);
-        button1.setVisible(true);
-        add(button1);
     }
 
     @Override
-    protected void paintComponent(Graphics g)
-    {
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(background, 0, 0, null);
 
-        if (building != null)
-        {
+        if (building != null) {
+            generateRectangles(building.getActions());
             int i = 0;
-            for (Action a : building.getActions())
-            {
-                g.drawImage(a.getActionImage(), 30, (30 + (i * a.getActionImage().getHeight())) + i * 5, null);
-                g.setColor(Color.red);
-                int fontSize = 14;
-                g.setFont(new Font("Verdana", 1, fontSize));
-                g.drawString(a.getActionName(), 40 + a.getActionImage().getWidth(), ((30 + (i * a.getActionImage().getHeight())) + i * 5) + a.getActionImage().getHeight() / 2 + fontSize / 2);
+            int row = 0;
+            for (Action a : building.getActions()) {
+                if (i % 7 == 0 && i != 0) {
+                    row++;
+                    i = 0;
+                }
+                g.drawImage(
+                        a.getActionImage(),
+                        (30 + (i * a.getActionImage().getWidth())) + i * 5,
+                        (30 + (row * a.getActionImage().getHeight())) + row * 5,
+                        null);
                 i++;
             }
+//            for (Rectangle r : rectangles) {
+//                g.setColor(Color.red);
+//                g.drawRect(r.x, r.y, r.width, r.height);
+//            }
         }
 
-        //drawing action icon
         g.dispose();
     }
 
-    public void setBuildingObject(Building building)
-    {
-        if (this.building != null && this.building.isSelected() && building == null)
-        {
+    private void generateRectangles(List<Action> actions) {
+        rectangles = new ArrayList<Rectangle>();
+        int i = 0;
+        int row = 0;
+        for (Action a : actions) {
+            if (i % 7 == 0 && i != 0) {
+                row++;
+                i = 0;
+            }
+            rectangles.add(new Rectangle(
+                    (30 + (i * a.getActionImage().getWidth())) + i * 5,
+                    (30 + (row * a.getActionImage().getHeight())) + row * 5,
+                    a.getActionImage().getWidth(),
+                    a.getActionImage().getHeight()));
+            i++;
+        }
+    }
+
+    public void setBuildingObject(Building building) {
+        if (this.building != null && this.building.isSelected() && building == null) {
             this.building.setSelected(false);
         }
         this.building = building;
     }
 
-    private class ActionMouseClick implements MouseListener
-    {
+    private class ActionMouseClick implements MouseListener {
 
         @Override
-        public void mouseClicked(MouseEvent e)
-        {
+        public void mouseClicked(MouseEvent e) {
+
+            if (rectangles != null) {
+                Rectangle rect = new Rectangle(e.getX(), e.getY(), 1, 1);
+                int position = 0;
+                for (Rectangle r : rectangles) {
+                    if (r.intersects(rect)) {
+                        building.getActions().get(position).doAction();
+                    }
+                    position++;
+                }
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
 
         }
 
         @Override
-        public void mousePressed(MouseEvent e)
-        {
+        public void mouseReleased(MouseEvent e) {
 
         }
 
         @Override
-        public void mouseReleased(MouseEvent e)
-        {
+        public void mouseEntered(MouseEvent e) {
 
         }
 
         @Override
-        public void mouseEntered(MouseEvent e)
-        {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e)
-        {
+        public void mouseExited(MouseEvent e) {
 
         }
 
