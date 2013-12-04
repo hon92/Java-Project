@@ -29,6 +29,7 @@ public class SelectView extends JPanel
     private SelectMouse mouseSelect;
     private ObjectElement element;
     private ArrayList<Unit> units;
+    private Unit unit;
     private Building building;
 
     public SelectView(GameBoard gameBoard)

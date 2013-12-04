@@ -121,6 +121,10 @@ public class GameBoard extends JPanel
         {
             u.tick();
         }
+        for (Building b : buildings)
+        {
+            b.tick();
+        }
     }
 
     private void fillBackground()
@@ -406,8 +410,9 @@ public class GameBoard extends JPanel
         return buildings;
     }
 
-    public List<Unit> getUnits() {
+    public List<Unit> getUnits()
+    {
         return units;
     }
-    
+
 }
