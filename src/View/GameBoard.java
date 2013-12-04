@@ -234,7 +234,6 @@ public class GameBoard extends JPanel
         {
             g.drawImage(background, -currentWindowX, -currentWindowY, GameData.MAP_WIDTH, GameData.MAP_HEIGHT, null);
         }
-        //udelat image,nakreslit na nej travu a vodu,pak vykreslit ten image a az pak vykreslit suroviny atd
 
         for (ObjectElement ob : objects)
         {
@@ -273,29 +272,28 @@ public class GameBoard extends JPanel
         mouse.drawRect(g);
 
         //g.setColor(Color.blue);
-        if (units.get(0) instanceof Villager)
-        {
-            Villager v = (Villager) units.get(0);
-            Dijkstra d = v.getDijkstra();
-            if (d != null)
-            {
-                d.drawPath(g);
-            }
-        }
-
+//        if (units.get(0) instanceof Villager)
+//        {
+//            Villager v = (Villager) units.get(0);
+//            Dijkstra d = v.getDijkstra();
+//            if (d != null)
+//            {
+//                d.drawPath(g);
+//            }
+//        }
         for (Unit u : units)
         {
             u.drawUnit(g);
         }
 
-        g.setColor(Color.red);
-        for (int i = 0; i < columns; i++)
-        {
-            for (int j = 0; j < rows; j++)
-            {
-                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
-            }
-        }
+//        g.setColor(Color.red);
+//        for (int i = 0; i < columns; i++)
+//        {
+//            for (int j = 0; j < rows; j++)
+//            {
+//                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
+//            }
+//        }
         g.setColor(Color.white);
         for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
         {
@@ -306,7 +304,7 @@ public class GameBoard extends JPanel
             }
         }
 
-        //g.dispose();
+        g.dispose();
         Toolkit.getDefaultToolkit().sync();
     }
 

@@ -87,9 +87,9 @@ public class Villager extends Unit
     public void move()
     {
 
-        if ((locationX == newLocationX) && (locationY == newLocationY))
+        if ((locationX == newLocationX) && (locationY + 1 == newLocationY))
         {
-            isFinish = true;      
+            isFinish = true;
         }
         else
         {
@@ -98,25 +98,33 @@ public class Villager extends Unit
                 gameBoard.setFieldIndex(locationX, locationY + 1, 0);
                 gameBoard.setUnitField(locationX, locationY, null);
                 gameBoard.setUnitField(locationX, locationY + 1, null);
-                
-                locationX = moves.get(currentPoint).getX();
-                locationY = moves.get(currentPoint).getY();
+
+                int newx = moves.get(currentPoint).getX();
+                int newy = moves.get(currentPoint).getY();
+                locationX = newx;
+                locationY = newy;
+
+                moveByPixel();
+
                 this.direction = moves.get(currentPoint).getDirection();
                 gameBoard.setFieldIndex(locationX, locationY + 1, 11);
                 gameBoard.setUnitField(locationX, locationY, this);
                 gameBoard.setUnitField(locationX, locationY + 1, this);
- 
-                if(currentPoint == moves.size()-1)
+
+                if (currentPoint == moves.size() - 1)
                 {
-                    direction = moves.get(moves.size()-2).getDirection();
+                    direction = moves.get(moves.size() - 2).getDirection();
                 }
-                
-                System.out.println("New Location:  " + "Lx: " + locationX + "  " + "Ly: " + locationY);
-                
+
             }
             currentPoint++;
 
         }
+    }
+
+    public void moveByPixel()
+    {
+        System.out.println("sdadad");
     }
 
     public double getHpDown()
@@ -135,14 +143,10 @@ public class Villager extends Unit
         currentPoint = 1;
         moves.clear();
 
-        dd = new Dijkstra(new ListItem(locationX, locationY), new ListItem(x, y-1), gameBoard.getFieldArray(), gameBoard);
-        
+        dd = new Dijkstra(new ListItem(locationX, locationY), new ListItem(x, y), gameBoard.getFieldArray(), gameBoard);
+
         moves = dd.getPath();
         isFinish = false;
-        for (ListItem l : moves)
-        {
-            System.out.println(l.getItem());
-        }
         newLocationX = x;
         newLocationY = y;
 
@@ -243,6 +247,15 @@ public class Villager extends Unit
     public void tick()
     {
         time++;
+
+        if (time % 10 == 0)
+        {
+            if (isMoving())
+            {
+                moveByPixel();
+            }
+        }
+
         if (time % 60 == 0)
         {
             time = 0;
