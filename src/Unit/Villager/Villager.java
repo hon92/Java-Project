@@ -102,7 +102,7 @@ public class Villager extends Unit
                 gameBoard.setFieldIndex(locationX, locationY + 1, 0);
                 gameBoard.setUnitField(locationX, locationY, null);
                 gameBoard.setUnitField(locationX, locationY + 1, null);
-                
+
                 locationX = moves.get(currentPoint).getX();
                 locationY = moves.get(currentPoint).getY();
                 this.direction = moves.get(currentPoint).getDirection();
@@ -147,7 +147,7 @@ public class Villager extends Unit
 //            System.out.println(l.getItem());
 //        }
         newLocationX = x;
-        newLocationY = y - 1;
+        newLocationY = y;
 
     }
 
