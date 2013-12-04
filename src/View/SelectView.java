@@ -72,11 +72,10 @@ public class SelectView extends JPanel
         }
         if (building != null)
         {
-            //g.drawImage(unit.getIcon(), 20, 20, null);
-            g.drawString(building.getName(), 50, 30);
-
-            g.drawString("Max Hp: " + building.getMaxHp(), 50, 60);
-            g.drawString("Current Hp: " + building.getCurrentHp(), 50, 70);
+            g.drawImage(building.getIcon(), 20, 20, null);
+            g.drawString(building.getName(), 60, 30);
+            g.drawString("Max Hp: " + building.getMaxHp(), 60, 60);
+            g.drawString("Current Hp: " + building.getCurrentHp(), 60, 70);
         }
         g.dispose();
 

@@ -8,6 +8,7 @@ package Buildings;
 import Data.UnitType;
 import View.GameBoard;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 /**
@@ -70,4 +71,8 @@ public abstract class Building
     public abstract int getMaxHp();
 
     public abstract int getCurrentHp();
+
+    public abstract BufferedImage getIcon();
+
+    public abstract void tick();
 }

@@ -80,14 +80,6 @@ public class GameBoard extends JPanel
         addKeyListener(new Key(this));
         gameLoop();
 
-//        for(int i=0;i<columns;i++)
-//        {
-//            for(int j =0;j<rows;j++)
-//            {
-//                System.out.println(getFieldIndex(i,j));
-//            }
-//        }
-        //generateDebug();
     }
 
     private void gameLoop()
@@ -159,11 +151,6 @@ public class GameBoard extends JPanel
         }
         g.dispose();
 
-    }
-
-    private void generateDebug()
-    {
-        objects.add(new Relic(this, 3, 4));
     }
 
     public void addToCurrentWindowX(int increment)

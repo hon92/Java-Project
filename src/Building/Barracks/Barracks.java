@@ -11,6 +11,7 @@ import Data.GameData;
 import View.GameBoard;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -70,7 +71,9 @@ public class Barracks extends Building
         {
             sourceImg = ImageIO.read(new File("src/Building/Barracks/barracks.png"));
             iconImg = ImageIO.read(new File("src/Building/Barracks/barracksicon.png"));
-        } catch (IOException ex) {
+        }
+        catch (IOException ex)
+        {
             Logger.getLogger(Barracks.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -92,4 +95,17 @@ public class Barracks extends Building
     {
         return currentHp;
     }
+
+    @Override
+    public BufferedImage getIcon()
+    {
+        return iconImg;
+    }
+
+    @Override
+    public void tick()
+    {
+
+    }
+
 }
