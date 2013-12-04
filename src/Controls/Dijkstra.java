@@ -12,7 +12,6 @@ public class Dijkstra
 
     private ArrayList<ListItem> route;
     private ArrayList<ListItem> nodesToBeChecked;
-
     private ListItem start;
     private ListItem stop;
     private ListItem actualItem;
@@ -20,7 +19,6 @@ public class Dijkstra
     private int rows = GameData.MAP_HEIGHT / GameData.BOXSIZE;
     private int columns = GameData.MAP_WIDTH / GameData.BOXSIZE;
     private ListItem[][] temp = new ListItem[columns][rows];
-
     private GameBoard gameBoard;
 
     public Dijkstra(ListItem start, ListItem end, int mapInt[][], GameBoard gameBoard)
@@ -28,8 +26,11 @@ public class Dijkstra
         route = new ArrayList<ListItem>();
         nodesToBeChecked = new ArrayList<ListItem>();
         stop = end;
+
         this.start = start;
         found = false;
+        stop.setItem(end.getX(), end.getY());
+        this.start.setItem(start.getX(), start.getY() + 1);
 
         this.gameBoard = gameBoard;
 
@@ -80,11 +81,11 @@ public class Dijkstra
         }
         for (int i = 0; i < temp.length; i++)
         {
-            for (int j = 0; j < temp[0].length - 1; j++)
+            for (int j = 0; j < temp[0].length; j++)
             {
                 String val = new Integer(temp[i][j].getValue()).toString();
                 g.setColor(Color.yellow);
-                g.drawString(val, gameBoard.convertX(temp[i][j + 1].getX() * 25 + 10), gameBoard.convertY((temp[i][j + 1].getY() * 25 + 1 - 10)));
+                g.drawString(val, gameBoard.convertX(temp[i][j].getX() * 25 + 10), gameBoard.convertY((temp[i][j].getY() + 1) * 25 - 10));
 
             }
 
@@ -108,6 +109,8 @@ public class Dijkstra
                         temp[actualItem.getX() + 1][actualItem.getY()].setExamined();
                         nodesToBeChecked.add(temp[actualItem.getX() + 1][actualItem.getY()]);
 
+//                        //stop.setItem(stop.getX(), stop.getY() + 1);
+//                        ListItem tt = new ListItem(stop.getX(), stop.getY() + 1);
                         if (gay(stop, temp[actualItem.getX() + 1][actualItem.getY()]))
                         {
                             found = true;
@@ -252,6 +255,8 @@ public class Dijkstra
             }
 
         }
+        System.out.println("int: " + gameBoard.getFieldIndex(20, 76));
+        System.out.println("temp: " + temp[20][76].getValue());
         if (found)
         {
             getRoute();
@@ -294,8 +299,7 @@ public class Dijkstra
 
         while (!(gay(start, path)))
         {
-                      
-            
+
             if ((path.getY() + 1) < rows)
             {
                 if (temp[path.getX()][path.getY() + 1].getValue() < path.getValue())
@@ -306,8 +310,7 @@ public class Dijkstra
                     continue;
                 }
             }
-          
-            
+
             if ((path.getX() + 1) < columns)
             {
                 if (temp[path.getX() + 1][path.getY()].getValue() < path.getValue())
@@ -318,7 +321,6 @@ public class Dijkstra
                     continue;
                 }
             }
-            
 
             if ((path.getY() - 1) >= 0)
             {
@@ -341,7 +343,7 @@ public class Dijkstra
                     continue;
                 }
             }
-            
+
             if (((path.getX() + 1) < columns) && (path.getY() + 1 < rows))
             {
                 if (temp[path.getX() + 1][path.getY() + 1].getValue() < path.getValue())
@@ -352,7 +354,6 @@ public class Dijkstra
                     continue;
                 }
             }
-   
 
             if (((path.getX() - 1) >= 0) && (path.getY() - 1 >= 0))
             {

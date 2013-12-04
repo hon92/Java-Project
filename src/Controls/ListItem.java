@@ -15,21 +15,21 @@ public class ListItem
         this.direction = 0;
         this.x = x;
         this.y = y;
-        this.value = 999;
+        this.value = 99;
         this.visited = false;
         this.examined = false;
     }
 
     public void setDirection(int x)
     {
-        direction= x;
+        direction = x;
     }
-    
+
     public int getDirection()
     {
         return direction;
     }
-    
+
     public void setItem(int x, int y)
     {
         this.x = x;
