@@ -27,12 +27,16 @@ public class ActionView extends JPanel
     private BufferedImage background;
     private GameBoard gameBoard;
     private Building building;
+    private ActionMouseClick actionMouseClick;
 
     public ActionView(GameBoard gameBoard)
     {
         setPreferredSize(new Dimension(360, 200));
         background = ImgResources.getImg("actionView");
         this.gameBoard = gameBoard;
+        actionMouseClick = new ActionMouseClick();
+        setFocusable(true);
+        addMouseListener(actionMouseClick);
     }
 
     @Override
@@ -40,23 +44,25 @@ public class ActionView extends JPanel
     {
         super.paintComponent(g);
         g.drawImage(background, 0, 0, null);
-        
-        if(building != null){
+
+        if (building != null)
+        {
             int i = 0;
-            for (Action a : building.getActions()) {
-                g.drawImage(a.getActionImage(), 30, (30+(i*a.getActionImage().getHeight())) + i * 5, null);
+            for (Action a : building.getActions())
+            {
+                g.drawImage(a.getActionImage(), 30, (30 + (i * a.getActionImage().getHeight())) + i * 5, null);
                 g.setColor(Color.red);
                 int fontSize = 14;
                 g.setFont(new Font("Verdana", 1, fontSize));
-                g.drawString(a.getActionName(), 40 + a.getActionImage().getWidth(), ((30+(i*a.getActionImage().getHeight())) + i * 5) + a.getActionImage().getHeight()/2 + fontSize/2);
+                g.drawString(a.getActionName(), 40 + a.getActionImage().getWidth(), ((30 + (i * a.getActionImage().getHeight())) + i * 5) + a.getActionImage().getHeight() / 2 + fontSize / 2);
                 i++;
             }
         }
-        
+
         //drawing action icon
         g.dispose();
     }
-    
+
     public void setBuildingObject(Building building)
     {
         if (this.building != null && this.building.isSelected() && building == null)
@@ -65,32 +71,39 @@ public class ActionView extends JPanel
         }
         this.building = building;
     }
-    private class ActionMouseClick implements MouseListener{
+
+    private class ActionMouseClick implements MouseListener
+    {
 
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void mouseClicked(MouseEvent e)
+        {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
         @Override
-        public void mousePressed(MouseEvent e) {
+        public void mousePressed(MouseEvent e)
+        {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
         @Override
-        public void mouseReleased(MouseEvent e) {
+        public void mouseReleased(MouseEvent e)
+        {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
         @Override
-        public void mouseEntered(MouseEvent e) {
+        public void mouseEntered(MouseEvent e)
+        {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
         @Override
-        public void mouseExited(MouseEvent e) {
+        public void mouseExited(MouseEvent e)
+        {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
-        
+
     }
 }
