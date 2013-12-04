@@ -97,6 +97,10 @@ public class SelectView extends JPanel
 
     public void setBuildingObject(Building building)
     {
+        if (this.building != null && this.building.isSelected() && building == null)
+        {
+            this.building.setSelected(false);
+        }
         this.building = building;
     }
 

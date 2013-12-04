@@ -33,6 +33,8 @@ public class ActionView extends JPanel
     {
         super.paintComponent(g);
         g.drawImage(background, 0, 0, null);
+
+        //drawing action icon
         g.dispose();
 
     }

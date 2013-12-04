@@ -56,6 +56,7 @@ public class SelectMouse
         }
         if (building != null)
         {
+            building.setSelected(true);
             selectView.setBuildingObject(building);
         }
         selectView.repaint();

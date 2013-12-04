@@ -278,14 +278,13 @@ public class GameBoard extends JPanel
 //                d.drawPath(g);
 //            }
 //        }
-        for (Unit u : units)
-        {
-            u.drawUnit(g);
-        }
-
         for (Building b : buildings)
         {
             b.drawBuilding(g);
+        }
+        for (Unit u : units)
+        {
+            u.drawUnit(g);
         }
 
         g.setColor(Color.red);

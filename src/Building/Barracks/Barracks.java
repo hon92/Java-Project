@@ -44,7 +44,7 @@ public class Barracks extends Building
     @Override
     public void drawBuilding(Graphics g)
     {
-        if (!isSelected())
+        if (isSelected())
         {
             int imageWidth = sourceImg.getWidth();
 
