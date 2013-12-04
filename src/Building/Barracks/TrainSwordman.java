@@ -67,6 +67,15 @@ public class TrainSwordman extends Action {
             }
             tickCount++;
             MainWindow.botPanel.getActionPanel().repaint();
+        }else if(MainWindow.botPanel != null){
+            MainWindow.botPanel.getActionPanel().repaint();
         }
+    }
+
+    @Override
+    public void cancelAction() {
+        isActive = false;
+        tickCount = 0;
+        remaining = -1;
     }
 }

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -115,7 +116,12 @@ public class ActionView extends JPanel {
                 int position = 0;
                 for (Rectangle r : rectangles) {
                     if (r.intersects(rect)) {
-                        building.getActions().get(position).doAction();
+                        if(SwingUtilities.isLeftMouseButton(e)){
+                            building.getActions().get(position).doAction();
+                        }
+                        if(SwingUtilities.isRightMouseButton(e)){
+                            building.getActions().get(position).cancelAction();
+                        }
                     }
                     position++;
                 }
