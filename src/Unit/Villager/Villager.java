@@ -7,7 +7,6 @@ package Unit.Villager;
 
 import Controls.Dijkstra;
 import Controls.ListItem;
-import Data.GameData;
 import GameElement.Grass;
 import Unit.Unit;
 import View.GameBoard;
@@ -17,7 +16,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -51,6 +49,10 @@ public class Villager extends Unit
     private int currentPoint = 1;
     private boolean isFinish = true;
     private Dijkstra dd = null;
+    private int pixelX, pixelY;
+    private int newPixelX;
+    private int newPixelY;
+    private int t;
 
     public Villager(GameBoard gameBoard, int x, int y, int dir)
     {
@@ -82,12 +84,17 @@ public class Villager extends Unit
 
         newLocationX = locationX;
         newLocationY = locationY;
+
+        pixelX = locationX * 25;
+        pixelY = locationY * 25;
+        newPixelX = pixelX;
+        newPixelY = pixelY;
     }
 
     public void move()
     {
 
-        if ((locationX == newLocationX) && (locationY + 1 == newLocationY))
+        if ((locationX == newLocationX) && (locationY == newLocationY))
         {
             isFinish = true;
         }
@@ -103,9 +110,6 @@ public class Villager extends Unit
                 int newy = moves.get(currentPoint).getY();
                 locationX = newx;
                 locationY = newy;
-
-                moveByPixel();
-
                 this.direction = moves.get(currentPoint).getDirection();
                 gameBoard.setFieldIndex(locationX, locationY + 1, 11);
                 gameBoard.setUnitField(locationX, locationY, this);
@@ -122,9 +126,50 @@ public class Villager extends Unit
         }
     }
 
-    public void moveByPixel()
+    public void movePixel()
     {
-        System.out.println("sdadad");
+        t++;
+//        gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 0);
+//        gameBoard.setUnitField(pixelX / 25, pixelY / 25, null);
+//        gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, null);
+
+        int newx = moves.get(currentPoint).getX() * 25;
+        int newy = moves.get(currentPoint).getY() * 25;
+
+        if ((pixelX == newPixelX) && (pixelY == newPixelY - 25))
+        {
+            gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 11);
+            gameBoard.setUnitField(pixelX / 25, pixelY / 25, this);
+            gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, this);
+            isFinish = true;
+        }
+
+        if (t == 10)
+        {
+            t = 0;
+            if (currentPoint + 1 < moves.size())
+            {
+                currentPoint++;
+
+            }
+        }
+
+        if (newx > pixelX)
+        {
+            pixelX += 1;
+        }
+        if (newy > pixelY)
+        {
+            pixelY += 1;
+        }
+//        if (newx < pixelX)
+//        {
+//            pixelX += -1;
+//        }
+//        if (newy < pixelY)
+//        {
+//            pixelY += -1;
+//        }
     }
 
     public double getHpDown()
@@ -143,12 +188,15 @@ public class Villager extends Unit
         currentPoint = 1;
         moves.clear();
 
-        dd = new Dijkstra(new ListItem(locationX, locationY), new ListItem(x, y), gameBoard.getFieldArray(), gameBoard);
+        dd = new Dijkstra(new ListItem(locationX, locationY), new ListItem(x, y), gameBoard);
 
         moves = dd.getPath();
         isFinish = false;
         newLocationX = x;
-        newLocationY = y;
+        newLocationY = y + 1;
+
+        newPixelX = x * 25;
+        newPixelY = (y * 25);
 
     }
 
@@ -163,48 +211,49 @@ public class Villager extends Unit
         if (isSelected())
         {
             g.setColor(Color.red);
-            g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), 25, 5);
+            g.fillRect(gameBoard.convertX(pixelX), gameBoard.convertY(pixelY - 10), 25, 5);
             g.setColor(Color.green);
-            g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), (int) (25 * getHpDown()), 5);
+            g.fillRect(gameBoard.convertX(pixelX), gameBoard.convertY(pixelY - 10), (int) (25 * getHpDown()), 5);
         }
-        if ((direction >= 247) && (direction < 292))
+//        if ((direction >= 247) && (direction < 292))
+//        {
+//            g.drawImage(villagerTop, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
+//        }
+//        else if ((direction >= 78) && (direction < 123))
+//        {
+//            g.drawImage(villagerDown, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
+//        }
+//
+//        else if ((direction >= 158) && (direction < 203))
+//        {
+//            g.drawImage(villagerLeft, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
+//        }
+//
+//        else if ((direction >= 338) || (direction < 23))
         {
-            g.drawImage(villagerTop, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
-        }
-        else if ((direction >= 78) && (direction < 123))
-        {
-            g.drawImage(villagerDown, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
+            g.drawImage(villagerRight, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            g.drawRect(gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), villagerRight.getWidth(), villagerRight.getHeight());
         }
 
-        else if ((direction >= 158) && (direction < 203))
-        {
-            g.drawImage(villagerLeft, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
-        }
-
-        else if ((direction >= 338) || (direction < 23))
-        {
-            g.drawImage(villagerRight, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
-        }
-
-        else if ((direction < 338) && (direction >= 292))
-        {
-            g.drawImage(villagerRightTop, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
-        }
-
-        else if ((direction >= 203) && (direction < 247))
-        {
-            g.drawImage(villagerLeftTop, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
-        }
-
-        else if ((direction >= 123) && (direction < 158))
-        {
-            g.drawImage(villagerLeftBot, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
-        }
-
-        else if ((direction >= 23) && (direction < 78))
-        {
-            g.drawImage(villagerRightBot, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
-        }
+//        else if ((direction < 338) && (direction >= 292))
+//        {
+//            g.drawImage(villagerRightTop, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
+//        }
+//
+//        else if ((direction >= 203) && (direction < 247))
+//        {
+//            g.drawImage(villagerLeftTop, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
+//        }
+//
+//        else if ((direction >= 123) && (direction < 158))
+//        {
+//            g.drawImage(villagerLeftBot, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
+//        }
+//
+//        else if ((direction >= 23) && (direction < 78))
+//        {
+//            g.drawImage(villagerRightBot, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
+//        }
     }
 
     @Override
@@ -248,24 +297,22 @@ public class Villager extends Unit
     {
         time++;
 
-        if (time % 10 == 0)
-        {
-            if (isMoving())
-            {
-                moveByPixel();
-            }
-        }
-
-        if (time % 60 == 0)
+//        if (time % 10 == 0)
+//        {
+//            if (isMoving())
+//            {
+//                moveByPixel();
+//            }
+//        }
+        if (time % 2 == 0)
         {
             time = 0;
+
             if (isMoving())
             {
-                move();
-
+                movePixel();
             }
         }
-
     }
 
     private boolean isMoving()

@@ -23,7 +23,7 @@ public class Dijkstra
 
     private GameBoard gameBoard;
 
-    public Dijkstra(ListItem start, ListItem end, int mapInt[][], GameBoard gameBoard)
+    public Dijkstra(ListItem start, ListItem end, GameBoard gameBoard)
     {
         route = new ArrayList<ListItem>();
         nodesToBeChecked = new ArrayList<ListItem>();

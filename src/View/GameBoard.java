@@ -71,7 +71,7 @@ public class GameBoard extends JPanel
         generateGrass();
         fillBackground();
 
-        units.add(new Villager(this, 30, 80, 90));
+        units.add(new Villager(this, 30, 80, 0));
         buildings.add(new Barracks(this, 50, 50));
 
         setFocusable(true);
@@ -268,16 +268,16 @@ public class GameBoard extends JPanel
 
         mouse.drawRect(g);
 
-        //g.setColor(Color.blue);
-//        if (units.get(0) instanceof Villager)
-//        {
-//            Villager v = (Villager) units.get(0);
-//            Dijkstra d = v.getDijkstra();
-//            if (d != null)
-//            {
-//                d.drawPath(g);
-//            }
-//        }
+        g.setColor(Color.blue);
+        if (units.get(0) instanceof Villager)
+        {
+            Villager v = (Villager) units.get(0);
+            Dijkstra d = v.getDijkstra();
+            if (d != null)
+            {
+                d.drawPath(g);
+            }
+        }
         for (Building b : buildings)
         {
             b.drawBuilding(g);
