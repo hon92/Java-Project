@@ -25,7 +25,7 @@ public class SelectMouse
     private ObjectElement element;
     private Unit unit;
     private Building building;
-
+    
     public SelectMouse(GameBoard gameBoard, SelectView selectView, ActionView actionView, int indexX, int indexY)
     {
         this.gameBoard = gameBoard;
@@ -46,6 +46,7 @@ public class SelectMouse
         }
         if (building == null)
         {
+            actionView.setBuildingObject(null);
             selectView.setBuildingObject(null);
         }
 
@@ -61,9 +62,11 @@ public class SelectMouse
         if (building != null)
         {
             building.setSelected(true);
+            actionView.setBuildingObject(building);
             selectView.setBuildingObject(building);
         }
         selectView.repaint();
+        actionView.repaint();
     }
 
     public void setUnitSelect(boolean b)

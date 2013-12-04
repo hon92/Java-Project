@@ -23,8 +23,8 @@ import javax.imageio.ImageIO;
  * @author Adam
  */
 public class Barracks extends Building
-{
-
+{   
+    
     public Barracks(GameBoard gameBoard, int x, int y)
     {
         super(gameBoard, x, y);
@@ -63,7 +63,12 @@ public class Barracks extends Building
     {
         buildingName = "Barracks";
         buildingType = BuildingType.BARRACKS;
-
+        
+        actions.add(new TrainSwordman());
+        actions.add(new TrainSwordman());
+        actions.add(new TrainSwordman());
+        actions.add(new TrainSwordman());
+        
         buildTime = 30;
         maxHp = 500;
         currentHp = maxHp;
