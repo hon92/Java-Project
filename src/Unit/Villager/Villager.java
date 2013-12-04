@@ -156,8 +156,6 @@ public class Villager extends Unit
         {
             int newx = moves.get(currentPoint).getX() * 25;
             int newy = moves.get(currentPoint).getY() * 25;
-            //this.direction = moves.get(currentPoint).getDirection();
-
             if (newx > pixelX)
             {
                 direction = 0;
