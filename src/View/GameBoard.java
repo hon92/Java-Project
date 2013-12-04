@@ -72,6 +72,8 @@ public class GameBoard extends JPanel
         fillBackground();
 
         units.add(new Villager(this, 30, 80, 0));
+        units.add(new Villager(this, 40, 80, 90));
+        units.add(new Villager(this, 35, 80, 180));
         buildings.add(new Barracks(this, 50, 50));
 
         setFocusable(true);
@@ -268,16 +270,16 @@ public class GameBoard extends JPanel
 
         mouse.drawRect(g);
 
-        g.setColor(Color.blue);
-        if (units.get(0) instanceof Villager)
-        {
-            Villager v = (Villager) units.get(0);
-            Dijkstra d = v.getDijkstra();
-            if (d != null)
-            {
-                d.drawPath(g);
-            }
-        }
+//        g.setColor(Color.blue);
+//        if (units.get(0) instanceof Villager)
+//        {
+//            Villager v = (Villager) units.get(0);
+//            Dijkstra d = v.getDijkstra();
+//            if (d != null)
+//            {
+//                d.drawPath(g);
+//            }
+//        }
         for (Building b : buildings)
         {
             b.drawBuilding(g);
@@ -287,24 +289,23 @@ public class GameBoard extends JPanel
             u.drawUnit(g);
         }
 
-        g.setColor(Color.red);
-        for (int i = 0; i < columns; i++)
-        {
-            for (int j = 0; j < rows; j++)
-            {
-                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
-            }
-        }
-        g.setColor(Color.white);
-        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
-        {
-            for (int j = 0; j < GameData.MAP_HEIGHT; j += GameData.BOXSIZE)
-            {
-
-                g.drawRect(i, j, 25, 25);
-            }
-        }
-
+//        g.setColor(Color.red);
+//        for (int i = 0; i < columns; i++)
+//        {
+//            for (int j = 0; j < rows; j++)
+//            {
+//                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
+//            }
+//        }
+//        g.setColor(Color.white);
+//        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
+//        {
+//            for (int j = 0; j < GameData.MAP_HEIGHT; j += GameData.BOXSIZE)
+//            {
+//
+//                g.drawRect(i, j, 25, 25);
+//            }
+//        }
         g.dispose();
         Toolkit.getDefaultToolkit().sync();
     }
