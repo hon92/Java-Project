@@ -87,7 +87,7 @@ public class Villager extends Unit
     public void move()
     {
 
-        if ((locationX == newLocationX) && (locationY + 1 == newLocationY))
+        if ((locationX == newLocationX) && (locationY == newLocationY))
         {
             isFinish = true;      
         }
@@ -136,7 +136,7 @@ public class Villager extends Unit
         currentPoint = 1;
         moves.clear();
 
-        dd = new Dijkstra(new ListItem(locationX, locationY), new ListItem(x, y - 1), gameBoard.getFieldArray(), gameBoard);
+        dd = new Dijkstra(new ListItem(locationX, locationY), new ListItem(x, y-1), gameBoard.getFieldArray(), gameBoard);
         
         moves = dd.getPath();
         isFinish = false;
