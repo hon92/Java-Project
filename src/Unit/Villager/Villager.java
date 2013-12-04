@@ -89,7 +89,7 @@ public class Villager extends Unit
         pixelY = locationY * 25;
         newPixelX = pixelX;
         newPixelY = pixelY;
-        createTime = 10;
+        createTime = 5;
     }
 
     public void move()
