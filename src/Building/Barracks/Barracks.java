@@ -29,9 +29,9 @@ public class Barracks extends Building
         super(gameBoard, x, y);
         initBarracks();
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 8; i++)
         {
-            for (int j = 0; j < 10; j++)
+            for (int j = 0; j < 6; j++)
             {
                 gameBoard.setBuildingObjectField(x + i, y + j, this);
                 gameBoard.setFieldIndex(x + i, y + j, 15);
