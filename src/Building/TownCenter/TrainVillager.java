@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Building.Barracks;
+package Building.TownCenter;
 
 import Buildings.Action;
 import Buildings.Building;
@@ -80,8 +80,9 @@ public class TrainVillager extends Action
                     }
                 }
 
-                if (isFree) {
-                    gameBoard.getUnits().add(new Villager(gameBoard, spawnX, spawnY, 0,"Blue"));
+                if (isFree)
+                {
+                    gameBoard.getUnits().add(new Villager(gameBoard, spawnX, spawnY, 0, "Blue"));
                     isActive = false;
                     tickCount = 0;
                     spawnLines++;
