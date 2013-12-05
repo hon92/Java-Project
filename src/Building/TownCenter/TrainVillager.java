@@ -55,14 +55,35 @@ public class TrainVillager extends Action
     @Override
     public void doAction()
     {
+        
         if(building.getPlayer() == "Blue")
         {
+        if(gameBoard.getBluePlayer().getFood()>=50 ||
+                gameBoard.getBluePlayer().getActualPop()<gameBoard.getBluePlayer().getMaxPop())
+        {
+ 
         loadSpawn();
         if (!isActive)
         {
             isActive = true;
         }
+            
+        else
+        {
+            if (gameBoard.getBluePlayer().getFood()>=50)
+            {
+                //nedostatek surovin
+            }
+            else
+            {
+                //pop
+            }
+            
         }
+            
+        }
+        }
+        gameBoard.getTopPanel().repaint();
     }
 
     @Override

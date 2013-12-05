@@ -43,7 +43,15 @@ public abstract class Unit
         direction = dir;
         this.team=team;
         
+        if(team == "Blue")
+        {
+            gameBoard.getBluePlayer().setActualPop(1);
+        }
         
+        if(team == "Red")
+        {
+            gameBoard.getRedPlayer().setActualPop(1);
+        }
         
         
     }

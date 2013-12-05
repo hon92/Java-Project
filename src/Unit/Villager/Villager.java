@@ -63,6 +63,8 @@ public class Villager extends Unit
     private int newPixelX;
     private int newPixelY;
     private int t;
+    
+    private int foodCost;
 
     public Villager(GameBoard gameBoard, int x, int y, int dir, String team)
     {
@@ -71,6 +73,7 @@ public class Villager extends Unit
         maxHp = 50;
         currentHp = 10;
         speed = 2;
+        foodCost = 50;
         moves = new ArrayList<>();
         try
         {
@@ -115,13 +118,14 @@ public class Villager extends Unit
         if(team == "Blue")
         {
             gameBoard.getBluePlayer().addUnit(this);
+            gameBoard.getBluePlayer().setFood(-1*foodCost);
         }
         
         if(team == "Red")
         {
             gameBoard.getRedPlayer().addUnit(this);
-        }
-        
+            gameBoard.getRedPlayer().setFood(-1*foodCost);
+        }    
         
     }
 
