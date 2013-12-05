@@ -75,7 +75,7 @@ public class TownCenter extends Building {
         maxHp = 500;
         currentHp = maxHp;
         try {
-            if(team == "blue")
+            if(team == "Blue")
             {
             sourceImg = ImageIO.read(new File("src/Building/TownCenter/TownCenter.png"));
             }
