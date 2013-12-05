@@ -55,7 +55,7 @@ public class Villager extends Unit
 
     public Villager(GameBoard gameBoard, int x, int y, int dir, String team)
     {
-        super(gameBoard, x, y, dir,team);
+        super(gameBoard, x, y, dir, team);
 
         maxHp = 50;
         currentHp = 10;
@@ -307,7 +307,6 @@ public class Villager extends Unit
     {
         time++;
 
-        //if (time % 2 == 0)
         {
             time = 0;
 
