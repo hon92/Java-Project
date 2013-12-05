@@ -119,9 +119,9 @@ public class Mouse implements MouseListener, MouseMotionListener
         {
             g.setColor(dragColor);
             g.fillRect(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
-
             selectRectangle = new Rectangle(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
             selectMouse.setUnitSelectedList(getListSelectedUnits(selectRectangle));
+
         }
 
     }
