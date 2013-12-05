@@ -20,8 +20,8 @@ import javax.imageio.ImageIO;
  * @author Tom
  */
 public class TownCenter extends Building {
-    private static BufferedImage sourceImg;
-    private static BufferedImage iconImg;
+    private BufferedImage sourceImg;
+    private BufferedImage iconImg;
     
     public TownCenter(GameBoard gameBoard, int x, int y,String team) {
         super(gameBoard, x, y,team);
