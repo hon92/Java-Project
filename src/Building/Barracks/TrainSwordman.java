@@ -55,10 +55,13 @@ public class TrainSwordman extends Action
     @Override
     public void doAction()
     {
+        if(building.getPlayer()=="Blue")
+        {
         loadSpawn();
         if (!isActive)
         {
             isActive = true;
+        }
         }
     }
 
@@ -81,7 +84,7 @@ public class TrainSwordman extends Action
                 }
 
                 if (isFree) {
-                    gameBoard.getUnits().add(new Villager(gameBoard, spawnX, spawnY, 0,"Red"));
+                    gameBoard.getUnits().add(new Villager(gameBoard, spawnX, spawnY, 0,"Blue"));
                     isActive = false;
                     tickCount = 0;
                     spawnLines++;
