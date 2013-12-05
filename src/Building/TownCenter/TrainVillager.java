@@ -44,7 +44,7 @@ public class TrainVillager extends Action
         remaining = -1;
         try
         {
-            actionImage = ImageIO.read(new File("src/Resources/villagerImg/villagerIcon.png"));
+            actionImage = ImageIO.read(new File("src/Building/TownCenter/villagerIcon2.png"));
         }
         catch (IOException ex)
         {
