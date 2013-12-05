@@ -18,6 +18,8 @@ public class Player
     private int gold;
     private int stone;
     private int food;
+    private int pop;
+    private int actualPop;
     
     private String team;
     
@@ -28,6 +30,9 @@ public class Player
     {
         units = new ArrayList<Unit>();
         buildings = new ArrayList<Building>();
+        
+        pop=5;
+        actualPop=0;
         
         this.wood=wood;
         this.gold=gold;
@@ -61,5 +66,35 @@ public class Player
         buildings.add(b);
     }
     
+    
+    public int getWood()
+    {
+        return wood;
+    }
+    
+    public int getFood()
+    {
+        return food;
+    }
+    
+    public int getStone()
+    {
+        return stone;
+    }
+    
+    public int getGold()
+    {
+        return gold;
+    }
+    
+    public int getMaxPop()
+    {
+        return pop;
+    }
+    
+    public int getActualPop()
+    {
+        return actualPop;
+    }
     
 }
