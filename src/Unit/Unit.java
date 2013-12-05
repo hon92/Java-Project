@@ -30,16 +30,17 @@ public abstract class Unit
     protected BufferedImage sourceImg;
     protected GameBoard gameBoard;
     
-    
+    protected String team;
 
     protected boolean selected = false;
 
-    public Unit(GameBoard gameBoard, int x, int y, int dir)
+    public Unit(GameBoard gameBoard, int x, int y, int dir, String team)
     {
         this.gameBoard = gameBoard;
         locationX = x;
         locationY = y;
         direction = dir;
+        this.team=team;
     }
 
     public abstract void move(int x, int y);
