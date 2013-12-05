@@ -28,6 +28,9 @@ import javax.swing.Timer;
  */
 public class TrainSwordman extends Action {
 
+    private int spawnX;
+    private int spawnY;
+    private int spawnLines;
     public TrainSwordman(GameBoard gameBoard, Building building) {
         super();
         initAction();
@@ -47,27 +50,39 @@ public class TrainSwordman extends Action {
         }
     }
 
-    
-    
     @Override
     public void doAction() {
-        if(!isActive){
+        loadSpawn();
+        if (!isActive) {
             isActive = true;
         }
     }
 
     @Override
     public void tick() {
-        if(isActive){
-            remaining = Villager.getCreateTime()*60 - tickCount;
-            if(tickCount > Villager.getCreateTime() *60){
-                gameBoard.getUnits().add(new Villager(gameBoard, building.getLocationX() + (building.getSourceImg().getWidth() / 25), building.getLocationY() + (building.getSourceImg().getHeight() / 25), 0));
-                isActive = false;
-                tickCount = 0;
+        if (isActive) {
+            remaining = Villager.getCreateTime() * 60 - tickCount;
+            if (tickCount > Villager.getCreateTime() * 60) {
+                boolean isFree = true;
+                for (Unit unit : gameBoard.getUnits()) {
+                    if ((unit.getX() == spawnX * 25) && (unit.getY() == spawnY * 25)) {
+                        isFree = false;
+                        break;
+                    }
+                }
+
+                if (isFree) {
+                    gameBoard.getUnits().add(new Villager(gameBoard, spawnX, spawnY, 0));
+                    isActive = false;
+                    tickCount = 0;
+                    spawnLines++;
+                } else {
+                    spawnX += 1;
+                }
             }
             tickCount++;
             MainWindow.botPanel.getActionPanel().repaint();
-        }else if(MainWindow.botPanel != null){
+        } else if (MainWindow.botPanel != null) {
             MainWindow.botPanel.getActionPanel().repaint();
         }
     }
@@ -77,5 +92,10 @@ public class TrainSwordman extends Action {
         isActive = false;
         tickCount = 0;
         remaining = -1;
+    }
+
+    private void loadSpawn() {
+        spawnX = building.getLocationX() + (building.getSourceImg().getWidth() / 25);
+        spawnY = building.getLocationY() + (building.getSourceImg().getHeight() / 25);
     }
 }
