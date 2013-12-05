@@ -19,6 +19,7 @@ import GameElement.Shoal;
 import GameElement.Stone;
 import GameElement.Tree;
 import GameElement.Water;
+import Unit.Player;
 import Unit.Unit;
 import Unit.Villager.Villager;
 import java.awt.Color;
@@ -48,6 +49,9 @@ public class GameBoard extends JPanel
     private BufferedImage background;
     private BotPanel botPanel;
     private TopPanel topPanel;
+    
+    private Player blue;
+    private Player red;
 
     private int[][] field = new int[rows][columns];
     private ObjectElement[][] objectField = new ObjectElement[columns][rows];
@@ -76,6 +80,10 @@ public class GameBoard extends JPanel
         objects = new ArrayList<>();
         mapData = new MapData(this);
         objects = mapData.getMapData();
+        
+        blue = new Player(300,300,300,300,"Blue");
+        red = new Player(300,300,300,300,"Red");
+        
         units = new ArrayList<Unit>();
         buildings = new ArrayList<Building>();
 
