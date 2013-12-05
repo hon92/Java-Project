@@ -80,13 +80,13 @@ public class SelectView extends JPanel
             for (int i = 0; i < units.size(); i++)
             {
                 units.get(i).setSelected(true);
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < 1; j++)
                 {
-                    g.drawImage(units.get(i).getIcon(), 20 + (i * 30), 20 + (j), null);
+                    g.drawImage(units.get(i).getIcon(), 20 + (i * 30), 20 + (j), units.get(i).getIcon().getWidth() + 5, units.get(i).getIcon().getHeight() + 5, null);
                     g.setColor(Color.red);
-                    g.fillRect(20 + (i * 30), 20 + j + units.get(i).getIcon().getHeight() + 2, units.get(i).getIcon().getWidth(), 5);
+                    g.fillRect(20 + (i * 30), 20 + j + units.get(i).getIcon().getHeight() + 5, units.get(i).getIcon().getWidth() + 5, 5);
                     g.setColor(Color.green);
-                    g.fillRect(20 + (i * 30), 20 + j + units.get(i).getIcon().getHeight() + 2, (int) (25 * units.get(i).getHpDown()), 5);
+                    g.fillRect(20 + (i * 30), 20 + j + units.get(i).getIcon().getHeight() + 5, (int) (25 * units.get(i).getHpDown() + 5), 5);
                 }
             }
         }
@@ -132,14 +132,6 @@ public class SelectView extends JPanel
         repaint();
     }
 
-//    public void setObjectUnit(Unit unit)
-//    {
-//        if (this.unit != null && this.unit.isSelected() && unit == null)
-//        {
-//            this.unit.setSelected(false);
-//        }
-//        this.unit = unit;
-//    }
     private void clearSelects()
     {
         for (Unit u : units)
@@ -154,6 +146,7 @@ public class SelectView extends JPanel
     {
         System.out.println("new list unit " + "size: " + units.size());
         this.units = units;
+        repaint();
 
     }
 

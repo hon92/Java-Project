@@ -30,7 +30,6 @@ public class Mouse implements MouseListener, MouseMotionListener
     private GameBoard gameBoard;
     private SelectView selectView;
     private ActionView actionView;
-    private SelectMouse selectMouse = null;
     private Color dragColor = new Color(0, 255, 50, 128);
     private int clickedX = 0;
     private int clickedY = 0;
@@ -47,7 +46,7 @@ public class Mouse implements MouseListener, MouseMotionListener
         this.gameBoard = gameBoard;
         this.selectView = botPanel.getSelectPanel();
         this.actionView = botPanel.getActionPanel();
-        selectMouse = new SelectMouse(gameBoard, botPanel, topPanel);
+
     }
 
     @Override
@@ -133,7 +132,6 @@ public class Mouse implements MouseListener, MouseMotionListener
 
             if (rec.intersects(r))
             {
-                System.out.println("INTERSECT");
                 u.setSelected(true);
                 selectedUnits.add(u);
             }

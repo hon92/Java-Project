@@ -5,8 +5,6 @@
  */
 package Unit.Villager;
 
-import Controls.Dijkstra;
-import Controls.ListItem;
 import GameElement.Grass;
 import Unit.Unit;
 import View.GameBoard;
@@ -15,7 +13,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -33,8 +30,8 @@ public class Villager extends Unit
     private static int armor;
 
     private static BufferedImage villagerIcon;
-    
-    private static BufferedImage villagerDownBlue; 
+
+    private static BufferedImage villagerDownBlue;
     private static BufferedImage villagerTopBlue;
     private static BufferedImage villagerLeftBlue;
     private static BufferedImage villagerRightBlue;
@@ -42,8 +39,7 @@ public class Villager extends Unit
     private static BufferedImage villagerRightTopBlue;
     private static BufferedImage villagerLeftTopBlue;
     private static BufferedImage villagerLeftBotBlue;
-    
-    
+
     private static BufferedImage villagerDownRed;
     private static BufferedImage villagerTopRed;
     private static BufferedImage villagerLeftRed;
@@ -53,17 +49,6 @@ public class Villager extends Unit
     private static BufferedImage villagerLeftTopRed;
     private static BufferedImage villagerLeftBotRed;
 
-    private int newLocationX;
-    private int newLocationY;
-    int time = 0;
-    private ArrayList<ListItem> moves;
-    private int currentPoint = 1;
-    private boolean isFinish = true;
-    private Dijkstra dd = null;
-    private int newPixelX;
-    private int newPixelY;
-    private int t;
-    
     private int foodCost;
 
     public Villager(GameBoard gameBoard, int x, int y, int dir, String team)
@@ -74,12 +59,12 @@ public class Villager extends Unit
         currentHp = 10;
         speed = 2;
         foodCost = 50;
-        moves = new ArrayList<>();
+
         try
         {
-            
+
             villagerIcon = ImageIO.read(new File("src/Resources/villagerImg/villagerIcon.png"));
-            
+
             villagerDownBlue = ImageIO.read(new File("src/Resources/villagerImg/villagerDown.png"));
             villagerTopBlue = ImageIO.read(new File("src/Resources/villagerImg/villagerTop.png"));
             villagerRightBotBlue = ImageIO.read(new File("src/Resources/villagerImg/villagerRightBot.png"));
@@ -88,7 +73,7 @@ public class Villager extends Unit
             villagerLeftTopBlue = ImageIO.read(new File("src/Resources/villagerImg/villagerLeftTop.png"));
             villagerRightTopBlue = ImageIO.read(new File("src/Resources/villagerImg/villagerRightTop.png"));
             villagerLeftBlue = ImageIO.read(new File("src/Resources/villagerImg/villagerLeft.png"));
-            
+
             villagerDownRed = ImageIO.read(new File("src/Resources/villagerImg/villagerDownRed.png"));
             villagerTopRed = ImageIO.read(new File("src/Resources/villagerImg/villagerTopRed.png"));
             villagerRightBotRed = ImageIO.read(new File("src/Resources/villagerImg/villagerRightBotRed.png"));
@@ -106,115 +91,22 @@ public class Villager extends Unit
         gameBoard.setUnitField(x, y + 1, this);
         gameBoard.setFieldIndex(x, y + 1, 11);
 
-        newLocationX = locationX;
-        newLocationY = locationY;
-
-        pixelX = locationX * 25;
-        pixelY = locationY * 25;
         newPixelX = pixelX;
         newPixelY = pixelY;
         createTime = 5;
-        
-        if(team == "Blue")
+
+        if (team == "Blue")
         {
             gameBoard.getBluePlayer().addUnit(this);
-            gameBoard.getBluePlayer().setFood(-1*foodCost);
+            gameBoard.getBluePlayer().setFood(-1 * foodCost);
         }
-        
-        if(team == "Red")
+
+        if (team == "Red")
         {
             gameBoard.getRedPlayer().addUnit(this);
-            gameBoard.getRedPlayer().setFood(-1*foodCost);
-        }    
-        
-    }
-
-    public void move()
-    {
-
-        if ((locationX == newLocationX) && (locationY == newLocationY))
-        {
-            isFinish = true;
-        }
-        else
-        {
-            if (currentPoint < moves.size())
-            {
-                gameBoard.setFieldIndex(locationX, locationY + 1, 0);
-                gameBoard.setUnitField(locationX, locationY, null);
-                gameBoard.setUnitField(locationX, locationY + 1, null);
-
-                int newx = moves.get(currentPoint).getX();
-                int newy = moves.get(currentPoint).getY();
-                locationX = newx;
-                locationY = newy;
-                this.direction = moves.get(currentPoint).getDirection();
-                gameBoard.setFieldIndex(locationX, locationY + 1, 11);
-                gameBoard.setUnitField(locationX, locationY, this);
-                gameBoard.setUnitField(locationX, locationY + 1, this);
-
-                if (currentPoint == moves.size() - 1)
-                {
-                    direction = moves.get(moves.size() - 2).getDirection();
-                }
-
-            }
-            currentPoint++;
-
-        }
-    }
-
-    public void movePixel()
-    {
-
-        if ((pixelX == newPixelX) && (pixelY == newPixelY - 25))
-        {
-            gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 11);
-            gameBoard.setUnitField(pixelX / 25, pixelY / 25, this);
-            gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, this);
-            isFinish = true;
-            return;
+            gameBoard.getRedPlayer().setFood(-1 * foodCost);
         }
 
-        if (t == 24)
-        {
-
-            gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 0);
-            gameBoard.setUnitField(pixelX / 25, pixelY / 25, null);
-            gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, null);
-            if (currentPoint + 1 < moves.size())
-            {
-                currentPoint++;
-            }
-            t = 0;
-        }
-
-        if (currentPoint < moves.size())
-        {
-            int newx = moves.get(currentPoint).getX() * 25;
-            int newy = moves.get(currentPoint).getY() * 25;
-            if (newx > pixelX)
-            {
-                direction = 0;
-                pixelX += 1;
-            }
-            if (newy > pixelY)
-            {
-                direction = 90;
-                pixelY += 1;
-            }
-            if (newx < pixelX)
-            {
-                direction = 180;
-                pixelX += -1;
-            }
-            if (newy < pixelY)
-            {
-                direction = 270;
-                pixelY += -1;
-            }
-        }
-        t++;
     }
 
     public double getHpDown()
@@ -228,32 +120,6 @@ public class Villager extends Unit
     }
 
     @Override
-    public void move(int x, int y)
-    {
-        currentPoint = 1;
-        moves.clear();
-
-        dd = new Dijkstra(new ListItem(pixelX / 25, pixelY / 25), new ListItem(x, y), gameBoard);
-
-        moves = dd.getPath();
-        isFinish = false;
-        newLocationX = x;
-        newLocationY = y + 1;
-
-        gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 0);
-        gameBoard.setUnitField(pixelX / 25, pixelY / 25, null);
-        gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, null);
-        newPixelX = x * 25;
-        newPixelY = (y * 25);
-
-    }
-
-    public Dijkstra getDijkstra()
-    {
-        return dd;
-    }
-
-    @Override
     public void drawUnit(Graphics g)
     {
         if (isSelected())
@@ -263,89 +129,87 @@ public class Villager extends Unit
             g.setColor(Color.green);
             g.fillRect(gameBoard.convertX(pixelX), gameBoard.convertY(pixelY - 10), (int) (25 * getHpDown()), 5);
         }
-        if(team=="Blue")
+        if (team == "Blue")
         {
-        if ((direction >= 247) && (direction < 292))
-        {
-            g.drawImage(villagerTopBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-        }
-        else if ((direction >= 78) && (direction < 123))
-        {
-            g.drawImage(villagerDownBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-        }
+            if ((direction >= 247) && (direction < 292))
+            {
+                g.drawImage(villagerTopBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
+            else if ((direction >= 78) && (direction < 123))
+            {
+                g.drawImage(villagerDownBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
 
-        else if ((direction >= 158) && (direction < 203))
-        {
-            g.drawImage(villagerLeftBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-        }
+            else if ((direction >= 158) && (direction < 203))
+            {
+                g.drawImage(villagerLeftBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
 
-        else if ((direction >= 338) || (direction < 23))
-        {
-            g.drawImage(villagerRightBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            //g.drawRect(gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), villagerRight.getWidth(), villagerRight.getHeight());
-        }
+            else if ((direction >= 338) || (direction < 23))
+            {
+                g.drawImage(villagerRightBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
 
-        else if ((direction < 338) && (direction >= 292))
-        {
-            g.drawImage(villagerRightTopBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-        }
+            else if ((direction < 338) && (direction >= 292))
+            {
+                g.drawImage(villagerRightTopBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
 
-        else if ((direction >= 203) && (direction < 247))
-        {
-            g.drawImage(villagerLeftTopBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-        }
+            else if ((direction >= 203) && (direction < 247))
+            {
+                g.drawImage(villagerLeftTopBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
 
-        else if ((direction >= 123) && (direction < 158))
-        {
-            g.drawImage(villagerLeftBotBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-        }
+            else if ((direction >= 123) && (direction < 158))
+            {
+                g.drawImage(villagerLeftBotBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
 
-        else if ((direction >= 23) && (direction < 78))
-        {
-            g.drawImage(villagerRightBotBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-        }
+            else if ((direction >= 23) && (direction < 78))
+            {
+                g.drawImage(villagerRightBotBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
         }
         else
         {
-         if ((direction >= 247) && (direction < 292))
-        {
-            g.drawImage(villagerTopRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-        }
-        else if ((direction >= 78) && (direction < 123))
-        {
-            g.drawImage(villagerDownRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-        }
+            if ((direction >= 247) && (direction < 292))
+            {
+                g.drawImage(villagerTopRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
+            else if ((direction >= 78) && (direction < 123))
+            {
+                g.drawImage(villagerDownRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
 
-        else if ((direction >= 158) && (direction < 203))
-        {
-            g.drawImage(villagerLeftRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-        }
+            else if ((direction >= 158) && (direction < 203))
+            {
+                g.drawImage(villagerLeftRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
 
-        else if ((direction >= 338) || (direction < 23))
-        {
-            g.drawImage(villagerRightRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            //g.drawRect(gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), villagerRight.getWidth(), villagerRight.getHeight());
-        }
+            else if ((direction >= 338) || (direction < 23))
+            {
+                g.drawImage(villagerRightRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
 
-        else if ((direction < 338) && (direction >= 292))
-        {
-            g.drawImage(villagerRightTopRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-        }
+            else if ((direction < 338) && (direction >= 292))
+            {
+                g.drawImage(villagerRightTopRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
 
-        else if ((direction >= 203) && (direction < 247))
-        {
-            g.drawImage(villagerLeftTopRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-        }
+            else if ((direction >= 203) && (direction < 247))
+            {
+                g.drawImage(villagerLeftTopRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
 
-        else if ((direction >= 123) && (direction < 158))
-        {
-            g.drawImage(villagerLeftBotRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-        }
+            else if ((direction >= 123) && (direction < 158))
+            {
+                g.drawImage(villagerLeftBotRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
 
-        else if ((direction >= 23) && (direction < 78))
-        {
-            g.drawImage(villagerRightBotRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-        }   
+            else if ((direction >= 23) && (direction < 78))
+            {
+                g.drawImage(villagerRightBotRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            }
         }
     }
 
@@ -388,16 +252,12 @@ public class Villager extends Unit
     @Override
     public void tick()
     {
-        time++;
 
+        if (isMoving())
         {
-            time = 0;
-
-            if (isMoving())
-            {
-                movePixel();
-            }
+            movePixel();
         }
+
     }
 
     private boolean isMoving()
