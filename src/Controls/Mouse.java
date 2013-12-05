@@ -32,16 +32,12 @@ public class Mouse implements MouseListener, MouseMotionListener
     private ActionView actionView;
     private SelectMouse selectMouse = null;
     private Color dragColor = new Color(0, 255, 50, 128);
-
     private int clickedX = 0;
     private int clickedY = 0;
-
     private int currentX = 0;
     private int currentY = 0;
-
     private int clickedIndexX;
     private int clickedIndexY;
-
     private boolean active = false;
     private Rectangle selectRectangle = null;
 
@@ -67,15 +63,17 @@ public class Mouse implements MouseListener, MouseMotionListener
 
         if (e.getButton() == MouseEvent.BUTTON1)
         {
-            selectMouse.setData(clickedIndexX, clickedIndexY);
-            //selectMouse.setUnitSelectedList(getListSelectedUnits(new Rectangle(0, 0, 0, 0)));
+            //selectMouse.setData(clickedIndexX, clickedIndexY);
+            selectView.fillData(clickedIndexX, clickedIndexY);
+
         }
         if (e.getButton() == MouseEvent.BUTTON3)
         {
-            if (selectView.getUnit().getPlayer() == "Blue")
-            {
-                selectView.getUnit().move(clickedIndexX, clickedIndexY);
-            }
+//            if (selectView.getUnit().getPlayer() == "Blue")
+//            {
+//                selectView.getUnit().move(clickedIndexX, clickedIndexY);
+//            }
+
         }
 
         System.err.println("x: " + clickedIndexX + " y: " + clickedIndexY);
@@ -92,13 +90,11 @@ public class Mouse implements MouseListener, MouseMotionListener
     @Override
     public void mouseReleased(MouseEvent e)
     {
-
         active = false;
         clickedX = 0;
         clickedY = 0;
         currentX = 0;
         currentY = 0;
-
     }
 
     @Override
@@ -118,7 +114,7 @@ public class Mouse implements MouseListener, MouseMotionListener
             g.setColor(dragColor);
             g.fillRect(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
             selectRectangle = new Rectangle(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
-            selectMouse.setUnitSelectedList(getListSelectedUnits(selectRectangle));
+            //selectMouse.setUnitSelectedList(getListSelectedUnits(selectRectangle));
 
         }
 
@@ -129,7 +125,7 @@ public class Mouse implements MouseListener, MouseMotionListener
         ArrayList<Unit> selectedUnits = new ArrayList<Unit>();
         for (Unit u : gameBoard.getUnits())
         {
-            Rectangle r = new Rectangle(gameBoard.convertX(u.getX()), gameBoard.convertY(u.getY()), 25, 50);
+            Rectangle r = new Rectangle(gameBoard.convertX(u.getX() / 25), gameBoard.convertY(u.getY() / 25), 25, 50);
 
             if (rec.intersects(r))
             {
@@ -155,6 +151,7 @@ public class Mouse implements MouseListener, MouseMotionListener
             active = true;
             currentX = e.getX();
             currentY = e.getY();
+            selectView.setUnits(getListSelectedUnits(selectRectangle));
         }
 
     }

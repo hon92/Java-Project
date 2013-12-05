@@ -30,7 +30,6 @@ public class SelectView extends JPanel
     private GameBoard gameBoard;
     private ObjectElement element;
     private ArrayList<Unit> units;
-    private Unit unit;
     private Building building;
     private SelectViewMouse selectViewMouse;
 
@@ -39,7 +38,7 @@ public class SelectView extends JPanel
         setPreferredSize(new Dimension(360, 200));
         this.gameBoard = gameBoard;
         background = ImgResources.getImg("selectView");
-        units = new ArrayList<Unit>();
+        units = new ArrayList<>();
         selectViewMouse = new SelectViewMouse();
         setFocusable(true);
         addMouseListener(selectViewMouse);
@@ -48,11 +47,10 @@ public class SelectView extends JPanel
     @Override
     protected void paintComponent(Graphics g)
     {
-
         super.paintComponent(g);
         g.drawImage(background, 0, 0, null);
 
-        if (element == null && unit == null && building == null && units.size() == 0)
+        if (element == null && building == null && units.size() == 0)
         {
             g.drawString("Nic", 50, 50);
         }
@@ -68,11 +66,20 @@ public class SelectView extends JPanel
         {
             g.drawString(element.getName(), 50, 60);
         }
-        if (units.size() > 1)
+        if (units.size() == 1)
         {
-
+            g.drawImage(units.get(0).getIcon(), 20, 20, null);
+            g.drawString(units.get(0).getName(), 50, 30);
+            g.drawString("Attack: " + units.get(0).getAttack(), 50, 40);
+            g.drawString("Armor: " + units.get(0).getArmor(), 50, 50);
+            g.drawString("Max Hp: " + units.get(0).getMaxHp(), 50, 60);
+            g.drawString("Current Hp: " + units.get(0).getHp(), 50, 70);
+        }
+        else if (units.size() > 1)
+        {
             for (int i = 0; i < units.size(); i++)
             {
+                units.get(i).setSelected(true);
                 for (int j = 0; j < 5; j++)
                 {
                     g.drawImage(units.get(i).getIcon(), 20 + (i * 30), 20 + (j), null);
@@ -81,20 +88,9 @@ public class SelectView extends JPanel
                     g.setColor(Color.green);
                     g.fillRect(20 + (i * 30), 20 + j + units.get(i).getIcon().getHeight() + 2, (int) (25 * units.get(i).getHpDown()), 5);
                 }
-                units.get(i).setSelected(true);
-
             }
+        }
 
-        }
-        if (unit != null && (units.size() == 1 || units.size() == 0))
-        {
-            g.drawImage(unit.getIcon(), 20, 20, null);
-            g.drawString(unit.getName(), 50, 30);
-            g.drawString("Attack: " + unit.getAttack(), 50, 40);
-            g.drawString("Armor: " + unit.getArmor(), 50, 50);
-            g.drawString("Max Hp: " + unit.getMaxHp(), 50, 60);
-            g.drawString("Current Hp: " + unit.getHp(), 50, 70);
-        }
         if (building != null)
         {
             g.drawImage(building.getIcon(), 20, 20, null);
@@ -102,7 +98,6 @@ public class SelectView extends JPanel
             g.drawString("Max Hp: " + building.getMaxHp(), 60, 60);
             g.drawString("Current Hp: " + building.getCurrentHp(), 60, 70);
         }
-
         g.dispose();
 
     }
@@ -112,15 +107,36 @@ public class SelectView extends JPanel
         this.element = element;
     }
 
-    public void setObjectUnit(Unit unit)
+    public void fillData(int indexX, int indexY)
     {
-        if (this.unit != null && this.unit.isSelected() && unit == null)
+        element = gameBoard.getObjectFieldObject(indexX, indexY);
+        building = gameBoard.getBuildingFieldObject(indexX, indexY);
+        Unit unit = gameBoard.getUnitField(indexX, indexY);
+        if (unit != null)
         {
-            this.unit.setSelected(false);
+            unit.setSelected(true);
+            units.add(unit);
         }
-        this.unit = unit;
+        else
+        {
+            for (Unit u : units)
+            {
+                u.setSelected(false);
+
+            }
+            units.clear();
+        }
+        repaint();
     }
 
+//    public void setObjectUnit(Unit unit)
+//    {
+//        if (this.unit != null && this.unit.isSelected() && unit == null)
+//        {
+//            this.unit.setSelected(false);
+//        }
+//        this.unit = unit;
+//    }
     public void setBuildingObject(Building building)
     {
         if (this.building != null && this.building.isSelected() && building == null)
@@ -132,39 +148,31 @@ public class SelectView extends JPanel
 
     public void setUnits(ArrayList<Unit> units)
     {
-        System.out.println("mazu");
+        System.out.println("new list unit " + "size: " + units.size());
 
-        if (units.size() == 0)
-        {
-            for (Unit u : gameBoard.getUnits())
-            {
-                u.setSelected(false);
-            }
-        }
-        else if (units.size() == 1)
-        {
-            unit = units.get(0);
-            unit.setSelected(true);
-        }
-        else
-        {
-            this.units = units;
-        }
-    }
-
-    public Unit getUnit()
-    {
-        if (unit == null)
-        {
-            return null;
-        }
-        else
-        {
-            return unit;
-        }
+//        if (units.size() == 0)
+//        {
+//            for (Unit u : gameBoard.getUnits())
+//            {
+//                u.setSelected(false);
+//            }
+//        }
+        this.units = units;
 
     }
 
+//    public Unit getUnit()
+//    {
+//        if (unit == null)
+//        {
+//            return null;
+//        }
+//        else
+//        {
+//            return unit;
+//        }
+//
+//    }
     public ArrayList<Unit> getUnitList()
     {
         return units;
