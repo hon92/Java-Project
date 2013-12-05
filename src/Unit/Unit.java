@@ -27,6 +27,8 @@ public abstract class Unit
     protected UnitType typeUnit;
     protected BufferedImage sourceImg;
     protected GameBoard gameBoard;
+    
+    
 
     protected boolean selected = false;
 

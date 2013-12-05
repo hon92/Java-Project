@@ -13,6 +13,7 @@ import GameElement.Shoal;
 import GameElement.Stone;
 import GameElement.Tree;
 import GameElement.Water;
+import Unit.Unit;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -46,6 +47,7 @@ public class MiniMap extends JPanel {
     final private Color darkBlueColor = new Color(0, 71, 229);
     private List<ObjectElement> objects;
     private List<Building> buildings;
+    private List<Unit> units;
     private Timer mapRefresh;
     private int refreshDelay = 250;
 
@@ -54,6 +56,7 @@ public class MiniMap extends JPanel {
         setPreferredSize(new Dimension(sizeWidth, sizeHeight));
         objects = new ArrayList<>();
         buildings = new ArrayList<Building>();
+        units = new ArrayList<Unit>();
 
         mapRefresh = new Timer(refreshDelay, new ActionListener() {
 
@@ -61,6 +64,7 @@ public class MiniMap extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 objects = gameBoard.getObjects();
                 buildings = gameBoard.getBuildings();
+                units=gameBoard.getUnits();
                 repaint();
 
             }
@@ -157,7 +161,7 @@ public class MiniMap extends JPanel {
 
                 int objx = ob.getX();
                 int objy = ob.getY();
-                g.fillRect(0 + convertX(objx * 25), 0 + convertY(objy * 25), 5, 5);
+                g.fillRect(0 + convertX(objx * 25), 0 + convertY(objy * 25), 4, 4);
                 if (ob instanceof Water) {
                     g.fillRect(0 + convertX((objx) * 25), 0 + convertY(objy * 25), 11, 11);
                 }
@@ -172,8 +176,19 @@ public class MiniMap extends JPanel {
             }
                 int bX = b.getLocationX();
                 int bY = b.getLocationY();
-                g.fillRect(0 + convertX(bX * 25), 0 + convertY(bY * 25), 5, 5);
+                g.fillRect(0 + convertX(bX * 25), 0 + convertY(bY * 25), 4, 4);
         }
+        
+        for(Unit u : units)
+        {
+            g.setColor(darkBlueColor);
+            {
+                int bX = u.getX()/25;
+                int bY = u.getY()/25;
+                g.fillRect(0 + convertX(bX * 25), 0 + convertY(bY * 25), 3, 3);
+            }
+        }    
+           
 
         int currx = gameBoard.getCurrWinX() / scaleX;
         int curry = gameBoard.getCurrWinY() / scaleY;
