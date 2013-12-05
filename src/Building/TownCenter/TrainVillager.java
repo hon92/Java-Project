@@ -59,7 +59,7 @@ public class TrainVillager extends Action
         
         if(building.getPlayer() == "Blue")
         {
-        if(gameBoard.getBluePlayer().getFood()>=50 ||
+        if(gameBoard.getBluePlayer().getFood()>=50 &&
                 gameBoard.getBluePlayer().getActualPop()<gameBoard.getBluePlayer().getMaxPop())
         {
  
@@ -68,7 +68,7 @@ public class TrainVillager extends Action
         {
             isActive = true;
         }
-            
+           
         
             
         }
@@ -91,6 +91,7 @@ public class TrainVillager extends Action
     @Override
     public void tick()
     {
+        
         if (isActive)
         {
             remaining = Villager.getCreateTime() * 60 - tickCount;

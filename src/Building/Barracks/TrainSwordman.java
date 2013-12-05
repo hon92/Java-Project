@@ -7,6 +7,7 @@ package Building.Barracks;
 
 import Buildings.Action;
 import Buildings.Building;
+import Unit.Melee.SwordMan;
 import Unit.Unit;
 import Unit.Villager.Villager;
 import View.GameBoard;
@@ -23,7 +24,7 @@ import javax.imageio.ImageIO;
  */
 public class TrainSwordman extends Action
 {
-
+    File res_pop = new File("src/Sounds/resources_pop.wav");
     private int spawnX;
     private int spawnY;
     private int spawnLines;
@@ -57,12 +58,23 @@ public class TrainSwordman extends Action
     {
         if(building.getPlayer()=="Blue")
         {
+            if((gameBoard.getBluePlayer().getFood()>=60 )&&
+                (gameBoard.getBluePlayer().getActualPop()<gameBoard.getBluePlayer().getMaxPop())&&
+                    (gameBoard.getBluePlayer().getGold()>=30))
+        {
         loadSpawn();
         if (!isActive)
         {
             isActive = true;
         }
         }
+            else
+        {
+                gameBoard.playSound(res_pop);  
+        }
+        }
+        gameBoard.getTopPanel().repaint();
+        
     }
 
     @Override
@@ -70,8 +82,8 @@ public class TrainSwordman extends Action
     {
         if (isActive)
         {
-            remaining = Villager.getCreateTime() * 60 - tickCount;
-            if (tickCount > Villager.getCreateTime() * 60)
+            remaining = SwordMan.getCreateTime() * 60 - tickCount;
+            if (tickCount > SwordMan.getCreateTime() * 60)
             {
                 boolean isFree = true;
                 for (Unit unit : gameBoard.getUnits())
@@ -84,7 +96,7 @@ public class TrainSwordman extends Action
                 }
 
                 if (isFree) {
-                    gameBoard.getUnits().add(new Villager(gameBoard, spawnX, spawnY, 0,"Blue"));
+                    gameBoard.getUnits().add(new SwordMan(gameBoard, spawnX, spawnY, 0,"Blue"));
                     isActive = false;
                     tickCount = 0;
                     spawnLines++;
