@@ -32,16 +32,12 @@ public class Mouse implements MouseListener, MouseMotionListener
     private ActionView actionView;
     private SelectMouse selectMouse = null;
     private Color dragColor = new Color(0, 255, 50, 128);
-
     private int clickedX = 0;
     private int clickedY = 0;
-
     private int currentX = 0;
     private int currentY = 0;
-
     private int clickedIndexX;
     private int clickedIndexY;
-
     private boolean active = false;
     private Rectangle selectRectangle = null;
 
@@ -68,7 +64,7 @@ public class Mouse implements MouseListener, MouseMotionListener
         if (e.getButton() == MouseEvent.BUTTON1)
         {
             selectMouse.setData(clickedIndexX, clickedIndexY);
-            //selectMouse.setUnitSelectedList(getListSelectedUnits(new Rectangle(0, 0, 0, 0)));
+
         }
         if (e.getButton() == MouseEvent.BUTTON3)
         {
@@ -92,13 +88,11 @@ public class Mouse implements MouseListener, MouseMotionListener
     @Override
     public void mouseReleased(MouseEvent e)
     {
-
         active = false;
         clickedX = 0;
         clickedY = 0;
         currentX = 0;
         currentY = 0;
-
     }
 
     @Override
