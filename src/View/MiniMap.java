@@ -181,7 +181,7 @@ public class MiniMap extends JPanel {
              }
                 int bX = b.getLocationX();
                 int bY = b.getLocationY();
-                g.fillRect(0 + convertX(bX * 25), 0 + convertY(bY * 25), 4, 4);
+                g.fillRect(0 + convertX(bX * 25), 0 + convertY(bY * 25), 5, 5);
         }
         
         for(Unit u : units)
