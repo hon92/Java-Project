@@ -55,10 +55,13 @@ public class TrainVillager extends Action
     @Override
     public void doAction()
     {
+        if(building.getPlayer() == "Blue")
+        {
         loadSpawn();
         if (!isActive)
         {
             isActive = true;
+        }
         }
     }
 
