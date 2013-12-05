@@ -66,6 +66,11 @@ public class SelectMouse
 
         if (unit != null)
         {
+            if (selectView.getUnit() != null)
+            {
+                selectView.getUnit().setSelected(false);
+            }
+
             unit.setSelected(true);
             selectView.setObjectUnit(unit);
         }
