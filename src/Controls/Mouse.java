@@ -40,7 +40,7 @@ public class Mouse implements MouseListener, MouseMotionListener
     private int clickedIndexY;
     private boolean active = false;
     private Rectangle selectRectangle = null;
-    private int unitDistance = 2;
+    private int unitDistance = 0;
 
     public Mouse(GameBoard gameBoard, BotPanel botPanel, TopPanel topPanel)
     {
@@ -74,9 +74,11 @@ public class Mouse implements MouseListener, MouseMotionListener
             {
                 if (u.getPlayer() == "Blue")
                 {
-                    u.move(clickedIndexX + unitDistance, clickedIndexY + unitDistance);
+                    u.move(clickedIndexX + unitDistance, clickedIndexY);
+                    unitDistance += 2;
                 }
             }
+            unitDistance = 0;
 
         }
 
