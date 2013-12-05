@@ -24,8 +24,8 @@ import javax.imageio.ImageIO;
  */
 public class Barracks extends Building {
 
-    public Barracks(GameBoard gameBoard, int x, int y) {
-        super(gameBoard, x, y);
+    public Barracks(GameBoard gameBoard, int x, int y,String team) {
+        super(gameBoard, x, y,team);
         initBarracks();
 
         for (int i = 0; i < 8; i++) {

@@ -53,9 +53,9 @@ public class Villager extends Unit
     private int newPixelY;
     private int t;
 
-    public Villager(GameBoard gameBoard, int x, int y, int dir)
+    public Villager(GameBoard gameBoard, int x, int y, int dir, String team)
     {
-        super(gameBoard, x, y, dir);
+        super(gameBoard, x, y, dir,team);
 
         maxHp = 50;
         currentHp = 10;

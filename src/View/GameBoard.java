@@ -86,14 +86,14 @@ public class GameBoard extends JPanel
         {
             for (int j = 0; j < 6; j++)
             {
-                units.add(new Villager(this, 30 + (i * 3), 80 + j * 3, 0));
+                units.add(new Villager(this, 30 + (i * 3), 80 + j * 3, 0,"Blue"));
             }
         }
 
 //        units.add(new Villager(this, 30, 80, 0));
 //        units.add(new Villager(this, 40, 80, 90));
 //        units.add(new Villager(this, 35, 80, 180));
-        buildings.add(new Barracks(this, 50, 50));
+        buildings.add(new Barracks(this, 50, 50,"Blue"));
 
         addKeyListener(new Key(this));
         gameLoop();

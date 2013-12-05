@@ -30,11 +30,14 @@ public abstract class Building
     protected int maxHp = -1;
     protected int locationX = -1;
     protected int locationY = -1;
+    
+    protected String team;
 
     protected boolean selected = false;
 
-    public Building(GameBoard gameBoard, int x, int y)
+    public Building(GameBoard gameBoard, int x, int y, String team)
     {
+        this.team=team;
         this.gameBoard = gameBoard;
         this.locationX = x;
         this.locationY = y;
