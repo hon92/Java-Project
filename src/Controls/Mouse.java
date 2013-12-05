@@ -70,6 +70,7 @@ public class Mouse implements MouseListener, MouseMotionListener
         if (e.getButton() == MouseEvent.BUTTON1)
         {
             selectMouse.setData(clickedIndexX, clickedIndexY);
+            //selectMouse.setUnitSelectedList(getListSelectedUnits(new Rectangle(0, 0, 0, 0)));
         }
         if (e.getButton() == MouseEvent.BUTTON3 && (!selectMouse.isEmpty()))
         {
@@ -90,9 +91,6 @@ public class Mouse implements MouseListener, MouseMotionListener
     @Override
     public void mouseReleased(MouseEvent e)
     {
-
-        selectRectangle = new Rectangle(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
-        selectMouse.setUnitSelectedList(getListSelectedUnits(selectRectangle));
 
         active = false;
         clickedX = 0;
@@ -118,6 +116,9 @@ public class Mouse implements MouseListener, MouseMotionListener
         {
             g.setColor(dragColor);
             g.fillRect(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
+
+            selectRectangle = new Rectangle(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
+            selectMouse.setUnitSelectedList(getListSelectedUnits(selectRectangle));
         }
 
     }

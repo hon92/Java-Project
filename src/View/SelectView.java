@@ -132,14 +132,23 @@ public class SelectView extends JPanel
     public void setUnits(ArrayList<Unit> units)
     {
         System.out.println("mazu");
-//        if (units.size() == 0)
-//        {
-//            for (Unit u : gameBoard.getUnits())
-//            {
-//                u.setSelected(false);
-//            }
-//        }
-        this.units = units;
+
+        if (units.size() == 0)
+        {
+            for (Unit u : gameBoard.getUnits())
+            {
+                u.setSelected(false);
+            }
+        }
+        else if (units.size() == 1)
+        {
+            unit = units.get(0);
+            unit.setSelected(true);
+        }
+        else
+        {
+            this.units = units;
+        }
     }
 
     public Unit getUnit()
