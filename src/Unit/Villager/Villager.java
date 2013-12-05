@@ -32,15 +32,26 @@ public class Villager extends Unit
     private static int attack;
     private static int armor;
 
-    private static BufferedImage villagerDown;
     private static BufferedImage villagerIcon;
-    private static BufferedImage villagerTop;
-    private static BufferedImage villagerLeft;
-    private static BufferedImage villagerRight;
-    private static BufferedImage villagerRightBot;
-    private static BufferedImage villagerRightTop;
-    private static BufferedImage villagerLeftTop;
-    private static BufferedImage villagerLeftBot;
+    
+    private static BufferedImage villagerDownBlue; 
+    private static BufferedImage villagerTopBlue;
+    private static BufferedImage villagerLeftBlue;
+    private static BufferedImage villagerRightBlue;
+    private static BufferedImage villagerRightBotBlue;
+    private static BufferedImage villagerRightTopBlue;
+    private static BufferedImage villagerLeftTopBlue;
+    private static BufferedImage villagerLeftBotBlue;
+    
+    
+    private static BufferedImage villagerDownRed;
+    private static BufferedImage villagerTopRed;
+    private static BufferedImage villagerLeftRed;
+    private static BufferedImage villagerRightRed;
+    private static BufferedImage villagerRightBotRed;
+    private static BufferedImage villagerRightTopRed;
+    private static BufferedImage villagerLeftTopRed;
+    private static BufferedImage villagerLeftBotRed;
 
     private int newLocationX;
     private int newLocationY;
@@ -63,15 +74,26 @@ public class Villager extends Unit
         moves = new ArrayList<>();
         try
         {
-            villagerDown = ImageIO.read(new File("src/Resources/villagerImg/villagerDown.png"));
+            
             villagerIcon = ImageIO.read(new File("src/Resources/villagerImg/villagerIcon.png"));
-            villagerTop = ImageIO.read(new File("src/Resources/villagerImg/villagerTop.png"));
-            villagerRightBot = ImageIO.read(new File("src/Resources/villagerImg/villagerRightBot.png"));
-            villagerRight = ImageIO.read(new File("src/Resources/villagerImg/villagerRight.png"));
-            villagerLeftBot = ImageIO.read(new File("src/Resources/villagerImg/villagerLeftBot.png"));
-            villagerLeftTop = ImageIO.read(new File("src/Resources/villagerImg/villagerLeftTop.png"));
-            villagerRightTop = ImageIO.read(new File("src/Resources/villagerImg/villagerRightTop.png"));
-            villagerLeft = ImageIO.read(new File("src/Resources/villagerImg/villagerLeft.png"));
+            
+            villagerDownBlue = ImageIO.read(new File("src/Resources/villagerImg/villagerDown.png"));
+            villagerTopBlue = ImageIO.read(new File("src/Resources/villagerImg/villagerTop.png"));
+            villagerRightBotBlue = ImageIO.read(new File("src/Resources/villagerImg/villagerRightBot.png"));
+            villagerRightBlue = ImageIO.read(new File("src/Resources/villagerImg/villagerRight.png"));
+            villagerLeftBotBlue = ImageIO.read(new File("src/Resources/villagerImg/villagerLeftBot.png"));
+            villagerLeftTopBlue = ImageIO.read(new File("src/Resources/villagerImg/villagerLeftTop.png"));
+            villagerRightTopBlue = ImageIO.read(new File("src/Resources/villagerImg/villagerRightTop.png"));
+            villagerLeftBlue = ImageIO.read(new File("src/Resources/villagerImg/villagerLeft.png"));
+            
+            villagerDownRed = ImageIO.read(new File("src/Resources/villagerImg/villagerDownRed.png"));
+            villagerTopRed = ImageIO.read(new File("src/Resources/villagerImg/villagerTopRed.png"));
+            villagerRightBotRed = ImageIO.read(new File("src/Resources/villagerImg/villagerRightBotRed.png"));
+            villagerRightRed = ImageIO.read(new File("src/Resources/villagerImg/villagerRightRed.png"));
+            villagerLeftBotRed = ImageIO.read(new File("src/Resources/villagerImg/villagerLeftBotRed.png"));
+            villagerLeftTopRed = ImageIO.read(new File("src/Resources/villagerImg/villagerLeftTopRed.png"));
+            villagerRightTopRed = ImageIO.read(new File("src/Resources/villagerImg/villagerRightTopRed.png"));
+            villagerLeftRed = ImageIO.read(new File("src/Resources/villagerImg/villagerLeftRed.png"));
         }
         catch (IOException ex)
         {
@@ -237,44 +259,89 @@ public class Villager extends Unit
             g.setColor(Color.green);
             g.fillRect(gameBoard.convertX(pixelX), gameBoard.convertY(pixelY - 10), (int) (25 * getHpDown()), 5);
         }
+        if(team=="Blue")
+        {
         if ((direction >= 247) && (direction < 292))
         {
-            g.drawImage(villagerTop, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            g.drawImage(villagerTopBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
         }
         else if ((direction >= 78) && (direction < 123))
         {
-            g.drawImage(villagerDown, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            g.drawImage(villagerDownBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
         }
 
         else if ((direction >= 158) && (direction < 203))
         {
-            g.drawImage(villagerLeft, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            g.drawImage(villagerLeftBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
         }
 
         else if ((direction >= 338) || (direction < 23))
         {
-            g.drawImage(villagerRight, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            g.drawImage(villagerRightBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             //g.drawRect(gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), villagerRight.getWidth(), villagerRight.getHeight());
         }
 
         else if ((direction < 338) && (direction >= 292))
         {
-            g.drawImage(villagerRightTop, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            g.drawImage(villagerRightTopBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
         }
 
         else if ((direction >= 203) && (direction < 247))
         {
-            g.drawImage(villagerLeftTop, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            g.drawImage(villagerLeftTopBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
         }
 
         else if ((direction >= 123) && (direction < 158))
         {
-            g.drawImage(villagerLeftBot, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            g.drawImage(villagerLeftBotBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
         }
 
         else if ((direction >= 23) && (direction < 78))
         {
-            g.drawImage(villagerRightBot, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            g.drawImage(villagerRightBotBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+        }
+        }
+        else
+        {
+         if ((direction >= 247) && (direction < 292))
+        {
+            g.drawImage(villagerTopRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+        }
+        else if ((direction >= 78) && (direction < 123))
+        {
+            g.drawImage(villagerDownRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+        }
+
+        else if ((direction >= 158) && (direction < 203))
+        {
+            g.drawImage(villagerLeftRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+        }
+
+        else if ((direction >= 338) || (direction < 23))
+        {
+            g.drawImage(villagerRightRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+            //g.drawRect(gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), villagerRight.getWidth(), villagerRight.getHeight());
+        }
+
+        else if ((direction < 338) && (direction >= 292))
+        {
+            g.drawImage(villagerRightTopRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+        }
+
+        else if ((direction >= 203) && (direction < 247))
+        {
+            g.drawImage(villagerLeftTopRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+        }
+
+        else if ((direction >= 123) && (direction < 158))
+        {
+            g.drawImage(villagerLeftBotRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+        }
+
+        else if ((direction >= 23) && (direction < 78))
+        {
+            g.drawImage(villagerRightBotRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
+        }   
         }
     }
 
