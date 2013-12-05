@@ -80,8 +80,9 @@ public class TrainVillager extends Action
                     }
                 }
 
-                if (isFree) {
-                    gameBoard.getUnits().add(new Villager(gameBoard, spawnX, spawnY, 0,"Blue"));
+                if (isFree)
+                {
+                    gameBoard.getUnits().add(new Villager(gameBoard, spawnX, spawnY, 0, "Blue"));
                     isActive = false;
                     tickCount = 0;
                     spawnLines++;
