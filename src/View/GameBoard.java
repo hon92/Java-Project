@@ -435,4 +435,9 @@ public class GameBoard extends JPanel
         return units;
     }
 
+    public SelectView getSelectView()
+    {
+        return botPanel.getSelectPanel();
+    }
+
 }

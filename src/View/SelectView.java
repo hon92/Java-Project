@@ -13,6 +13,8 @@ import Unit.Unit;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -30,6 +32,7 @@ public class SelectView extends JPanel
     private ArrayList<Unit> units;
     private Unit unit;
     private Building building;
+    private SelectViewMouse selectViewMouse;
 
     public SelectView(GameBoard gameBoard)
     {
@@ -37,6 +40,9 @@ public class SelectView extends JPanel
         this.gameBoard = gameBoard;
         background = ImgResources.getImg("selectView");
         units = new ArrayList<Unit>();
+        selectViewMouse = new SelectViewMouse();
+        setFocusable(true);
+        addMouseListener(selectViewMouse);
     }
 
     @Override
@@ -52,7 +58,7 @@ public class SelectView extends JPanel
         }
         if (element instanceof Source)
         {
-            MainWindow.botPanel.repaint();
+            gameBoard.getSelectView().repaint();
             Source s = (Source) element;
             g.drawImage(s.getIcon(), 20, 20, null);
             g.drawString(element.getName(), 50, 30);
@@ -80,21 +86,19 @@ public class SelectView extends JPanel
         }
         if (units.size() != 0)
         {
-            int j = 0;
+
             for (int i = 0; i < units.size(); i++)
             {
-                if (i % 5 == 0)
+                for (int j = 0; j < 5; j++)
                 {
-                    j++;
-
+                    g.drawImage(units.get(i).getIcon(), 20 + (i * 30), 20 + (j), null);
+                    g.setColor(Color.red);
+                    g.fillRect(20 + (i * 30), 20 + j + units.get(i).getIcon().getHeight() + 2, units.get(i).getIcon().getWidth(), 5);
+                    g.setColor(Color.green);
+                    g.fillRect(20 + (i * 30), 20 + j + units.get(i).getIcon().getHeight() + 2, (int) (25 * units.get(i).getHpDown()), 5);
                 }
-
                 units.get(i).setSelected(true);
-                g.drawImage(units.get(i).getIcon(), 20 + (i * 30), 20 + (j), null);
-                g.setColor(Color.red);
-                g.fillRect(20 + (i * 30), 20 + j + units.get(i).getIcon().getHeight() + 2, units.get(i).getIcon().getWidth(), 5);
-                g.setColor(Color.green);
-                g.fillRect(20 + (i * 30), 20 + j + units.get(i).getIcon().getHeight() + 2, (int) (25 * units.get(i).getHpDown()), 5);
+
             }
 
         }
@@ -127,14 +131,59 @@ public class SelectView extends JPanel
 
     public void setUnits(ArrayList<Unit> units)
     {
-        if (units.size() == 0)
-        {
-            for (Unit u : gameBoard.getUnits())
-            {
-                u.setSelected(false);
-            }
-        }
+        System.out.println("mazu");
+//        if (units.size() == 0)
+//        {
+//            for (Unit u : gameBoard.getUnits())
+//            {
+//                u.setSelected(false);
+//            }
+//        }
         this.units = units;
+    }
+
+    public Unit getUnit()
+    {
+        if (unit == null)
+        {
+            return null;
+        }
+        else
+        {
+            return unit;
+        }
+
+    }
+
+    private class SelectViewMouse implements MouseListener
+    {
+
+        @Override
+        public void mouseClicked(MouseEvent e)
+        {
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e)
+        {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e)
+        {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e)
+        {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e)
+        {
+        }
+
     }
 
 }

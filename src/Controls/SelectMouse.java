@@ -108,4 +108,16 @@ public class SelectMouse
         return unit;
     }
 
+    boolean isEmpty()
+    {
+        if (element == null && unit == null && building == null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }

@@ -6,9 +6,11 @@
 package Controls;
 
 import Unit.Unit;
+import View.ActionView;
 import View.BotPanel;
 import View.GameBoard;
 import View.MainWindow;
+import View.SelectView;
 import View.TopPanel;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -28,6 +30,8 @@ public class Mouse implements MouseListener, MouseMotionListener
 {
 
     private GameBoard gameBoard;
+    private SelectView selectView;
+    private ActionView actionView;
     private SelectMouse selectMouse = null;
     private Color dragColor = new Color(0, 255, 50, 128);
 
@@ -46,7 +50,9 @@ public class Mouse implements MouseListener, MouseMotionListener
     public Mouse(GameBoard gameBoard, BotPanel botPanel, TopPanel topPanel)
     {
         this.gameBoard = gameBoard;
-        selectMouse = new SelectMouse(gameBoard, botPanel, topPanel);//, MainWindow.botPanel.getSelectPanel(), MainWindow.botPanel.getActionPanel());
+        this.selectView = botPanel.getSelectPanel();
+        this.actionView = botPanel.getActionPanel();
+        selectMouse = new SelectMouse(gameBoard, botPanel, topPanel);
     }
 
     @Override
@@ -65,9 +71,9 @@ public class Mouse implements MouseListener, MouseMotionListener
         {
             selectMouse.setData(clickedIndexX, clickedIndexY);
         }
-        if (e.getButton() == MouseEvent.BUTTON3 && selectMouse != null && selectMouse.isUnitSelected())
+        if (e.getButton() == MouseEvent.BUTTON3 && (!selectMouse.isEmpty()))
         {
-            selectMouse.getUnit().move(clickedIndexX, clickedIndexY);
+            selectView.getUnit().move(clickedIndexX, clickedIndexY);
         }
 
         System.err.println("x: " + clickedIndexX + " y: " + clickedIndexY);
@@ -113,10 +119,7 @@ public class Mouse implements MouseListener, MouseMotionListener
             g.setColor(dragColor);
             g.fillRect(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
         }
-        else
-        {
-            selectRectangle = null;
-        }
+
     }
 
     public ArrayList<Unit> getListSelectedUnits(Rectangle rec)
