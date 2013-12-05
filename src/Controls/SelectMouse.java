@@ -19,6 +19,7 @@ import java.util.ArrayList;
  *
  * @author Honza
  */
+@Deprecated
 public class SelectMouse
 {
 
@@ -65,7 +66,7 @@ public class SelectMouse
         }
         if (unit == null)
         {
-            selectView.setObjectUnit(null);
+            //selectView.setObjectUnit(null);
         }
         if (building == null)
         {
@@ -75,13 +76,13 @@ public class SelectMouse
 
         if (unit != null)
         {
-            if (selectView.getUnit() != null)
-            {
-                selectView.getUnit().setSelected(false);
-            }
+//            if (selectView.getUnit() != null)
+//            {
+//                selectView.getUnit().setSelected(false);
+//            }
 
             unit.setSelected(true);
-            selectView.setObjectUnit(unit);
+            //selectView.setObjectUnit(unit);
         }
         if (element != null)
         {

@@ -50,7 +50,7 @@ public class GameBoard extends JPanel
     private BufferedImage background;
     private BotPanel botPanel;
     private TopPanel topPanel;
-    
+
     private Player blue;
     private Player red;
 
@@ -81,27 +81,25 @@ public class GameBoard extends JPanel
         objects = new ArrayList<>();
         mapData = new MapData(this);
         objects = mapData.getMapData();
-        
-        blue = new Player(300,300,300,300,"Blue");
-        red = new Player(300,300,300,300,"Red");
-        
+
+        blue = new Player(300, 300, 300, 300, "Blue");
+        red = new Player(300, 300, 300, 300, "Red");
+
         units = new ArrayList<Unit>();
         buildings = new ArrayList<Building>();
 
         generateGrass();
         fillBackground();
 
-        
+        units.add(new Villager(this, 30, 70, 0, "Blue"));
+        units.add(new Villager(this, 40, 70, 90, "Blue"));
+        units.add(new Villager(this, 35, 70, 180, "Blue"));
+        buildings.add(new Barracks(this, 45, 60, "Blue"));
+        buildings.add(new TownCenter(this, 30, 80, "Blue"));
 
-//        units.add(new Villager(this, 30, 80, 0));
-//        units.add(new Villager(this, 40, 80, 90));
-//        units.add(new Villager(this, 35, 80, 180));
-        buildings.add(new Barracks(this, 45, 60,"Blue"));
-        buildings.add(new TownCenter(this, 30, 80,"Blue"));
-        
-        buildings.add(new TownCenter(this, 240, 90,"Red"));
-        buildings.add(new Barracks(this, 220, 80,"Red"));
-        
+        buildings.add(new TownCenter(this, 240, 90, "Red"));
+        buildings.add(new Barracks(this, 220, 80, "Red"));
+
         addKeyListener(new Key(this));
         gameLoop();
 
@@ -446,16 +444,15 @@ public class GameBoard extends JPanel
     {
         return botPanel.getSelectPanel();
     }
-    
+
     public Player getBluePlayer()
     {
         return blue;
     }
-    
+
     public Player getRedPlayer()
     {
         return red;
     }
-
 
 }
