@@ -12,9 +12,9 @@ package Unit.Animal;
 public class Sheep
 {
 
-    public Sheep() 
+    public Sheep()
     {
-        System.out.println("Homola is faggot");
+
     }
-    
+
 }
