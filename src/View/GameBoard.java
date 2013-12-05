@@ -454,5 +454,11 @@ public class GameBoard extends JPanel
     {
         return red;
     }
+    
+    public TopPanel getTopPanel()
+    {
+        return topPanel;
+    }
+
 
 }

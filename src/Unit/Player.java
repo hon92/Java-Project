@@ -82,6 +82,26 @@ public class Player
         return stone;
     }
     
+    public void setFood(int x)
+    {
+        food+=x;
+    }
+    
+    public void setGold(int x)
+    {
+        gold+=x;
+    }
+    
+    public void setStone(int x)
+    {
+        stone+=x;
+    }
+    
+    public void setWood(int x)
+    {
+        wood+=x;
+    }
+    
     public int getGold()
     {
         return gold;
@@ -97,4 +117,13 @@ public class Player
         return actualPop;
     }
     
+    public void setActualPop(int x)
+    {
+        actualPop+=x;
+    }
+    
+    public void setMaxPop(int x)
+    {
+        pop+=x;
+    }
 }
