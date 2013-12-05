@@ -28,10 +28,16 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 import javax.swing.JPanel;
 
 public class GameBoard extends JPanel
@@ -458,6 +464,26 @@ public class GameBoard extends JPanel
     public TopPanel getTopPanel()
     {
         return topPanel;
+    }
+    
+    public void playSound(File file)
+    {
+    try {
+         AudioInputStream stream;
+         AudioFormat format;
+         DataLine.Info info;
+         Clip clip;
+
+         stream = AudioSystem.getAudioInputStream(file);
+         format = stream.getFormat();
+         info = new DataLine.Info(Clip.class, format);
+         clip = (Clip) AudioSystem.getLine(info);
+         clip.open(stream);
+         clip.start();
+    }
+        catch (Exception e) {
+    //whatevers
+    }
     }
 
 

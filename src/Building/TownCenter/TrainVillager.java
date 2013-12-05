@@ -28,6 +28,7 @@ public class TrainVillager extends Action
     private int spawnY;
     private int spawnLines;
 
+    File res_pop = new File("src/Sounds/resources_pop.wav");
     public TrainVillager(GameBoard gameBoard, Building building)
     {
         super();
@@ -68,18 +69,19 @@ public class TrainVillager extends Action
             isActive = true;
         }
             
+        
+            
+        }
         else
         {
             if (gameBoard.getBluePlayer().getFood()>=50)
             {
-                //nedostatek surovin
+                gameBoard.playSound(res_pop);
             }
             else
             {
-                //pop
+                gameBoard.playSound(res_pop);
             }
-            
-        }
             
         }
         }
