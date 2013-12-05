@@ -74,9 +74,9 @@ public class Mouse implements MouseListener, MouseMotionListener
         }
         if (e.getButton() == MouseEvent.BUTTON3 && (!selectMouse.isEmpty()))
         {
-            if(selectView.getUnit().getPlayer()=="Blue")
+            if (selectView.getUnit().getPlayer() == "Blue")
             {
-            selectView.getUnit().move(clickedIndexX, clickedIndexY);
+                selectView.getUnit().move(clickedIndexX, clickedIndexY);
             }
         }
 
