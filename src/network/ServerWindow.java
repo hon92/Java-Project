@@ -32,7 +32,6 @@ public class ServerWindow extends javax.swing.JFrame
         try
         {
             serverSocket = new ServerSocket(port);
-
         }
         catch (IOException ex)
         {
@@ -92,18 +91,27 @@ public class ServerWindow extends javax.swing.JFrame
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
-        try
+        Thread serverThread = new Thread(new Runnable()
         {
-            socket = serverSocket.accept();
-            ois = new ObjectInputStream(socket.getInputStream());
-            oos = new ObjectOutputStream(socket.getOutputStream());
-            this.jLabel1.setText("Client connected");
+            @Override
+            public void run()
+            {
+                try
+                {
+                    socket = serverSocket.accept();
+                    ois = new ObjectInputStream(socket.getInputStream());
+                    oos = new ObjectOutputStream(socket.getOutputStream());
+                    jLabel1.setText("Client connected");
 
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(ServerWindow.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                }
+                catch (IOException ex)
+                {
+                    Logger.getLogger(ServerWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        serverThread.start();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
