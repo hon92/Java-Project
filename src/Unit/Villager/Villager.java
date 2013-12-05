@@ -49,7 +49,6 @@ public class Villager extends Unit
     private int currentPoint = 1;
     private boolean isFinish = true;
     private Dijkstra dd = null;
-    private int pixelX, pixelY;
     private int newPixelX;
     private int newPixelY;
     private int t;

@@ -68,23 +68,7 @@ public class SelectView extends JPanel
         {
             g.drawString(element.getName(), 50, 60);
         }
-        if (unit != null)
-        {
-            g.drawImage(unit.getIcon(), 20, 20, null);
-            g.drawString(unit.getName(), 50, 30);
-            g.drawString("Attack: " + unit.getAttack(), 50, 40);
-            g.drawString("Armor: " + unit.getArmor(), 50, 50);
-            g.drawString("Max Hp: " + unit.getMaxHp(), 50, 60);
-            g.drawString("Current Hp: " + unit.getHp(), 50, 70);
-        }
-        if (building != null)
-        {
-            g.drawImage(building.getIcon(), 20, 20, null);
-            g.drawString(building.getName(), 60, 30);
-            g.drawString("Max Hp: " + building.getMaxHp(), 60, 60);
-            g.drawString("Current Hp: " + building.getCurrentHp(), 60, 70);
-        }
-        if (units.size() != 0)
+        if (units.size() > 1)
         {
 
             for (int i = 0; i < units.size(); i++)
@@ -102,6 +86,23 @@ public class SelectView extends JPanel
             }
 
         }
+        if (unit != null && (units.size() == 1 || units.size() == 0))
+        {
+            g.drawImage(unit.getIcon(), 20, 20, null);
+            g.drawString(unit.getName(), 50, 30);
+            g.drawString("Attack: " + unit.getAttack(), 50, 40);
+            g.drawString("Armor: " + unit.getArmor(), 50, 50);
+            g.drawString("Max Hp: " + unit.getMaxHp(), 50, 60);
+            g.drawString("Current Hp: " + unit.getHp(), 50, 70);
+        }
+        if (building != null)
+        {
+            g.drawImage(building.getIcon(), 20, 20, null);
+            g.drawString(building.getName(), 60, 30);
+            g.drawString("Max Hp: " + building.getMaxHp(), 60, 60);
+            g.drawString("Current Hp: " + building.getCurrentHp(), 60, 70);
+        }
+
         g.dispose();
 
     }
@@ -162,6 +163,11 @@ public class SelectView extends JPanel
             return unit;
         }
 
+    }
+
+    public ArrayList<Unit> getUnitList()
+    {
+        return units;
     }
 
     private class SelectViewMouse implements MouseListener
