@@ -20,9 +20,9 @@ import javax.imageio.ImageIO;
  * @author Tom
  */
 public class TownCenter extends Building {
-    private BufferedImage sourceImgBlue;
-    private BufferedImage sourceImgRed;
-
+    private BufferedImage sourceImg;
+    private BufferedImage iconImg;
+    
     public TownCenter(GameBoard gameBoard, int x, int y,String team) {
         super(gameBoard, x, y,team);
         initTownCenter();
@@ -58,15 +58,10 @@ public class TownCenter extends Building {
             g.fillRect(gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE - 10), (int) (imageWidth * getHpDown()), 5);
         }
         
-            if(team == "Blue")
-            {
-            g.drawImage(sourceImgBlue, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
-            }
+       if (sourceImg != null) {
+            g.drawImage(sourceImg, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);
+        }
             
-            else
-            {
-             g.drawImage(sourceImgRed, gameBoard.convertX(locationX * GameData.BOXSIZE), gameBoard.convertY(locationY * GameData.BOXSIZE), null);   
-            }
         
     }
 
@@ -80,9 +75,15 @@ public class TownCenter extends Building {
         maxHp = 500;
         currentHp = maxHp;
         try {
-            sourceImgBlue = ImageIO.read(new File("src/Building/TownCenter/TownCenter.png"));
-            sourceImgRed = ImageIO.read(new File("src/Building/TownCenter/TownCenterRed.png"));
-            iconImg = ImageIO.read(new File("src/Building/Barracks/barracksicon.png"));
+            if(team == "blue")
+            {
+            sourceImg = ImageIO.read(new File("src/Building/TownCenter/TownCenter.png"));
+            }
+            else
+            {
+            sourceImg = ImageIO.read(new File("src/Building/TownCenter/TownCenterRed.png"));
+            }
+            iconImg = ImageIO.read(new File("src/Building/TownCenter/TownCenterIcon.png"));
         } catch (IOException ex) {
             Logger.getLogger(TownCenter.class.getName()).log(Level.SEVERE, null, ex);
         }
