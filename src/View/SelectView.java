@@ -102,30 +102,33 @@ public class SelectView extends JPanel
 
     }
 
-    public void setObjectElement(ObjectElement element)
-    {
-        this.element = element;
-    }
-
     public void fillData(int indexX, int indexY)
     {
         element = gameBoard.getObjectFieldObject(indexX, indexY);
-        building = gameBoard.getBuildingFieldObject(indexX, indexY);
+        Building building = gameBoard.getBuildingFieldObject(indexX, indexY);
         Unit unit = gameBoard.getUnitField(indexX, indexY);
+
         if (unit != null)
         {
+            clearSelects();
             unit.setSelected(true);
             units.add(unit);
         }
         else
         {
-            for (Unit u : units)
-            {
-                u.setSelected(false);
-
-            }
-            units.clear();
+            clearSelects();
         }
+        if (building != null)
+        {
+            this.building = building;
+            this.building.setSelected(true);
+        }
+        else if (building == null && this.building != null)
+        {
+            this.building.setSelected(false);
+            this.building = null;
+        }
+
         repaint();
     }
 
@@ -137,42 +140,23 @@ public class SelectView extends JPanel
 //        }
 //        this.unit = unit;
 //    }
-    public void setBuildingObject(Building building)
+    private void clearSelects()
     {
-        if (this.building != null && this.building.isSelected() && building == null)
+        for (Unit u : units)
         {
-            this.building.setSelected(false);
+            u.setSelected(false);
+
         }
-        this.building = building;
+        units.clear();
     }
 
     public void setUnits(ArrayList<Unit> units)
     {
         System.out.println("new list unit " + "size: " + units.size());
-
-//        if (units.size() == 0)
-//        {
-//            for (Unit u : gameBoard.getUnits())
-//            {
-//                u.setSelected(false);
-//            }
-//        }
         this.units = units;
 
     }
 
-//    public Unit getUnit()
-//    {
-//        if (unit == null)
-//        {
-//            return null;
-//        }
-//        else
-//        {
-//            return unit;
-//        }
-//
-//    }
     public ArrayList<Unit> getUnitList()
     {
         return units;

@@ -18,7 +18,6 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -26,7 +25,8 @@ import javax.swing.SwingUtilities;
  *
  * @author Honza
  */
-public class ActionView extends JPanel {
+public class ActionView extends JPanel
+{
 
     private BufferedImage background;
     private GameBoard gameBoard;
@@ -34,10 +34,10 @@ public class ActionView extends JPanel {
     private ActionMouseClick actionMouseClick;
     private List<Rectangle> rectangles;
 
-    private int viewWidth = 290;
-    private int viewHeigth = 165;
-
-    public ActionView(GameBoard gameBoard) {
+    //private int viewWidth = 290;
+    //private int viewHeigth = 165;
+    public ActionView(GameBoard gameBoard)
+    {
         setPreferredSize(new Dimension(360, 200));
         background = ImgResources.getImg("actionView");
         this.gameBoard = gameBoard;
@@ -47,16 +47,20 @@ public class ActionView extends JPanel {
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g)
+    {
         super.paintComponent(g);
         g.drawImage(background, 0, 0, null);
 
-        if (building != null) {
+        if (building != null)
+        {
             generateRectangles(building.getActions());
             int i = 0;
             int row = 0;
-            for (Action a : building.getActions()) {
-                if (i % 7 == 0 && i != 0) {
+            for (Action a : building.getActions())
+            {
+                if (i % 7 == 0 && i != 0)
+                {
                     row++;
                     i = 0;
                 }
@@ -65,10 +69,11 @@ public class ActionView extends JPanel {
                         (30 + (i * a.getActionImage().getWidth())) + i * 5,
                         (30 + (row * a.getActionImage().getHeight())) + row * 5,
                         null);
-                if(a.isIsActive()){
+                if (a.isIsActive())
+                {
                     g.setColor(Color.red);
                     g.setFont(new Font("Verdana", 1, 20));
-                    g.drawString(""+(((a.getRemaining()-1)/60)+1), ((30 + (i * a.getActionImage().getWidth())) + i * 5)+a.getActionImage().getWidth()/2 - 8, ((30 + (row * a.getActionImage().getHeight())) + row * 5)+a.getActionImage().getHeight()/2+8);
+                    g.drawString("" + (((a.getRemaining() - 1) / 60) + 1), ((30 + (i * a.getActionImage().getWidth())) + i * 5) + a.getActionImage().getWidth() / 2 - 8, ((30 + (row * a.getActionImage().getHeight())) + row * 5) + a.getActionImage().getHeight() / 2 + 8);
                 }
                 i++;
             }
@@ -81,12 +86,15 @@ public class ActionView extends JPanel {
         g.dispose();
     }
 
-    private void generateRectangles(List<Action> actions) {
+    private void generateRectangles(List<Action> actions)
+    {
         rectangles = new ArrayList<Rectangle>();
         int i = 0;
         int row = 0;
-        for (Action a : actions) {
-            if (i % 7 == 0 && i != 0) {
+        for (Action a : actions)
+        {
+            if (i % 7 == 0 && i != 0)
+            {
                 row++;
                 i = 0;
             }
@@ -99,27 +107,43 @@ public class ActionView extends JPanel {
         }
     }
 
-    public void setBuildingObject(Building building) {
-        if (this.building != null && this.building.isSelected() && building == null) {
-            this.building.setSelected(false);
+    public void fillData(int indexX, int indexY)
+    {
+        Building building = gameBoard.getBuildingFieldObject(indexX, indexY);
+        if (building != null)
+        {
+            this.building = building;
+
         }
-        this.building = building;
+        else if (building == null && this.building != null)
+        {
+
+            this.building = null;
+        }
+
     }
 
-    private class ActionMouseClick implements MouseListener {
+    private class ActionMouseClick implements MouseListener
+    {
 
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void mouseClicked(MouseEvent e)
+        {
 
-            if (rectangles != null) {
+            if (rectangles != null)
+            {
                 Rectangle rect = new Rectangle(e.getX(), e.getY(), 1, 1);
                 int position = 0;
-                for (Rectangle r : rectangles) {
-                    if (r.intersects(rect)) {
-                        if(SwingUtilities.isLeftMouseButton(e)){
+                for (Rectangle r : rectangles)
+                {
+                    if (r.intersects(rect))
+                    {
+                        if (SwingUtilities.isLeftMouseButton(e))
+                        {
                             building.getActions().get(position).doAction();
                         }
-                        if(SwingUtilities.isRightMouseButton(e)){
+                        if (SwingUtilities.isRightMouseButton(e))
+                        {
                             building.getActions().get(position).cancelAction();
                         }
                     }
@@ -129,22 +153,26 @@ public class ActionView extends JPanel {
         }
 
         @Override
-        public void mousePressed(MouseEvent e) {
+        public void mousePressed(MouseEvent e)
+        {
 
         }
 
         @Override
-        public void mouseReleased(MouseEvent e) {
+        public void mouseReleased(MouseEvent e)
+        {
 
         }
 
         @Override
-        public void mouseEntered(MouseEvent e) {
+        public void mouseEntered(MouseEvent e)
+        {
 
         }
 
         @Override
-        public void mouseExited(MouseEvent e) {
+        public void mouseExited(MouseEvent e)
+        {
 
         }
 

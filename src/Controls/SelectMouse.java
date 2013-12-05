@@ -62,7 +62,7 @@ public class SelectMouse
 
         if (element == null)
         {
-            selectView.setObjectElement(null);
+            //selectView.setObjectElement(null);
         }
         if (unit == null)
         {
@@ -70,8 +70,8 @@ public class SelectMouse
         }
         if (building == null)
         {
-            actionView.setBuildingObject(null);
-            selectView.setBuildingObject(null);
+            //actionView.setBuildingObject(null);
+            //selectView.setBuildingObject(null);
         }
 
         if (unit != null)
@@ -86,13 +86,13 @@ public class SelectMouse
         }
         if (element != null)
         {
-            selectView.setObjectElement(element);
+            //selectView.setObjectElement(element);
         }
         if (building != null)
         {
             building.setSelected(true);
-            actionView.setBuildingObject(building);
-            selectView.setBuildingObject(building);
+            // actionView.setBuildingObject(building);
+            // selectView.setBuildingObject(building);
         }
         selectView.repaint();
         actionView.repaint();

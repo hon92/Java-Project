@@ -40,6 +40,7 @@ public class Mouse implements MouseListener, MouseMotionListener
     private int clickedIndexY;
     private boolean active = false;
     private Rectangle selectRectangle = null;
+    private int unitDistance = 2;
 
     public Mouse(GameBoard gameBoard, BotPanel botPanel, TopPanel topPanel)
     {
@@ -63,16 +64,19 @@ public class Mouse implements MouseListener, MouseMotionListener
 
         if (e.getButton() == MouseEvent.BUTTON1)
         {
-            //selectMouse.setData(clickedIndexX, clickedIndexY);
             selectView.fillData(clickedIndexX, clickedIndexY);
-
+            actionView.fillData(clickedIndexX, clickedIndexY);
         }
         if (e.getButton() == MouseEvent.BUTTON3)
         {
-//            if (selectView.getUnit().getPlayer() == "Blue")
-//            {
-//                selectView.getUnit().move(clickedIndexX, clickedIndexY);
-//            }
+
+            for (Unit u : selectView.getUnitList())
+            {
+                if (u.getPlayer() == "Blue")
+                {
+                    u.move(clickedIndexX + unitDistance, clickedIndexY + unitDistance);
+                }
+            }
 
         }
 
@@ -113,8 +117,6 @@ public class Mouse implements MouseListener, MouseMotionListener
         {
             g.setColor(dragColor);
             g.fillRect(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
-            selectRectangle = new Rectangle(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
-            //selectMouse.setUnitSelectedList(getListSelectedUnits(selectRectangle));
 
         }
 
@@ -122,13 +124,14 @@ public class Mouse implements MouseListener, MouseMotionListener
 
     public ArrayList<Unit> getListSelectedUnits(Rectangle rec)
     {
-        ArrayList<Unit> selectedUnits = new ArrayList<Unit>();
+        ArrayList<Unit> selectedUnits = new ArrayList<>();
         for (Unit u : gameBoard.getUnits())
         {
-            Rectangle r = new Rectangle(gameBoard.convertX(u.getX() / 25), gameBoard.convertY(u.getY() / 25), 25, 50);
+            Rectangle r = new Rectangle(gameBoard.convertX(u.getX()), gameBoard.convertY(u.getY()), 25, 50);
 
             if (rec.intersects(r))
             {
+                System.out.println("INTERSECT");
                 u.setSelected(true);
                 selectedUnits.add(u);
             }
@@ -151,6 +154,7 @@ public class Mouse implements MouseListener, MouseMotionListener
             active = true;
             currentX = e.getX();
             currentY = e.getY();
+            selectRectangle = new Rectangle(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
             selectView.setUnits(getListSelectedUnits(selectRectangle));
         }
 
