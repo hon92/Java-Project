@@ -9,12 +9,10 @@ import Unit.Unit;
 import View.ActionView;
 import View.BotPanel;
 import View.GameBoard;
-import View.MainWindow;
 import View.SelectView;
 import View.TopPanel;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -72,7 +70,7 @@ public class Mouse implements MouseListener, MouseMotionListener
             selectMouse.setData(clickedIndexX, clickedIndexY);
             //selectMouse.setUnitSelectedList(getListSelectedUnits(new Rectangle(0, 0, 0, 0)));
         }
-        if (e.getButton() == MouseEvent.BUTTON3 && (!selectMouse.isEmpty() && selectView.getUnit() != null))
+        if (e.getButton() == MouseEvent.BUTTON3)
         {
             if (selectView.getUnit().getPlayer() == "Blue")
             {
