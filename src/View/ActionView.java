@@ -52,7 +52,7 @@ public class ActionView extends JPanel
         super.paintComponent(g);
         g.drawImage(background, 0, 0, null);
 
-        if (building != null)
+        if (building != null && building.getPlayer()=="Blue")
         {
             generateRectangles(building.getActions());
             int i = 0;
