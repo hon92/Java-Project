@@ -5,8 +5,6 @@
  */
 package Unit.Melee;
 
-import Controls.Dijkstra;
-import Controls.ListItem;
 import GameElement.Grass;
 import Unit.Unit;
 import View.GameBoard;
@@ -15,7 +13,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
