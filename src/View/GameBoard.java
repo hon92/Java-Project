@@ -447,5 +447,16 @@ public class GameBoard extends JPanel
     {
         return botPanel.getSelectPanel();
     }
+    
+    public Player getBluePlayer()
+    {
+        return blue;
+    }
+    
+    public Player getRedPlayer()
+    {
+        return red;
+    }
+
 
 }

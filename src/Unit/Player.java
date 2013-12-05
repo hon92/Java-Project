@@ -5,6 +5,7 @@
 package Unit;
 
 import Buildings.Building;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +26,9 @@ public class Player
     
     public Player(int wood, int gold, int stone, int food, String team)
     {
+        units = new ArrayList<Unit>();
+        buildings = new ArrayList<Building>();
+        
         this.wood=wood;
         this.gold=gold;
         this.stone=stone;
@@ -45,6 +49,16 @@ public class Player
     public String getTeamName()
     {
         return team;
+    }
+    
+    public void addUnit(Unit u)
+    {
+        units.add(u);
+    }
+    
+    public void addBuilding(Building b)
+    {
+        buildings.add(b);
     }
     
     

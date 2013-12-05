@@ -34,6 +34,17 @@ public class Barracks extends Building {
                 gameBoard.setFieldIndex(x + i, y + j, 15);
             }
         }
+        
+        if(team == "Blue")
+        {
+            gameBoard.getBluePlayer().addBuilding(this);
+        }
+        
+        if(team == "Red")
+        {
+            gameBoard.getRedPlayer().addBuilding(this);
+        }
+        
 
     }
 

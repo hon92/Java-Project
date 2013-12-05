@@ -171,9 +171,14 @@ public class MiniMap extends JPanel {
         }
 
         for (Building b : buildings) {
-            if (b instanceof Barracks) {
+             if(b.getPlayer()=="Blue")
+             {
                 g.setColor(darkBlueColor);
             }
+             else
+             {
+                 g.setColor(Color.RED);
+             }
                 int bX = b.getLocationX();
                 int bY = b.getLocationY();
                 g.fillRect(0 + convertX(bX * 25), 0 + convertY(bY * 25), 4, 4);
@@ -181,7 +186,14 @@ public class MiniMap extends JPanel {
         
         for(Unit u : units)
         {
+            if(u.getPlayer()=="Blue")
+            {
             g.setColor(darkBlueColor);
+            }
+            else 
+            {
+                g.setColor(Color.red);
+            }
             {
                 int bX = u.getX()/25;
                 int bY = u.getY()/25;
