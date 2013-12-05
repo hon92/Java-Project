@@ -1,6 +1,7 @@
 package View;
 
 import Building.Barracks.Barracks;
+import Building.TownCenter.TownCenter;
 import Buildings.Action;
 import Buildings.Building;
 import Controls.Dijkstra;
@@ -103,6 +104,10 @@ public class GameBoard extends JPanel
 //        units.add(new Villager(this, 35, 80, 180));
         buildings.add(new Barracks(this, 50, 50,"Blue"));
 
+        buildings.add(new TownCenter(this, 50, 150,"Blue"));
+        //buildings.add(new TownCenter(this, 150, 50,"Red"));
+        
+        
         addKeyListener(new Key(this));
         gameLoop();
 
