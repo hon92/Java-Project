@@ -50,6 +50,15 @@ public class SelectMouse
         unit = gameBoard.getUnitField(indexX, indexY);
         building = gameBoard.getBuildingFieldObject(indexX, indexY);
 
+        if (isEmpty())
+        {
+            for (Unit u : selectView.getUnitList())
+            {
+                u.setSelected(false);
+            }
+            selectView.getUnitList().clear();
+        }
+
         if (element == null)
         {
             selectView.setObjectElement(null);

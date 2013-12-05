@@ -23,6 +23,8 @@ public abstract class Unit
     protected int speed;
     protected int locationX;
     protected int locationY;
+    protected int pixelX;
+    protected int pixelY;
     protected int direction;
     protected UnitType typeUnit;
     protected BufferedImage sourceImg;
@@ -76,12 +78,12 @@ public abstract class Unit
 
     public int getX()
     {
-        return locationX * 25;
+        return pixelX;
     }
 
     public int getY()
     {
-        return locationY * 25;
+        return pixelY;
     }
 
     public abstract String getName();

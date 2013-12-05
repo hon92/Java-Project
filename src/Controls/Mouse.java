@@ -132,7 +132,13 @@ public class Mouse implements MouseListener, MouseMotionListener
 
             if (rec.intersects(r))
             {
+                u.setSelected(true);
                 selectedUnits.add(u);
+            }
+            else
+            {
+                u.setSelected(false);
+                selectedUnits.remove(u);
             }
 
         }
