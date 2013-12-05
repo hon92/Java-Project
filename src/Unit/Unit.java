@@ -17,6 +17,7 @@ import java.awt.image.BufferedImage;
 public abstract class Unit
 {
 
+    
     protected static int createTime;
     protected int currentHp;
     protected int maxHp;
@@ -41,6 +42,10 @@ public abstract class Unit
         locationY = y;
         direction = dir;
         this.team=team;
+        
+        
+        
+        
     }
 
     public abstract void move(int x, int y);
@@ -85,6 +90,11 @@ public abstract class Unit
     public int getY()
     {
         return pixelY;
+    }
+    
+    public String getPlayer()
+    {
+        return team;
     }
 
     public abstract String getName();

@@ -89,6 +89,18 @@ public class Villager extends Unit
         newPixelX = pixelX;
         newPixelY = pixelY;
         createTime = 5;
+        
+        if(team == "Blue")
+        {
+            gameBoard.getBluePlayer().addUnit(this);
+        }
+        
+        if(team == "Red")
+        {
+            gameBoard.getRedPlayer().addUnit(this);
+        }
+        
+        
     }
 
     public void move()

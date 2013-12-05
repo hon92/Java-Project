@@ -5,6 +5,7 @@
  */
 package Buildings;
 
+import Unit.Player;
 import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -42,6 +43,9 @@ public abstract class Building
         this.locationX = x;
         this.locationY = y;
         actions = new ArrayList<Action>();
+        
+        
+        
     }
 
     public abstract void drawBuilding(Graphics g);
@@ -78,6 +82,13 @@ public abstract class Building
     public BufferedImage getSourceImg() {
         return sourceImg;
     }
+    
+    public String getPlayer()
+    {
+        return team;
+    }
+
+    
     
     public abstract String getName();
 

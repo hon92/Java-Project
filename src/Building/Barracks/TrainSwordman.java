@@ -72,7 +72,7 @@ public class TrainSwordman extends Action {
                 }
 
                 if (isFree) {
-                    gameBoard.getUnits().add(new Villager(gameBoard, spawnX, spawnY, 0,"Blue"));
+                    gameBoard.getUnits().add(new Villager(gameBoard, spawnX, spawnY, 0,"Red"));
                     isActive = false;
                     tickCount = 0;
                     spawnLines++;
