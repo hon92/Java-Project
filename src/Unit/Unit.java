@@ -5,6 +5,7 @@
  */
 package Unit;
 
+import Buildings.Action;
 import Controls.Dijkstra;
 import Controls.ListItem;
 import Data.UnitType;
@@ -12,6 +13,7 @@ import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -39,6 +41,7 @@ public abstract class Unit
     protected Dijkstra dd = null;
     protected int t;
     protected int currentPoint = 1;
+    protected ArrayList<Action> actions;
 
     public Unit(GameBoard gameBoard, int x, int y, int dir, String team)
     {
@@ -48,6 +51,7 @@ public abstract class Unit
         direction = dir;
         this.team = team;
         moves = new ArrayList<>();
+        actions = new ArrayList<>();
         if (team == "Blue")
         {
             gameBoard.getBluePlayer().setActualPop(1);
@@ -217,5 +221,10 @@ public abstract class Unit
     public abstract void tick();
 
     public abstract double getHpDown();
+
+    public List<Action> getActions()
+    {
+        return actions;
+    }
 
 }

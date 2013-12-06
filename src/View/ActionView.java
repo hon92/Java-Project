@@ -8,6 +8,7 @@ package View;
 import Buildings.Action;
 import Buildings.Building;
 import Data.ImgResources;
+import Unit.Unit;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -33,6 +34,7 @@ public class ActionView extends JPanel
     private Building building;
     private ActionMouseClick actionMouseClick;
     private List<Rectangle> rectangles;
+    private Unit unit;
 
     //private int viewWidth = 290;
     //private int viewHeigth = 165;
@@ -52,7 +54,7 @@ public class ActionView extends JPanel
         super.paintComponent(g);
         g.drawImage(background, 0, 0, null);
 
-        if (building != null && building.getPlayer()=="Blue")
+        if (building != null && building.getPlayer() == "Blue")
         {
             generateRectangles(building.getActions());
             int i = 0;
@@ -77,13 +79,48 @@ public class ActionView extends JPanel
                 }
                 i++;
             }
+
 //            for (Rectangle r : rectangles) {
 //                g.setColor(Color.red);
 //                g.drawRect(r.x, r.y, r.width, r.height);
 //            }
         }
 
-        g.dispose();
+        if (unit != null && unit.getPlayer() == "Blue")
+        {
+            generateRectangles(unit.getActions());
+            int i = 0;
+            int row = 0;
+            for (Action a : unit.getActions())
+            {
+                if (i % 7 == 0 && i != 0)
+                {
+                    row++;
+                    i = 0;
+                }
+                g.drawImage(
+                        a.getActionImage(),
+                        (30 + (i * a.getActionImage().getWidth())) + i * 5,
+                        (30 + (row * a.getActionImage().getHeight())) + row * 5,
+                        null);
+                if (a.isIsActive())
+                {
+                    g.setColor(Color.red);
+                    g.setFont(new Font("Verdana", 1, 20));
+                    g.drawString("" + (((a.getRemaining() - 1) / 60) + 1), ((30 + (i * a.getActionImage().getWidth())) + i * 5) + a.getActionImage().getWidth() / 2 - 8, ((30 + (row * a.getActionImage().getHeight())) + row * 5) + a.getActionImage().getHeight() / 2 + 8);
+                }
+                i++;
+            }
+
+            for (Rectangle r : rectangles)
+            {
+                g.setColor(Color.red);
+                g.drawRect(r.x, r.y, r.width, r.height);
+//            }
+            }
+
+            g.dispose();
+        }
     }
 
     private void generateRectangles(List<Action> actions)
@@ -110,6 +147,8 @@ public class ActionView extends JPanel
     public void fillData(int indexX, int indexY)
     {
         Building building = gameBoard.getBuildingFieldObject(indexX, indexY);
+        Unit unit = gameBoard.getUnitField(indexX, indexY);
+
         if (building != null)
         {
             this.building = building;
@@ -119,6 +158,17 @@ public class ActionView extends JPanel
         {
 
             this.building = null;
+        }
+
+        if (unit != null)
+        {
+            this.unit = unit;
+
+        }
+        else if (unit == null && this.unit != null)
+        {
+
+            this.unit = null;
         }
 
     }
