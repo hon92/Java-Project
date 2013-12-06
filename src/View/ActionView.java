@@ -86,7 +86,7 @@ public class ActionView extends JPanel
 //            }
         }
 
-        if (unit != null && unit.getPlayer() == "Blue")
+        if (unit != null && unit.getPlayer() == "Blue" && unit.isSelected() && gameBoard.getSelectView().getUnitList().size() < 2)
         {
             generateRectangles(unit.getActions());
             int i = 0;

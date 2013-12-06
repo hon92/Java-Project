@@ -22,6 +22,8 @@ public class MainWindow extends JFrame
     public static TopPanel topPanel;
     public static BotPanel botPanel;
     public static GameBoard gameBoard;
+    private Cursor cursor;
+    private Toolkit toolkit;
 
     public MainWindow() throws HeadlessException
     {
@@ -35,12 +37,32 @@ public class MainWindow extends JFrame
         add(botPanel, BorderLayout.SOUTH);
         setLocationRelativeTo(null);
 
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        toolkit = Toolkit.getDefaultToolkit();
         try
         {
-            Cursor cursor;
+
             cursor = toolkit.createCustomCursor(ImageIO.read(new File("src/Resources/cursor.png")), new Point(3, 3), "img");
             getRootPane().setCursor(cursor);
+
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public Cursor getCursor()
+    {
+        return cursor;
+    }
+
+    public void setCursor(String cursorName)
+    {
+        try
+        {
+            cursor = toolkit.createCustomCursor(ImageIO.read(new File("src/Resources/" + cursorName + ".png")), new Point(3, 3), "t");
+
         }
         catch (IOException ex)
         {
@@ -51,7 +73,7 @@ public class MainWindow extends JFrame
 
     private void initWindow()
     {
-        gameBoard = new GameBoard();
+        gameBoard = new GameBoard(this);
         topPanel = new TopPanel(gameBoard);
         botPanel = new BotPanel(gameBoard);
         gameBoard.initComponents(botPanel, topPanel);
@@ -69,9 +91,6 @@ public class MainWindow extends JFrame
                 if ("Windows".equals(info.getName()))
                 {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    //logger.info("Disabling DirectDraw (sun.java2d.noddraw=true)");
-                    //System.setProperty("sun.java2d.noddraw", "true");
-
                     break;
                 }
             }

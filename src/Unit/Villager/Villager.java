@@ -60,6 +60,7 @@ public class Villager extends Unit
         speed = 2;
         foodCost = 50;
         actions.add(new VillagerAction());
+        actions.add(new VillagerFarmAction(this, gameBoard));
 
         try
         {

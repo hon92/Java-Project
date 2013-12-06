@@ -142,6 +142,10 @@ public class Mouse implements MouseListener, MouseMotionListener
 
         }
 
+        if (selectedUnits.size() == 1)
+        {
+            actionView.fillData(selectedUnits.get(0).getX() / 25, selectedUnits.get(0).getY() / 25);
+        }
         return selectedUnits;
     }
 

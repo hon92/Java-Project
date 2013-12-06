@@ -45,6 +45,7 @@ import javax.swing.JPanel;
 public class GameBoard extends JPanel
 {
 
+    private MainWindow rootWindow;
     private int currentWindowX;
     private int currentWindowY;
     private final int columns = GameData.MAP_WIDTH / GameData.BOXSIZE;
@@ -67,8 +68,9 @@ public class GameBoard extends JPanel
     private Unit[][] unitField = new Unit[columns][rows];
     private Building[][] buildingField = new Building[columns][rows];
 
-    public GameBoard()
+    GameBoard(MainWindow rootWindow)
     {
+        this.rootWindow = rootWindow;
         initGameBoard();
         setIgnoreRepaint(true);
     }
@@ -107,14 +109,12 @@ public class GameBoard extends JPanel
 
         buildings.add(new TownCenter(this, 240, 90, "Red"));
         buildings.add(new Barracks(this, 220, 80, "Red"));
-        
-        
-        buildings.add(new House(this,40,70,"Blue"));
-        buildings.add(new House(this,230,60,"Red"));
-        
-        
-        buildings.add(new Church(this,50,70,"Blue"));
-        buildings.add(new Church(this,250,60,"Red"));
+
+        buildings.add(new House(this, 40, 70, "Blue"));
+        buildings.add(new House(this, 230, 60, "Red"));
+
+        buildings.add(new Church(this, 50, 70, "Blue"));
+        buildings.add(new Church(this, 250, 60, "Red"));
 
         addKeyListener(new Key(this));
         gameLoop();
@@ -499,6 +499,11 @@ public class GameBoard extends JPanel
         {
             //whatevers
         }
+    }
+
+    public MainWindow getRootWindow()
+    {
+        return rootWindow;
     }
 
 }
