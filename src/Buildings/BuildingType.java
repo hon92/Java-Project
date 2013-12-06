@@ -11,5 +11,5 @@ package Buildings;
  * @author Adam
  */
 public enum BuildingType {
-    BARRACKS, TOWN_CENTER, HOUSE, FARM
+    BARRACKS, TOWN_CENTER, HOUSE, FARM, CHURCH
 }
