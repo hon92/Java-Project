@@ -59,6 +59,7 @@ public class Villager extends Unit
         currentHp = 10;
         speed = 2;
         foodCost = 50;
+        actions.add(new VillagerAction());
 
         try
         {
