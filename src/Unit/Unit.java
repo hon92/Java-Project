@@ -80,9 +80,26 @@ public abstract class Unit
 
     }
 
+    public void calculatePosition()
+    {
+        currentPoint = 1;
+        moves.clear();
+
+        dd = new Dijkstra(new ListItem(pixelX / 25, pixelY / 25), new ListItem(newPixelX / 25, newPixelY / 25), gameBoard);
+        moves = dd.getPath();
+        isFinish = false;
+        if (moves.size() > 1)
+        {
+            gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 0);
+            gameBoard.setUnitField(pixelX / 25, pixelY / 25, null);
+            gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, null);
+        }
+    }
+
     public void movePixel()
     {
 
+        //calculatePosition();
         if ((pixelX == newPixelX) && (pixelY == newPixelY - 25))
         {
             gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 11);
@@ -91,14 +108,6 @@ public abstract class Unit
             isFinish = true;
             return;
         }
-
-        currentPoint = 1;
-        moves.clear();
-
-        dd = new Dijkstra(new ListItem(pixelX / 25, pixelY / 25), new ListItem(newPixelX / 25, newPixelY / 25), gameBoard);
-        moves = dd.getPath();
-        isFinish = false;
-
         if (t == 24)
         {
 
@@ -138,6 +147,7 @@ public abstract class Unit
             }
         }
         t++;
+        System.out.println("move");
     }
 
     public abstract void drawUnit(Graphics g);

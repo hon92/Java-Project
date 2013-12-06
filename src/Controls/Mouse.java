@@ -73,11 +73,10 @@ public class Mouse implements MouseListener, MouseMotionListener
             {
                 if (u.getPlayer() == "Blue")
                 {
-                    u.move(clickedIndexX + unitDistance, clickedIndexY);
-                    unitDistance += 2;
+                    u.move(clickedIndexX, clickedIndexY);
+
                 }
             }
-            unitDistance = 0;
 
         }
 
