@@ -106,10 +106,9 @@ public class GameBoard extends JPanel
 
         buildings.add(new TownCenter(this, 240, 90, "Red"));
         buildings.add(new Barracks(this, 220, 80, "Red"));
-        
-        
-        buildings.add(new House(this,40,70,"Blue"));
-        buildings.add(new House(this,230,60,"Red"));
+
+        buildings.add(new House(this, 40, 70, "Blue"));
+        buildings.add(new House(this, 230, 60, "Red"));
 
         addKeyListener(new Key(this));
         gameLoop();
@@ -310,20 +309,19 @@ public class GameBoard extends JPanel
 
         mouse.drawRect(g);
 
-        g.setColor(Color.blue);
-        for (Unit u : units)
-        {
-            if (u.isSelected())
-            {
-                Dijkstra d = u.getDijkstra();
-
-                if (d != null)
-                {
-                    d.drawPath(g);
-                }
-            }
-        }
-
+//        g.setColor(Color.blue);
+//        for (Unit u : units)
+//        {
+//            if (u.isSelected())
+//            {
+//                Dijkstra d = u.getDijkstra();
+//
+//                if (d != null)
+//                {
+//                    d.drawPath(g);
+//                }
+//            }
+//        }
         for (Building b : buildings)
         {
             b.drawBuilding(g);
