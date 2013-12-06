@@ -21,7 +21,6 @@ public class VillagerAction extends Action
 
     public VillagerAction()
     {
-        System.err.println("action");
         initAction();
     }
 

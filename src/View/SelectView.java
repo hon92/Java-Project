@@ -139,6 +139,10 @@ public class SelectView extends JPanel
             u.setSelected(false);
 
         }
+        for (Building b : gameBoard.getBuildings())
+        {
+            b.setSelected(false);
+        }
         units.clear();
     }
 

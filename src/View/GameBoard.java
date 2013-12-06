@@ -315,20 +315,19 @@ public class GameBoard extends JPanel
 
         mouse.drawRect(g);
 
-        g.setColor(Color.blue);
-        for (Unit u : units)
-        {
-            if (u.isSelected())
-            {
-                Dijkstra d = u.getDijkstra();
-
-                if (d != null)
-                {
-                    d.drawPath(g);
-                }
-            }
-        }
-
+//        g.setColor(Color.blue);
+//        for (Unit u : units)
+//        {
+//            if (u.isSelected())
+//            {
+//                Dijkstra d = u.getDijkstra();
+//
+//                if (d != null)
+//                {
+//                    d.drawPath(g);
+//                }
+//            }
+//        }
         for (Building b : buildings)
         {
             b.drawBuilding(g);

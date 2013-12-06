@@ -151,7 +151,7 @@ public abstract class Unit
             }
         }
         t++;
-        System.out.println("move");
+
     }
 
     public abstract void drawUnit(Graphics g);
