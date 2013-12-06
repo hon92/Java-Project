@@ -28,8 +28,8 @@ public class House extends Building {
         super(gameBoard, x, y,team);
         initHouse();
 
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 6; j++) {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 4; j++) {
                 gameBoard.setBuildingObjectField(x + i, y + j, this);
                 gameBoard.setFieldIndex(x + i, y + j, 15);
             }
