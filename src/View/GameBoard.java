@@ -305,16 +305,20 @@ public class GameBoard extends JPanel
 
         mouse.drawRect(g);
 
-//        g.setColor(Color.blue);
-//        if (units.get(0) instanceof Villager)
-//        {
-//            Villager v = (Villager) units.get(0);
-//            Dijkstra d = v.getDijkstra();
-//            if (d != null)
-//            {
-//                d.drawPath(g);
-//            }
-//        }
+        g.setColor(Color.blue);
+        for (Unit u : units)
+        {
+            if (u.isSelected())
+            {
+                Dijkstra d = u.getDijkstra();
+
+                if (d != null)
+                {
+                    d.drawPath(g);
+                }
+            }
+        }
+
         for (Building b : buildings)
         {
             b.drawBuilding(g);
@@ -460,31 +464,32 @@ public class GameBoard extends JPanel
     {
         return red;
     }
-    
+
     public TopPanel getTopPanel()
     {
         return topPanel;
     }
-    
+
     public void playSound(File file)
     {
-    try {
-         AudioInputStream stream;
-         AudioFormat format;
-         DataLine.Info info;
-         Clip clip;
+        try
+        {
+            AudioInputStream stream;
+            AudioFormat format;
+            DataLine.Info info;
+            Clip clip;
 
-         stream = AudioSystem.getAudioInputStream(file);
-         format = stream.getFormat();
-         info = new DataLine.Info(Clip.class, format);
-         clip = (Clip) AudioSystem.getLine(info);
-         clip.open(stream);
-         clip.start();
+            stream = AudioSystem.getAudioInputStream(file);
+            format = stream.getFormat();
+            info = new DataLine.Info(Clip.class, format);
+            clip = (Clip) AudioSystem.getLine(info);
+            clip.open(stream);
+            clip.start();
+        }
+        catch (Exception e)
+        {
+            //whatevers
+        }
     }
-        catch (Exception e) {
-    //whatevers
-    }
-    }
-
 
 }

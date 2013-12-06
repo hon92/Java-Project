@@ -7,7 +7,6 @@ package Unit;
 
 import Controls.Dijkstra;
 import Controls.ListItem;
-import Data.GameData;
 import Data.UnitType;
 import View.GameBoard;
 import java.awt.Graphics;
@@ -67,7 +66,6 @@ public abstract class Unit
         moves.clear();
 
         dd = new Dijkstra(new ListItem(pixelX / 25, pixelY / 25), new ListItem(x, y), gameBoard);
-
         moves = dd.getPath();
         isFinish = false;
 
@@ -93,6 +91,13 @@ public abstract class Unit
             isFinish = true;
             return;
         }
+
+        currentPoint = 1;
+        moves.clear();
+
+        dd = new Dijkstra(new ListItem(pixelX / 25, pixelY / 25), new ListItem(newPixelX / 25, newPixelY / 25), gameBoard);
+        moves = dd.getPath();
+        isFinish = false;
 
         if (t == 24)
         {
@@ -180,6 +185,11 @@ public abstract class Unit
     public String getPlayer()
     {
         return team;
+    }
+
+    public Dijkstra getDijkstra()
+    {
+        return dd;
     }
 
     public abstract String getName();
