@@ -6,6 +6,11 @@
 package Unit.Villager;
 
 import Buildings.Action;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -14,19 +19,35 @@ import Buildings.Action;
 public class VillagerAction extends Action
 {
 
+    public VillagerAction()
+    {
+        System.err.println("action");
+        initAction();
+    }
+
     @Override
     protected void initAction()
     {
+        try
+        {
+            actionImage = ImageIO.read(new File("src/Unit/Villager/build.png"));
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(VillagerAction.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void doAction()
     {
+        System.err.println("akce");
     }
 
     @Override
     public void cancelAction()
     {
+        System.out.println("storno");
     }
 
     @Override

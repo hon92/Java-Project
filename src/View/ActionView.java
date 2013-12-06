@@ -112,13 +112,12 @@ public class ActionView extends JPanel
                 i++;
             }
 
-            for (Rectangle r : rectangles)
-            {
-                g.setColor(Color.red);
-                g.drawRect(r.x, r.y, r.width, r.height);
+//            for (Rectangle r : rectangles)
+//            {
+//                g.setColor(Color.red);
+//                g.drawRect(r.x, r.y, r.width, r.height);
+////            }
 //            }
-            }
-
             g.dispose();
         }
     }
@@ -190,11 +189,25 @@ public class ActionView extends JPanel
                     {
                         if (SwingUtilities.isLeftMouseButton(e))
                         {
-                            building.getActions().get(position).doAction();
+                            if (building != null)
+                            {
+                                building.getActions().get(position).doAction();
+                            }
+                            if (unit != null)
+                            {
+                                unit.getActions().get(position).doAction();
+                            }
                         }
                         if (SwingUtilities.isRightMouseButton(e))
                         {
-                            building.getActions().get(position).cancelAction();
+                            if (building != null)
+                            {
+                                building.getActions().get(position).cancelAction();
+                            }
+                            if (unit != null)
+                            {
+                                unit.getActions().get(position).cancelAction();
+                            }
                         }
                     }
                     position++;
