@@ -124,17 +124,16 @@ public class Villager extends Unit
     @Override
     public void setHp()
     {
-        if(currentHp<maxHp)
+        if (currentHp < maxHp)
         {
-        currentHp+=1;
+            currentHp += 1;
         }
         else
         {
-            currentHp=maxHp;
+            currentHp = maxHp;
         }
     }
-    
-    
+
     @Override
     public void drawUnit(Graphics g)
     {
@@ -268,7 +267,6 @@ public class Villager extends Unit
     @Override
     public void tick()
     {
-
         if (isMoving())
         {
             movePixel();

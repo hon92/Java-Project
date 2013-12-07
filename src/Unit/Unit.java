@@ -132,7 +132,6 @@ public abstract class Unit
             }
             if (currentPoint + 1 < moves.size())
             {
-
                 currentPoint++;
             }
 
