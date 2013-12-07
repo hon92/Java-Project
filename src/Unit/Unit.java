@@ -67,64 +67,78 @@ public abstract class Unit
     public void move(int x, int y)
     {
         currentPoint = 1;
+        t = 0;
         moves.clear();
 
         dd = new Dijkstra(new ListItem(pixelX / 25, pixelY / 25), new ListItem(x, y), gameBoard);
         moves = dd.getPath();
         isFinish = false;
 
+        for (ListItem l : moves)
+        {
+            System.out.println(l.getItem());
+        }
+
         if (moves.size() > 1)
         {
-            gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 0);
-            gameBoard.setUnitField(pixelX / 25, pixelY / 25, null);
-            gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, null);
+            popPosition();
             newPixelX = x * 25;
             newPixelY = (y * 25);
         }
 
     }
 
-    public void calculatePosition()
+    private void pushPosition()
     {
-        currentPoint = 1;
-        moves.clear();
+        gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 11);
+        gameBoard.setUnitField(pixelX / 25, pixelY / 25, this);
+        gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, this);
+    }
 
-        dd = new Dijkstra(new ListItem(pixelX / 25, pixelY / 25), new ListItem(newPixelX / 25, newPixelY / 25), gameBoard);
-        moves = dd.getPath();
-        isFinish = false;
-        if (moves.size() > 1)
-        {
-            gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 0);
-            gameBoard.setUnitField(pixelX / 25, pixelY / 25, null);
-            gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, null);
-        }
+    private void popPosition()
+    {
+        gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 0);
+        gameBoard.setUnitField(pixelX / 25, pixelY / 25, null);
+        gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, null);
     }
 
     public void movePixel()
     {
 
-        //calculatePosition();
-        if ((pixelX == newPixelX) && (pixelY == newPixelY - 25))
+        if ((pixelX == newPixelX) && (pixelY == newPixelY - 25)) // finish
         {
-            gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 11);
-            gameBoard.setUnitField(pixelX / 25, pixelY / 25, this);
-            gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, this);
+            pushPosition();
             isFinish = true;
+
+            int xx = moves.get(currentPoint - 1).getX();
+            int yy = moves.get(currentPoint - 1).getY();
+            gameBoard.setFieldIndex(xx, yy + 1, 0);
+            gameBoard.setUnitField(xx, yy, null);
+            gameBoard.setUnitField(xx, yy + 1, null);
             return;
         }
-        if (t == 24)
-        {
 
-            gameBoard.setFieldIndex(pixelX / 25, pixelY / 25 + 1, 0);
-            gameBoard.setUnitField(pixelX / 25, pixelY / 25, null);
-            gameBoard.setUnitField(pixelX / 25, pixelY / 25 + 1, null);
+        if (t == 25)
+        {
+            pushPosition();
+
+            if (currentPoint > 1)
+            {
+                int xx = moves.get(currentPoint - 1).getX();
+                int yy = moves.get(currentPoint - 1).getY();
+                gameBoard.setFieldIndex(xx, yy + 1, 0);
+                gameBoard.setUnitField(xx, yy, null);
+                gameBoard.setUnitField(xx, yy + 1, null);
+            }
             if (currentPoint + 1 < moves.size())
             {
+
                 currentPoint++;
             }
-            t = 0;
-        }
 
+            t = 0;
+
+        }
         if (currentPoint < moves.size())
         {
             int newx = moves.get(currentPoint).getX() * 25;
@@ -149,12 +163,10 @@ public abstract class Unit
                 direction = 270;
                 pixelY += -1;
             }
+            t++;
         }
-        t++;
 
     }
-
-    public abstract void drawUnit(Graphics g);
 
     public boolean isAlive()
     {
@@ -206,6 +218,13 @@ public abstract class Unit
         return dd;
     }
 
+    public List<Action> getActions()
+    {
+        return actions;
+    }
+
+    public abstract void drawUnit(Graphics g);
+
     public abstract String getName();
 
     public abstract int getAttack();
@@ -213,7 +232,7 @@ public abstract class Unit
     public abstract int getArmor();
 
     public abstract int getHp();
-    
+
     public abstract void setHp();
 
     public abstract int getMaxHp();
@@ -223,10 +242,5 @@ public abstract class Unit
     public abstract void tick();
 
     public abstract double getHpDown();
-
-    public List<Action> getActions()
-    {
-        return actions;
-    }
 
 }
