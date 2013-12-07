@@ -12,7 +12,6 @@ import GameElement.Stone;
 import GameElement.Tree;
 import Unit.Unit;
 import View.GameBoard;
-import View.MainWindow;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -101,8 +100,7 @@ public class Villager extends Unit
             villagerLeftTopRed = ImageIO.read(new File("src/Resources/villagerImg/villagerLeftTopRed.png"));
             villagerRightTopRed = ImageIO.read(new File("src/Resources/villagerImg/villagerRightTopRed.png"));
             villagerLeftRed = ImageIO.read(new File("src/Resources/villagerImg/villagerLeftRed.png"));
-            
-            
+
             tezbaDreva = ImageIO.read(new File("src/Resources/Villager/wood.png"));
             tezbaZlata = ImageIO.read(new File("src/Resources/Villager/gold.png"));
             tezbaJidla = ImageIO.read(new File("src/Resources/Villager/food.png"));
@@ -249,25 +247,25 @@ public class Villager extends Unit
                 g.drawImage(villagerRightBotRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
         }
-        
+
         if (stone)
         {
-            g.drawImage(tezbaSutru, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2-30), null);
+            g.drawImage(tezbaSutru, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2 - 30), null);
         }
-        
+
         if (gold)
         {
-            g.drawImage(tezbaZlata, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2-30), null);
+            g.drawImage(tezbaZlata, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2 - 30), null);
         }
-        
+
         if (food)
         {
-            g.drawImage(tezbaJidla, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2-30), null);
+            g.drawImage(tezbaJidla, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2 - 30), null);
         }
-        
+
         if (wood)
         {
-            g.drawImage(tezbaDreva, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2-30), null);  
+            g.drawImage(tezbaDreva, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2 - 30), null);
         }
     }
 
@@ -374,14 +372,14 @@ public class Villager extends Unit
         }
         else
         {
-            food=false;
+            food = false;
         }
-        
-        if(gameBoard.getFieldIndex(this.getX()/25+1, this.getY()/25)==9 
-                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25+2)==9
-            ||gameBoard.getFieldIndex(this.getX()/25-1, this.getY()/25)==9
-                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25-1)==9)
-        
+
+        if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 9
+                || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 9
+                || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 9
+                || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 9)
+
         {
             // System.out.println("tezim zlato");
             if (team == "Blue")
@@ -436,16 +434,16 @@ public class Villager extends Unit
             }
 
         }
-        else 
+        else
         {
-            gold=false;
+            gold = false;
         }
-        
-        if(gameBoard.getFieldIndex(this.getX()/25+1, this.getY()/25)==10 
-                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25+2)==10
-            ||gameBoard.getFieldIndex(this.getX()/25-1, this.getY()/25)==10
-                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25-1)==10)
-        
+
+        if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 10
+                || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 10
+                || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 10
+                || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 10)
+
         {
             //System.out.println("tezim sutr");
             if (team == "Blue")
@@ -481,15 +479,15 @@ public class Villager extends Unit
                 stone.setRemainingResource(1);
             }
         }
-        else 
+        else
         {
             stone = false;
         }
-        if(gameBoard.getFieldIndex(this.getX()/25+1, this.getY()/25)==2 
-                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25+2)==2
-            ||gameBoard.getFieldIndex(this.getX()/25-1, this.getY()/25)==2
-                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25-1)==2)
-        
+        if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 2
+                || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 2
+                || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 2
+                || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 2)
+
         {
             //System.out.println("tezim drevo");
             if (team == "Blue")
@@ -546,14 +544,12 @@ public class Villager extends Unit
             }
 
         }
+
         else
         {
-            wood=false;
+            wood = false;
         }
-        
-  
-        
-       
+
         if (time > 999999999)
         {
             time = 0;
