@@ -109,12 +109,14 @@ public abstract class Unit
         {
             pushPosition();
             isFinish = true;
-
-            int xx = moves.get(currentPoint - 1).getX();
-            int yy = moves.get(currentPoint - 1).getY();
-            gameBoard.setFieldIndex(xx, yy + 1, 0);
-            gameBoard.setUnitField(xx, yy, null);
-            gameBoard.setUnitField(xx, yy + 1, null);
+            if (currentPoint > 1)
+            {
+                int xx = moves.get(currentPoint - 1).getX();
+                int yy = moves.get(currentPoint - 1).getY();
+                gameBoard.setFieldIndex(xx, yy + 1, 0);
+                gameBoard.setUnitField(xx, yy, null);
+                gameBoard.setUnitField(xx, yy + 1, null);
+            }
             return;
         }
 
