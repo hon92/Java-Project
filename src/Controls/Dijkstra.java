@@ -13,6 +13,10 @@ public class Dijkstra
     private ArrayList<ListItem> route;
     private ArrayList<ListItem> nodesToBeChecked;
 
+    private boolean isVillager;
+    private boolean targetSource;
+    
+    
     private ListItem start;
     private ListItem stop;
     private ListItem actualItem;
@@ -21,8 +25,6 @@ public class Dijkstra
     private int columns = GameData.MAP_WIDTH / GameData.BOXSIZE;
     private ListItem[][] temp = new ListItem[columns][rows];
 
-    private boolean isMonk;
-    private boolean targetRelic;
     private GameBoard gameBoard;
 
     public Dijkstra(ListItem start, ListItem end, GameBoard gameBoard)
@@ -32,13 +34,15 @@ public class Dijkstra
         stop = end;
         this.start = start;
         found = false;
-        targetRelic = false;
-        isMonk = false;
+
+        isVillager = false;
+        targetSource = false;
         
-        if(gameBoard.getUnitField(start.getX(), start.getY()).getName()=="Monk")
+        
+        if (gameBoard.getUnitField(start.getX(), start.getY()).getName()=="Villager")
         {
-            System.out.println("klik s monkem");
-            isMonk = true;
+            System.out.println("click on villager");
+            isVillager = true;
         }
         
         stop.setItem(end.getX(), end.getY() - 1);
@@ -53,37 +57,10 @@ public class Dijkstra
                 if (gameBoard.getFieldIndex(i, j) != 0 && j != 0)
                 {
                     temp[i][j - 1].setValue(1000);
-
-                    if(stop.getX()==i && stop.getY()==j && isMonk)
-                    {
-                        targetRelic = true;
-                    }
                 }
             }
         }
 
-        if(targetRelic)
-        {
-            System.out.println("monk jde na relic");
-            if(start.getX()<stop.getX())
-            {
-               stop.setItem(stop.getX()-1,stop.getY()); 
-            }
-            else if (start.getX()>stop.getX())
-            {
-                stop.setItem(stop.getX()+1,stop.getY()); 
-            }
-            else if (start.getY()<stop.getY())
-            {
-                stop.setItem(stop.getX(),stop.getY()-2);
-            }
-            else if (start.getY()>stop.getY())
-            {
-                stop.setItem(stop.getX(),stop.getY()+1);
-            }
-            
-        }
-        
         for (int i = 0; i < columns; i++)
         {
             for (int j = 1; j < rows; j++)
@@ -106,8 +83,7 @@ public class Dijkstra
         }
         search();
     }
-    
-    
+
     public boolean gay(ListItem stop, ListItem curr)
     {
         String a = stop.getItem();
