@@ -35,15 +35,9 @@ public class Dijkstra
         this.start = start;
         found = false;
 
-        isVillager = false;
-        targetSource = false;
+
+
         
-        
-        if (gameBoard.getUnitField(start.getX(), start.getY()).getName()=="Villager")
-        {
-            System.out.println("click on villager");
-            isVillager = true;
-        }
         
         stop.setItem(end.getX(), end.getY() - 1);
 
@@ -66,15 +60,7 @@ public class Dijkstra
        
         
         
-        
-//        if (gameBoard.getFieldIndex(stop.getX(), stop.getY())==2 ||
-//                            gameBoard.getFieldIndex(stop.getX(), stop.getY())==6 ||
-//                            gameBoard.getFieldIndex(stop.getX(), stop.getY())==9 ||
-//                            gameBoard.getFieldIndex(stop.getX(), stop.getY())==10)
-//                    {
-//                        targetSource = true;
-//                        
-//                    }
+                 
         
             
         for (int i = 0; i < columns; i++)
@@ -98,283 +84,274 @@ public class Dijkstra
             }
         }
         
-        if(stop.getValue()==1000)
-        {
-            targetSource=true;
-        }
-        
-        if(targetSource)
-        {
-            System.out.println("going to source");
-        }
+
         
         
-        boolean found=false;
-        if(isVillager && targetSource)
-        {
-            while(!found)
-            {
-                if(start.getX()<stop.getX())
-                {
-                    if(gameBoard.getFieldIndex(stop.getX()-1, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()-1, stop.getY());
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX()-2, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()-2, stop.getY());
-                        found = true;
-                        break;
-                    }
-                
-                
-                
-                    if(gameBoard.getFieldIndex(stop.getX()+1, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()+1, stop.getY());
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX()+2, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()+2, stop.getY());
-                        found = true;
-                        break;
-                    }
-                
-                
-                
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+1)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()+1);
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+2)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()+2);
-                        found = true;
-                        break;
-                    }
-      
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-1)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()-1);
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-2)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()-2);
-                        found = true;
-                        break;
-                    }
-                }
-                
-                if(start.getX()>stop.getX())
-                {
-                    if(gameBoard.getFieldIndex(stop.getX()+1, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()+1, stop.getY());
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX()+2, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()+2, stop.getY());
-                        found = true;
-                        break;
-                    }
-                    
-                   if(gameBoard.getFieldIndex(stop.getX()-1, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()-1, stop.getY());
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX()-2, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()-2, stop.getY());
-                        found = true;
-                        break;
-                    }
-                 
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+1)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()+1);
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+2)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()+2);
-                        found = true;
-                        break;
-                    }
-      
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-1)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()-1);
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-2)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()-2);
-                        found = true;
-                        break;
-                    } 
-                    
-                    
-                }
-                
-                
-                if(start.getY()>stop.getY())
-                {
-                    
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+1)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()+1);
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+2)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()+2);
-                        found = true;
-                        break;
-                    }
-      
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-1)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()-1);
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-2)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()-2);
-                        found = true;
-                        break;
-                    } 
-                    
-                    if(gameBoard.getFieldIndex(stop.getX()+1, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()+1, stop.getY());
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX()+2, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()+2, stop.getY());
-                        found = true;
-                        break;
-                    }
-                    
-                   if(gameBoard.getFieldIndex(stop.getX()-1, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()-1, stop.getY());
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX()-2, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()-2, stop.getY());
-                        found = true;
-                        break;
-                    }
-                 
-                    
-                    
-                    
-                }
-                
-                if(start.getY()>stop.getY())
-                {
-                    if(gameBoard.getFieldIndex(stop.getX()-1, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()-1, stop.getY());
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX()-2, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()-2, stop.getY());
-                        found = true;
-                        break;
-                    }
-                    if(gameBoard.getFieldIndex(stop.getX()+1, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()+1, stop.getY());
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX()+2, stop.getY())==0)
-                    {
-                        stop.setItem(stop.getX()+2, stop.getY());
-                        found = true;
-                        break;
-                    }
-                    
-                   
-                    
-                    
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+1)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()+1);
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+2)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()+2);
-                        found = true;
-                        break;
-                    }
-      
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-1)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()-1);
-                        found = true;
-                        break;
-                    }
-                    
-                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-2)==0)
-                    {
-                        stop.setItem(stop.getX(), stop.getY()-2);
-                        found = true;
-                        break;
-                    } 
-                    
-                    
-                 
-                    
-                    
-                    
-                }
-                
-                
-            }
-            
-            
-        }
+//        if(isVillager && targetSource)
+//        {
+//            while(!found)
+//            {
+//                if(start.getX()<stop.getX())
+//                {
+//                    if(gameBoard.getFieldIndex(stop.getX()-1, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()-1, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX()-2, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()-2, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                
+//                
+//                
+//                    if(gameBoard.getFieldIndex(stop.getX()+1, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()+1, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX()+2, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()+2, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                
+//                
+//                
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+1)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()+1);
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+2)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()+2);
+//                        found = true;
+//                        break;
+//                    }
+//      
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-1)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()-1);
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-2)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()-2);
+//                        found = true;
+//                        break;
+//                    }
+//                }
+//                
+//                if(start.getX()>stop.getX())
+//                {
+//                    if(gameBoard.getFieldIndex(stop.getX()+1, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()+1, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX()+2, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()+2, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                   if(gameBoard.getFieldIndex(stop.getX()-1, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()-1, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX()-2, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()-2, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                 
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+1)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()+1);
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+2)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()+2);
+//                        found = true;
+//                        break;
+//                    }
+//      
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-1)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()-1);
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-2)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()-2);
+//                        found = true;
+//                        break;
+//                    } 
+//                    
+//                    
+//                }
+//                
+//                
+//                if(start.getY()>stop.getY())
+//                {
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+1)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()+1);
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+2)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()+2);
+//                        found = true;
+//                        break;
+//                    }
+//      
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-1)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()-1);
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-2)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()-2);
+//                        found = true;
+//                        break;
+//                    } 
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX()+1, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()+1, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX()+2, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()+2, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                   if(gameBoard.getFieldIndex(stop.getX()-1, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()-1, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX()-2, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()-2, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                 
+//                    
+//                    
+//                    
+//                }
+//                
+//                if(start.getY()>stop.getY())
+//                {
+//                    if(gameBoard.getFieldIndex(stop.getX()-1, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()-1, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX()-2, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()-2, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                    if(gameBoard.getFieldIndex(stop.getX()+1, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()+1, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX()+2, stop.getY())==0)
+//                    {
+//                        stop.setItem(stop.getX()+2, stop.getY());
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                   
+//                    
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+1)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()+1);
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+2)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()+2);
+//                        found = true;
+//                        break;
+//                    }
+//      
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-1)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()-1);
+//                        found = true;
+//                        break;
+//                    }
+//                    
+//                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-2)==0)
+//                    {
+//                        stop.setItem(stop.getX(), stop.getY()-2);
+//                        found = true;
+//                        break;
+//                    } 
+//                    
+//                    
+//                 
+//                    
+//                    
+//                    
+//                }
+//                
+//                
+//            }
+//            
+//            
+//        }
         
         
         search();
