@@ -21,6 +21,7 @@ public class Dijkstra
     private int columns = GameData.MAP_WIDTH / GameData.BOXSIZE;
     private ListItem[][] temp = new ListItem[columns][rows];
 
+    private boolean isMonk;
     private GameBoard gameBoard;
 
     public Dijkstra(ListItem start, ListItem end, GameBoard gameBoard)
@@ -31,6 +32,14 @@ public class Dijkstra
         this.start = start;
         found = false;
 
+        isMonk = false;
+        
+        if(gameBoard.getUnitField(start.getX(), start.getY()).getName()=="Monk")
+        {
+            System.out.println("klik s monkem");
+            isMonk = true;
+        }
+        
         stop.setItem(end.getX(), end.getY() - 1);
 
         this.gameBoard = gameBoard;
@@ -43,10 +52,40 @@ public class Dijkstra
                 if (gameBoard.getFieldIndex(i, j) != 0 && j != 0)
                 {
                     temp[i][j - 1].setValue(1000);
+                    if(isMonk && gameBoard.getFieldIndex(i,j)==3)
+                    {
+                    temp[i][j - 1].setValue(1001);
+                    }
+                    if(stop.getX()==i && stop.getY()==j)
+                    {
+                        stop.setValue(1001);
+                    }
                 }
             }
         }
 
+        if(stop.getValue()==1001)
+        {
+            System.out.println("monk jde na relic");
+            if(start.getX()<stop.getX())
+            {
+               stop.setItem(stop.getX()-1,stop.getY()); 
+            }
+            else if (start.getX()>stop.getX())
+            {
+                stop.setItem(stop.getX()+1,stop.getY()); 
+            }
+            else if (start.getY()<stop.getY())
+            {
+                stop.setItem(stop.getX(),stop.getY()-2);
+            }
+            else if (start.getY()>stop.getY())
+            {
+                stop.setItem(stop.getX(),stop.getY()+1);
+            }
+            
+        }
+        
         for (int i = 0; i < columns; i++)
         {
             for (int j = 1; j < rows; j++)
@@ -69,7 +108,8 @@ public class Dijkstra
         }
         search();
     }
-
+    
+    
     public boolean gay(ListItem stop, ListItem curr)
     {
         String a = stop.getItem();
@@ -115,7 +155,7 @@ public class Dijkstra
                 {
                     if ((temp[actualItem.getX() + 1][actualItem.getY()].notVisited())//test doprava
                             && (temp[actualItem.getX() + 1][actualItem.getY()].notExamined())
-                            && (temp[actualItem.getX() + 1][actualItem.getY()].getValue() != 1000))
+                            && (temp[actualItem.getX() + 1][actualItem.getY()].getValue() < 1000))
 
                     {
                         temp[actualItem.getX() + 1][actualItem.getY()].setValue(actualItem.getValue() + 1);
@@ -134,7 +174,7 @@ public class Dijkstra
                 {
                     if ((temp[actualItem.getX() + 1][actualItem.getY() + 1].notVisited()) // test doprava dolu
                             && (temp[actualItem.getX() + 1][actualItem.getY() + 1].notExamined())
-                            && (temp[actualItem.getX() + 1][actualItem.getY() + 1].getValue() != 1000))
+                            && (temp[actualItem.getX() + 1][actualItem.getY() + 1].getValue() < 1000))
 
                     {
                         temp[actualItem.getX() + 1][actualItem.getY() + 1].setValue(actualItem.getValue() + 1);
@@ -153,7 +193,7 @@ public class Dijkstra
                 {
                     if ((temp[actualItem.getX()][actualItem.getY() + 1].notVisited())// test dolu
                             && (temp[actualItem.getX()][actualItem.getY() + 1].notExamined())
-                            && (temp[actualItem.getX()][actualItem.getY() + 1].getValue() != 1000))
+                            && (temp[actualItem.getX()][actualItem.getY() + 1].getValue() < 1000))
 
                     {
                         temp[actualItem.getX()][actualItem.getY() + 1].setValue(actualItem.getValue() + 1);
@@ -172,7 +212,7 @@ public class Dijkstra
                 {
                     if ((temp[actualItem.getX()][actualItem.getY() - 1].notVisited()) // test nahoru
                             && (temp[actualItem.getX()][actualItem.getY() - 1].notExamined())
-                            && (temp[actualItem.getX()][actualItem.getY() - 1].getValue() != 1000))
+                            && (temp[actualItem.getX()][actualItem.getY() - 1].getValue() < 1000))
 
                     {
                         temp[actualItem.getX()][actualItem.getY() - 1].setValue(actualItem.getValue() + 1);
@@ -191,7 +231,7 @@ public class Dijkstra
                 {
                     if ((temp[actualItem.getX() - 1][actualItem.getY()].notVisited())//test doleva
                             && (temp[actualItem.getX() - 1][actualItem.getY()].notExamined())
-                            && (temp[actualItem.getX() - 1][actualItem.getY()].getValue() != 1000))
+                            && (temp[actualItem.getX() - 1][actualItem.getY()].getValue() < 1000))
 
                     {
                         temp[actualItem.getX() - 1][actualItem.getY()].setValue(actualItem.getValue() + 1);
@@ -210,7 +250,7 @@ public class Dijkstra
                 {
                     if ((temp[actualItem.getX() - 1][actualItem.getY() - 1].notVisited())//test doleva nahoru
                             && (temp[actualItem.getX() - 1][actualItem.getY() - 1].notExamined())
-                            && (temp[actualItem.getX() - 1][actualItem.getY() - 1].getValue() != 1000))
+                            && (temp[actualItem.getX() - 1][actualItem.getY() - 1].getValue() < 1000))
 
                     {
                         temp[actualItem.getX() - 1][actualItem.getY() - 1].setValue(actualItem.getValue() + 1);
@@ -229,7 +269,7 @@ public class Dijkstra
                 {
                     if ((temp[actualItem.getX() + 1][actualItem.getY() - 1].notVisited())//test doprava nahoru
                             && (temp[actualItem.getX() + 1][actualItem.getY() - 1].notExamined())
-                            && (temp[actualItem.getX() + 1][actualItem.getY() - 1].getValue() != 1000))
+                            && (temp[actualItem.getX() + 1][actualItem.getY() - 1].getValue() < 1000))
 
                     {
                         temp[actualItem.getX() + 1][actualItem.getY() - 1].setValue(actualItem.getValue() + 1);
@@ -248,7 +288,7 @@ public class Dijkstra
                 {
                     if ((temp[actualItem.getX() - 1][actualItem.getY() + 1].notVisited()) // test doleva dolu
                             && (temp[actualItem.getX() - 1][actualItem.getY() + 1].notExamined())
-                            && (temp[actualItem.getX() - 1][actualItem.getY() + 1].getValue() != 1000))
+                            && (temp[actualItem.getX() - 1][actualItem.getY() + 1].getValue() < 1000))
 
                     {
                         temp[actualItem.getX() - 1][actualItem.getY() + 1].setValue(actualItem.getValue() + 1);
