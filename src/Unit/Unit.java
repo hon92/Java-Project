@@ -42,6 +42,8 @@ public abstract class Unit
     protected int t;
     protected int currentPoint = 1;
     protected ArrayList<Action> actions;
+    private boolean readyToMove = true;
+    private boolean isOnWay = false;
 
     public Unit(GameBoard gameBoard, int x, int y, int dir, String team)
     {
@@ -66,24 +68,47 @@ public abstract class Unit
 
     public void move(int x, int y)
     {
-        currentPoint = 1;
-        t = 0;
-        moves.clear();
-
-        dd = new Dijkstra(new ListItem(pixelX / 25, pixelY / 25), new ListItem(x, y), gameBoard);
-        moves = dd.getPath();
-        isFinish = false;
-
-        for (ListItem l : moves)
+        if (!isOnWay)
         {
-            System.out.println(l.getItem());
+            currentPoint = 1;
+            t = 0;
+            moves.clear();
+            dd = new Dijkstra(new ListItem(pixelX / 25, pixelY / 25), new ListItem(x, y), gameBoard);
+            moves = dd.getPath();
+            isFinish = false;
+
+            if (moves.size() > 1)
+            {
+                popPosition();
+                newPixelX = x * 25;
+                newPixelY = (y * 25);
+                isOnWay = true;
+            }
         }
-
-        if (moves.size() > 1)
+        else
         {
-            popPosition();
-            newPixelX = x * 25;
-            newPixelY = (y * 25);
+            int xx = moves.get(currentPoint - 1).getX();
+            int yy = moves.get(currentPoint - 1).getY();
+            gameBoard.setFieldIndex(xx, yy + 1, 0);
+            gameBoard.setUnitField(xx, yy, null);
+            gameBoard.setUnitField(xx, yy + 1, null);
+
+            currentPoint = 1;
+            t = 0;
+            moves.clear();
+
+            dd = new Dijkstra(new ListItem(pixelX / 25, pixelY / 25), new ListItem(x, y), gameBoard);
+            moves = dd.getPath();
+            isFinish = false;
+
+            if (moves.size() > 1)
+            {
+                popPosition();
+                newPixelX = x * 25;
+                newPixelY = (y * 25);
+                isOnWay = true;
+            }
+
         }
 
     }
@@ -104,11 +129,12 @@ public abstract class Unit
 
     public void movePixel()
     {
-
         if ((pixelX == newPixelX) && (pixelY == newPixelY - 25)) // finish
         {
             pushPosition();
             isFinish = true;
+            readyToMove = true;
+            isOnWay = false;
             if (currentPoint > 1)
             {
                 int xx = moves.get(currentPoint - 1).getX();
