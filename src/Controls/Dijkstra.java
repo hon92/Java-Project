@@ -21,6 +21,8 @@ public class Dijkstra
     private int columns = GameData.MAP_WIDTH / GameData.BOXSIZE;
     private ListItem[][] temp = new ListItem[columns][rows];
 
+    private boolean isMonk;
+    private boolean targetRelic;
     private GameBoard gameBoard;
 
     public Dijkstra(ListItem start, ListItem end, GameBoard gameBoard)
@@ -30,7 +32,15 @@ public class Dijkstra
         stop = end;
         this.start = start;
         found = false;
-
+        targetRelic = false;
+        isMonk = false;
+        
+        if(gameBoard.getUnitField(start.getX(), start.getY()).getName()=="Monk")
+        {
+            System.out.println("klik s monkem");
+            isMonk = true;
+        }
+        
         stop.setItem(end.getX(), end.getY() - 1);
 
         this.gameBoard = gameBoard;
@@ -43,10 +53,37 @@ public class Dijkstra
                 if (gameBoard.getFieldIndex(i, j) != 0 && j != 0)
                 {
                     temp[i][j - 1].setValue(1000);
+
+                    if(stop.getX()==i && stop.getY()==j && isMonk)
+                    {
+                        targetRelic = true;
+                    }
                 }
             }
         }
 
+        if(targetRelic)
+        {
+            System.out.println("monk jde na relic");
+            if(start.getX()<stop.getX())
+            {
+               stop.setItem(stop.getX()-1,stop.getY()); 
+            }
+            else if (start.getX()>stop.getX())
+            {
+                stop.setItem(stop.getX()+1,stop.getY()); 
+            }
+            else if (start.getY()<stop.getY())
+            {
+                stop.setItem(stop.getX(),stop.getY()-2);
+            }
+            else if (start.getY()>stop.getY())
+            {
+                stop.setItem(stop.getX(),stop.getY()+1);
+            }
+            
+        }
+        
         for (int i = 0; i < columns; i++)
         {
             for (int j = 1; j < rows; j++)
@@ -69,7 +106,8 @@ public class Dijkstra
         }
         search();
     }
-
+    
+    
     public boolean gay(ListItem stop, ListItem curr)
     {
         String a = stop.getItem();
