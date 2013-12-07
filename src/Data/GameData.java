@@ -32,7 +32,7 @@ public final class GameData
     //mill [8][5]
     //house [7][4]
     //town center [16][8]
-    //villager 11
+    //villager,monk 11
     //walkable = 0,8,5
     //building 15
 }

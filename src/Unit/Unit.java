@@ -213,6 +213,8 @@ public abstract class Unit
     public abstract int getArmor();
 
     public abstract int getHp();
+    
+    public abstract void setHp();
 
     public abstract int getMaxHp();
 

@@ -8,11 +8,13 @@ package Unit.Monk;
 import GameElement.Grass;
 import Unit.Unit;
 import View.GameBoard;
+import View.MainWindow;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -47,8 +49,10 @@ public class Monk extends Unit
     private static BufferedImage monkLeftTopRed;
     private static BufferedImage monkLeftBotRed;
 
-    
+    private static int count= 0;
     private int goldCost;
+    private List<Unit> units;
+    
 
     private boolean hasRelic;
     public Monk(GameBoard gameBoard, int x, int y, int dir, String team)
@@ -246,6 +250,20 @@ public class Monk extends Unit
     }
 
     @Override
+    public void setHp()
+    {
+        if(currentHp<maxHp)
+        {
+        currentHp+=1;
+        }
+        else
+        {
+            currentHp=maxHp;
+        }
+    }
+    
+    
+    @Override
     public BufferedImage getIcon()
     {
         return monkIcon;
@@ -254,7 +272,28 @@ public class Monk extends Unit
     @Override
     public void tick()
     {
-
+        
+        count++;
+        if (count %20 ==0)
+        {
+        units = gameBoard.getUnits();
+        for(Unit u : units)
+        {
+            if(this.team == u.getPlayer() && Math.abs((this.getX()/25)-(u.getX()/25))<10  && Math.abs((this.getY()/25)-(u.getY()/25))<10 )
+            {
+                 
+                 u.setHp();
+                 MainWindow.botPanel.getSelectPanel().repaint();
+            }
+        }
+        }
+        
+        if (count>999999990)
+        {
+            count = 0;
+        }
+        
+        
         if (isMoving())
         {
             movePixel();

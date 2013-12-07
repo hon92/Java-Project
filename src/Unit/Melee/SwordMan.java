@@ -246,6 +246,19 @@ public class SwordMan extends Unit
     }
 
     @Override
+    public void setHp()
+    {
+        if(currentHp<maxHp)
+        {
+        currentHp+=1;
+        }
+        else
+        {
+            currentHp=maxHp;
+        }
+    }
+    
+    @Override
     public BufferedImage getIcon()
     {
         return swordManIcon;

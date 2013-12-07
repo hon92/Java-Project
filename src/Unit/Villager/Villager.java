@@ -122,6 +122,20 @@ public class Villager extends Unit
     }
 
     @Override
+    public void setHp()
+    {
+        if(currentHp<maxHp)
+        {
+        currentHp+=1;
+        }
+        else
+        {
+            currentHp=maxHp;
+        }
+    }
+    
+    
+    @Override
     public void drawUnit(Graphics g)
     {
         if (isSelected())
