@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Buildings;
 
 import View.GameBoard;
@@ -13,7 +12,9 @@ import java.awt.image.BufferedImage;
  *
  * @author Adam
  */
-public abstract class Action {
+public abstract class Action
+{
+
     protected String actionName;
     protected BufferedImage actionImage;
     protected Boolean isActive = false;
@@ -21,33 +22,42 @@ public abstract class Action {
     protected Building building;
     protected int tickCount;
     protected int remaining;
-    
-    public Action() {
+
+    public Action()
+    {
         this.actionName = null;
         this.actionImage = null;
         this.gameBoard = null;
         this.building = null;
     }
-    
-    public String getActionName(){
-        return actionName;
-    };
 
-    public BufferedImage getActionImage() {
+    public String getActionName()
+    {
+        return actionName;
+    }
+
+    ;
+
+    public BufferedImage getActionImage()
+    {
         return actionImage;
     }
 
-    public int getRemaining() {
+    public int getRemaining()
+    {
         return remaining;
     }
 
-    public Boolean isIsActive() {
+    public Boolean isIsActive()
+    {
         return isActive;
     }
-    
-    
+
     protected abstract void initAction();
+
     public abstract void doAction();
+
     public abstract void cancelAction();
+
     public abstract void tick();
 }

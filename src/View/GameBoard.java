@@ -25,6 +25,7 @@ import GameElement.Water;
 import Unit.Player;
 import Unit.Unit;
 import Unit.Villager.Villager;
+import Unit.Villager.VillagerAction;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -67,6 +68,7 @@ public class GameBoard extends JPanel
     private ObjectElement[][] objectField = new ObjectElement[columns][rows];
     private Unit[][] unitField = new Unit[columns][rows];
     private Building[][] buildingField = new Building[columns][rows];
+    private Action action;
 
     GameBoard(MainWindow rootWindow)
     {
@@ -345,6 +347,16 @@ public class GameBoard extends JPanel
                 g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
             }
         }
+
+        if (action != null)
+        {
+            if (action instanceof VillagerAction)
+            {
+                VillagerAction vill = (VillagerAction) action;
+                vill.drawBuildObject(g);
+            }
+        }
+
 //        g.setColor(Color.white);
 //        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
 //        {
@@ -479,6 +491,12 @@ public class GameBoard extends JPanel
         return topPanel;
     }
 
+    public Mouse getMouse()
+    {
+        return mouse;
+
+    }
+
     public void playSound(File file)
     {
         try
@@ -504,6 +522,11 @@ public class GameBoard extends JPanel
     public MainWindow getRootWindow()
     {
         return rootWindow;
+    }
+
+    public void setBuildAction(VillagerAction va)
+    {
+        this.action = va;
     }
 
 }
