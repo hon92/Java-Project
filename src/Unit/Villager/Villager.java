@@ -321,30 +321,15 @@ public class Villager extends Unit
                 // System.out.println("tezim jidlo");
                 if (team == "Blue")
                 {
+                    food = true;
                     gameBoard.getBluePlayer().setFood(1);
                 }
                 else
                 {
+                    food = true;
                     gameBoard.getRedPlayer().setFood(1);
                 }
-            }
-
-            if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 9
-                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 9
-                    || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 9
-                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 9)
-
-            {
-                // System.out.println("tezim zlato");
-                if (team == "Blue")
-                {
-                    gameBoard.getBluePlayer().setGold(1);
-                }
-                else
-                {
-                    gameBoard.getRedPlayer().setGold(1);
-                }
-            }
+            
             Bush bush;
 
             if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 6)
@@ -387,28 +372,30 @@ public class Villager extends Unit
                 //System.out.println("tezim sutr");
                 if (team == "Blue")
                 {
-                    gameBoard.getBluePlayer().setStone(1);
+                    gold=true;
+                    gameBoard.getBluePlayer().setGold(1);
                 }
                 else
                 {
-                    gameBoard.getRedPlayer().setStone(1);
+                    gold = true;
+                    gameBoard.getRedPlayer().setGold(1);
                 }
             }
 
-            if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 2
-                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 2
-                    || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 2
-                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 2)
+            if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 9
+                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 9
+                    || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 9
+                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 9)
 
             {
                 //System.out.println("tezim drevo");
                 if (team == "Blue")
                 {
-                    gameBoard.getBluePlayer().setWood(1);
+                    gameBoard.getBluePlayer().setGold(1);
                 }
                 else
                 {
-                    gameBoard.getRedPlayer().setWood(1);
+                    gameBoard.getRedPlayer().setGold(1);
                 }
             }
             Gold gold;
@@ -549,7 +536,10 @@ public class Villager extends Unit
         {
             wood = false;
         }
-
+        }
+  
+        
+       
         if (time > 999999999)
         {
             time = 0;
