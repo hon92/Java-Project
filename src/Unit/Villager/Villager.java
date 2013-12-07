@@ -29,6 +29,7 @@ public class Villager extends Unit
     private static int attack;
     private static int armor;
 
+    private static int time=0;
     private static BufferedImage villagerIcon;
 
     private static BufferedImage villagerDownBlue;
@@ -268,7 +269,84 @@ public class Villager extends Unit
     @Override
     public void tick()
     {
-
+        time++;
+        if(time%25==0)
+        {
+        if(gameBoard.getFieldIndex(this.getX()/25+1, this.getY()/25)==6 
+                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25+2)==6
+            ||gameBoard.getFieldIndex(this.getX()/25-1, this.getY()/25)==6
+                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25-1)==6)
+        
+        {
+           // System.out.println("tezim jidlo");
+            if(team =="Blue")
+            {
+                gameBoard.getBluePlayer().setFood(1);
+            }
+            else
+            {
+                gameBoard.getRedPlayer().setFood(1);
+            }
+        }
+        
+        if(gameBoard.getFieldIndex(this.getX()/25+1, this.getY()/25)==9 
+                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25+2)==9
+            ||gameBoard.getFieldIndex(this.getX()/25-1, this.getY()/25)==9
+                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25-1)==9)
+        
+        {
+           // System.out.println("tezim zlato");
+            if(team =="Blue")
+            {
+                gameBoard.getBluePlayer().setGold(1);
+            }
+            else
+            {
+                gameBoard.getRedPlayer().setGold(1);
+            }
+        }
+        
+        if(gameBoard.getFieldIndex(this.getX()/25+1, this.getY()/25)==10 
+                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25+2)==10
+            ||gameBoard.getFieldIndex(this.getX()/25-1, this.getY()/25)==10
+                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25-1)==10)
+        
+        {
+            //System.out.println("tezim sutr");
+            if(team =="Blue")
+            {
+                gameBoard.getBluePlayer().setStone(1);
+            }
+            else
+            {
+                gameBoard.getRedPlayer().setStone(1);
+            }
+        }
+        
+        if(gameBoard.getFieldIndex(this.getX()/25+1, this.getY()/25)==2 
+                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25+2)==2
+            ||gameBoard.getFieldIndex(this.getX()/25-1, this.getY()/25)==2
+                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25-1)==2)
+        
+        {
+            //System.out.println("tezim drevo");
+            if(team =="Blue")
+            {
+                gameBoard.getBluePlayer().setWood(1);
+            }
+            else
+            {
+                gameBoard.getRedPlayer().setWood(1);
+            }
+        }
+        }
+        gameBoard.getTopPanel().repaint();
+        
+       
+        
+        
+  
+        
         if (isMoving())
         {
             movePixel();
