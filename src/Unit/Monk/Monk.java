@@ -65,6 +65,8 @@ public class Monk extends Unit
         hasRelic = false;
         goldCost = 100;
         
+        actions.add(new MonkPickRelic());
+        
 
         try
         {
