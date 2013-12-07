@@ -48,18 +48,15 @@ public class TopPanel extends JPanel
         super.paintComponent(g);
         g.drawImage(topPanel, 0, 0, null);
         g.setColor(Color.WHITE);
-        g.drawString(String.valueOf(gameBoard.getBluePlayer().getWood()),30,35);
-        
-        g.drawString(String.valueOf(gameBoard.getBluePlayer().getFood()),110,35);
-        g.drawString(String.valueOf(gameBoard.getBluePlayer().getGold()),180,35);
-        g.drawString(String.valueOf(gameBoard.getBluePlayer().getStone()),250,35);
-        
-        g.drawString(String.valueOf(gameBoard.getBluePlayer().getActualPop()+"/"+gameBoard.getBluePlayer().getMaxPop()),330,35);
-        
+        g.drawString(String.valueOf(gameBoard.getBluePlayer().getWood()), 30, 35);
+
+        g.drawString(String.valueOf(gameBoard.getBluePlayer().getFood()), 110, 35);
+        g.drawString(String.valueOf(gameBoard.getBluePlayer().getGold()), 180, 35);
+        g.drawString(String.valueOf(gameBoard.getBluePlayer().getStone()), 250, 35);
+
+        g.drawString(String.valueOf(gameBoard.getBluePlayer().getActualPop() + "/" + gameBoard.getBluePlayer().getMaxPop()), 330, 35);
+
         g.dispose();
-        
-        
-       
 
     }
 
