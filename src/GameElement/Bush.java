@@ -79,7 +79,7 @@ public class Bush extends ObjectElement implements Source
     @Override
     public void setRemainingResource(int count)
     {
-        currentFood = count;
+        currentFood -= count;
     }
 
     @Override
