@@ -5,9 +5,14 @@
  */
 package Unit.Villager;
 
+import GameElement.Bush;
+import GameElement.Gold;
 import GameElement.Grass;
+import GameElement.Stone;
+import GameElement.Tree;
 import Unit.Unit;
 import View.GameBoard;
+import View.MainWindow;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -41,6 +46,11 @@ public class Villager extends Unit
     private static BufferedImage villagerLeftTopBlue;
     private static BufferedImage villagerLeftBotBlue;
 
+    private static BufferedImage tezbaDreva;
+    private static BufferedImage tezbaZlata;
+    private static BufferedImage tezbaSutru;
+    private static BufferedImage tezbaJidla;
+    
     private static BufferedImage villagerDownRed;
     private static BufferedImage villagerTopRed;
     private static BufferedImage villagerLeftRed;
@@ -52,6 +62,13 @@ public class Villager extends Unit
 
     private int foodCost;
 
+    
+    private boolean wood;
+    private boolean food;
+    private boolean stone;
+    private boolean gold;
+    
+    
     public Villager(GameBoard gameBoard, int x, int y, int dir, String team)
     {
         super(gameBoard, x, y, dir, team);
@@ -63,6 +80,7 @@ public class Villager extends Unit
         actions.add(new VillagerAction());
         actions.add(new VillagerFarmAction(this, gameBoard));
 
+        gold =stone=wood=food=false;
         try
         {
 
@@ -85,6 +103,12 @@ public class Villager extends Unit
             villagerLeftTopRed = ImageIO.read(new File("src/Resources/villagerImg/villagerLeftTopRed.png"));
             villagerRightTopRed = ImageIO.read(new File("src/Resources/villagerImg/villagerRightTopRed.png"));
             villagerLeftRed = ImageIO.read(new File("src/Resources/villagerImg/villagerLeftRed.png"));
+            
+            
+            tezbaDreva = ImageIO.read(new File("src/Resources/villagerImg/wood.png"));
+            tezbaZlata = ImageIO.read(new File("src/Resources/villagerImg/gold.png"));
+            tezbaJidla = ImageIO.read(new File("src/Resources/villagerImg/food.png"));
+            tezbaSutru = ImageIO.read(new File("src/Resources/villagerImg/stone.png"));
         }
         catch (IOException ex)
         {
@@ -134,6 +158,7 @@ public class Villager extends Unit
             currentHp=maxHp;
         }
     }
+    
     
     
     @Override
@@ -287,6 +312,32 @@ public class Villager extends Unit
             {
                 gameBoard.getRedPlayer().setFood(1);
             }
+            Bush bush;
+            
+            if(gameBoard.getFieldIndex(this.getX()/25+1, this.getY()/25)==6 )
+            {
+            bush = (Bush) gameBoard.getObjectFieldObject(this.getX()/25+1, this.getY()/25);
+            
+            
+            
+            bush.setRemainingResource(1);
+            }
+            if(gameBoard.getFieldIndex(this.getX()/25, this.getY()/25+2)==6 )
+            {
+            bush = (Bush) gameBoard.getObjectFieldObject(this.getX()/25, this.getY()/25+2);
+            bush.setRemainingResource(1);
+            }
+            if(gameBoard.getFieldIndex(this.getX()/25-1, this.getY()/25)==6 )
+            {
+            bush = (Bush) gameBoard.getObjectFieldObject(this.getX()/25-1, this.getY()/25);
+            bush.setRemainingResource(1);
+            }
+            if(gameBoard.getFieldIndex(this.getX()/25, this.getY()/25)==6 )
+            {
+            bush = (Bush) gameBoard.getObjectFieldObject(this.getX()/25, this.getY()/25-1);
+            bush.setRemainingResource(1);
+            }
+            
         }
         
         if(gameBoard.getFieldIndex(this.getX()/25+1, this.getY()/25)==9 
@@ -304,6 +355,28 @@ public class Villager extends Unit
             {
                 gameBoard.getRedPlayer().setGold(1);
             }
+            Gold gold;
+            if(gameBoard.getFieldIndex(this.getX()/25+1, this.getY()/25)==9 )
+            {
+            gold = (Gold) gameBoard.getObjectFieldObject(this.getX()/25+1, this.getY()/25);
+            gold.setRemainingResource(1);
+            }
+            if(gameBoard.getFieldIndex(this.getX()/25, this.getY()/25+2)==9 )
+            {
+            gold = (Gold) gameBoard.getObjectFieldObject(this.getX()/25, this.getY()/25+2);
+            gold.setRemainingResource(1);
+            }
+            if(gameBoard.getFieldIndex(this.getX()/25-1, this.getY()/25)==9 )
+            {
+            gold = (Gold) gameBoard.getObjectFieldObject(this.getX()/25-1, this.getY()/25);
+            gold.setRemainingResource(1);
+            }
+            if(gameBoard.getFieldIndex(this.getX()/25, this.getY()/25)==9 )
+            {
+            gold = (Gold) gameBoard.getObjectFieldObject(this.getX()/25, this.getY()/25-1);
+            gold.setRemainingResource(1);
+            }
+            
         }
         
         if(gameBoard.getFieldIndex(this.getX()/25+1, this.getY()/25)==10 
@@ -320,6 +393,28 @@ public class Villager extends Unit
             else
             {
                 gameBoard.getRedPlayer().setStone(1);
+            }
+            Stone stone;
+            
+            if(gameBoard.getFieldIndex(this.getX()/25+1, this.getY()/25)==10 )
+            {
+            stone = (Stone) gameBoard.getObjectFieldObject(this.getX()/25+1, this.getY()/25);
+            stone.setRemainingResource(1);
+            }
+            if(gameBoard.getFieldIndex(this.getX()/25, this.getY()/25+2)==10 )
+            {
+            stone = (Stone) gameBoard.getObjectFieldObject(this.getX()/25, this.getY()/25+2);
+            stone.setRemainingResource(1);
+            }
+            if(gameBoard.getFieldIndex(this.getX()/25-1, this.getY()/25)==10 )
+            {
+            stone = (Stone) gameBoard.getObjectFieldObject(this.getX()/25-1, this.getY()/25);
+            stone.setRemainingResource(1);
+            }
+            if(gameBoard.getFieldIndex(this.getX()/25, this.getY()/25)==10 )
+            {
+            stone = (Stone) gameBoard.getObjectFieldObject(this.getX()/25, this.getY()/25-1);
+            stone.setRemainingResource(1);
             }
         }
         
@@ -338,12 +433,60 @@ public class Villager extends Unit
             {
                 gameBoard.getRedPlayer().setWood(1);
             }
+            Tree tree;
+            
+            if(gameBoard.getFieldIndex(this.getX()/25+1, this.getY()/25)==2 )
+            {
+            tree = (Tree) gameBoard.getObjectFieldObject(this.getX()/25+1, this.getY()/25);
+            
+//            if (tree.getRemainingResource()==0)
+//            {
+//                tree.deleteTree();
+//            }
+            tree.setRemainingResource(1);
+            }
+            if(gameBoard.getFieldIndex(this.getX()/25, this.getY()/25+2)==2 )
+            {
+            tree = (Tree) gameBoard.getObjectFieldObject(this.getX()/25, this.getY()/25+2);
+            
+//            if (tree.getRemainingResource()==0)
+//            {
+//                tree.deleteTree();
+//            }
+            tree.setRemainingResource(1);
+            }
+            if(gameBoard.getFieldIndex(this.getX()/25-1, this.getY()/25)==2 )
+            {
+            tree = (Tree) gameBoard.getObjectFieldObject(this.getX()/25-1, this.getY()/25);
+            
+//            if (tree.getRemainingResource()==0)
+//            {
+//                tree.deleteTree();
+//            }
+            tree.setRemainingResource(1);
+            }
+            if(gameBoard.getFieldIndex(this.getX()/25, this.getY()/25)==2 )
+            {
+            tree = (Tree) gameBoard.getObjectFieldObject(this.getX()/25, this.getY()/25-1);
+            
+//            if (tree.getRemainingResource()==0)
+//            {
+//                tree.deleteTree();
+//            }
+            tree.setRemainingResource(1);
+            }
+            
         }
         }
+        
+        MainWindow.botPanel.getSelectPanel().repaint();
         gameBoard.getTopPanel().repaint();
         
        
-        
+        if (time > 999999999)
+        {
+            time =0;
+        }
         
   
         

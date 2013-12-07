@@ -78,7 +78,7 @@ public class Stone extends ObjectElement implements Source
     @Override
     public void setRemainingResource(int count)
     {
-        currentStone = count;
+        currentStone -= count;
     }
 
     @Override

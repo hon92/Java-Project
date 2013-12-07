@@ -6,6 +6,11 @@ import Data.Source;
 import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 public class Tree extends ObjectElement implements Source
 {
@@ -16,11 +21,16 @@ public class Tree extends ObjectElement implements Source
     private static int startWood;
     private int currentWood;
     private static String name = "Tree";
-
+    private static BufferedImage deathTree;
+    
     public Tree(GameBoard gameBoard, int x, int y, String treename)
     {
         super(gameBoard, x, y);
-
+        try {
+            deathTree = ImageIO.read(new File("src/Resources/treeDown.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(Tree.class.getName()).log(Level.SEVERE, null, ex);
+        }
         tree = ImgResources.getImg(treename);
         treeIcon = ImgResources.getImg("treeIcon");
         this.currentWood = 100;
@@ -47,7 +57,7 @@ public class Tree extends ObjectElement implements Source
     {
         if (currentWood < 100)
         {
-            g.drawImage(tree, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE) + 75, null);
+            g.drawImage(deathTree, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE) + 75, null);
         }
         else
         {
@@ -66,6 +76,24 @@ public class Tree extends ObjectElement implements Source
         }
     }
 
+    public void deleteTree()
+    {
+        gameBoard.setObjectFieldObject(x, y, null);
+        gameBoard.setObjectFieldObject(x, y + 1, null);
+        gameBoard.setObjectFieldObject(x, y + 2, null);
+        gameBoard.setObjectFieldObject(x, y + 3, null);
+        gameBoard.setObjectFieldObject(x + 1, y, null);
+        gameBoard.setObjectFieldObject(x + 1, y + 1, null);
+        gameBoard.setObjectFieldObject(x + 1, y + 2, null);
+        gameBoard.setObjectFieldObject(x + 1, y + 3, null);
+
+        gameBoard.setFieldIndex(x, y + 2, 0);
+        gameBoard.setFieldIndex(x + 1, y + 2, 0);
+
+        gameBoard.setFieldIndex(x, y + 3, 2);
+        gameBoard.setFieldIndex(x + 1, y + 3, 0); 
+    }
+    
     public String getName()
     {
         return name;
@@ -80,7 +108,7 @@ public class Tree extends ObjectElement implements Source
     @Override
     public void setRemainingResource(int count)
     {
-        currentWood = count;
+        currentWood-= count;
     }
 
     @Override

@@ -79,7 +79,7 @@ public class Gold extends ObjectElement implements Source
     @Override
     public void setRemainingResource(int count)
     {
-        currentGold = count;
+        currentGold -= count;
     }
 
     @Override
