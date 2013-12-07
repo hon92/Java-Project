@@ -34,7 +34,7 @@ public class Villager extends Unit
     private static int attack;
     private static int armor;
 
-    private static int time=0;
+    private static int time = 0;
     private static BufferedImage villagerIcon;
 
     private static BufferedImage villagerDownBlue;
@@ -149,18 +149,16 @@ public class Villager extends Unit
     @Override
     public void setHp()
     {
-        if(currentHp<maxHp)
+        if (currentHp < maxHp)
         {
-        currentHp+=1;
+            currentHp += 1;
         }
         else
         {
-            currentHp=maxHp;
+            currentHp = maxHp;
         }
     }
-    
-    
-    
+
     @Override
     public void drawUnit(Graphics g)
     {
@@ -316,24 +314,40 @@ public class Villager extends Unit
     {
         //food=gold=stone=wood = false;
         time++;
-        if(time%25==0)
+        if (time % 25 == 0)
         {
-        if(gameBoard.getFieldIndex(this.getX()/25+1, this.getY()/25)==6 
-                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25+2)==6
-            ||gameBoard.getFieldIndex(this.getX()/25-1, this.getY()/25)==6
-                ||gameBoard.getFieldIndex(this.getX()/25, this.getY()/25-1)==6)
-        
-        {
-           // System.out.println("tezim jidlo");
-            if(team =="Blue")
+            if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 6
+                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 6
+                    || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 6
+                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 6)
+
             {
-                gameBoard.getBluePlayer().setFood(1);
-                food = true;
+                // System.out.println("tezim jidlo");
+                if (team == "Blue")
+                {
+                    gameBoard.getBluePlayer().setFood(1);
+                }
+                else
+                {
+                    gameBoard.getRedPlayer().setFood(1);
+                }
             }
-            else
+
+            if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 9
+                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 9
+                    || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 9
+                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 9)
+
             {
-                food = true;
-                gameBoard.getRedPlayer().setFood(1);
+                // System.out.println("tezim zlato");
+                if (team == "Blue")
+                {
+                    gameBoard.getBluePlayer().setGold(1);
+                }
+                else
+                {
+                    gameBoard.getRedPlayer().setGold(1);
+                }
             }
             Bush bush;
             
@@ -376,13 +390,32 @@ public class Villager extends Unit
            // System.out.println("tezim zlato");
             if(team =="Blue")
             {
-                gold = true;
-                gameBoard.getBluePlayer().setGold(1);
+                //System.out.println("tezim sutr");
+                if (team == "Blue")
+                {
+                    gameBoard.getBluePlayer().setStone(1);
+                }
+                else
+                {
+                    gameBoard.getRedPlayer().setStone(1);
+                }
             }
-            else
+
+            if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 2
+                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 2
+                    || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 2
+                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 2)
+
             {
-                gold = true;
-                gameBoard.getRedPlayer().setGold(1);
+                //System.out.println("tezim drevo");
+                if (team == "Blue")
+                {
+                    gameBoard.getBluePlayer().setWood(1);
+                }
+                else
+                {
+                    gameBoard.getRedPlayer().setWood(1);
+                }
             }
             Gold gold;
             if(gameBoard.getFieldIndex(this.getX()/25+1, this.getY()/25)==9 )
@@ -521,10 +554,8 @@ public class Villager extends Unit
         {
             wood=false;
         }
-        }
         
-        MainWindow.botPanel.getSelectPanel().repaint();
-        gameBoard.getTopPanel().repaint();
+  
         
        
         if (time > 999999999)

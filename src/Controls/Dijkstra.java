@@ -15,8 +15,7 @@ public class Dijkstra
 
     private boolean isVillager;
     private boolean targetSource;
-    
-    
+
     private ListItem start;
     private ListItem stop;
     private ListItem actualItem;
@@ -35,13 +34,8 @@ public class Dijkstra
         this.start = start;
         found = false;
 
-
-
-        
-        
         stop.setItem(end.getX(), end.getY() - 1);
 
-        
         this.gameBoard = gameBoard;
 
         for (int i = 0; i < columns; i++)
@@ -52,17 +46,11 @@ public class Dijkstra
                 if (gameBoard.getFieldIndex(i, j) != 0 && j != 0)
                 {
                     temp[i][j - 1].setValue(1000);
-                    
+
                 }
             }
         }
 
-       
-        
-        
-                 
-        
-            
         for (int i = 0; i < columns; i++)
         {
             for (int j = 1; j < rows; j++)
@@ -83,10 +71,7 @@ public class Dijkstra
                 }
             }
         }
-        
 
-        
-        
 //        if(isVillager && targetSource)
 //        {
 //            while(!found)
@@ -99,53 +84,53 @@ public class Dijkstra
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX()-2, stop.getY())==0)
 //                    {
 //                        stop.setItem(stop.getX()-2, stop.getY());
 //                        found = true;
 //                        break;
 //                    }
-//                
-//                
-//                
+//
+//
+//
 //                    if(gameBoard.getFieldIndex(stop.getX()+1, stop.getY())==0)
 //                    {
 //                        stop.setItem(stop.getX()+1, stop.getY());
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX()+2, stop.getY())==0)
 //                    {
 //                        stop.setItem(stop.getX()+2, stop.getY());
 //                        found = true;
 //                        break;
 //                    }
-//                
-//                
-//                
+//
+//
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+1)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()+1);
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+2)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()+2);
 //                        found = true;
 //                        break;
 //                    }
-//      
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-1)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()-1);
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-2)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()-2);
@@ -153,7 +138,7 @@ public class Dijkstra
 //                        break;
 //                    }
 //                }
-//                
+//
 //                if(start.getX()>stop.getX())
 //                {
 //                    if(gameBoard.getFieldIndex(stop.getX()+1, stop.getY())==0)
@@ -162,124 +147,124 @@ public class Dijkstra
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX()+2, stop.getY())==0)
 //                    {
 //                        stop.setItem(stop.getX()+2, stop.getY());
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                   if(gameBoard.getFieldIndex(stop.getX()-1, stop.getY())==0)
 //                    {
 //                        stop.setItem(stop.getX()-1, stop.getY());
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX()-2, stop.getY())==0)
 //                    {
 //                        stop.setItem(stop.getX()-2, stop.getY());
 //                        found = true;
 //                        break;
 //                    }
-//                 
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+1)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()+1);
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+2)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()+2);
 //                        found = true;
 //                        break;
 //                    }
-//      
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-1)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()-1);
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-2)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()-2);
 //                        found = true;
 //                        break;
-//                    } 
-//                    
-//                    
+//                    }
+//
+//
 //                }
-//                
-//                
+//
+//
 //                if(start.getY()>stop.getY())
 //                {
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+1)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()+1);
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+2)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()+2);
 //                        found = true;
 //                        break;
 //                    }
-//      
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-1)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()-1);
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-2)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()-2);
 //                        found = true;
 //                        break;
-//                    } 
-//                    
+//                    }
+//
 //                    if(gameBoard.getFieldIndex(stop.getX()+1, stop.getY())==0)
 //                    {
 //                        stop.setItem(stop.getX()+1, stop.getY());
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX()+2, stop.getY())==0)
 //                    {
 //                        stop.setItem(stop.getX()+2, stop.getY());
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                   if(gameBoard.getFieldIndex(stop.getX()-1, stop.getY())==0)
 //                    {
 //                        stop.setItem(stop.getX()-1, stop.getY());
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX()-2, stop.getY())==0)
 //                    {
 //                        stop.setItem(stop.getX()-2, stop.getY());
 //                        found = true;
 //                        break;
 //                    }
-//                 
-//                    
-//                    
-//                    
+//
+//
+//
+//
 //                }
-//                
+//
 //                if(start.getY()>stop.getY())
 //                {
 //                    if(gameBoard.getFieldIndex(stop.getX()-1, stop.getY())==0)
@@ -288,7 +273,7 @@ public class Dijkstra
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX()-2, stop.getY())==0)
 //                    {
 //                        stop.setItem(stop.getX()-2, stop.getY());
@@ -301,59 +286,57 @@ public class Dijkstra
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX()+2, stop.getY())==0)
 //                    {
 //                        stop.setItem(stop.getX()+2, stop.getY());
 //                        found = true;
 //                        break;
 //                    }
-//                    
-//                   
-//                    
-//                    
+//
+//
+//
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+1)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()+1);
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()+2)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()+2);
 //                        found = true;
 //                        break;
 //                    }
-//      
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-1)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()-1);
 //                        found = true;
 //                        break;
 //                    }
-//                    
+//
 //                    if(gameBoard.getFieldIndex(stop.getX(), stop.getY()-2)==0)
 //                    {
 //                        stop.setItem(stop.getX(), stop.getY()-2);
 //                        found = true;
 //                        break;
-//                    } 
-//                    
-//                    
-//                 
-//                    
-//                    
-//                    
+//                    }
+//
+//
+//
+//
+//
+//
 //                }
-//                
-//                
+//
+//
 //            }
-//            
-//            
+//
+//
 //        }
-        
-        
         search();
     }
 
