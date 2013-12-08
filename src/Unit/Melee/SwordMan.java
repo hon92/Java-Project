@@ -293,9 +293,10 @@ public class SwordMan extends Unit
         {
             if (gameBoard.getUnitField(this.getX()/25+1, this.getY()/25)!=null)
             {
- 
+                
                 if ( gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 11&&gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).getPlayer()=="Red")//vlevo pod
                 {
+                    System.out.println("rubej ho");
                     attacking = true;
                     gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).setHp(-1*this.attack);
                     gameBoard.getSelectView().repaint();
@@ -312,7 +313,7 @@ public class SwordMan extends Unit
                     }
                 }               
             }
-            
+         }  
             
 //            if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 11 && gameBoard.getUnitField(this.getX()/25+1, this.getY()/25)!=null &&gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).getPlayer()=="Red"
 //                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 11&& gameBoard.getUnitField(this.getX()/25, this.getY()/25+2)!=null &&gameBoard.getUnitField(this.getX()/25, this.getY()/25+2).getPlayer()=="Red"
@@ -334,7 +335,7 @@ public class SwordMan extends Unit
 //                attacking = false;
 //            } 
             
-        }
+        
         
        }
        
