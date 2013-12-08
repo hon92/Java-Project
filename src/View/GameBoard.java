@@ -2,6 +2,7 @@ package View;
 
 import Building.Barracks.Barracks;
 import Building.Church.Church;
+import Building.Farm.Farm;
 import Building.House.House;
 import Building.TownCenter.TownCenter;
 import Buildings.Action;
@@ -118,6 +119,9 @@ public class GameBoard extends JPanel
         buildings.add(new Church(this, 50, 70, "Blue"));
         buildings.add(new Church(this, 250, 60, "Red"));
 
+        buildings.add(new Farm(this,80,80,"Blue"));
+        
+        
         addKeyListener(new Key(this));
         gameLoop();
 

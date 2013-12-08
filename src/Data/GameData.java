@@ -35,4 +35,5 @@ public final class GameData
     //villager,swordman,monk 11
     //walkable = 0,8,5
     //building 15
+    //farm 20
 }
