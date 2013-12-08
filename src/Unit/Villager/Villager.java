@@ -332,7 +332,7 @@ public class Villager extends Unit
                     gameBoard.getRedPlayer().setFood(1);
                 }
 
-                Bush bush;
+                Bush bush = null;
 
                 if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 6)
                 {
@@ -355,7 +355,14 @@ public class Villager extends Unit
                     bush = (Bush) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
                     bush.setRemainingResource(1);
                 }
-
+                
+                if(bush!=null)
+                {
+                if(bush.getRemainingResource()==0)
+                {
+                    bush.deleteBush();
+                }
+                }
             }
             else
             {
@@ -368,28 +375,7 @@ public class Villager extends Unit
                     || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 9)
 
             {
-                // System.out.println("tezim zlato");
-                if (team == "Blue")
-                {
-                    //System.out.println("tezim sutr");
-                    if (team == "Blue")
-                    {
-                        gold = true;
-                        gameBoard.getBluePlayer().setGold(1);
-                    }
-                    else
-                    {
-                        gold = true;
-                        gameBoard.getRedPlayer().setGold(1);
-                    }
-                }
-
-                if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 9
-                        || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 9
-                        || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 9
-                        || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 9)
-
-                {
+                
                     //System.out.println("tezim drevo");
                     if (team == "Blue")
                     {
@@ -399,8 +385,8 @@ public class Villager extends Unit
                     {
                         gameBoard.getRedPlayer().setGold(1);
                     }
-                }
-                Gold gold;
+                
+                Gold gold = null;
                 if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 9)
                 {
                     gold = (Gold) gameBoard.getObjectFieldObject(this.getX() / 25 + 1, this.getY() / 25);
@@ -420,6 +406,14 @@ public class Villager extends Unit
                 {
                     gold = (Gold) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
                     gold.setRemainingResource(1);
+                }
+                
+                if(gold!=null)
+                {
+                if(gold.getRemainingResource()==0)
+                {
+                    gold.deleteGold();
+                }
                 }
 
             }
@@ -445,7 +439,7 @@ public class Villager extends Unit
                     stone = true;
                     gameBoard.getRedPlayer().setStone(1);
                 }
-                Stone stone;
+                Stone stone = null;
 
                 if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 10)
                 {
@@ -466,6 +460,14 @@ public class Villager extends Unit
                 {
                     stone = (Stone) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
                     stone.setRemainingResource(1);
+                }
+                
+                if(stone!=null)
+                {
+                if (stone.getRemainingResource()==0)
+                {
+                    stone.deleteStone();
+                }
                 }
             }
             else
@@ -489,47 +491,39 @@ public class Villager extends Unit
                     wood = true;
                     gameBoard.getRedPlayer().setWood(1);
                 }
-                Tree tree;
+                Tree tree = null;
 
                 if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 2)
                 {
                     tree = (Tree) gameBoard.getObjectFieldObject(this.getX() / 25 + 1, this.getY() / 25);
 
-//            if (tree.getRemainingResource()==0)
-//            {
-//                tree.deleteTree();
-//            }
+
                     tree.setRemainingResource(1);
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 2)
                 {
                     tree = (Tree) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 + 2);
 
-//            if (tree.getRemainingResource()==0)
-//            {
-//                tree.deleteTree();
-//            }
+
                     tree.setRemainingResource(1);
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 2)
                 {
                     tree = (Tree) gameBoard.getObjectFieldObject(this.getX() / 25 - 1, this.getY() / 25);
-
-//            if (tree.getRemainingResource()==0)
-//            {
-//                tree.deleteTree();
-//            }
                     tree.setRemainingResource(1);
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25) == 2)
                 {
                     tree = (Tree) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
-
-//            if (tree.getRemainingResource()==0)
-//            {
-//                tree.deleteTree();
-//            }
                     tree.setRemainingResource(1);
+                }
+                
+                if(tree!=null)
+                {
+                if (tree.getRemainingResource()==0)
+                {
+                    tree.deleteTree();
+                }
                 }
 
             }

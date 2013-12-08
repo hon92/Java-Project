@@ -59,6 +59,26 @@ public class Stone extends ObjectElement implements Source
         gameBoard.setFieldIndex(x + 2, y + 1, 10);
     }
 
+    public void deleteStone()
+    {
+        gameBoard.setObjectFieldObject(x, y, null);
+        gameBoard.setObjectFieldObject(x + 1, y, null);
+        gameBoard.setObjectFieldObject(x + 2, y, null);
+        gameBoard.setObjectFieldObject(x, y + 1, null);
+        gameBoard.setObjectFieldObject(x + 1, y + 1, null);
+        gameBoard.setObjectFieldObject(x + 2, y + 1, null);
+
+        gameBoard.setFieldIndex(x, y, 0);
+        gameBoard.setFieldIndex(x + 1, y, 0);
+        gameBoard.setFieldIndex(x + 2, y, 0);
+        gameBoard.setFieldIndex(x, y + 1, 0);
+        gameBoard.setFieldIndex(x + 1, y + 1, 0);
+        gameBoard.setFieldIndex(x + 2, y + 1, 0);  
+        
+        gameBoard.getObjects().remove(this);
+    }
+    
+    
     public void drawObject(Graphics g)
     {
         g.drawImage(stone, gameBoard.convertX(x * GameData.BOXSIZE), gameBoard.convertY(y * GameData.BOXSIZE), null);

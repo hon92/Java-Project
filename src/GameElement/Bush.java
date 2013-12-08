@@ -59,6 +59,26 @@ public class Bush extends ObjectElement implements Source
         gameBoard.setFieldIndex(x + 2, y + 1, 6);
     }
 
+    public void deleteBush()
+    {
+        gameBoard.setObjectFieldObject(x, y, null);
+        gameBoard.setObjectFieldObject(x + 1, y, null);
+        gameBoard.setObjectFieldObject(x + 2, y, null);
+        gameBoard.setObjectFieldObject(x, y + 1, null);
+        gameBoard.setObjectFieldObject(x + 1, y + 1, null);
+        gameBoard.setObjectFieldObject(x + 2, y + 1, null);
+
+        gameBoard.setFieldIndex(x, y, 0);
+        gameBoard.setFieldIndex(x + 1, y, 0);
+        gameBoard.setFieldIndex(x + 2, y, 0);
+        gameBoard.setFieldIndex(x, y + 1, 0);
+        gameBoard.setFieldIndex(x + 1, y + 1, 0);
+        gameBoard.setFieldIndex(x + 2, y + 1, 0);
+        
+        gameBoard.getObjects().remove(this);
+    }
+    
+    
     @Override
     public void drawObject(Graphics g)
     {

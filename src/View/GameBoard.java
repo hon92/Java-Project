@@ -451,7 +451,7 @@ public class GameBoard extends JPanel
         return currentWindowY;
     }
 
-    List<ObjectElement> getObjects()
+    public List<ObjectElement> getObjects()
     {
         return objects;
     }
