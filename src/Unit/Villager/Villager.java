@@ -81,7 +81,7 @@ public class Villager extends Unit
         actions.add(new VillagerAction(gameBoard, BuildingType.CHURCH));
         actions.add(new VillagerAction(gameBoard, BuildingType.FARM));
         actions.add(new VillagerAction(gameBoard, BuildingType.HOUSE));
-        actions.add(new VillagerAction(gameBoard, BuildingType.TOWN_CENTER));
+        //actions.add(new VillagerAction(gameBoard, BuildingType.TOWN_CENTER));
 
         gold = stone = wood = food = false;
         try

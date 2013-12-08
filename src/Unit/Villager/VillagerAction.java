@@ -31,6 +31,11 @@ public class VillagerAction extends Action
     private int x, y;
     private int width, height;
     private String path;
+    private Color buildOkColor = Color.GREEN;
+    private Color buildErrorColor = Color.RED;
+    private Color currentColor = buildErrorColor;
+    private boolean canBePlaced = false;
+    private boolean isAction = false;
 
     public VillagerAction(GameBoard gameBoard, BuildingType type)
     {
@@ -51,18 +56,18 @@ public class VillagerAction extends Action
             case FARM:
                 width = 4;
                 height = 4;
-                path = "src/Unit/Villager/harvest.png";
+                path = "src/Unit/Villager/farmIcon.jpg";
                 break;
             case HOUSE:
                 width = 5;
                 height = 4;
                 path = "src/Unit/Villager/houseIcon.png";
                 break;
-            case TOWN_CENTER:
-                width = 8;
-                height = 6;
-                path = "src/Unit/Villager/build.png";
-                break;
+//            case TOWN_CENTER:
+//                width = 8;
+//                height = 6;
+//                path = "src/Unit/Villager/build.png";
+//                break;
 
         }
 
@@ -90,12 +95,16 @@ public class VillagerAction extends Action
         mouse.setBuildMode(true);
         new BuildMouse();
         gameBoard.setBuildAction(this);
+        isAction = true;
     }
 
     public void drawBuildObject(Graphics g)
     {
-        g.setColor(Color.red);
-        g.fillRect(x, y, width * 25, height * 25);
+        if (isAction)
+        {
+            g.setColor(currentColor);
+            g.fillRect(x, y, width * 25, height * 25);
+        }
     }
 
     private class BuildMouse implements MouseMotionListener, MouseListener
@@ -106,6 +115,7 @@ public class VillagerAction extends Action
 
             MouseMotionListener t[] = gameBoard.getMouseMotionListeners();
             gameBoard.addMouseMotionListener(this);
+            gameBoard.addMouseListener(this);
             gameBoard.requestFocus();
         }
 
@@ -120,8 +130,6 @@ public class VillagerAction extends Action
             x = e.getX();
             y = e.getY();
 
-            if ()
-
             {
                 System.err.println("" + e.getX() + "  " + e.getY());
             }
@@ -130,6 +138,22 @@ public class VillagerAction extends Action
         @Override
         public void mouseClicked(MouseEvent e)
         {
+            if (canBePlaced && e.getButton() == MouseEvent.BUTTON1)
+            {
+
+            }
+            else if (e.getButton() == MouseEvent.BUTTON3)
+            {
+                mouse.setBuildMode(false);
+                gameBoard.removeMouseMotionListener(this);
+                gameBoard.removeMouseListener(this);
+                isAction = false;
+                cancelAction();
+            }
+            else
+            {
+                System.out.println("Bad location for new Building");
+            }
         }
 
         @Override
