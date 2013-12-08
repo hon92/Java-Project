@@ -24,6 +24,7 @@ import javax.imageio.ImageIO;
  */
 public class TrainSwordman extends Action
 {
+
     File res_pop = new File("src/Sounds/resources_pop.wav");
     private int spawnX;
     private int spawnY;
@@ -56,25 +57,25 @@ public class TrainSwordman extends Action
     @Override
     public void doAction()
     {
-        if(building.getPlayer()=="Blue")
+        if (building.getPlayer() == "Blue")
         {
-            if((gameBoard.getBluePlayer().getFood()>=60 )&&
-                (gameBoard.getBluePlayer().getActualPop()<gameBoard.getBluePlayer().getMaxPop())&&
-                    (gameBoard.getBluePlayer().getGold()>=30))
-        {
-        loadSpawn();
-        if (!isActive)
-        {
-            isActive = true;
-        }
-        }
+            if ((gameBoard.getBluePlayer().getFood() >= 60)
+                    && (gameBoard.getBluePlayer().getActualPop() <= gameBoard.getBluePlayer().getMaxPop())
+                    && (gameBoard.getBluePlayer().getGold() >= 30))
+            {
+                loadSpawn();
+                if (!isActive)
+                {
+                    isActive = true;
+                }
+            }
             else
-        {
-                gameBoard.playSound(res_pop);  
-        }
+            {
+                gameBoard.playSound(res_pop);
+            }
         }
         gameBoard.getTopPanel().repaint();
-        
+
     }
 
     @Override
@@ -95,8 +96,9 @@ public class TrainSwordman extends Action
                     }
                 }
 
-                if (isFree) {
-                    gameBoard.getUnits().add(new SwordMan(gameBoard, spawnX, spawnY, 0,"Blue"));
+                if (isFree)
+                {
+                    gameBoard.getUnits().add(new SwordMan(gameBoard, spawnX, spawnY, 0, "Blue"));
                     isActive = false;
                     tickCount = 0;
                     spawnLines++;

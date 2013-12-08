@@ -87,7 +87,7 @@ public abstract class Unit
         }
         else
         {
-            if (currentPoint >= 1)
+            if (currentPoint > 1)
             {
                 int xx = moves.get(currentPoint - 1).getX();
                 int yy = moves.get(currentPoint - 1).getY();

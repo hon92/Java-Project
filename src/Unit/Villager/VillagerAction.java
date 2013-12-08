@@ -45,6 +45,7 @@ public class VillagerAction extends Action
     private BuildingType type;
     private int currX, currY;
     private int wood, food, stone, gold;
+    private BuildMouse buildMouse;
 
     public VillagerAction(GameBoard gameBoard, BuildingType type, Unit villager)
     {
@@ -117,7 +118,7 @@ public class VillagerAction extends Action
                 System.err.println("akce");
                 mouse = gameBoard.getMouse();
                 mouse.setBuildMode(true);
-                new BuildMouse();
+                buildMouse = new BuildMouse();
                 gameBoard.setBuildAction(this);
                 isAction = true;
             }
@@ -133,7 +134,6 @@ public class VillagerAction extends Action
         if (isAction)
         {
             g.setColor(currentColor);
-            //g.fillRect(x - (width * 25) / 2, y - (height * 25) / 2, width * 25, height * 25);
             g.fillRect(x - 25, y - 25, width * 25, height * 25);
         }
     }
@@ -141,13 +141,20 @@ public class VillagerAction extends Action
     private class BuildMouse implements MouseMotionListener, MouseListener
     {
 
+        private MouseListener ml[];
+        private MouseMotionListener mml[];
+        public MouseListener temp;
+
         public BuildMouse()
         {
 
-            MouseMotionListener t[] = gameBoard.getMouseMotionListeners();
+            ml = gameBoard.getBotPanel().getActionPanel().getMouseListeners();
+            temp = ml[0];
+            gameBoard.getBotPanel().getActionPanel().removeMouseListener(ml[0]);
+
             gameBoard.addMouseMotionListener(this);
             gameBoard.addMouseListener(this);
-            gameBoard.requestFocus();
+            gameBoard.setFocusable(true);
         }
 
         @Override
@@ -235,13 +242,11 @@ public class VillagerAction extends Action
                         gameBoard.getBluePlayer().setMaxPop(5);
                         break;
                 }
+                cancelAction();
             }
             else if (e.getButton() == MouseEvent.BUTTON3)
             {
-                mouse.setBuildMode(false);
-                gameBoard.removeMouseMotionListener(this);
-                gameBoard.removeMouseListener(this);
-                isAction = false;
+
                 cancelAction();
             }
             else
@@ -275,6 +280,12 @@ public class VillagerAction extends Action
     @Override
     public void cancelAction()
     {
+        mouse.setBuildMode(false);
+        gameBoard.removeMouseMotionListener(buildMouse);
+        gameBoard.removeMouseListener(buildMouse);
+        isAction = false;
+        gameBoard.getBotPanel().getActionPanel().addMouseListener(buildMouse.temp);
+        buildMouse = null;
         System.out.println("storno");
     }
 

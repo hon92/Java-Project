@@ -344,33 +344,32 @@ public class GameBoard extends JPanel
 //        {
 //            u.drawUnit(g);
 //        }
+        for (Building b : blue.getBuildings())
+        {
+            b.drawBuilding(g);
+        }
+        for (Building b : red.getBuildings())
+        {
+            b.drawBuilding(g);
+        }
         for (Unit u : blue.getUnits())
         {
             u.drawUnit(g);
         }
 
-        for (Building b : blue.getBuildings())
-        {
-            b.drawBuilding(g);
-        }
         for (Unit u : red.getUnits())
         {
             u.drawUnit(g);
         }
 
-        for (Building b : red.getBuildings())
+        g.setColor(Color.red);
+        for (int i = 0; i < columns; i++)
         {
-            b.drawBuilding(g);
+            for (int j = 0; j < rows; j++)
+            {
+                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
+            }
         }
-
-//        g.setColor(Color.red);
-//        for (int i = 0; i < columns; i++)
-//        {
-//            for (int j = 0; j < rows; j++)
-//            {
-//                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
-//            }
-//        }
         if (action != null)
         {
             if (action instanceof VillagerAction)
@@ -518,6 +517,11 @@ public class GameBoard extends JPanel
     {
         return mouse;
 
+    }
+
+    public BotPanel getBotPanel()
+    {
+        return botPanel;
     }
 
     public void playSound(File file)
