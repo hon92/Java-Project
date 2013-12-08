@@ -379,10 +379,12 @@ public class Villager extends Unit
                     //System.out.println("tezim drevo");
                     if (team == "Blue")
                     {
+                        gold =true;
                         gameBoard.getBluePlayer().setGold(1);
                     }
                     else
                     {
+                        gold = true;
                         gameBoard.getRedPlayer().setGold(1);
                     }
                 
