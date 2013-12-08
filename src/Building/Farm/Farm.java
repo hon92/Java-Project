@@ -40,6 +40,22 @@ public class Farm extends Building {
 
     }
 
+    public void deleteFarm()
+    {
+       for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                System.out.println(this.getLocationX() + i);
+                gameBoard.setBuildingObjectField(this.getLocationX()+ i, this.getLocationY() + j, null);
+                if(gameBoard.getFieldIndex(this.getLocationX() + i, this.getLocationY() + j)==20)
+                {
+                    gameBoard.setFieldIndex(this.getLocationX() + i, this.getLocationY() + j, 0);
+                }
+            }
+        } 
+       
+       gameBoard.getBuildings().remove(this);
+    }
+    
     @Override
     public void drawBuilding(Graphics g) {
         if (isSelected()) {

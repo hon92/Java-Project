@@ -43,7 +43,7 @@ public class Dijkstra
             for (int j = 0; j < rows; j++)
             {
                 temp[i][j] = new ListItem(i, j);
-                if (gameBoard.getFieldIndex(i, j) != 0 && j != 0)
+                if (gameBoard.getFieldIndex(i, j) != 0 && j != 0 && gameBoard.getFieldIndex(i, j) != 20)
                 {
                     temp[i][j - 1].setValue(1000);
 

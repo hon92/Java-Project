@@ -121,6 +121,7 @@ public class GameBoard extends JPanel
 
         buildings.add(new Farm(this,80,80,"Blue"));
         
+        buildings.add(new Farm(this,72,80,"Blue"));
         
         addKeyListener(new Key(this));
         gameLoop();
