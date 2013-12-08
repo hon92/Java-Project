@@ -12,6 +12,7 @@ import Building.House.House;
 import Buildings.Action;
 import Buildings.BuildingType;
 import Controls.Mouse;
+import Unit.Unit;
 import View.GameBoard;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -31,6 +32,7 @@ import javax.imageio.ImageIO;
 public class VillagerAction extends Action
 {
 
+    private Unit villager;
     private Mouse mouse;
     private int x, y;
     private int width, height;
@@ -42,17 +44,20 @@ public class VillagerAction extends Action
     private boolean isAction = false;
     private BuildingType type;
     private int currX, currY;
+    private int wood, food, stone, gold;
 
-    public VillagerAction(GameBoard gameBoard, BuildingType type)
+    public VillagerAction(GameBoard gameBoard, BuildingType type, Unit villager)
     {
         this.gameBoard = gameBoard;
         this.type = type;
+        this.villager = villager;
 
         switch (type)
         {
             case BARRACKS:
                 width = 8;
                 height = 6;
+
                 path = "src/Unit/Villager/barracksicon.png";
                 break;
             case CHURCH:
@@ -68,6 +73,10 @@ public class VillagerAction extends Action
             case HOUSE:
                 width = 5;
                 height = 4;
+                wood = 100;
+                gold = 100;
+                stone = 100;
+                food = 100;
                 path = "src/Unit/Villager/houseIcon.png";
                 break;
 //            case TOWN_CENTER:
@@ -97,12 +106,26 @@ public class VillagerAction extends Action
     @Override
     public void doAction()
     {
-        System.err.println("akce");
-        mouse = gameBoard.getMouse();
-        mouse.setBuildMode(true);
-        new BuildMouse();
-        gameBoard.setBuildAction(this);
-        isAction = true;
+
+        if (villager.getPlayer() == "Blue")
+        {
+            if (gameBoard.getBluePlayer().getFood() >= food
+                    && gameBoard.getBluePlayer().getGold() >= gold
+                    && gameBoard.getBluePlayer().getStone() >= stone
+                    && gameBoard.getBluePlayer().getWood() >= wood)
+            {
+                System.err.println("akce");
+                mouse = gameBoard.getMouse();
+                mouse.setBuildMode(true);
+                new BuildMouse();
+                gameBoard.setBuildAction(this);
+                isAction = true;
+            }
+            else
+            {
+                System.err.println("Malo surovin");
+            }
+        }
     }
 
     public void drawBuildObject(Graphics g)
@@ -167,6 +190,7 @@ public class VillagerAction extends Action
                         //System.err.println("OK");
                         canBePlaced = true;
                         currentColor = buildOkColor;
+
                     }
                 }
             }
@@ -181,16 +205,34 @@ public class VillagerAction extends Action
                 switch (type)
                 {
                     case BARRACKS:
-                        gameBoard.getBuildings().add(new Barracks(gameBoard, currX, currY, "Blue"));
+
+                        gameBoard.getBluePlayer().addBuilding(new Barracks(gameBoard, currX, currY, "Blue"));
+                        gameBoard.getBluePlayer().setFood(-food);
+                        gameBoard.getBluePlayer().setGold(-gold);
+                        gameBoard.getBluePlayer().setStone(-stone);
+                        gameBoard.getBluePlayer().setWood(-wood);
                         break;
                     case CHURCH:
-                        gameBoard.getBuildings().add(new Church(gameBoard, currX, currY, "Blue"));
+                        gameBoard.getBluePlayer().addBuilding(new Church(gameBoard, currX, currY, "Blue"));
+                        gameBoard.getBluePlayer().setFood(-food);
+                        gameBoard.getBluePlayer().setGold(-gold);
+                        gameBoard.getBluePlayer().setStone(-stone);
+                        gameBoard.getBluePlayer().setWood(-wood);
                         break;
                     case FARM:
-                        gameBoard.getBuildings().add(new Farm(gameBoard, currX, currY, "Blue"));
+                        gameBoard.getBluePlayer().addBuilding(new Farm(gameBoard, currX, currY, "Blue"));
+                        gameBoard.getBluePlayer().setFood(-food);
+                        gameBoard.getBluePlayer().setGold(-gold);
+                        gameBoard.getBluePlayer().setStone(-stone);
+                        gameBoard.getBluePlayer().setWood(-wood);
                         break;
                     case HOUSE:
-                        gameBoard.getBuildings().add(new House(gameBoard, currX, currY, "Blue"));
+                        gameBoard.getBluePlayer().addBuilding(new House(gameBoard, currX, currY, "Blue"));
+                        gameBoard.getBluePlayer().setFood(-food);
+                        gameBoard.getBluePlayer().setGold(-gold);
+                        gameBoard.getBluePlayer().setStone(-stone);
+                        gameBoard.getBluePlayer().setWood(-wood);
+                        gameBoard.getBluePlayer().setMaxPop(5);
                         break;
                 }
             }

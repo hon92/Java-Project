@@ -34,6 +34,7 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -119,10 +120,10 @@ public class GameBoard extends JPanel
         buildings.add(new Church(this, 50, 70, "Blue"));
         buildings.add(new Church(this, 250, 60, "Red"));
 
-        buildings.add(new Farm(this,80,80,"Blue"));
-        
-        buildings.add(new Farm(this,72,80,"Blue"));
-        
+        buildings.add(new Farm(this, 80, 80, "Blue"));
+
+        buildings.add(new Farm(this, 72, 80, "Blue"));
+
         addKeyListener(new Key(this));
         gameLoop();
 
@@ -322,37 +323,54 @@ public class GameBoard extends JPanel
 
         mouse.drawRect(g);
 
-        g.setColor(Color.blue);
-        for (Unit u : units)
-        {
-            if (u.isSelected())
-            {
-                Dijkstra d = u.getDijkstra();
-
-                if (d != null)
-                {
-                    d.drawPath(g);
-                }
-            }
-        }
-        for (Building b : buildings)
-        {
-            b.drawBuilding(g);
-        }
-        for (Unit u : units)
+//        g.setColor(Color.blue);
+//        for (Unit u : units)
+//        {
+//            if (u.isSelected())
+//            {
+//                Dijkstra d = u.getDijkstra();
+//
+//                if (d != null)
+//                {
+//                    d.drawPath(g);
+//                }
+//            }
+//        }
+//        for (Building b : buildings)
+//        {
+//            b.drawBuilding(g);
+//        }
+//        for (Unit u : units)
+//        {
+//            u.drawUnit(g);
+//        }
+        for (Unit u : blue.getUnits())
         {
             u.drawUnit(g);
         }
 
-        g.setColor(Color.red);
-        for (int i = 0; i < columns; i++)
+        for (Building b : blue.getBuildings())
         {
-            for (int j = 0; j < rows; j++)
-            {
-                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
-            }
+            b.drawBuilding(g);
+        }
+        for (Unit u : red.getUnits())
+        {
+            u.drawUnit(g);
         }
 
+        for (Building b : red.getBuildings())
+        {
+            b.drawBuilding(g);
+        }
+
+//        g.setColor(Color.red);
+//        for (int i = 0; i < columns; i++)
+//        {
+//            for (int j = 0; j < rows; j++)
+//            {
+//                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
+//            }
+//        }
         if (action != null)
         {
             if (action instanceof VillagerAction)

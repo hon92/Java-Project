@@ -98,11 +98,11 @@ public class SelectView extends JPanel
             g.drawString(building.getName(), 60, 30);
             g.drawString("Max Hp: " + building.getMaxHp(), 60, 60);
             g.drawString("Current Hp: " + building.getCurrentHp(), 60, 70);
-            
-            if(building instanceof Farm)
+
+            if (building instanceof Farm)
             {
                 Farm farm = (Farm) building;
-                g.drawString("Remaining resources: "+farm.getCurrentFood(), 60, 80);
+                g.drawString("Remaining resources: " + farm.getCurrentFood(), 60, 80);
             }
         }
         g.dispose();
@@ -150,12 +150,17 @@ public class SelectView extends JPanel
         {
             b.setSelected(false);
         }
+
         units.clear();
     }
 
     public void setUnits(ArrayList<Unit> units)
     {
         System.out.println("new list unit " + "size: " + units.size());
+        if (units.size() >= 1)
+        {
+            element = null;
+        }
         this.units = units;
         repaint();
 

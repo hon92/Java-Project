@@ -78,10 +78,10 @@ public class Villager extends Unit
         currentHp = 10;
         speed = 2;
         foodCost = 50;
-        actions.add(new VillagerAction(gameBoard, BuildingType.BARRACKS));
-        actions.add(new VillagerAction(gameBoard, BuildingType.CHURCH));
-        actions.add(new VillagerAction(gameBoard, BuildingType.FARM));
-        actions.add(new VillagerAction(gameBoard, BuildingType.HOUSE));
+        actions.add(new VillagerAction(gameBoard, BuildingType.BARRACKS, this));
+        actions.add(new VillagerAction(gameBoard, BuildingType.CHURCH, this));
+        actions.add(new VillagerAction(gameBoard, BuildingType.FARM, this));
+        actions.add(new VillagerAction(gameBoard, BuildingType.HOUSE, this));
         //actions.add(new VillagerAction(gameBoard, BuildingType.TOWN_CENTER));
 
         gold = stone = wood = food = false;
@@ -538,47 +538,44 @@ public class Villager extends Unit
             {
                 wood = false;
             }
-            
-            if (gameBoard.getBuildingFieldObject(this.getX()/25, this.getY()/25+1)!=null)
-            {
-            if (gameBoard.getBuildingFieldObject(this.getX()/25, this.getY()/25+1).getName()=="Farm")
 
+            if (gameBoard.getBuildingFieldObject(this.getX() / 25, this.getY() / 25 + 1) != null)
             {
-                // System.out.println("tezim jidlo");
-                if (team == "Blue")
-                {
-                    food = true;
-                    gameBoard.getBluePlayer().setFood(1);
-                }
-                else
-                {
-                    food = true;
-                    gameBoard.getRedPlayer().setFood(1);
-                }
-                gameBoard.getSelectView().repaint();
+                if (gameBoard.getBuildingFieldObject(this.getX() / 25, this.getY() / 25 + 1).getName() == "Farm")
 
-                Farm farm = null;
-                farm= (Farm) gameBoard.getBuildingFieldObject(this.getX()/25, this.getY()/25+1);
-                farm.setCurrentFood(1);
-  
-                if (farm != null)
                 {
-                    if (farm.getCurrentFood() <= 0)
+                    // System.out.println("tezim jidlo");
+                    if (team == "Blue")
                     {
-                        farm.deleteFarm();
-                        food = false;
+                        food = true;
+                        gameBoard.getBluePlayer().setFood(1);
+                    }
+                    else
+                    {
+                        food = true;
+                        gameBoard.getRedPlayer().setFood(1);
+                    }
+                    gameBoard.getSelectView().repaint();
+
+                    Farm farm = null;
+                    farm = (Farm) gameBoard.getBuildingFieldObject(this.getX() / 25, this.getY() / 25 + 1);
+                    farm.setCurrentFood(1);
+
+                    if (farm != null)
+                    {
+                        if (farm.getCurrentFood() <= 0)
+                        {
+                            farm.deleteFarm();
+                            food = false;
+                        }
                     }
                 }
-            }
             }
             else
             {
                 food = false;
             }
-            
-            
-            
-            
+
         }
 
         if (time > 999999999)
