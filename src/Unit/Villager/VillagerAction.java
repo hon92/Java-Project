@@ -58,26 +58,28 @@ public class VillagerAction extends Action
             case BARRACKS:
                 width = 8;
                 height = 6;
-
+                wood = 150;
+                stone = 20;
                 path = "src/Unit/Villager/barracksicon.png";
                 break;
             case CHURCH:
                 width = 7;
                 height = 8;
+                wood = 100;
+                gold = 200;
+                stone =80;
                 path = "src/Unit/Villager/churchIcon.png";
                 break;
             case FARM:
                 width = 6;
                 height = 6;
+                wood = 60;
                 path = "src/Unit/Villager/farmIcon.jpg";
                 break;
             case HOUSE:
                 width = 5;
                 height = 4;
                 wood = 100;
-                gold = 100;
-                stone = 100;
-                food = 100;
                 path = "src/Unit/Villager/houseIcon.png";
                 break;
 //            case TOWN_CENTER:
