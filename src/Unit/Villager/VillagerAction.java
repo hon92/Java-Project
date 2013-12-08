@@ -46,7 +46,10 @@ public class VillagerAction extends Action
     private int currX, currY;
     private int wood, food, stone, gold;
     private BuildMouse buildMouse;
-
+    
+    File res_pop = new File("src/Sounds/resources_pop.wav");
+    
+    
     public VillagerAction(GameBoard gameBoard, BuildingType type, Unit villager)
     {
         this.gameBoard = gameBoard;
@@ -126,6 +129,7 @@ public class VillagerAction extends Action
             }
             else
             {
+                gameBoard.playSound(res_pop);
                 System.err.println("Malo surovin");
             }
         }
