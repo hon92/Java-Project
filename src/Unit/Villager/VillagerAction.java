@@ -5,6 +5,10 @@
  */
 package Unit.Villager;
 
+import Building.Barracks.Barracks;
+import Building.Church.Church;
+import Building.Farm.Farm;
+import Building.House.House;
 import Buildings.Action;
 import Buildings.BuildingType;
 import Controls.Mouse;
@@ -31,15 +35,18 @@ public class VillagerAction extends Action
     private int x, y;
     private int width, height;
     private String path;
-    private Color buildOkColor = Color.GREEN;
-    private Color buildErrorColor = Color.RED;
+    private Color buildOkColor = new Color(0, 255, 0, 160);
+    private Color buildErrorColor = new Color(255, 0, 0, 160);
     private Color currentColor = buildErrorColor;
     private boolean canBePlaced = false;
     private boolean isAction = false;
+    private BuildingType type;
+    private int currX, currY;
 
     public VillagerAction(GameBoard gameBoard, BuildingType type)
     {
         this.gameBoard = gameBoard;
+        this.type = type;
 
         switch (type)
         {
@@ -54,8 +61,8 @@ public class VillagerAction extends Action
                 path = "src/Unit/Villager/churchIcon.png";
                 break;
             case FARM:
-                width = 4;
-                height = 4;
+                width = 6;
+                height = 6;
                 path = "src/Unit/Villager/farmIcon.jpg";
                 break;
             case HOUSE:
@@ -140,29 +147,30 @@ public class VillagerAction extends Action
             int mapy = newy;
             y = mapy;
 
-            int currx = mouse.convertX((x - 25) / 25);
-            int curry = mouse.convertY((y - 25) / 25);
-            System.err.println("" + currx + "  " + curry);
+            currX = mouse.convertX((x - 25) / 25);
+            currY = mouse.convertY((y - 25) / 25);
+            System.err.println("" + currX + "  " + currY);
 
-            for (int i = currx; i < currx + width; i++)
+            for (int i = currY; i < currY + 4; i++)
             {
-                for (int j = curry; j < curry + height; j++)
+                for (int j = currX; j < currX + 5; j++)
                 {
-                    if (gameBoard.getFieldIndex(i, j) != 0)
+                    if (gameBoard.getFieldIndex(j, i) != 0)
                     {
-                        //System.err.println("OK");
+
                         currentColor = buildErrorColor;
+                        canBePlaced = false;
+                        return;
                     }
                     else
                     {
+                        //System.err.println("OK");
+                        canBePlaced = true;
                         currentColor = buildOkColor;
                     }
                 }
             }
 
-            {
-
-            }
         }
 
         @Override
@@ -170,7 +178,21 @@ public class VillagerAction extends Action
         {
             if (canBePlaced && e.getButton() == MouseEvent.BUTTON1)
             {
-
+                switch (type)
+                {
+                    case BARRACKS:
+                        gameBoard.getBuildings().add(new Barracks(gameBoard, currX, currY, "Blue"));
+                        break;
+                    case CHURCH:
+                        gameBoard.getBuildings().add(new Church(gameBoard, currX, currY, "Blue"));
+                        break;
+                    case FARM:
+                        gameBoard.getBuildings().add(new Farm(gameBoard, currX, currY, "Blue"));
+                        break;
+                    case HOUSE:
+                        gameBoard.getBuildings().add(new House(gameBoard, currX, currY, "Blue"));
+                        break;
+                }
             }
             else if (e.getButton() == MouseEvent.BUTTON3)
             {
