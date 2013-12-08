@@ -103,7 +103,8 @@ public class VillagerAction extends Action
         if (isAction)
         {
             g.setColor(currentColor);
-            g.fillRect(x, y, width * 25, height * 25);
+            //g.fillRect(x - (width * 25) / 2, y - (height * 25) / 2, width * 25, height * 25);
+            g.fillRect(x - 25, y - 25, width * 25, height * 25);
         }
     }
 
@@ -130,8 +131,37 @@ public class VillagerAction extends Action
             x = e.getX();
             y = e.getY();
 
+            int modulo = x % 25;
+            int newx = 25 - modulo + x;
+            int mapx = newx;
+            x = mapx;
+            int modulo2 = y % 25;
+            int newy = 25 - modulo2 + y;
+            int mapy = newy;
+            y = mapy;
+
+            int currx = mouse.convertX((x - 25) / 25);
+            int curry = mouse.convertY((y - 25) / 25);
+            System.err.println("" + currx + "  " + curry);
+
+            for (int i = currx; i < currx + width; i++)
             {
-                System.err.println("" + e.getX() + "  " + e.getY());
+                for (int j = curry; j < curry + height; j++)
+                {
+                    if (gameBoard.getFieldIndex(i, j) != 0)
+                    {
+                        //System.err.println("OK");
+                        currentColor = buildErrorColor;
+                    }
+                    else
+                    {
+                        currentColor = buildOkColor;
+                    }
+                }
+            }
+
+            {
+
             }
         }
 
