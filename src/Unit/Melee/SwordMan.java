@@ -5,6 +5,7 @@
  */
 package Unit.Melee;
 
+import Building.Farm.Farm;
 import GameElement.Grass;
 import Unit.Unit;
 import View.GameBoard;
@@ -24,6 +25,7 @@ import javax.imageio.ImageIO;
 public class SwordMan extends Unit
 {
 
+    private static int time=0;
     private static int attack;
     private static int armor;
 
@@ -47,22 +49,31 @@ public class SwordMan extends Unit
     private static BufferedImage swordManLeftTopRed;
     private static BufferedImage swordManLeftBotRed;
 
+    private static BufferedImage attackImg;
+    
     private int foodCost;
     private int goldCost;
 
+    private boolean attacking;
+    
+    
     public SwordMan(GameBoard gameBoard, int x, int y, int dir, String team)
     {
         super(gameBoard, x, y, dir, team);
 
+        attacking = false;
         maxHp = 100;
         currentHp = 80;
         speed = 3;
         foodCost = 60;
         goldCost = 30;
+        attack = 3;
 
         try
         {
 
+            attackImg = ImageIO.read(new File("src/Resources/swordManImg/attack.png"));
+            
             swordManIcon = ImageIO.read(new File("src/Resources/swordManImg/swordManIcon.png"));
 
             swordManDownBlue = ImageIO.read(new File("src/Resources/swordManImg/swordManBot.png"));
@@ -213,6 +224,11 @@ public class SwordMan extends Unit
                 g.drawImage(swordManRightBotRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
         }
+        
+        if (attacking)
+        {
+            g.drawImage(attackImg,gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2-30), null);
+        }
     }
 
     @Override
@@ -246,11 +262,11 @@ public class SwordMan extends Unit
     }
 
     @Override
-    public void setHp()
+    public void setHp(int value)
     {
         if(currentHp<maxHp)
         {
-        currentHp+=1;
+        currentHp+=value;
         }
         else
         {
@@ -267,7 +283,74 @@ public class SwordMan extends Unit
     @Override
     public void tick()
     {
-
+       time++;
+       
+       
+       if(time % 30 ==0)
+       {
+       
+        if(this.getPlayer()=="Blue")
+        {
+            if (gameBoard.getUnitField(this.getX()/25+1, this.getY()/25)!=null)
+            {
+ 
+                if ( gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 11&&gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).getPlayer()=="Red")//vlevo pod
+                {
+                    attacking = true;
+                    gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).setHp(-1*this.attack);
+                    gameBoard.getSelectView().repaint();
+                    if (gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).getHp()<=0)
+                    {
+                        
+                        if (gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).getName()=="SwordMan")
+                        {
+                            SwordMan sw = null;
+                            sw = (SwordMan)gameBoard.getUnitField(this.getX()/25+1, this.getY()/25) ;
+                            sw.deleteUnit();
+                            attacking = false;
+                        }
+                    }
+                }               
+            }
+            
+            
+//            if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 11 && gameBoard.getUnitField(this.getX()/25+1, this.getY()/25)!=null &&gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).getPlayer()=="Red"
+//                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 11&& gameBoard.getUnitField(this.getX()/25, this.getY()/25+2)!=null &&gameBoard.getUnitField(this.getX()/25, this.getY()/25+2).getPlayer()=="Red"
+//                    || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 11&& gameBoard.getUnitField(this.getX()/25-1, this.getY()/25)!=null &&gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).getPlayer()=="Red"
+//                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 11&& gameBoard.getUnitField(this.getX()/25, this.getY()/25-1)!=null &&gameBoard.getUnitField(this.getX()/25, this.getY()/25-1).getPlayer()=="Red"
+//                ||gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 15&& gameBoard.getUnitField(this.getX()/25+1, this.getY()/25)!=null &&gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).getPlayer()=="Red"
+//                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 15&& gameBoard.getUnitField(this.getX()/25, this.getY()/25+2)!=null &&gameBoard.getUnitField(this.getX()/25, this.getY()/25+2).getPlayer()=="Red"
+//                    || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 15&& gameBoard.getUnitField(this.getX()/25-1, this.getY()/25)!=null &&gameBoard.getUnitField(this.getX()/25-1, this.getY()/25).getPlayer()=="Red"
+//                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 15&& gameBoard.getUnitField(this.getX()/25, this.getY()/25-1)!=null &&gameBoard.getUnitField(this.getX()/25, this.getY()/25-1).getPlayer()=="Red")
+//
+//            {
+// 
+//                attacking = true;
+//
+//                System.out.println("utoook");
+//            }
+//            else
+//            {
+//                attacking = false;
+//            } 
+            
+        }
+        
+       }
+       
+       if (time >999999990)
+       {
+           time = 0;
+       }
+        
+        
+        
+       
+        
+        
+        
+        
+        
         if (isMoving())
         {
             movePixel();
@@ -286,5 +369,14 @@ public class SwordMan extends Unit
         {
             return false;
         }
+    }
+
+    @Override
+    public void deleteUnit() {
+        gameBoard.setUnitField(this.getX()/25, this.getY()/25, null);
+        gameBoard.setUnitField(this.getX()/25, this.getY()/25 + 1, null);
+        gameBoard.setFieldIndex(this.getX()/25, this.getY()/25 + 1, 0);
+        
+        gameBoard.getUnits().remove(this);
     }
 }

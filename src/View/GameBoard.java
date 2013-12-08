@@ -23,6 +23,7 @@ import GameElement.Shoal;
 import GameElement.Stone;
 import GameElement.Tree;
 import GameElement.Water;
+import Unit.Melee.SwordMan;
 import Unit.Player;
 import Unit.Unit;
 import Unit.Villager.Villager;
@@ -123,6 +124,8 @@ public class GameBoard extends JPanel
         buildings.add(new Farm(this, 80, 80, "Blue"));
 
         buildings.add(new Farm(this, 72, 80, "Blue"));
+        
+        units.add(new SwordMan(this,50,50,180,"Red"));
 
         addKeyListener(new Key(this));
         gameLoop();

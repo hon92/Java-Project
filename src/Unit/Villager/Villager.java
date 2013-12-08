@@ -150,11 +150,11 @@ public class Villager extends Unit
     }
 
     @Override
-    public void setHp()
+    public void setHp(int value)
     {
         if (currentHp < maxHp)
         {
-            currentHp += 1;
+            currentHp += value;
         }
         else
         {
@@ -605,5 +605,14 @@ public class Villager extends Unit
         {
             return false;
         }
+    }
+
+    @Override
+    public void deleteUnit() {
+        gameBoard.setUnitField(this.getX(), this.getY(), null);
+        gameBoard.setUnitField(this.getX(), this.getY() + 1, null);
+        gameBoard.setFieldIndex(this.getX(), this.getY() + 1, 0);
+        
+        gameBoard.getUnits().remove(this);
     }
 }

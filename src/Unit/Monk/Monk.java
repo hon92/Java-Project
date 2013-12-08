@@ -252,11 +252,11 @@ public class Monk extends Unit
     }
 
     @Override
-    public void setHp()
+    public void setHp(int value)
     {
         if(currentHp<maxHp)
         {
-        currentHp+=1;
+        currentHp+=value;
         }
         else
         {
@@ -284,7 +284,7 @@ public class Monk extends Unit
             if(this.team == u.getPlayer() && Math.abs((this.getX()/25)-(u.getX()/25))<10  && Math.abs((this.getY()/25)-(u.getY()/25))<10 )
             {
                  
-                 u.setHp();
+                 u.setHp(1);
                  MainWindow.botPanel.getSelectPanel().repaint();
             }
         }
@@ -314,5 +314,14 @@ public class Monk extends Unit
         {
             return false;
         }
+    }
+
+    @Override
+    public void deleteUnit() {
+        gameBoard.setUnitField(this.getX(), this.getY(), null);
+        gameBoard.setUnitField(this.getX(), this.getY() + 1, null);
+        gameBoard.setFieldIndex(this.getX(), this.getY() + 1, 0);
+        
+        gameBoard.getUnits().remove(this);
     }
 }

@@ -262,7 +262,9 @@ public abstract class Unit
 
     public abstract int getHp();
 
-    public abstract void setHp();
+    public abstract void setHp(int value);
+    
+    public abstract void deleteUnit();
 
     public abstract int getMaxHp();
 
