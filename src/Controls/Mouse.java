@@ -40,6 +40,7 @@ public class Mouse implements MouseListener, MouseMotionListener
     private boolean active = false;
     private Rectangle selectRectangle = null;
     private int unitDistance = 0;
+    private boolean buildMode = false;
 
     public Mouse(GameBoard gameBoard, BotPanel botPanel, TopPanel topPanel)
     {
@@ -61,23 +62,30 @@ public class Mouse implements MouseListener, MouseMotionListener
         clickedIndexX = convertX(clickedIndexX);
         clickedIndexY = convertY(clickedIndexY);
 
-        if (e.getButton() == MouseEvent.BUTTON1)
+        if (!buildMode)
         {
-            selectView.fillData(clickedIndexX, clickedIndexY);
-            actionView.fillData(clickedIndexX, clickedIndexY);
-        }
-        if (e.getButton() == MouseEvent.BUTTON3)
-        {
-
-            for (Unit u : selectView.getUnitList())
+            if (e.getButton() == MouseEvent.BUTTON1)
             {
-                if (u.getPlayer() == "Blue")
-                {
-                    u.move(clickedIndexX, clickedIndexY);
-
-                }
+                selectView.fillData(clickedIndexX, clickedIndexY);
+                actionView.fillData(clickedIndexX, clickedIndexY);
             }
+            if (e.getButton() == MouseEvent.BUTTON3)
+            {
 
+                for (Unit u : selectView.getUnitList())
+                {
+                    if (u.getPlayer() == "Blue")
+                    {
+                        u.move(clickedIndexX, clickedIndexY);
+
+                    }
+                }
+
+            }
+        }
+        else
+        {
+            System.err.println("build Mode");
         }
 
         System.err.println("x: " + clickedIndexX + " y: " + clickedIndexY);
@@ -157,8 +165,11 @@ public class Mouse implements MouseListener, MouseMotionListener
             active = true;
             currentX = e.getX();
             currentY = e.getY();
-            selectRectangle = new Rectangle(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
-            selectView.setUnits(getListSelectedUnits(selectRectangle));
+            if (!buildMode)
+            {
+                selectRectangle = new Rectangle(clickedX, clickedY, currentX - clickedX, currentY - clickedY);
+                selectView.setUnits(getListSelectedUnits(selectRectangle));
+            }
         }
 
     }
@@ -177,6 +188,11 @@ public class Mouse implements MouseListener, MouseMotionListener
     public int convertY(int y)
     {
         return y + (gameBoard.getCurrWinY() / 25);
+    }
+
+    public void setBuildMode(boolean mode)
+    {
+        buildMode = mode;
     }
 
 }

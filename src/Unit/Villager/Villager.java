@@ -6,6 +6,7 @@
 package Unit.Villager;
 
 import Buildings.Action;
+import Buildings.BuildingType;
 import Controls.ListItem;
 import GameElement.Bush;
 import GameElement.Gold;
@@ -76,7 +77,11 @@ public class Villager extends Unit
         currentHp = 10;
         speed = 2;
         foodCost = 50;
-        actions.add(new VillagerAction(gameBoard));
+        actions.add(new VillagerAction(gameBoard, BuildingType.BARRACKS));
+        actions.add(new VillagerAction(gameBoard, BuildingType.CHURCH));
+        actions.add(new VillagerAction(gameBoard, BuildingType.FARM));
+        actions.add(new VillagerAction(gameBoard, BuildingType.HOUSE));
+        actions.add(new VillagerAction(gameBoard, BuildingType.TOWN_CENTER));
 
         gold = stone = wood = food = false;
         try
@@ -355,13 +360,13 @@ public class Villager extends Unit
                     bush = (Bush) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
                     bush.setRemainingResource(1);
                 }
-                
-                if(bush!=null)
+
+                if (bush != null)
                 {
-                if(bush.getRemainingResource()==0)
-                {
-                    bush.deleteBush();
-                }
+                    if (bush.getRemainingResource() == 0)
+                    {
+                        bush.deleteBush();
+                    }
                 }
             }
             else
@@ -375,19 +380,19 @@ public class Villager extends Unit
                     || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 9)
 
             {
-                
-                    //System.out.println("tezim drevo");
-                    if (team == "Blue")
-                    {
-                        gold =true;
-                        gameBoard.getBluePlayer().setGold(1);
-                    }
-                    else
-                    {
-                        gold = true;
-                        gameBoard.getRedPlayer().setGold(1);
-                    }
-                
+
+                //System.out.println("tezim drevo");
+                if (team == "Blue")
+                {
+                    gold = true;
+                    gameBoard.getBluePlayer().setGold(1);
+                }
+                else
+                {
+                    gold = true;
+                    gameBoard.getRedPlayer().setGold(1);
+                }
+
                 Gold gold = null;
                 if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 9)
                 {
@@ -409,13 +414,13 @@ public class Villager extends Unit
                     gold = (Gold) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
                     gold.setRemainingResource(1);
                 }
-                
-                if(gold!=null)
+
+                if (gold != null)
                 {
-                if(gold.getRemainingResource()==0)
-                {
-                    gold.deleteGold();
-                }
+                    if (gold.getRemainingResource() == 0)
+                    {
+                        gold.deleteGold();
+                    }
                 }
 
             }
@@ -463,13 +468,13 @@ public class Villager extends Unit
                     stone = (Stone) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
                     stone.setRemainingResource(1);
                 }
-                
-                if(stone!=null)
+
+                if (stone != null)
                 {
-                if (stone.getRemainingResource()==0)
-                {
-                    stone.deleteStone();
-                }
+                    if (stone.getRemainingResource() == 0)
+                    {
+                        stone.deleteStone();
+                    }
                 }
             }
             else
@@ -499,13 +504,11 @@ public class Villager extends Unit
                 {
                     tree = (Tree) gameBoard.getObjectFieldObject(this.getX() / 25 + 1, this.getY() / 25);
 
-
                     tree.setRemainingResource(1);
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 2)
                 {
                     tree = (Tree) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 + 2);
-
 
                     tree.setRemainingResource(1);
                 }
@@ -519,13 +522,13 @@ public class Villager extends Unit
                     tree = (Tree) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
                     tree.setRemainingResource(1);
                 }
-                
-                if(tree!=null)
+
+                if (tree != null)
                 {
-                if (tree.getRemainingResource()==0)
-                {
-                    tree.deleteTree();
-                }
+                    if (tree.getRemainingResource() == 0)
+                    {
+                        tree.deleteTree();
+                    }
                 }
 
             }
