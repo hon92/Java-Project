@@ -111,7 +111,7 @@ public class GameBoard extends JPanel
         buildings.add(new Barracks(this, 45, 60, "Blue"));
         buildings.add(new TownCenter(this, 30, 80, "Blue"));
 
-        buildings.add(new TownCenter(this, 240, 90, "Red"));
+        buildings.add(new TownCenter(this, 264, 87, "Red"));
         buildings.add(new Barracks(this, 220, 80, "Red"));
 
         buildings.add(new House(this, 40, 70, "Blue"));
@@ -125,7 +125,16 @@ public class GameBoard extends JPanel
         buildings.add(new Farm(this, 72, 80, "Blue"));
 
         units.add(new SwordMan(this, 50, 50, 180, "Red"));
-
+        
+        for(int i =0;i<22;i++)
+        {
+            for(int j =0;j<5;j++)
+            {
+                units.add(new SwordMan(this, 240+i, 87+j, 180, "Red"));
+            }
+        }
+         //units.add(new SwordMan(this, 260, 87, 180, "Red"));
+        
         addKeyListener(new Key(this));
         gameLoop();
 
