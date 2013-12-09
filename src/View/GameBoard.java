@@ -128,7 +128,7 @@ public class GameBoard extends JPanel
         
         for(int i =0;i<22;i++)
         {
-            for(int j =0;j<5;j++)
+            for(int j =0;j<6;j++)
             {
                 units.add(new SwordMan(this, 240+i, 87+j, 180, "Red"));
             }
