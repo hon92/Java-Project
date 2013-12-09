@@ -33,7 +33,7 @@ public class Ai
         {
             for (Unit u : player.getUnits())
             {
-                u.move(u.getX() / 25 - 1, u.getY() / 25 + 1);
+                //u.move(u.getX() / 25 - 1, u.getY() / 25 - 1);
             }
             timer = 0;
         }
