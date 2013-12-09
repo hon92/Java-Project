@@ -116,7 +116,7 @@ public class SwordMan extends Unit
         {
             gameBoard.getRedPlayer().addUnit(this);
             gameBoard.getRedPlayer().setFood(-1 * foodCost);
-            gameBoard.getBluePlayer().setGold(-1 * goldCost);
+            gameBoard.getRedPlayer().setGold(-1 * goldCost);
         }
 
     }
