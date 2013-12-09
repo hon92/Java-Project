@@ -76,7 +76,14 @@ public class Mouse implements MouseListener, MouseMotionListener
                 {
                     if (u.getPlayer() == "Blue")
                     {
-                        u.move(clickedIndexX, clickedIndexY);
+                        if (gameBoard.getFieldIndex(clickedIndexX, clickedIndexY) == 11)
+                        {
+                            u.goAttack(gameBoard.getUnitField(clickedIndexX, clickedIndexY));
+                        }
+                        else
+                        {
+                            u.move(clickedIndexX, clickedIndexY);
+                        }
 
                     }
                 }

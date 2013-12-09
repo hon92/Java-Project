@@ -172,6 +172,11 @@ public class ActionView extends JPanel
 
     }
 
+    public Building getBuilding()
+    {
+        return building;
+    }
+
     private class ActionMouseClick implements MouseListener
     {
 

@@ -25,27 +25,25 @@ public abstract class Building
     protected BufferedImage iconImg = null;
     protected GameBoard gameBoard = null;
     protected List<Action> actions = null;
-    
+
     protected int buildTime = -1;
     protected int currentHp = -1;
     protected int maxHp = -1;
     protected int locationX = -1;
     protected int locationY = -1;
-    
+
     protected String team;
 
     protected boolean selected = false;
 
     public Building(GameBoard gameBoard, int x, int y, String team)
     {
-        this.team=team;
+        this.team = team;
         this.gameBoard = gameBoard;
         this.locationX = x;
         this.locationY = y;
         actions = new ArrayList<Action>();
-        
-        
-        
+
     }
 
     public abstract void drawBuilding(Graphics g);
@@ -75,21 +73,21 @@ public abstract class Building
         return ((currentHp / (double) maxHp));
     }
 
-    public List<Action> getActions() {
+    public List<Action> getActions()
+    {
         return actions;
     }
 
-    public BufferedImage getSourceImg() {
+    public BufferedImage getSourceImg()
+    {
         return sourceImg;
     }
-    
+
     public String getPlayer()
     {
         return team;
     }
 
-    
-    
     public abstract String getName();
 
     public abstract int getMaxHp();

@@ -25,7 +25,7 @@ import javax.imageio.ImageIO;
 public class SwordMan extends Unit
 {
 
-    private static int time=0;
+    private int time = 0;
     private static int attack;
     private static int armor;
 
@@ -50,13 +50,12 @@ public class SwordMan extends Unit
     private static BufferedImage swordManLeftBotRed;
 
     private static BufferedImage attackImg;
-    
+
     private int foodCost;
     private int goldCost;
 
     private boolean attacking;
-    
-    
+
     public SwordMan(GameBoard gameBoard, int x, int y, int dir, String team)
     {
         super(gameBoard, x, y, dir, team);
@@ -73,7 +72,7 @@ public class SwordMan extends Unit
         {
 
             attackImg = ImageIO.read(new File("src/Resources/swordManImg/attack.png"));
-            
+
             swordManIcon = ImageIO.read(new File("src/Resources/swordManImg/swordManIcon.png"));
 
             swordManDownBlue = ImageIO.read(new File("src/Resources/swordManImg/swordManBot.png"));
@@ -224,10 +223,10 @@ public class SwordMan extends Unit
                 g.drawImage(swordManRightBotRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
         }
-        
+
         if (attacking)
         {
-            g.drawImage(attackImg,gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2-30), null);
+            g.drawImage(attackImg, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2 - 30), null);
         }
     }
 
@@ -264,16 +263,16 @@ public class SwordMan extends Unit
     @Override
     public void setHp(int value)
     {
-        if(currentHp<maxHp)
+        if (currentHp < maxHp)
         {
-        currentHp+=value;
+            currentHp += value;
         }
         else
         {
-            currentHp=maxHp;
+            currentHp = maxHp;
         }
     }
-    
+
     @Override
     public BufferedImage getIcon()
     {
@@ -283,38 +282,201 @@ public class SwordMan extends Unit
     @Override
     public void tick()
     {
-       time++;
-       
-       
-       if(time % 30 ==0)
-       {
-       
-        if(this.getPlayer()=="Blue")
+        time++;
+
+        if (time % 30 == 0)
         {
-            if (gameBoard.getUnitField(this.getX()/25+1, this.getY()/25)!=null)
+
+            if (this.getPlayer() == "Blue")
             {
-                
-                if ( gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 11&&gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).getPlayer()=="Red")//vlevo pod
+                //System.err.println("blue");
+                if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25) != null)
                 {
-                    System.out.println("rubej ho");
-                    attacking = true;
-                    gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).setHp(-1*this.attack);
-                    gameBoard.getSelectView().repaint();
-                    if (gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).getHp()<=0)
+
+                    if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 11
+                            && gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getPlayer() == "Red")//vlevo pod
                     {
-                        
-                        if (gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).getName()=="SwordMan")
+                        //System.out.println("rubej ho");
+                        attacking = true;
+                        gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).setHp(-1 * this.attack);
+                        gameBoard.getSelectView().repaint();
+                        if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getHp() <= 0)
                         {
-                            SwordMan sw = null;
-                            sw = (SwordMan)gameBoard.getUnitField(this.getX()/25+1, this.getY()/25) ;
-                            sw.deleteUnit();
-                            attacking = false;
+
+                            if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getName() == "SwordMan")
+                            {
+                                SwordMan sw = null;
+                                sw = (SwordMan) gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25);
+                                sw.deleteUnit();
+                                attacking = false;
+                            }
                         }
                     }
-                }               
+                }
+                if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25) != null)
+                {
+
+                    if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 11
+                            && gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getPlayer() == "Red")//vpravo pod
+                    {
+                        //System.out.println("rubej ho");
+                        attacking = true;
+                        gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).setHp(-1 * this.attack);
+                        gameBoard.getSelectView().repaint();
+                        if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getHp() <= 0)
+                        {
+
+                            if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getName() == "SwordMan")
+                            {
+                                SwordMan sw = null;
+                                sw = (SwordMan) gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25);
+                                sw.deleteUnit();
+                                attacking = false;
+                            }
+                        }
+                    }
+                }
+                if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25) != null)
+                {
+
+                    if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 11
+                            && gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getPlayer() == "Red")//vlevo nad
+                    {
+                        //System.out.println("rubej ho");
+                        attacking = true;
+                        gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).setHp(-1 * this.attack);
+                        gameBoard.getSelectView().repaint();
+                        if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getHp() <= 0)
+                        {
+
+                            if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getName() == "SwordMan")
+                            {
+                                SwordMan sw = null;
+                                sw = (SwordMan) gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25);
+                                sw.deleteUnit();
+                                attacking = false;
+                            }
+                        }
+                    }
+                }
+                if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25) != null)
+                {
+
+                    if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 11
+                            && gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getPlayer() == "Red")//vpravo nad
+                    {
+                        //System.out.println("rubej ho");
+                        attacking = true;
+                        gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).setHp(-1 * this.attack);
+                        gameBoard.getSelectView().repaint();
+                        if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getHp() <= 0)
+                        {
+
+                            if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getName() == "SwordMan")
+                            {
+                                SwordMan sw = null;
+                                sw = (SwordMan) gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25);
+                                sw.deleteUnit();
+                                attacking = false;
+                            }
+                        }
+                    }
+                }
+                if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25) != null)
+                {
+
+                    if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 11
+                            && gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getPlayer() == "Red")//vlevo
+                    {
+                        //System.out.println("rubej ho");
+                        attacking = true;
+                        gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).setHp(-1 * this.attack);
+                        gameBoard.getSelectView().repaint();
+                        if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getHp() <= 0)
+                        {
+
+                            if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getName() == "SwordMan")
+                            {
+                                SwordMan sw = null;
+                                sw = (SwordMan) gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25);
+                                sw.deleteUnit();
+                                attacking = false;
+                            }
+                        }
+                    }
+                }
+                if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25) != null)
+                {
+
+                    if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 11
+                            && gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getPlayer() == "Red")//vpravo
+                    {
+                        //System.out.println("rubej ho");
+                        attacking = true;
+                        gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).setHp(-1 * this.attack);
+                        gameBoard.getSelectView().repaint();
+                        if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getHp() <= 0)
+                        {
+
+                            if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getName() == "SwordMan")
+                            {
+                                SwordMan sw = null;
+                                sw = (SwordMan) gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25);
+                                sw.deleteUnit();
+                                attacking = false;
+                            }
+                        }
+                    }
+                }
+                if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25) != null)
+                {
+
+                    if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 11
+                            && gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getPlayer() == "Red")//dole
+                    {
+                        //System.out.println("rubej ho");
+                        attacking = true;
+                        gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).setHp(-1 * this.attack);
+                        gameBoard.getSelectView().repaint();
+                        if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getHp() <= 0)
+                        {
+
+                            if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getName() == "SwordMan")
+                            {
+                                SwordMan sw = null;
+                                sw = (SwordMan) gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25);
+                                sw.deleteUnit();
+                                attacking = false;
+                            }
+                        }
+                    }
+                }
+                if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25) != null)
+                {
+
+                    if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 11
+                            && gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getPlayer() == "Red")//nad
+                    {
+                        //System.out.println("rubej ho");
+                        attacking = true;
+                        gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).setHp(-1 * this.attack);
+                        gameBoard.getSelectView().repaint();
+                        if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getHp() <= 0)
+                        {
+
+                            if (gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25).getName() == "SwordMan")
+                            {
+                                SwordMan sw = null;
+                                sw = (SwordMan) gameBoard.getUnitField(this.getX() / 25 + 1, this.getY() / 25);
+                                sw.deleteUnit();
+                                attacking = false;
+                            }
+                        }
+                    }
+                }
+
             }
-         }  
-            
+
 //            if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 11 && gameBoard.getUnitField(this.getX()/25+1, this.getY()/25)!=null &&gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).getPlayer()=="Red"
 //                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 11&& gameBoard.getUnitField(this.getX()/25, this.getY()/25+2)!=null &&gameBoard.getUnitField(this.getX()/25, this.getY()/25+2).getPlayer()=="Red"
 //                    || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 11&& gameBoard.getUnitField(this.getX()/25-1, this.getY()/25)!=null &&gameBoard.getUnitField(this.getX()/25+1, this.getY()/25).getPlayer()=="Red"
@@ -325,7 +487,7 @@ public class SwordMan extends Unit
 //                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 15&& gameBoard.getUnitField(this.getX()/25, this.getY()/25-1)!=null &&gameBoard.getUnitField(this.getX()/25, this.getY()/25-1).getPlayer()=="Red")
 //
 //            {
-// 
+//
 //                attacking = true;
 //
 //                System.out.println("utoook");
@@ -333,25 +495,14 @@ public class SwordMan extends Unit
 //            else
 //            {
 //                attacking = false;
-//            } 
-            
-        
-        
-       }
-       
-       if (time >999999990)
-       {
-           time = 0;
-       }
-        
-        
-        
-       
-        
-        
-        
-        
-        
+//            }
+        }
+
+        if (time > 999999990)
+        {
+            time = 0;
+        }
+
         if (isMoving())
         {
             movePixel();
@@ -373,11 +524,20 @@ public class SwordMan extends Unit
     }
 
     @Override
-    public void deleteUnit() {
-        gameBoard.setUnitField(this.getX()/25, this.getY()/25, null);
-        gameBoard.setUnitField(this.getX()/25, this.getY()/25 + 1, null);
-        gameBoard.setFieldIndex(this.getX()/25, this.getY()/25 + 1, 0);
-        
-        gameBoard.getUnits().remove(this);
+    public void deleteUnit()
+    {
+        gameBoard.setUnitField(this.getX() / 25, this.getY() / 25, null);
+        gameBoard.setUnitField(this.getX() / 25, this.getY() / 25 + 1, null);
+        gameBoard.setFieldIndex(this.getX() / 25, this.getY() / 25 + 1, 0);
+
+        if (getPlayer() == "Blue")
+        {
+            gameBoard.getBluePlayer().getUnits().remove(this);
+        }
+        else
+        {
+            gameBoard.getRedPlayer().getUnits().remove(this);
+        }
+        //gameBoard.getUnits().remove(this);
     }
 }

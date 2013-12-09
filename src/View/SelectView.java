@@ -160,6 +160,7 @@ public class SelectView extends JPanel
         if (units.size() >= 1)
         {
             element = null;
+
         }
         this.units = units;
         repaint();

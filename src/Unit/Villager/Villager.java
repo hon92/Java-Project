@@ -37,7 +37,7 @@ public class Villager extends Unit
     private static int attack;
     private static int armor;
 
-    private static int time = 0;
+    private int time = 0;
     private static BufferedImage villagerIcon;
 
     private static BufferedImage villagerDownBlue;
@@ -320,7 +320,7 @@ public class Villager extends Unit
         time++;
         if (time % 25 == 0)
         {
-            
+
             if (gameBoard.getBuildingFieldObject(this.getX() / 25, this.getY() / 25 + 1) != null)
             {
                 if (gameBoard.getBuildingFieldObject(this.getX() / 25, this.getY() / 25 + 1).getName() == "Farm")
@@ -357,8 +357,7 @@ public class Villager extends Unit
             {
                 food = false;
             }
-            
-            
+
             if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 6
                     || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 6
                     || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 6
@@ -405,7 +404,7 @@ public class Villager extends Unit
                 {
                     if (bush.getRemainingResource() == 0)
                     {
-                        bush.deleteBush();     
+                        bush.deleteBush();
                     }
                 }
             }
@@ -578,8 +577,6 @@ public class Villager extends Unit
                 wood = false;
             }
 
-            
-
         }
 
         if (time > 999999999)
@@ -608,11 +605,12 @@ public class Villager extends Unit
     }
 
     @Override
-    public void deleteUnit() {
+    public void deleteUnit()
+    {
         gameBoard.setUnitField(this.getX(), this.getY(), null);
         gameBoard.setUnitField(this.getX(), this.getY() + 1, null);
         gameBoard.setFieldIndex(this.getX(), this.getY() + 1, 0);
-        
+
         gameBoard.getUnits().remove(this);
     }
 }

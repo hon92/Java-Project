@@ -7,7 +7,7 @@ import Building.House.House;
 import Building.TownCenter.TownCenter;
 import Buildings.Action;
 import Buildings.Building;
-import Controls.Dijkstra;
+import Controls.Ai;
 import Controls.Key;
 import Controls.Mouse;
 import Data.GameData;
@@ -35,7 +35,6 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,7 +65,7 @@ public class GameBoard extends JPanel
 
     private Player blue;
     private Player red;
-
+    private Ai ai;
     private int[][] field = new int[rows][columns];
     private ObjectElement[][] objectField = new ObjectElement[columns][rows];
     private Unit[][] unitField = new Unit[columns][rows];
@@ -99,7 +98,7 @@ public class GameBoard extends JPanel
 
         blue = new Player(300, 300, 300, 300, "Blue");
         red = new Player(300, 300, 300, 300, "Red");
-
+        ai = new Ai(this, red);
         units = new ArrayList<Unit>();
         buildings = new ArrayList<Building>();
 
@@ -124,8 +123,8 @@ public class GameBoard extends JPanel
         buildings.add(new Farm(this, 80, 80, "Blue"));
 
         buildings.add(new Farm(this, 72, 80, "Blue"));
-        
-        units.add(new SwordMan(this,50,50,180,"Red"));
+
+        units.add(new SwordMan(this, 50, 50, 180, "Red"));
 
         addKeyListener(new Key(this));
         gameLoop();
@@ -165,7 +164,8 @@ public class GameBoard extends JPanel
 
     public void tick()
     {
-        for (Unit u : units)
+        ArrayList<Unit> temp = new ArrayList<Unit>(units);
+        for (Unit u : temp)
         {
             u.tick();
         }
@@ -177,6 +177,7 @@ public class GameBoard extends JPanel
                 a.tick();
             }
         }
+        ai.tick();
     }
 
     private void fillBackground()
@@ -289,8 +290,8 @@ public class GameBoard extends JPanel
         {
             g.drawImage(background, -currentWindowX, -currentWindowY, GameData.MAP_WIDTH, GameData.MAP_HEIGHT, null);
         }
-
-        for (ObjectElement ob : objects)
+        ArrayList<ObjectElement> obtemp = new ArrayList<>(objects);
+        for (ObjectElement ob : obtemp)
         {
             if (ob instanceof Tree)
             {

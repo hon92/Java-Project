@@ -252,6 +252,35 @@ public abstract class Unit
         return actions;
     }
 
+    public void goAttack(Unit u)
+    {
+        System.err.println("wd");
+
+//        for (int i = -1; i < 2; i++)
+//        {
+//            for (int j = -1; j < 2; j++)
+//            {
+//                if (i != 0 && j != 0)
+//                {
+//                    currentPoint = 1;
+//                    t = 0;
+//                    moves.clear();
+//                    dd = new Dijkstra(new ListItem(pixelX / 25, pixelY / 25), new ListItem(u.getX() / 25, u.getY() / 25), gameBoard);
+//
+//                    moves = dd.getPath();
+//                    if (moves.size() == 0)
+//                    {
+//                        continue;
+//                    }
+//                    else
+//                    {
+//                        isFinish = false;
+//                    }
+//                }
+//            }
+//        }
+    }
+
     public abstract void drawUnit(Graphics g);
 
     public abstract String getName();
@@ -263,7 +292,7 @@ public abstract class Unit
     public abstract int getHp();
 
     public abstract void setHp(int value);
-    
+
     public abstract void deleteUnit();
 
     public abstract int getMaxHp();
