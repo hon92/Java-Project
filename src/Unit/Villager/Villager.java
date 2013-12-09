@@ -66,6 +66,7 @@ public class Villager extends Unit
     private int foodCost;
 
     private boolean wood;
+    private boolean farming;
     private boolean food;
     private boolean stone;
     private boolean gold;
@@ -84,7 +85,7 @@ public class Villager extends Unit
         actions.add(new VillagerAction(gameBoard, BuildingType.HOUSE, this));
         //actions.add(new VillagerAction(gameBoard, BuildingType.TOWN_CENTER));
 
-        gold = stone = wood = food = false;
+        gold = farming = stone = wood = food = false;
         try
         {
 
@@ -265,7 +266,7 @@ public class Villager extends Unit
             g.drawImage(tezbaZlata, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2 - 30), null);
         }
 
-        if (food)
+        if (food || farming)
         {
             g.drawImage(tezbaJidla, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2 - 30), null);
         }
@@ -329,12 +330,12 @@ public class Villager extends Unit
                     // System.out.println("tezim jidlo");
                     if (team == "Blue")
                     {
-                        food = true;
+                        farming = true;
                         gameBoard.getBluePlayer().setFood(1);
                     }
                     else
                     {
-                        food = true;
+                        farming = true;
                         gameBoard.getRedPlayer().setFood(1);
                     }
                     gameBoard.getSelectView().repaint();
@@ -348,14 +349,14 @@ public class Villager extends Unit
                         if (farm.getCurrentFood() <= 0)
                         {
                             farm.deleteFarm();
-                            food = false;
+                            farming = false;
                         }
                     }
                 }
             }
             else
             {
-                food = false;
+                farming = false;
             }
 
             if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 6
