@@ -19,6 +19,7 @@ public class Ai
     private GameBoard gameBoard;
     private Player player;
     private int timer = 0;
+    private int timerToSpawnNewUnit = 50;
 
     public Ai(GameBoard gameBoard, Player player)
     {
@@ -32,11 +33,15 @@ public class Ai
         {
             for (Unit u : player.getUnits())
             {
-                u.move(u.getX() / 25 - 1, u.getY() / 25 - 1);
+                u.move(u.getX() / 25 - 1, u.getY() / 25 + 1);
             }
             timer = 0;
         }
+
+        timerToSpawnNewUnit++;
+
         timer++;
+
     }
 
 }
