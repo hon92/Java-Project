@@ -254,33 +254,32 @@ public abstract class Unit
 
     public void goAttack(Unit u)
     {
-        System.err.println("attack");
 
-//        for (int i = -1; i < 2; i++)
-//        {
-//            for (int j = -1; j < 2; j++)
-//            {
-//                if (i != 0 && j != 0)
-//                {
-//                    currentPoint = 1;
-//                    t = 0;
-//                    moves.clear();
-//                    dd = new Dijkstra(new ListItem(pixelX / 25, pixelY / 25), new ListItem((u.getX() / 25 + i), (u.getY() / 25 + 1 + j)), gameBoard);
-//                    moves = dd.getPath();
-//
-//                    if (moves.size() == 0)
-//                    {
-//                        return;
-//                    }
-//                    else
-//                    {
-//                        isFinish = false;
-//                        return;
-//                    }
-//                }
-//            }
-//
-//        }
+        if (u.getPlayer() != getPlayer())
+        {
+            System.err.println("attack");
+            int freeX, freeY;
+
+            for (int i = -1; i < 2; i++)
+            {
+                for (int j = -1; j < 2; j++)
+                {
+                    int x = (u.getX() / 25) + j;
+                    int y = (u.getY() / 25 + 1) + i;
+                    if (gameBoard.getFieldIndex(x, y) == 0)
+                    {
+                        freeX = x;
+                        freeY = y;
+                        System.out.println("free: " + x + "   " + y);
+                        move(x, y);
+                        return;
+
+                    }
+                }
+            }
+
+        }
+
     }
 
     public abstract void drawUnit(Graphics g);
