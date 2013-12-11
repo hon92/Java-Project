@@ -318,6 +318,11 @@ public class Villager extends Unit
     public void tick()
     {
         //food=gold=stone=wood = false;
+
+        if (!isAlive())
+        {
+            deleteUnit();
+        }
         time++;
         if (time % 25 == 0)
         {
@@ -605,13 +610,13 @@ public class Villager extends Unit
         }
     }
 
-    @Override
-    public void deleteUnit()
-    {
-        gameBoard.setUnitField(this.getX(), this.getY(), null);
-        gameBoard.setUnitField(this.getX(), this.getY() + 1, null);
-        gameBoard.setFieldIndex(this.getX(), this.getY() + 1, 0);
-
-        gameBoard.getUnits().remove(this);
-    }
+//    @Override
+//    public void deleteUnit()
+//    {
+//        gameBoard.setUnitField(this.getX(), this.getY(), null);
+//        gameBoard.setUnitField(this.getX(), this.getY() + 1, null);
+//        gameBoard.setFieldIndex(this.getX(), this.getY() + 1, 0);
+//
+//        gameBoard.getUnits().remove(this);
+//    }
 }

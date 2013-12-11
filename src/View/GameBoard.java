@@ -354,14 +354,7 @@ public class GameBoard extends JPanel
                 }
             }
         }
-//        for (Building b : buildings)
-//        {
-//            b.drawBuilding(g);
-//        }
-//        for (Unit u : units)
-//        {
-//            u.drawUnit(g);
-//        }
+
         for (Building b : blue.getBuildings())
         {
             b.drawBuilding(g);
@@ -397,15 +390,15 @@ public class GameBoard extends JPanel
             }
         }
 
-//        g.setColor(Color.white);
-//        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
-//        {
-//            for (int j = 0; j < GameData.MAP_HEIGHT; j += GameData.BOXSIZE)
-//            {
-//
-//                g.drawRect(i, j, 25, 25);
-//            }
-//        }
+        g.setColor(Color.white);
+        for (int i = 0; i < GameData.MAP_WIDTH; i += GameData.BOXSIZE)
+        {
+            for (int j = 0; j < GameData.MAP_HEIGHT; j += GameData.BOXSIZE)
+            {
+
+                g.drawRect(i, j, 25, 25);
+            }
+        }
         g.dispose();
         Toolkit.getDefaultToolkit().sync();
     }

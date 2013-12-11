@@ -55,7 +55,7 @@ public class SwordMan extends Unit
     private int goldCost;
 
     private boolean attacking;
-    private int timeAttack = 60;
+    private int timeAttack = 10;
     private int timeToNewAttack = 0;
     private boolean enemyIsClose = false;
     private Unit enemy;
@@ -542,24 +542,6 @@ public class SwordMan extends Unit
         {
             return false;
         }
-    }
-
-    @Override
-    public void deleteUnit()
-    {
-        gameBoard.setUnitField(this.getX() / 25, this.getY() / 25, null);
-        gameBoard.setUnitField(this.getX() / 25, this.getY() / 25 + 1, null);
-        gameBoard.setFieldIndex(this.getX() / 25, this.getY() / 25 + 1, 0);
-
-        if (getPlayer() == "Blue")
-        {
-            gameBoard.getBluePlayer().getUnits().remove(this);
-        }
-        else
-        {
-            gameBoard.getRedPlayer().getUnits().remove(this);
-        }
-        //gameBoard.getUnits().remove(this);
     }
 
     private boolean checkCloseEnemy()
