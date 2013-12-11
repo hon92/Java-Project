@@ -157,6 +157,12 @@ public class SelectView extends JPanel
     public void setUnits(ArrayList<Unit> units)
     {
         System.out.println("new list unit " + "size: " + units.size());
+        if (building != null)
+        {
+            building.setSelected(false);
+            building = null;
+        }
+
         if (units.size() >= 1)
         {
             element = null;

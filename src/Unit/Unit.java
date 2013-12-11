@@ -295,6 +295,7 @@ public abstract class Unit
         {
             gameBoard.getRedPlayer().getUnits().remove(this);
         }
+
         gameBoard.getUnits().remove(this);
     }
 
