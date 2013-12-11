@@ -373,10 +373,10 @@ public class GameBoard extends JPanel
         {
             u.drawUnit(g);
         }
-        for (Unit u : units)
-        {
-            u.drawUnit(g);
-        }
+//        for (Unit u : units)
+//        {
+//            u.drawUnit(g);
+//        }
 
         g.setColor(Color.white);
         for (int i = 0; i < columns; i++)

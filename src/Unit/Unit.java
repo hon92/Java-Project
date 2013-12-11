@@ -268,7 +268,6 @@ public abstract class Unit
                         int y = (u.getY() / 25 + 1) + i;
                         if (gameBoard.getFieldIndex(x, y) == 0)
                         {
-
                             System.out.println("free: " + x + "   " + y);
                             move(x, y);
                             return;
@@ -290,10 +289,12 @@ public abstract class Unit
         if (getPlayer() == "Blue")
         {
             gameBoard.getBluePlayer().getUnits().remove(this);
+            gameBoard.getBluePlayer().setActualPop(-1);
         }
         else
         {
             gameBoard.getRedPlayer().getUnits().remove(this);
+            gameBoard.getRedPlayer().setActualPop(-1);
         }
 
         gameBoard.getUnits().remove(this);
