@@ -5,7 +5,6 @@
  */
 package Unit.Melee;
 
-import Building.Farm.Farm;
 import GameElement.Grass;
 import Unit.Unit;
 import View.GameBoard;
@@ -55,7 +54,7 @@ public class SwordMan extends Unit
     private int goldCost;
 
     private boolean attacking;
-    private int timeAttack = 10;
+    private int timeAttack = 30;
     private int timeToNewAttack = 0;
     private boolean enemyIsClose = false;
     private Unit enemy;
@@ -66,11 +65,11 @@ public class SwordMan extends Unit
 
         attacking = false;
         maxHp = 100;
-        currentHp = 80;
+        currentHp = 100;
         speed = 3;
         foodCost = 60;
         goldCost = 30;
-        attack = 3;
+        attack = 5;
 
         try
         {
@@ -267,7 +266,7 @@ public class SwordMan extends Unit
     @Override
     public void setHp(int value)
     {
-        if (currentHp < maxHp)
+        if (currentHp <= maxHp)
         {
             currentHp += value;
         }
@@ -340,8 +339,6 @@ public class SwordMan extends Unit
                     {
                         attacking = true;
                         enemy = gameBoard.getUnitField(x, y);
-
-                        //System.out.println("enemy: " + x + "   " + y);
                         return true;
 
                     }
