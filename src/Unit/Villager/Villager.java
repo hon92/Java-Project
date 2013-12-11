@@ -382,23 +382,34 @@ public class Villager extends Unit
                 if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 6)
                 {
                     bush = (Bush) gameBoard.getObjectFieldObject(this.getX() / 25 + 1, this.getY() / 25);
-
+                    if (bush!= null)
+                    {
                     bush.setRemainingResource(1);
+                    }
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 6)
                 {
                     bush = (Bush) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 + 2);
+                    if (bush!= null)
+                    {
                     bush.setRemainingResource(1);
+                    }
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 6)
                 {
                     bush = (Bush) gameBoard.getObjectFieldObject(this.getX() / 25 - 1, this.getY() / 25);
+                    if (bush!= null)
+                    {
                     bush.setRemainingResource(1);
+                    }
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25) == 6)
                 {
                     bush = (Bush) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
+                    if (bush!= null)
+                    {
                     bush.setRemainingResource(1);
+                    }
                 }
 
                 if (bush != null)
@@ -436,23 +447,36 @@ public class Villager extends Unit
                 Gold gold = null;
                 if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 9)
                 {
+                    
                     gold = (Gold) gameBoard.getObjectFieldObject(this.getX() / 25 + 1, this.getY() / 25);
+                    if(gold!= null)
+                    {
                     gold.setRemainingResource(1);
+                    }
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 9)
                 {
                     gold = (Gold) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 + 2);
+                    if(gold!= null)
+                    {
                     gold.setRemainingResource(1);
+                    }
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 9)
                 {
                     gold = (Gold) gameBoard.getObjectFieldObject(this.getX() / 25 - 1, this.getY() / 25);
+                    if(gold!= null)
+                    {
                     gold.setRemainingResource(1);
+                    }
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25) == 9)
                 {
                     gold = (Gold) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
+                    if(gold!= null)
+                    {
                     gold.setRemainingResource(1);
+                    }
                 }
 
                 if (gold != null)
@@ -491,22 +515,34 @@ public class Villager extends Unit
                 if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 10)
                 {
                     stone = (Stone) gameBoard.getObjectFieldObject(this.getX() / 25 + 1, this.getY() / 25);
+                    if (stone !=null)
+                    {
                     stone.setRemainingResource(1);
+                    }
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 10)
                 {
                     stone = (Stone) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 + 2);
+                    if (stone !=null)
+                    {
                     stone.setRemainingResource(1);
+                    }
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 10)
                 {
                     stone = (Stone) gameBoard.getObjectFieldObject(this.getX() / 25 - 1, this.getY() / 25);
+                    if (stone !=null)
+                    {
                     stone.setRemainingResource(1);
+                    }
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25) == 10)
                 {
                     stone = (Stone) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
+                    if (stone !=null)
+                    {
                     stone.setRemainingResource(1);
+                    }
                 }
 
                 if (stone != null)
@@ -543,24 +579,35 @@ public class Villager extends Unit
                 if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 2)
                 {
                     tree = (Tree) gameBoard.getObjectFieldObject(this.getX() / 25 + 1, this.getY() / 25);
-
+                    if (tree !=null)
+                    {
                     tree.setRemainingResource(1);
+                    }
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 2)
                 {
                     tree = (Tree) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 + 2);
 
+                    if (tree !=null)
+                    {
                     tree.setRemainingResource(1);
+                    }
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 2)
                 {
                     tree = (Tree) gameBoard.getObjectFieldObject(this.getX() / 25 - 1, this.getY() / 25);
+                    if (tree !=null)
+                    {
                     tree.setRemainingResource(1);
+                    }
                 }
                 if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25) == 2)
                 {
                     tree = (Tree) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
+                    if (tree !=null)
+                    {
                     tree.setRemainingResource(1);
+                    }
                 }
 
                 if (tree != null)
