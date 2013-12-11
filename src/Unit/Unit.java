@@ -254,7 +254,7 @@ public abstract class Unit
 
     public void goAttack(Unit u)
     {
-        System.err.println("wd");
+        System.err.println("attack");
 
 //        for (int i = -1; i < 2; i++)
 //        {
@@ -265,19 +265,21 @@ public abstract class Unit
 //                    currentPoint = 1;
 //                    t = 0;
 //                    moves.clear();
-//                    dd = new Dijkstra(new ListItem(pixelX / 25, pixelY / 25), new ListItem(u.getX() / 25, u.getY() / 25), gameBoard);
-//
+//                    dd = new Dijkstra(new ListItem(pixelX / 25, pixelY / 25), new ListItem((u.getX() / 25 + i), (u.getY() / 25 + 1 + j)), gameBoard);
 //                    moves = dd.getPath();
+//
 //                    if (moves.size() == 0)
 //                    {
-//                        continue;
+//                        return;
 //                    }
 //                    else
 //                    {
 //                        isFinish = false;
+//                        return;
 //                    }
 //                }
 //            }
+//
 //        }
     }
 

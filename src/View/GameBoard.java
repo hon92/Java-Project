@@ -8,6 +8,7 @@ import Building.TownCenter.TownCenter;
 import Buildings.Action;
 import Buildings.Building;
 import Controls.Ai;
+import Controls.Dijkstra;
 import Controls.Key;
 import Controls.Mouse;
 import Data.GameData;
@@ -125,16 +126,20 @@ public class GameBoard extends JPanel
         buildings.add(new Farm(this, 72, 80, "Blue"));
 
         units.add(new SwordMan(this, 50, 50, 180, "Red"));
-        
-        for(int i =0;i<22;i++)
+        units.add(new SwordMan(this, 50, 52, 180, "Red"));
+        units.add(new SwordMan(this, 54, 52, 180, "Red"));
+        units.add(new SwordMan(this, 58, 52, 180, "Red"));
+        units.add(new SwordMan(this, 65, 52, 180, "Red"));
+        units.add(new SwordMan(this, 45, 52, 180, "Blue"));
+
+        for (int i = 0; i < 22; i++)
         {
-            for(int j =0;j<6;j++)
+            for (int j = 0; j < 6; j++)
             {
-                units.add(new SwordMan(this, 240+i, 87+j, 180, "Red"));
+                units.add(new SwordMan(this, 240 + i, 87 + j, 180, "Red"));
             }
         }
-         //units.add(new SwordMan(this, 260, 87, 180, "Red"));
-        
+
         addKeyListener(new Key(this));
         gameLoop();
 
@@ -336,19 +341,19 @@ public class GameBoard extends JPanel
 
         mouse.drawRect(g);
 
-//        g.setColor(Color.blue);
-//        for (Unit u : units)
-//        {
-//            if (u.isSelected())
-//            {
-//                Dijkstra d = u.getDijkstra();
-//
-//                if (d != null)
-//                {
-//                    d.drawPath(g);
-//                }
-//            }
-//        }
+        g.setColor(Color.blue);
+        for (Unit u : units)
+        {
+            if (u.isSelected())
+            {
+                Dijkstra d = u.getDijkstra();
+
+                if (d != null)
+                {
+                    d.drawPath(g);
+                }
+            }
+        }
 //        for (Building b : buildings)
 //        {
 //            b.drawBuilding(g);
