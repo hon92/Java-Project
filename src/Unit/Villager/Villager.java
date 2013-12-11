@@ -29,8 +29,7 @@ import javax.imageio.ImageIO;
  *
  * @author Honza
  */
-public class Villager extends Unit
-{
+public class Villager extends Unit {
 
     private int carriedResources;
 
@@ -71,8 +70,7 @@ public class Villager extends Unit
     private boolean stone;
     private boolean gold;
 
-    public Villager(GameBoard gameBoard, int x, int y, int dir, String team)
-    {
+    public Villager(GameBoard gameBoard, int x, int y, int dir, String team) {
         super(gameBoard, x, y, dir, team);
 
         maxHp = 50;
@@ -86,8 +84,7 @@ public class Villager extends Unit
         //actions.add(new VillagerAction(gameBoard, BuildingType.TOWN_CENTER));
 
         gold = farming = stone = wood = food = false;
-        try
-        {
+        try {
 
             villagerIcon = ImageIO.read(new File("src/Resources/villagerImg/villagerIcon.png"));
 
@@ -113,9 +110,7 @@ public class Villager extends Unit
             tezbaZlata = ImageIO.read(new File("src/Resources/Villager/gold.png"));
             tezbaJidla = ImageIO.read(new File("src/Resources/Villager/food.png"));
             tezbaSutru = ImageIO.read(new File("src/Resources/Villager/stone.png"));
-        }
-        catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Logger.getLogger(Grass.class.getName()).log(Level.SEVERE, null, ex);
         }
         gameBoard.setUnitField(x, y, this);
@@ -126,220 +121,146 @@ public class Villager extends Unit
         newPixelY = pixelY;
         createTime = 5;
 
-        if (team == "Blue")
-        {
+        if (team == "Blue") {
             gameBoard.getBluePlayer().addUnit(this);
             gameBoard.getBluePlayer().setFood(-1 * foodCost);
         }
 
-        if (team == "Red")
-        {
+        if (team == "Red") {
             gameBoard.getRedPlayer().addUnit(this);
             gameBoard.getRedPlayer().setFood(-1 * foodCost);
         }
 
     }
 
-    public double getHpDown()
-    {
+    public double getHpDown() {
         return ((currentHp / (double) maxHp));
     }
 
-    public void build()
-    {
+    public void build() {
 
     }
 
     @Override
-    public void setHp(int value)
-    {
-        if (currentHp < maxHp)
-        {
+    public void setHp(int value) {
+        if (currentHp < maxHp) {
             currentHp += value;
-        }
-        else
-        {
+        } else {
             currentHp = maxHp;
         }
     }
 
     @Override
-    public void drawUnit(Graphics g)
-    {
-        if (isSelected())
-        {
+    public void drawUnit(Graphics g) {
+        if (isSelected()) {
             g.setColor(Color.red);
             g.fillRect(gameBoard.convertX(pixelX), gameBoard.convertY(pixelY - 10), 25, 5);
             g.setColor(Color.green);
             g.fillRect(gameBoard.convertX(pixelX), gameBoard.convertY(pixelY - 10), (int) (25 * getHpDown()), 5);
         }
-        if (team == "Blue")
-        {
-            if ((direction >= 247) && (direction < 292))
-            {
+        if (team == "Blue") {
+            if ((direction >= 247) && (direction < 292)) {
                 g.drawImage(villagerTopBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            }
-            else if ((direction >= 78) && (direction < 123))
-            {
+            } else if ((direction >= 78) && (direction < 123)) {
                 g.drawImage(villagerDownBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            }
-
-            else if ((direction >= 158) && (direction < 203))
-            {
+            } else if ((direction >= 158) && (direction < 203)) {
                 g.drawImage(villagerLeftBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            }
-
-            else if ((direction >= 338) || (direction < 23))
-            {
+            } else if ((direction >= 338) || (direction < 23)) {
                 g.drawImage(villagerRightBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            }
-
-            else if ((direction < 338) && (direction >= 292))
-            {
+            } else if ((direction < 338) && (direction >= 292)) {
                 g.drawImage(villagerRightTopBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            }
-
-            else if ((direction >= 203) && (direction < 247))
-            {
+            } else if ((direction >= 203) && (direction < 247)) {
                 g.drawImage(villagerLeftTopBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            }
-
-            else if ((direction >= 123) && (direction < 158))
-            {
+            } else if ((direction >= 123) && (direction < 158)) {
                 g.drawImage(villagerLeftBotBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            }
-
-            else if ((direction >= 23) && (direction < 78))
-            {
+            } else if ((direction >= 23) && (direction < 78)) {
                 g.drawImage(villagerRightBotBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
-        }
-        else
-        {
-            if ((direction >= 247) && (direction < 292))
-            {
+        } else {
+            if ((direction >= 247) && (direction < 292)) {
                 g.drawImage(villagerTopRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            }
-            else if ((direction >= 78) && (direction < 123))
-            {
+            } else if ((direction >= 78) && (direction < 123)) {
                 g.drawImage(villagerDownRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            }
-
-            else if ((direction >= 158) && (direction < 203))
-            {
+            } else if ((direction >= 158) && (direction < 203)) {
                 g.drawImage(villagerLeftRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            }
-
-            else if ((direction >= 338) || (direction < 23))
-            {
+            } else if ((direction >= 338) || (direction < 23)) {
                 g.drawImage(villagerRightRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            }
-
-            else if ((direction < 338) && (direction >= 292))
-            {
+            } else if ((direction < 338) && (direction >= 292)) {
                 g.drawImage(villagerRightTopRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            }
-
-            else if ((direction >= 203) && (direction < 247))
-            {
+            } else if ((direction >= 203) && (direction < 247)) {
                 g.drawImage(villagerLeftTopRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            }
-
-            else if ((direction >= 123) && (direction < 158))
-            {
+            } else if ((direction >= 123) && (direction < 158)) {
                 g.drawImage(villagerLeftBotRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
-            }
-
-            else if ((direction >= 23) && (direction < 78))
-            {
+            } else if ((direction >= 23) && (direction < 78)) {
                 g.drawImage(villagerRightBotRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
         }
 
-        if (stone)
-        {
+        if (stone) {
             g.drawImage(tezbaSutru, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2 - 30), null);
         }
 
-        if (gold)
-        {
+        if (gold) {
             g.drawImage(tezbaZlata, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2 - 30), null);
         }
 
-        if (food || farming)
-        {
+        if (food || farming) {
             g.drawImage(tezbaJidla, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2 - 30), null);
         }
 
-        if (wood)
-        {
+        if (wood) {
             g.drawImage(tezbaDreva, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2 - 30), null);
         }
 
     }
 
     @Override
-    public String getName()
-    {
+    public String getName() {
         return "Villager";
     }
 
     @Override
-    public int getAttack()
-    {
+    public int getAttack() {
         return attack;
     }
 
     @Override
-    public int getArmor()
-    {
+    public int getArmor() {
         return armor;
     }
 
     @Override
-    public int getHp()
-    {
+    public int getHp() {
         return currentHp;
     }
 
     @Override
-    public int getMaxHp()
-    {
+    public int getMaxHp() {
         return maxHp;
     }
 
     @Override
-    public BufferedImage getIcon()
-    {
+    public BufferedImage getIcon() {
         return villagerIcon;
     }
 
     @Override
-    public void tick()
-    {
+    public void tick() {
         //food=gold=stone=wood = false;
 
-        if (!isAlive())
-        {
+        if (!isAlive()) {
             deleteUnit();
         }
         time++;
-        if (time % 25 == 0)
-        {
+        if (time % 25 == 0) {
 
-            if (gameBoard.getBuildingFieldObject(this.getX() / 25, this.getY() / 25 + 1) != null)
-            {
-                if (gameBoard.getBuildingFieldObject(this.getX() / 25, this.getY() / 25 + 1).getName() == "Farm")
-
-                {
+            if (gameBoard.getBuildingFieldObject(this.getX() / 25, this.getY() / 25 + 1) != null) {
+                if (gameBoard.getBuildingFieldObject(this.getX() / 25, this.getY() / 25 + 1).getName() == "Farm") {
                     // System.out.println("tezim jidlo");
-                    if (team == "Blue")
-                    {
+                    if (team == "Blue") {
                         farming = true;
                         gameBoard.getBluePlayer().setFood(1);
-                    }
-                    else
-                    {
+                    } else {
                         farming = true;
                         gameBoard.getRedPlayer().setFood(1);
                     }
@@ -349,263 +270,202 @@ public class Villager extends Unit
                     farm = (Farm) gameBoard.getBuildingFieldObject(this.getX() / 25, this.getY() / 25 + 1);
                     farm.setCurrentFood(1);
 
-                    if (farm != null)
-                    {
-                        if (farm.getCurrentFood() <= 0)
-                        {
+                    if (farm != null) {
+                        if (farm.getCurrentFood() <= 0) {
                             farm.deleteFarm();
                             farming = false;
                         }
                     }
                 }
-            }
-            else
-            {
+            } else {
                 farming = false;
             }
 
             if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 6
                     || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 6
                     || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 6
-                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 6)
-
-            {
+                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 6) {
                 // System.out.println("tezim jidlo");
-                if (team == "Blue")
-                {
+                if (team == "Blue") {
                     food = true;
                     gameBoard.getBluePlayer().setFood(1);
-                }
-                else
-                {
+                } else {
                     food = true;
                     gameBoard.getRedPlayer().setFood(1);
                 }
 
                 Bush bush = null;
 
-                if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 6)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 6) {
                     bush = (Bush) gameBoard.getObjectFieldObject(this.getX() / 25 + 1, this.getY() / 25);
 
                     bush.setRemainingResource(1);
                 }
-                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 6)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 6) {
                     bush = (Bush) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 + 2);
                     bush.setRemainingResource(1);
                 }
-                if (gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 6)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 6) {
                     bush = (Bush) gameBoard.getObjectFieldObject(this.getX() / 25 - 1, this.getY() / 25);
                     bush.setRemainingResource(1);
                 }
-                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25) == 6)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25) == 6) {
                     bush = (Bush) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
-                    bush.setRemainingResource(1);
+                    if (bush != null) {
+                        bush.setRemainingResource(1);
+                    }
                 }
 
-                if (bush != null)
-                {
-                    if (bush.getRemainingResource() == 0)
-                    {
+                if (bush != null) {
+                    if (bush.getRemainingResource() == 0) {
                         bush.deleteBush();
                     }
                 }
-            }
-            else
-            {
+            } else {
                 food = false;
             }
 
             if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 9
                     || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 9
                     || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 9
-                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 9)
-
-            {
+                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 9) {
 
                 //System.out.println("tezim drevo");
-                if (team == "Blue")
-                {
+                if (team == "Blue") {
                     gold = true;
                     gameBoard.getBluePlayer().setGold(1);
-                }
-                else
-                {
+                } else {
                     gold = true;
                     gameBoard.getRedPlayer().setGold(1);
                 }
 
                 Gold gold = null;
-                if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 9)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 9) {
                     gold = (Gold) gameBoard.getObjectFieldObject(this.getX() / 25 + 1, this.getY() / 25);
                     gold.setRemainingResource(1);
                 }
-                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 9)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 9) {
                     gold = (Gold) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 + 2);
                     gold.setRemainingResource(1);
                 }
-                if (gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 9)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 9) {
                     gold = (Gold) gameBoard.getObjectFieldObject(this.getX() / 25 - 1, this.getY() / 25);
                     gold.setRemainingResource(1);
                 }
-                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25) == 9)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25) == 9) {
                     gold = (Gold) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
                     gold.setRemainingResource(1);
                 }
 
-                if (gold != null)
-                {
-                    if (gold.getRemainingResource() == 0)
-                    {
+                if (gold != null) {
+                    if (gold.getRemainingResource() == 0) {
                         gold.deleteGold();
                     }
                 }
 
-            }
-            else
-            {
+            } else {
                 gold = false;
             }
 
             if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 10
                     || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 10
                     || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 10
-                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 10)
-
-            {
+                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 10) {
                 //System.out.println("tezim sutr");
-                if (team == "Blue")
-                {
+                if (team == "Blue") {
                     stone = true;
                     gameBoard.getBluePlayer().setStone(1);
-                }
-                else
-                {
+                } else {
                     stone = true;
                     gameBoard.getRedPlayer().setStone(1);
                 }
                 Stone stone = null;
 
-                if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 10)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 10) {
                     stone = (Stone) gameBoard.getObjectFieldObject(this.getX() / 25 + 1, this.getY() / 25);
                     stone.setRemainingResource(1);
                 }
-                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 10)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 10) {
                     stone = (Stone) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 + 2);
                     stone.setRemainingResource(1);
                 }
-                if (gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 10)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 10) {
                     stone = (Stone) gameBoard.getObjectFieldObject(this.getX() / 25 - 1, this.getY() / 25);
                     stone.setRemainingResource(1);
                 }
-                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25) == 10)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25) == 10) {
                     stone = (Stone) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
                     stone.setRemainingResource(1);
                 }
 
-                if (stone != null)
-                {
-                    if (stone.getRemainingResource() == 0)
-                    {
+                if (stone != null) {
+                    if (stone.getRemainingResource() == 0) {
                         stone.deleteStone();
                     }
                 }
-            }
-            else
-            {
+            } else {
                 stone = false;
             }
             if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 2
                     || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 2
                     || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 2
-                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 2)
-
-            {
+                    || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 2) {
                 //System.out.println("tezim drevo");
-                if (team == "Blue")
-                {
+                if (team == "Blue") {
                     wood = true;
                     gameBoard.getBluePlayer().setWood(1);
-                }
-                else
-                {
+                } else {
                     wood = true;
                     gameBoard.getRedPlayer().setWood(1);
                 }
                 Tree tree = null;
 
-                if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 2)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25 + 1, this.getY() / 25) == 2) {
                     tree = (Tree) gameBoard.getObjectFieldObject(this.getX() / 25 + 1, this.getY() / 25);
 
                     tree.setRemainingResource(1);
                 }
-                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 2)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 2) {
                     tree = (Tree) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 + 2);
 
                     tree.setRemainingResource(1);
                 }
-                if (gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 2)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 2) {
                     tree = (Tree) gameBoard.getObjectFieldObject(this.getX() / 25 - 1, this.getY() / 25);
                     tree.setRemainingResource(1);
                 }
-                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25) == 2)
-                {
+                if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25) == 2) {
                     tree = (Tree) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
                     tree.setRemainingResource(1);
                 }
 
-                if (tree != null)
-                {
-                    if (tree.getRemainingResource() == 0)
-                    {
+                if (tree != null) {
+                    if (tree.getRemainingResource() == 0) {
                         tree.deleteTree();
                     }
                 }
 
-            }
-
-            else
-            {
+            } else {
                 wood = false;
             }
 
         }
 
-        if (time > 999999999)
-        {
+        if (time > 999999999) {
             time = 0;
         }
 
-        if (isMoving())
-        {
+        if (isMoving()) {
             movePixel();
         }
 
     }
 
-    private boolean isMoving()
-    {
+    private boolean isMoving() {
 
-        if (!isFinish)
-        {
+        if (!isFinish) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
