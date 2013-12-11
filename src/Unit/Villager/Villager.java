@@ -76,7 +76,7 @@ public class Villager extends Unit
         super(gameBoard, x, y, dir, team);
 
         maxHp = 50;
-        currentHp = 10;
+        currentHp = 50;
         speed = 2;
         foodCost = 50;
         actions.add(new VillagerAction(gameBoard, BuildingType.BARRACKS, this));
@@ -153,7 +153,7 @@ public class Villager extends Unit
     @Override
     public void setHp(int value)
     {
-        if (currentHp < maxHp)
+        if (currentHp <= maxHp)
         {
             currentHp += value;
         }
@@ -183,32 +183,26 @@ public class Villager extends Unit
             {
                 g.drawImage(villagerDownBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
-
             else if ((direction >= 158) && (direction < 203))
             {
                 g.drawImage(villagerLeftBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
-
             else if ((direction >= 338) || (direction < 23))
             {
                 g.drawImage(villagerRightBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
-
             else if ((direction < 338) && (direction >= 292))
             {
                 g.drawImage(villagerRightTopBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
-
             else if ((direction >= 203) && (direction < 247))
             {
                 g.drawImage(villagerLeftTopBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
-
             else if ((direction >= 123) && (direction < 158))
             {
                 g.drawImage(villagerLeftBotBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
-
             else if ((direction >= 23) && (direction < 78))
             {
                 g.drawImage(villagerRightBotBlue, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
@@ -224,32 +218,26 @@ public class Villager extends Unit
             {
                 g.drawImage(villagerDownRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
-
             else if ((direction >= 158) && (direction < 203))
             {
                 g.drawImage(villagerLeftRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
-
             else if ((direction >= 338) || (direction < 23))
             {
                 g.drawImage(villagerRightRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
-
             else if ((direction < 338) && (direction >= 292))
             {
                 g.drawImage(villagerRightTopRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
-
             else if ((direction >= 203) && (direction < 247))
             {
                 g.drawImage(villagerLeftTopRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
-
             else if ((direction >= 123) && (direction < 158))
             {
                 g.drawImage(villagerLeftBotRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
             }
-
             else if ((direction >= 23) && (direction < 78))
             {
                 g.drawImage(villagerRightBotRed, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2), null);
@@ -318,6 +306,11 @@ public class Villager extends Unit
     public void tick()
     {
         //food=gold=stone=wood = false;
+
+        if (!isAlive())
+        {
+            deleteUnit();
+        }
         time++;
         if (time % 25 == 0)
         {
@@ -325,7 +318,6 @@ public class Villager extends Unit
             if (gameBoard.getBuildingFieldObject(this.getX() / 25, this.getY() / 25 + 1) != null)
             {
                 if (gameBoard.getBuildingFieldObject(this.getX() / 25, this.getY() / 25 + 1).getName() == "Farm")
-
                 {
                     // System.out.println("tezim jidlo");
                     if (team == "Blue")
@@ -363,7 +355,6 @@ public class Villager extends Unit
                     || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 6
                     || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 6
                     || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 6)
-
             {
                 // System.out.println("tezim jidlo");
                 if (team == "Blue")
@@ -406,9 +397,9 @@ public class Villager extends Unit
                 if (gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25) == 6)
                 {
                     bush = (Bush) gameBoard.getObjectFieldObject(this.getX() / 25, this.getY() / 25 - 1);
-                    if (bush!= null)
+                    if (bush != null)
                     {
-                    bush.setRemainingResource(1);
+                        bush.setRemainingResource(1);
                     }
                 }
 
@@ -429,7 +420,6 @@ public class Villager extends Unit
                     || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 9
                     || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 9
                     || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 9)
-
             {
 
                 //System.out.println("tezim drevo");
@@ -497,7 +487,6 @@ public class Villager extends Unit
                     || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 10
                     || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 10
                     || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 10)
-
             {
                 //System.out.println("tezim sutr");
                 if (team == "Blue")
@@ -561,7 +550,6 @@ public class Villager extends Unit
                     || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 + 2) == 2
                     || gameBoard.getFieldIndex(this.getX() / 25 - 1, this.getY() / 25) == 2
                     || gameBoard.getFieldIndex(this.getX() / 25, this.getY() / 25 - 1) == 2)
-
             {
                 //System.out.println("tezim drevo");
                 if (team == "Blue")
@@ -619,7 +607,6 @@ public class Villager extends Unit
                 }
 
             }
-
             else
             {
                 wood = false;
@@ -652,13 +639,13 @@ public class Villager extends Unit
         }
     }
 
-    @Override
-    public void deleteUnit()
-    {
-        gameBoard.setUnitField(this.getX(), this.getY(), null);
-        gameBoard.setUnitField(this.getX(), this.getY() + 1, null);
-        gameBoard.setFieldIndex(this.getX(), this.getY() + 1, 0);
-
-        gameBoard.getUnits().remove(this);
-    }
+//    @Override
+//    public void deleteUnit()
+//    {
+//        gameBoard.setUnitField(this.getX(), this.getY(), null);
+//        gameBoard.setUnitField(this.getX(), this.getY() + 1, null);
+//        gameBoard.setFieldIndex(this.getX(), this.getY() + 1, 0);
+//
+//        gameBoard.getUnits().remove(this);
+//    }
 }

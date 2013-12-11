@@ -254,32 +254,50 @@ public abstract class Unit
 
     public void goAttack(Unit u)
     {
-
-        if (u.getPlayer() != getPlayer())
+        if (u != null)
         {
-            System.err.println("attack");
-            int freeX, freeY;
-
-            for (int i = -1; i < 2; i++)
+            if (u.getPlayer() != getPlayer())
             {
-                for (int j = -1; j < 2; j++)
-                {
-                    int x = (u.getX() / 25) + j;
-                    int y = (u.getY() / 25 + 1) + i;
-                    if (gameBoard.getFieldIndex(x, y) == 0)
-                    {
-                        freeX = x;
-                        freeY = y;
-                        System.out.println("free: " + x + "   " + y);
-                        move(x, y);
-                        return;
+                System.err.println("attack");
 
+                for (int i = -1; i < 2; i++)
+                {
+                    for (int j = -1; j < 2; j++)
+                    {
+                        int x = (u.getX() / 25) + j;
+                        int y = (u.getY() / 25 + 1) + i;
+                        if (gameBoard.getFieldIndex(x, y) == 0)
+                        {
+                            System.out.println("free: " + x + "   " + y);
+                            move(x, y);
+                            return;
+
+                        }
                     }
                 }
-            }
 
+            }
+        }
+    }
+
+    public void deleteUnit()
+    {
+        gameBoard.setUnitField(this.getX() / 25, this.getY() / 25, null);
+        gameBoard.setUnitField(this.getX() / 25, this.getY() / 25 + 1, null);
+        gameBoard.setFieldIndex(this.getX() / 25, this.getY() / 25 + 1, 0);
+
+        if (getPlayer() == "Blue")
+        {
+            gameBoard.getBluePlayer().getUnits().remove(this);
+            gameBoard.getBluePlayer().setActualPop(-1);
+        }
+        else
+        {
+            gameBoard.getRedPlayer().getUnits().remove(this);
+            gameBoard.getRedPlayer().setActualPop(-1);
         }
 
+        gameBoard.getUnits().remove(this);
     }
 
     public abstract void drawUnit(Graphics g);
@@ -293,8 +311,6 @@ public abstract class Unit
     public abstract int getHp();
 
     public abstract void setHp(int value);
-
-    public abstract void deleteUnit();
 
     public abstract int getMaxHp();
 

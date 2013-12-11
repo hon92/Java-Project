@@ -131,6 +131,8 @@ public class GameBoard extends JPanel
         units.add(new SwordMan(this, 58, 52, 180, "Red"));
         units.add(new SwordMan(this, 65, 52, 180, "Red"));
         units.add(new SwordMan(this, 45, 52, 180, "Blue"));
+        units.add(new SwordMan(this, 40, 52, 180, "Blue"));
+        units.add(new SwordMan(this, 40, 55, 180, "Blue"));
 
         for (int i = 0; i < 22; i++)
         {
@@ -341,26 +343,18 @@ public class GameBoard extends JPanel
 
         mouse.drawRect(g);
 
-        g.setColor(Color.blue);
-        for (Unit u : units)
-        {
-            if (u.isSelected())
-            {
-                Dijkstra d = u.getDijkstra();
-
-                if (d != null)
-                {
-                    d.drawPath(g);
-                }
-            }
-        }
-//        for (Building b : buildings)
-//        {
-//            b.drawBuilding(g);
-//        }
+//        g.setColor(Color.blue);
 //        for (Unit u : units)
 //        {
-//            u.drawUnit(g);
+//            if (u.isSelected())
+//            {
+//                Dijkstra d = u.getDijkstra();
+//
+//                if (d != null)
+//                {
+//                    d.drawPath(g);
+//                }
+//            }
 //        }
         for (Building b : blue.getBuildings())
         {
@@ -379,8 +373,12 @@ public class GameBoard extends JPanel
         {
             u.drawUnit(g);
         }
+//        for (Unit u : units)
+//        {
+//            u.drawUnit(g);
+//        }
 
-        g.setColor(Color.red);
+        g.setColor(Color.white);
         for (int i = 0; i < columns; i++)
         {
             for (int j = 0; j < rows; j++)

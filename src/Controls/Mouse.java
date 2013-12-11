@@ -140,7 +140,7 @@ public class Mouse implements MouseListener, MouseMotionListener
     public ArrayList<Unit> getListSelectedUnits(Rectangle rec)
     {
         ArrayList<Unit> selectedUnits = new ArrayList<>();
-        for (Unit u : gameBoard.getUnits())
+        for (Unit u : gameBoard.getBluePlayer().getUnits())
         {
             Rectangle r = new Rectangle(gameBoard.convertX(u.getX()), gameBoard.convertY(u.getY()), 25, 50);
 

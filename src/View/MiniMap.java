@@ -1,6 +1,5 @@
 package View;
 
-import Building.Barracks.Barracks;
 import Buildings.Building;
 import Data.GameData;
 import GameElement.Cactus;
@@ -27,7 +26,8 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class MiniMap extends JPanel {
+public class MiniMap extends JPanel
+{
 
     private int sizeWidth = 360;
     private int sizeHeight = 200;
@@ -47,24 +47,31 @@ public class MiniMap extends JPanel {
     final private Color darkBlueColor = new Color(0, 71, 229);
     private List<ObjectElement> objects;
     private List<Building> buildings;
-    private List<Unit> units;
+
     private Timer mapRefresh;
     private int refreshDelay = 250;
+    private List<Unit> blueUnits;
+    private List<Unit> redUnits;
 
-    public MiniMap(final GameBoard gameBoard) {
+    public MiniMap(final GameBoard gameBoard)
+    {
         this.gameBoard = gameBoard;
         setPreferredSize(new Dimension(sizeWidth, sizeHeight));
         objects = new ArrayList<>();
-        buildings = new ArrayList<Building>();
-        units = new ArrayList<Unit>();
+        buildings = new ArrayList<>();
+        blueUnits = new ArrayList<>();
+        redUnits = new ArrayList<>();
 
-        mapRefresh = new Timer(refreshDelay, new ActionListener() {
+        mapRefresh = new Timer(refreshDelay, new ActionListener()
+        {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 objects = gameBoard.getObjects();
                 buildings = gameBoard.getBuildings();
-                units=gameBoard.getUnits();
+                blueUnits = gameBoard.getBluePlayer().getUnits();
+                redUnits = gameBoard.getRedPlayer().getUnits();
                 repaint();
 
             }
@@ -78,10 +85,12 @@ public class MiniMap extends JPanel {
 
     }
 
-    private class MouseMiniMap implements MouseListener, MouseMotionListener {
+    private class MouseMiniMap implements MouseListener, MouseMotionListener
+    {
 
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void mouseClicked(MouseEvent e)
+        {
             int mapx = e.getX();
             int mapy = e.getY();
 
@@ -99,24 +108,29 @@ public class MiniMap extends JPanel {
         }
 
         @Override
-        public void mousePressed(MouseEvent e) {
+        public void mousePressed(MouseEvent e)
+        {
         }
 
         @Override
-        public void mouseReleased(MouseEvent e) {
+        public void mouseReleased(MouseEvent e)
+        {
 
         }
 
         @Override
-        public void mouseEntered(MouseEvent e) {
+        public void mouseEntered(MouseEvent e)
+        {
         }
 
         @Override
-        public void mouseExited(MouseEvent e) {
+        public void mouseExited(MouseEvent e)
+        {
         }
 
         @Override
-        public void mouseDragged(MouseEvent e) {
+        public void mouseDragged(MouseEvent e)
+        {
             int mapx = e.getX();
             int mapy = e.getY();
 
@@ -131,38 +145,48 @@ public class MiniMap extends JPanel {
         }
 
         @Override
-        public void mouseMoved(MouseEvent e) {
+        public void mouseMoved(MouseEvent e)
+        {
         }
 
     }
 
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g)
+    {
         g.setColor(brownColor);
         g.fillRect(0, 0, sizeWidth, sizeHeight);
 
-        for (ObjectElement ob : objects) {
-            if (!((ob instanceof Sand) || (ob instanceof Cactus) || (ob instanceof Shoal) || (ob instanceof Grass))) {
+        for (ObjectElement ob : objects)
+        {
+            if (!((ob instanceof Sand) || (ob instanceof Cactus) || (ob instanceof Shoal) || (ob instanceof Grass)))
+            {
 
-                if (ob instanceof Water) {
+                if (ob instanceof Water)
+                {
                     g.setColor(blueColor);
                 }
-                if (ob instanceof Gold) {
+                if (ob instanceof Gold)
+                {
                     g.setColor(goldColor);
                 }
-                if (ob instanceof Relic) {
+                if (ob instanceof Relic)
+                {
                     g.setColor(silverColor);
                 }
-                if (ob instanceof Tree) {
+                if (ob instanceof Tree)
+                {
                     g.setColor(greenColor);
                 }
-                if (ob instanceof Stone) {
+                if (ob instanceof Stone)
+                {
                     g.setColor(grayColor);
                 }
 
                 int objx = ob.getX();
                 int objy = ob.getY();
                 g.fillRect(0 + convertX(objx * 25), 0 + convertY(objy * 25), 4, 4);
-                if (ob instanceof Water) {
+                if (ob instanceof Water)
+                {
                     g.fillRect(0 + convertX((objx) * 25), 0 + convertY(objy * 25), 11, 11);
                 }
 
@@ -170,62 +194,68 @@ public class MiniMap extends JPanel {
 
         }
 
-        for (Building b : buildings) {
-             if(b.getPlayer()=="Blue")
-             {
+        for (Building b : buildings)
+        {
+            if (b.getPlayer() == "Blue")
+            {
                 g.setColor(darkBlueColor);
             }
-             else
-             {
-                 g.setColor(Color.RED);
-             }
-                int bX = b.getLocationX();
-                int bY = b.getLocationY();
-                g.fillRect(0 + convertX(bX * 25), 0 + convertY(bY * 25), 5, 5);
+            else
+            {
+                g.setColor(Color.RED);
+            }
+            int bX = b.getLocationX();
+            int bY = b.getLocationY();
+            g.fillRect(0 + convertX(bX * 25), 0 + convertY(bY * 25), 5, 5);
         }
-        
-        for(Unit u : units)
+
+        for (Unit u : blueUnits)
         {
-            if(u.getPlayer()=="Blue")
-            {
             g.setColor(darkBlueColor);
-            }
-            else 
-            {
-                g.setColor(Color.red);
-            }
-            {
-                int bX = u.getX()/25;
-                int bY = u.getY()/25;
-                g.fillRect(0 + convertX(bX * 25), 0 + convertY(bY * 25), 3, 3);
-            }
-        }    
-           
+            int bX = u.getX() / 25;
+            int bY = u.getY() / 25;
+            g.fillRect(0 + convertX(bX * 25), 0 + convertY(bY * 25), 3, 3);
+
+        }
+        for (Unit u : redUnits)
+        {
+            g.setColor(Color.red);
+            int bX = u.getX() / 25;
+            int bY = u.getY() / 25;
+            g.fillRect(0 + convertX(bX * 25), 0 + convertY(bY * 25), 3, 3);
+
+        }
 
         int currx = gameBoard.getCurrWinX() / scaleX;
         int curry = gameBoard.getCurrWinY() / scaleY;
         x = currx;
         y = curry;
+
         g.setColor(Color.black);
+
         g.drawRect(x, y, viewRectWidth, viewRectHeight);
 
         g.dispose();
     }
 
-    void setData(List<ObjectElement> objects, List<Building> buildings) {
+    void setData(List<ObjectElement> objects, List<Building> buildings)
+    {
         this.objects = objects;
         this.buildings = buildings;
     }
 
-    private int convertX(int x) {
+    private int convertX(int x)
+    {
         return x / scaleX;
     }
 
-    private int convertY(int y) {
+    private int convertY(int y)
+    {
         return y / scaleY;
     }
 
-    public void setAction(int x, int y) {
+    public void setAction(int x, int y)
+    {
 
         int newx = GameData.WINDOW_WIDTH - x;
         int newy = GameData.WINDOW_HEIGHT - y;
@@ -238,10 +268,14 @@ public class MiniMap extends JPanel {
 
     }
 
-    public boolean intersect(int x, int y) {
-        if (x >= this.x && y >= this.y) {
+    public boolean intersect(int x, int y)
+    {
+        if (x >= this.x && y >= this.y)
+        {
             return true;
-        } else {
+        }
+        else
+        {
             return false;
         }
     }
