@@ -4,6 +4,7 @@
  */
 package Unit;
 
+import Building.TownCenter.TownCenter;
 import Buildings.Building;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class Player
 
     private List<Unit> units;
     private List<Building> buildings;
+    private TownCenter tc;
 
     public Player(int wood, int gold, int stone, int food, String team)
     {
@@ -40,6 +42,23 @@ public class Player
         this.stone = stone;
         this.food = food;
         this.team = team;
+    }
+
+    public void setTownCenter(TownCenter tc)
+    {
+        this.tc = tc;
+    }
+
+    public boolean isTownCenterAlive()
+    {
+        if (tc != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public List<Unit> getUnits()

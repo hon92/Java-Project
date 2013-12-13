@@ -338,13 +338,12 @@ public class SwordMan extends Unit
 
     private boolean checkCloseEnemy()
     {
-
         for (int i = -1; i < 2; i++)
         {
             for (int j = -1; j < 2; j++)
             {
-                int x = (getX() / 25) + j;
-                int y = (getY() / 25 + 1) + i;
+                int x = (getX() / 25) + i;
+                int y = (getY() / 25 + 1) + j;
 
                 if (gameBoard.getUnitField(x, y) != null)
                 {

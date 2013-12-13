@@ -72,6 +72,7 @@ public class GameBoard extends JPanel
     private Unit[][] unitField = new Unit[columns][rows];
     private Building[][] buildingField = new Building[columns][rows];
     private Action action;
+    private boolean running;
 
     GameBoard(MainWindow rootWindow)
     {
@@ -106,13 +107,16 @@ public class GameBoard extends JPanel
         generateGrass();
         fillBackground();
 
+        blue.setTownCenter(new TownCenter(this, 30, 80, "Blue"));
+        red.setTownCenter(new TownCenter(this, 264, 87, "Red"));
+
         units.add(new Villager(this, 30, 70, 0, "Blue"));
         units.add(new Villager(this, 40, 70, 90, "Blue"));
         units.add(new Villager(this, 35, 70, 180, "Blue"));
         buildings.add(new Barracks(this, 45, 60, "Blue"));
-        buildings.add(new TownCenter(this, 30, 80, "Blue"));
+        //buildings.add(new TownCenter(this, 30, 80, "Blue"));
 
-        buildings.add(new TownCenter(this, 264, 87, "Red"));
+        //buildings.add(new TownCenter(this, 264, 87, "Red"));
         buildings.add(new Barracks(this, 220, 80, "Red"));
 
         buildings.add(new House(this, 40, 70, "Blue"));
@@ -126,13 +130,13 @@ public class GameBoard extends JPanel
         buildings.add(new Farm(this, 72, 80, "Blue"));
 
         units.add(new SwordMan(this, 50, 50, 180, "Red"));
-        units.add(new SwordMan(this, 50, 52, 180, "Red"));
-        units.add(new SwordMan(this, 54, 52, 180, "Red"));
-        units.add(new SwordMan(this, 58, 52, 180, "Red"));
-        units.add(new SwordMan(this, 65, 52, 180, "Red"));
+//        units.add(new SwordMan(this, 50, 52, 180, "Red"));
+//        units.add(new SwordMan(this, 54, 52, 180, "Red"));
+//        units.add(new SwordMan(this, 58, 52, 180, "Red"));
+//        units.add(new SwordMan(this, 65, 52, 180, "Red"));
         units.add(new SwordMan(this, 45, 52, 180, "Blue"));
-        units.add(new SwordMan(this, 40, 52, 180, "Blue"));
-        units.add(new SwordMan(this, 40, 55, 180, "Blue"));
+//        units.add(new SwordMan(this, 40, 52, 180, "Blue"));
+//        units.add(new SwordMan(this, 40, 55, 180, "Blue"));
         buildings.add(new House(this, 40, 40, "Red"));
         for (int i = 0; i < 22; i++)
         {
@@ -141,6 +145,7 @@ public class GameBoard extends JPanel
                 units.add(new SwordMan(this, 240 + i, 87 + j, 180, "Red"));
             }
         }
+        running = true;
 
         addKeyListener(new Key(this));
         gameLoop();
@@ -155,8 +160,9 @@ public class GameBoard extends JPanel
             @Override
             public void run()
             {
-                while (true)
+                while (running)
                 {
+
                     tick();
                     repaint();
                     try
@@ -180,6 +186,18 @@ public class GameBoard extends JPanel
 
     public void tick()
     {
+
+        if (!blue.isTownCenterAlive())
+        {
+            System.err.println("BLUE TEAM LOST THE GAME");
+            this.running = false;
+        }
+        else if (!red.isTownCenterAlive())
+        {
+            System.err.println("RED TEAM LOST THE GAME");
+            this.running = false;
+        }
+
         ArrayList<Unit> temp = new ArrayList<Unit>(units);
         for (Unit u : temp)
         {
@@ -388,15 +406,15 @@ public class GameBoard extends JPanel
 //            u.drawUnit(g);
 //        }
 
-//        g.setColor(Color.white);
-//        for (int i = 0; i < columns; i++)
-//        {
-//            for (int j = 0; j < rows; j++)
-//            {
-//                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
-//            }
-//        }
-//        if (action != null)
+        g.setColor(Color.white);
+        for (int i = 0; i < columns; i++)
+        {
+            for (int j = 0; j < rows; j++)
+            {
+                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
+            }
+        }
+        if (action != null)
         {
             if (action instanceof VillagerAction)
             {
@@ -414,6 +432,14 @@ public class GameBoard extends JPanel
 //                g.drawRect(i, j, 25, 25);
 //            }
 //        }
+        if (!running)
+        {
+            g.setColor(Color.black);
+            g.fillRect(0, 0, GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT);
+            g.setColor(Color.white);
+            g.drawString("Game End", GameData.WINDOW_WIDTH / 2 - 50, 300);
+        }
+
         g.dispose();
         Toolkit.getDefaultToolkit().sync();
     }

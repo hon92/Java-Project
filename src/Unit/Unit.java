@@ -148,6 +148,21 @@ public abstract class Unit
             }
             return;
         }
+//        for (int i = -1; i < 2; i++)
+//        {
+//            for (int j = -1; j < 2; j++)
+//            {
+//                int x = (getX() / 25) + j;
+//                int y = (getY() / 25 + 1) + i;
+//                if (gameBoard.getFieldIndex(x, y) == 0)
+//                {
+//                    System.out.println("free: " + x + "   " + y);
+//                    move(x, y);
+//                    return;
+//
+//                }
+//            }
+//        }
 
         if (t == 25)
         {
