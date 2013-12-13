@@ -80,6 +80,10 @@ public class Mouse implements MouseListener, MouseMotionListener
                         {
                             u.goAttack(gameBoard.getUnitField(clickedIndexX, clickedIndexY));
                         }
+                        else if (gameBoard.getFieldIndex(clickedIndexX, clickedIndexY) == 15)
+                        {
+                            u.goAttackBuilding(gameBoard.getBuildingFieldObject(clickedIndexX, clickedIndexY), u);
+                        }
                         else
                         {
                             u.move(clickedIndexX, clickedIndexY);

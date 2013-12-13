@@ -133,7 +133,7 @@ public class GameBoard extends JPanel
         units.add(new SwordMan(this, 45, 52, 180, "Blue"));
         units.add(new SwordMan(this, 40, 52, 180, "Blue"));
         units.add(new SwordMan(this, 40, 55, 180, "Blue"));
-
+        buildings.add(new House(this, 40, 40, "Red"));
         for (int i = 0; i < 22; i++)
         {
             for (int j = 0; j < 6; j++)
@@ -185,7 +185,17 @@ public class GameBoard extends JPanel
         {
             u.tick();
         }
-        for (Building b : buildings)
+        ArrayList<Building> bluetemp = new ArrayList<>(blue.getBuildings());
+        for (Building b : bluetemp)
+        {
+            b.tick();
+            for (Action a : b.getActions())
+            {
+                a.tick();
+            }
+        }
+        ArrayList<Building> redtemp = new ArrayList<>(red.getBuildings());
+        for (Building b : redtemp)
         {
             b.tick();
             for (Action a : b.getActions())
@@ -378,15 +388,15 @@ public class GameBoard extends JPanel
 //            u.drawUnit(g);
 //        }
 
-        g.setColor(Color.white);
-        for (int i = 0; i < columns; i++)
-        {
-            for (int j = 0; j < rows; j++)
-            {
-                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
-            }
-        }
-        if (action != null)
+//        g.setColor(Color.white);
+//        for (int i = 0; i < columns; i++)
+//        {
+//            for (int j = 0; j < rows; j++)
+//            {
+//                g.drawString("" + getFieldIndex(i, j), convertX(i * 25 + 12), convertY(j * 25 + 12));
+//            }
+//        }
+//        if (action != null)
         {
             if (action instanceof VillagerAction)
             {

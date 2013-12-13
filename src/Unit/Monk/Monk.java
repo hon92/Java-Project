@@ -49,12 +49,12 @@ public class Monk extends Unit
     private static BufferedImage monkLeftTopRed;
     private static BufferedImage monkLeftBotRed;
 
-    private static int count= 0;
+    private static int count = 0;
     private int goldCost;
     private List<Unit> units;
-    
 
     private boolean hasRelic;
+
     public Monk(GameBoard gameBoard, int x, int y, int dir, String team)
     {
         super(gameBoard, x, y, dir, team);
@@ -64,9 +64,8 @@ public class Monk extends Unit
         speed = 1;
         hasRelic = false;
         goldCost = 100;
-        
+
         actions.add(new MonkPickRelic());
-        
 
         try
         {
@@ -254,17 +253,16 @@ public class Monk extends Unit
     @Override
     public void setHp(int value)
     {
-        if(currentHp<maxHp)
+        if (currentHp <= maxHp)
         {
-        currentHp+=value;
+            currentHp += value;
         }
         else
         {
-            currentHp=maxHp;
+            currentHp = maxHp;
         }
     }
-    
-    
+
     @Override
     public BufferedImage getIcon()
     {
@@ -274,28 +272,27 @@ public class Monk extends Unit
     @Override
     public void tick()
     {
-        
+
         count++;
-        if (count %20 ==0)
+        if (count % 20 == 0)
         {
-        units = gameBoard.getUnits();
-        for(Unit u : units)
-        {
-            if(this.team == u.getPlayer() && Math.abs((this.getX()/25)-(u.getX()/25))<10  && Math.abs((this.getY()/25)-(u.getY()/25))<10 )
+            units = gameBoard.getUnits();
+            for (Unit u : units)
             {
-                 
-                 u.setHp(1);
-                 MainWindow.botPanel.getSelectPanel().repaint();
+                if (this.team == u.getPlayer() && Math.abs((this.getX() / 25) - (u.getX() / 25)) < 10 && Math.abs((this.getY() / 25) - (u.getY() / 25)) < 10)
+                {
+
+                    u.setHp(1);
+                    MainWindow.botPanel.getSelectPanel().repaint();
+                }
             }
         }
-        }
-        
-        if (count>999999990)
+
+        if (count > 999999990)
         {
             count = 0;
         }
-        
-        
+
         if (isMoving())
         {
             movePixel();
@@ -317,11 +314,12 @@ public class Monk extends Unit
     }
 
     @Override
-    public void deleteUnit() {
+    public void deleteUnit()
+    {
         gameBoard.setUnitField(this.getX(), this.getY(), null);
         gameBoard.setUnitField(this.getX(), this.getY() + 1, null);
         gameBoard.setFieldIndex(this.getX(), this.getY() + 1, 0);
-        
+
         gameBoard.getUnits().remove(this);
     }
 }

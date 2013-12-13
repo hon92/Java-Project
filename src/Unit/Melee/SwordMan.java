@@ -5,6 +5,7 @@
  */
 package Unit.Melee;
 
+import Buildings.Building;
 import GameElement.Grass;
 import Unit.Unit;
 import View.GameBoard;
@@ -58,6 +59,7 @@ public class SwordMan extends Unit
     private int timeToNewAttack = 0;
     private boolean enemyIsClose = false;
     private Unit enemy;
+    private Building enemyBuilding;
 
     public SwordMan(GameBoard gameBoard, int x, int y, int dir, String team)
     {
@@ -229,7 +231,7 @@ public class SwordMan extends Unit
 
         if (attacking)
         {
-            g.drawImage(attackImg, gameBoard.convertX(pixelX + 2), gameBoard.convertY(pixelY + 2 - 40), null);
+            g.drawImage(attackImg, gameBoard.convertX(pixelX - 2), gameBoard.convertY(pixelY + 2 - 42), null);
         }
     }
 
@@ -290,6 +292,7 @@ public class SwordMan extends Unit
         {
             deleteUnit();
         }
+        attacking = false;
 
         if (checkCloseEnemy())
         {
@@ -301,6 +304,16 @@ public class SwordMan extends Unit
                 timeToNewAttack = 0;
             }
 
+        }
+        if (checkCloseEnemyBuilding())
+        {
+            timeToNewAttack++;
+            if (timeToNewAttack == timeAttack)
+            {
+                enemyBuilding.setHp(-1 * attack);
+                gameBoard.getSelectView().repaint();
+                timeToNewAttack = 0;
+            }
         }
 
         if (isMoving())
@@ -353,4 +366,34 @@ public class SwordMan extends Unit
         }
         return false;
     }
+
+    private boolean checkCloseEnemyBuilding()
+    {
+        for (int i = -1; i < 2; i++)
+        {
+            for (int j = -1; j < 2; j++)
+            {
+                int x = (getX() / 25) + j;
+                int y = (getY() / 25 + 1) + i;
+
+                if (gameBoard.getBuildingFieldObject(x, y) != null)
+                {
+                    if (gameBoard.getFieldIndex(x, y) == 15 && (getPlayer() != gameBoard.getBuildingFieldObject(x, y).getPlayer()))
+                    {
+                        attacking = true;
+                        enemyBuilding = gameBoard.getBuildingFieldObject(x, y);
+                        return true;
+                    }
+                    else
+                    {
+                        attacking = false;
+                        enemyBuilding = null;
+
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
 }

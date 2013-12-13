@@ -6,6 +6,7 @@
 package Unit;
 
 import Buildings.Action;
+import Buildings.Building;
 import Controls.Dijkstra;
 import Controls.ListItem;
 import Data.UnitType;
@@ -319,5 +320,34 @@ public abstract class Unit
     public abstract void tick();
 
     public abstract double getHpDown();
+
+    public void goAttackBuilding(Building b, Unit u)
+    {
+        if (getPlayer() != b.getPlayer())
+        {
+            System.err.println("building attack");
+
+            int w = b.getBuildingWidth();
+            int h = b.getBuildingHeight();
+
+            for (int i = -1; i < w - 1; i++)
+            {
+                for (int j = -1; j < h - 1; j++)
+                {
+                    int x = (b.getLocationX()) + j;
+                    int y = (b.getLocationY()) + i;
+                    if (gameBoard.getFieldIndex(x, y) == 0)
+                    {
+                        System.out.println("free: " + x + "   " + y);
+                        u.move(x, y);
+                        return;
+
+                    }
+                }
+            }
+
+        }
+
+    }
 
 }

@@ -5,7 +5,6 @@
  */
 package Buildings;
 
-import Unit.Player;
 import View.GameBoard;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -31,22 +30,30 @@ public abstract class Building
     protected int maxHp = -1;
     protected int locationX = -1;
     protected int locationY = -1;
-
+    protected int width;
+    protected int height;
     protected String team;
 
     protected boolean selected = false;
 
-    public Building(GameBoard gameBoard, int x, int y, String team)
+    public Building(GameBoard gameBoard, int x, int y, String team, int w, int h)
     {
         this.team = team;
         this.gameBoard = gameBoard;
         this.locationX = x;
         this.locationY = y;
+        this.width = w;
+        this.height = h;
         actions = new ArrayList<Action>();
 
     }
 
     public abstract void drawBuilding(Graphics g);
+
+    public boolean isCrashed()
+    {
+        return (currentHp <= 0) ? true : false;
+    }
 
     public int getLocationX()
     {
@@ -96,5 +103,51 @@ public abstract class Building
 
     public abstract BufferedImage getIcon();
 
-    public abstract void tick();
+    public void tick()
+    {
+        if (isCrashed())
+        {
+            deleteBuilding();
+        }
+    }
+
+    public int getBuildingWidth()
+    {
+        return width;
+    }
+
+    public int getBuildingHeight()
+    {
+        return height;
+    }
+
+    public void setHp(int value)
+    {
+        currentHp += value;
+    }
+
+    public void deleteBuilding()
+    {
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                gameBoard.setBuildingObjectField(locationX + i, locationY + j, null);
+                gameBoard.setFieldIndex(locationX + i, locationY + j, 0);
+            }
+        }
+
+        if (getPlayer() == "Blue")
+        {
+            gameBoard.getBluePlayer().getBuildings().remove(this);
+
+        }
+        else
+        {
+            gameBoard.getRedPlayer().getBuildings().remove(this);
+
+        }
+
+        gameBoard.getBuildings().remove(this);
+    }
 }

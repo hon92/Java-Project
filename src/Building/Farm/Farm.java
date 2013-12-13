@@ -30,7 +30,7 @@ public class Farm extends Building
 
     public Farm(GameBoard gameBoard, int x, int y, String team)
     {
-        super(gameBoard, x, y, team);
+        super(gameBoard, x, y, team, 6, 6);
         initFarm();
 
         for (int i = 0; i < 6; i++)
@@ -150,7 +150,7 @@ public class Farm extends Building
     @Override
     public void tick()
     {
-
+        super.tick(); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
