@@ -123,6 +123,17 @@ public class TownCenter extends Building
     public void tick()
     {
         super.tick(); //To change body of generated methods, choose Tools | Templates.
+        if (isCrashed())
+        {
+            if (getPlayer() == "Blue")
+            {
+                gameBoard.getBluePlayer().setTownCenter(null);
+            }
+            else
+            {
+                gameBoard.getRedPlayer().setTownCenter(null);
+            }
+        }
     }
 
 }

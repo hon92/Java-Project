@@ -83,7 +83,6 @@ public class MainWindow extends JFrame
     {
 
         System.setProperty("sun.java2d.opengl", "true");
-
         try
         {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())

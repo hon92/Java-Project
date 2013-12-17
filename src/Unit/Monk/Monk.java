@@ -281,8 +281,10 @@ public class Monk extends Unit
             {
                 if (this.team == u.getPlayer() && Math.abs((this.getX() / 25) - (u.getX() / 25)) < 10 && Math.abs((this.getY() / 25) - (u.getY() / 25)) < 10)
                 {
-
-                    u.setHp(1);
+                    if (!(u.getMaxHp() == u.getHp()))
+                    {
+                        u.setHp(1);
+                    }
                     MainWindow.botPanel.getSelectPanel().repaint();
                 }
             }

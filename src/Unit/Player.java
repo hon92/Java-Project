@@ -49,6 +49,11 @@ public class Player
         this.tc = tc;
     }
 
+    public TownCenter getTownCenter()
+    {
+        return tc;
+    }
+
     public boolean isTownCenterAlive()
     {
         if (tc != null)

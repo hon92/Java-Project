@@ -68,6 +68,16 @@ public class Farm extends Building
                 }
             }
         }
+        if (getPlayer() == "Blue")
+        {
+            gameBoard.getBluePlayer().getBuildings().remove(this);
+
+        }
+        else
+        {
+            gameBoard.getRedPlayer().getBuildings().remove(this);
+
+        }
 
         gameBoard.getBuildings().remove(this);
     }

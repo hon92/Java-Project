@@ -53,7 +53,7 @@ public class SelectView extends JPanel
 
         if (element == null && building == null && units.size() == 0)
         {
-            g.drawString("Nic", 50, 50);
+            g.drawString("", 50, 50);
         }
         if (element instanceof Source)
         {
